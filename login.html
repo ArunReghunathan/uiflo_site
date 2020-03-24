@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>uiflo</title>
+    <meta name="description" content="uiflo">
+
+    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <link rel="canonical" href="https://uiflo.com/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+</head>
+<body  lang="en" style="background: #F7F7F7;">
+
+    
+
+
+<div class="col-lg-12 col-md-12 flex-container" style="height: 100vh;">
+    <div class="col-lg-12 col-md-12" style="text-align: left;font-size: 26px;font-weight: 600;">UIFLO Admin</div>
+<div class="" style="height: 100%;padding: 25vh;">
+    <form class="col-lg-4 col-lg-offset-4 col-md-offset-4 col-md-4 flex-container">
+
+        <div  style="color: #666666;font-size: 18px;text-align: left"> Username</div>
+        <input id="email" type="text" name="username" class="text-field" placeholder="Username" />
+        <div  style="color: #666666;font-size: 18px;text-align: left;margin-top: 2%;"> Password</div>
+        <input id="password" type="password" name="password" class="text-field" placeholder="Password" />
+
+        <a href=""><input type="button"  class="button" value="Log In" style="background: #3D1369;color: white;" /></a>
+
+       <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
+           <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+               <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="../uiflo/src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
+               <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+           </div>
+           <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+               <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="../uiflo/src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div>
+               <div class="col-lg-11 col-md-11">Connect with google </div>
+           </div>
+       </div>
+
+<!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+<!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="../uiflo/src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
+<!--        </div>-->
+<!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+<!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="../uiflo/src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
+
+<!--        </div>-->
+    </form>
+
+</div>
+</div>
+
+</body>
+<style>
+    nav {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+
+    nav a {
+        color: #4889C2;
+        font-weight: bold;
+        text-decoration: none;
+        opacity: .3;
+        -moz-transition: all .4s;
+    }
+
+    nav a:hover {
+        opacity: 1;
+    }
+
+    nav a.focus {
+        opacity: 1;
+    }
+
+    /* LOGIN & REGISTER FORM */
+
+    form {
+        border-radius: 3px;
+        /*box-shadow: 0 0 10px rgba(0,0,0, .4);*/
+    }
+
+    form.register{																				/* Register form height */
+        height: 420px;
+    }
+
+    form .text-field {																			/* Input fields; Username, Password etc. */
+        border: 1px solid #a6a6a6;
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        margin-top: 10px;
+        padding-left: 10px;
+        color: #6c6c6c;
+        background: #fcfcfc;
+        outline: none;
+    }
+
+    form .text-field:focus {
+        box-shadow: inset 0 0 2px rgba(0,0,0, .3);
+        color: #a6a6a6;
+        background: white;
+    }
+
+    form .button {																				/* Submit button */
+        border-radius: 3px;
+        width: 100%;
+        height: 40px;
+        margin-top: 20px;
+
+        background: linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -o-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -moz-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -webkit-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -ms-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 -1px 0 #336895;
+
+        font-size: 13px;
+    }
+
+    form .button:hover {
+        background: linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -o-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -moz-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -webkit-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -ms-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+    }
+
+    form .button:active {
+        background: linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -o-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -moz-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -webkit-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -ms-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+
+        box-shadow: inset 0 0 2px rgba(0,0,0, .3), 0 1px 0 white;
+    }
+    #facebook-connect {
+        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
+        border: 1px solid rgb(60, 90, 154);
+    }
+
+    #facebook-connect:hover {
+        border-color: rgb(60, 90, 154);
+        /*background: rgb(60, 90, 154) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook-white.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
+        -webkit-transition: all .8s ease-out;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease-out;
+        text-decoration: none;
+    }
+
+    #facebook-connect span {
+        box-sizing: border-box;
+        color: rgb(60, 90, 154);
+        cursor: pointer;
+        text-align: center;
+        text-transform: uppercase;
+        border: 0px none rgb(255, 255, 255);
+        outline: rgb(255, 255, 255) none 0px;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+
+    }
+
+    #facebook-connect:hover span {
+        color: #FFF;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+        text-decoration: none;
+    }
+
+    #google-connect {
+        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
+        border: 1px solid rgb(220, 74, 61);
+    }
+
+    #google-connect:hover {
+        border-color: rgb(220, 74, 61);
+        /*background: rgb(220, 74, 61) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
+        -webkit-transition: all .8s ease-out;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease-out;
+        text-decoration: none;
+    }
+
+    #google-connect span {
+        box-sizing: border-box;
+        color: rgb(220, 74, 61);
+        cursor: pointer;
+        text-align: center;
+        text-transform: uppercase;
+        border: 0px none rgb(220, 74, 61);
+        outline: rgb(255, 255, 255) none 0px;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+
+    #google-connect:hover span {
+        color: #FFF;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+        text-decoration: none;
+    }
+</style>
+</html>
