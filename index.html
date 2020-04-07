@@ -61,7 +61,8 @@
                     alert(result.error.message)
                 }else{
                     localStorage.setItem("token", result.token);
-                    alert("Login Successful")
+                    document.getElementById("display_username").innerHTML = name;
+                    // alert("Login Successful")
                 }
             })
             .catch(error => console.log('error', error));
@@ -84,6 +85,7 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
             console.log('User signed out.');
+            document.getElementById("display_username").innerHTML = "";
             });
         }
 
@@ -99,7 +101,8 @@
             <span class="">ALL</span> &nbsp;&nbsp;
             <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;
             <span class="">LANDING PAGES</span> &nbsp;&nbsp;
-            <span class="">EMAILS</span>
+            <span class="">EMAILS</span> &nbsp;&nbsp;
+           <a  href="./admin-page.html" ><span id="display_username" > </span> </a> 
         </div>
     </div>
     <div class="col-md-2 col-lg-2 no-padding">
