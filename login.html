@@ -17,32 +17,6 @@
 </head>
 <body  lang="en" style="background: #F7F7F7;">
 
-    <script>
-        function Register() {
-            var data = new FormData();
-            data.append("first_name", "Arun");
-            data.append("email", "arunreghunathan@gmail.com");
-            data.append("password", "password");
-            data.append("remark", "{\"key\":\"value\"}"); 
-            data.append("is_active", "true");
-            data.append("last_name", "Reghunathan");
-
-            var xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-
-            xhr.addEventListener("readystatechange", function() {
-            if(this.readyState === 4) {
-                console.log(this.responseText);
-                console.log(this.response);
-            }
-            });
-
-            xhr.open("POST", "http://localhost:8009/user/");
-
-            xhr.send(data);
-            
-        }
-    </script>
 
     
 
