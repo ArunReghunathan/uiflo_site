@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="./mycss.css">  
+    <link type="text/css" rel="stylesheet" href="./mycss.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
@@ -29,7 +29,7 @@
                 alert("please sigin ")
                 window.location.replace("./index.html");
             }
- 
+
     </script>
 
 </head>
@@ -75,9 +75,9 @@
                        <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
                            SAVE
                        </div>
-                   </div>  
-          
-                
+                   </div>
+
+
                    <div class="col-md-3 col-lg-3" style="">
                        <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
                            DELETE
@@ -147,8 +147,8 @@
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
                 <div class="col-md-12 no-padding">
                     <input  type="file"   ng-model="video_file" id="video_file1"   >
-                   
-                  
+
+
 
                     <!--<div class="col-md-7 no-padding"><input  type="file" name="pic" accept="image/*"></div>-->
                     <div class="upload-btn-wrapper " style="margin-top: 10px;">
@@ -156,11 +156,11 @@
                     </div>
 
                 </div>
- 
- 
+
+
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Annotations</div>
-                
-                
+
+
                 <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value">
                    <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">
                        <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
@@ -174,23 +174,23 @@
                         <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;"></textarea>
                     </div>
                 </div>
-                
-                
-                <div class="col-lg-12 col-md-12 no-padding" style=" margin-top: 2%;margin-bottom: 5%;"> 
+
+
+                <div class="col-lg-12 col-md-12 no-padding" style=" margin-top: 2%;margin-bottom: 5%;">
                     <span  ng-click="add_next_annotations()"class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">&nbsp;+&nbsp;</span> &nbsp;&nbsp;
 
                 <span  ng-click="add_video()" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> Upload Video</span> &nbsp;&nbsp;
                 </div>
 
-                
+
                 <i ng-if="video_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
                 <span ng-if="video_uploading"  > uploading...</span>
-                <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i> 
- 
-                 
- 
+                <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+
+
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
-              
+
                         <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
                             <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
                                 <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
@@ -200,21 +200,21 @@
                                 <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
 
                             </div>
- 
+
                                 <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
 
-                         
+
                         </div>
-                   
+
             <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
 
                 <i ng-if="screen_shorts_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
                 <span ng-if="screen_shorts_uploading"  > uploading...</span>
-                <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i> 
+                <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
 
             </div>
 
- 
+
             </div>
         </div>
         </form>
@@ -227,18 +227,18 @@
 
 <script>
     setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
-    setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)')); 
- 
+    setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
+
 
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http, $timeout) {
-    
+
         $scope.video_uploading = false;
         $scope.product_details = {};
 
         $scope.product_details.media = []
         $scope.add_product = function() {
-            
+
             if($scope.captured_date){
                 $scope.product_details.captured_date = $scope.captured_date.toISOString().substring(0, 10);
             }
@@ -248,20 +248,20 @@
                 $scope.myWelcome = response.data;
             });
         }
-        
+
 
         $scope.annotations_value =[0];
-        $scope.annotations_next_value = 1;         
+        $scope.annotations_next_value = 1;
 
         $scope.screen_shorts_annotations_value =[0];
-        $scope.screen_shorts_annotations_next_value = 1; 
-        
-        $scope.annotations=[]; 
-        
+        $scope.screen_shorts_annotations_next_value = 1;
+
+        $scope.annotations=[];
+
         $scope.add_next_annotations = function() {
             $scope.annotations_value.push($scope.annotations_next_value)
             $scope.annotations_next_value += 1;
-        }        
+        }
         $scope.add_next_screen_shorts_annotations = function() {
             $scope.screen_shorts_annotations_value.push($scope.screen_shorts_annotations_next_value)
             $scope.screen_shorts_annotations_next_value += 1;
@@ -269,10 +269,10 @@
 
         $scope.add_video = function() {
             $scope.video_uploading = true;
-            
+
             var f = document.getElementById('video_file1').files[0];
             console.log(document.getElementById('video_file1').files)
-            
+
 
             var myHeaders = new Headers();
             var url = "http://13.126.184.35:8000/files/";
@@ -287,39 +287,39 @@
               redirect: 'follow'
             };
 
-            fetch(url, requestOptions)   
+            fetch(url, requestOptions)
             .then(response => response.text()
             )
-            .then((result) =>{ 
+            .then((result) =>{
                 console.log(result)
                 $scope.video_uploading = false;
                 result = JSON.parse(result)
                 if(result.error){
                     alert(result.error.message)
-                }else{ 
-                    
+                }else{
+
                     $scope.product_details.media.push(result.uuid)
-                    
+
                 }
                 $scope.video_uploading = false;
                 $timeout(function () {
                     $scope.$apply();
                 });
             })
-            .catch(error => { 
+            .catch(error => {
                 $scope.video_uploading = false;
                 console.log('error', error)
             });
         };
 
-    
+
         $scope.add_screen_shorts = function(count) {
             $scope.screen_shorts_uploading = true;
             console.log(count)
-            
+
             var f = document.getElementById('screen_shorts_file'+ count.toString() ).files[0];
             console.log(f)
-            
+
 
             var myHeaders = new Headers();
             var url = "http://13.126.184.35:8000/files/";
@@ -336,54 +336,54 @@
               redirect: 'follow'
             };
 
-            fetch(url, requestOptions)   
+            fetch(url, requestOptions)
             .then(response => response.text()
             )
-            .then((result) =>{ 
-                console.log(result) 
+            .then((result) =>{
+                console.log(result)
                 result = JSON.parse(result)
                 if(result.error){
                     alert(result.error.message)
-                }else{  
+                }else{
                     document.getElementById('screenshot'+ count.toString()).src = result.file;
                     $scope.product_details.media.push(result.uuid)
                     $scope.add_next_screen_shorts_annotations()
-                    
+
                 }
                 $scope.screen_shorts_uploading = false;
                 $timeout(function () {
                     $scope.$apply();
                 });
             })
-            .catch(error => { 
+            .catch(error => {
                 $scope.screen_shorts_uploading = false;
                 console.log('error', error)
             });
         };
-        
-    
+
+
         $scope.clear_all = function() {
 
             $scope.product_details = {};
             $scope.product_details.media = []
             $scope.annotations_value =[0];
-            $scope.annotations_next_value = 1;         
+            $scope.annotations_next_value = 1;
 
             $scope.screen_shorts_annotations_value =[0];
-            $scope.screen_shorts_annotations_next_value = 1; 
-            
-            $scope.annotations=[]; 
+            $scope.screen_shorts_annotations_next_value = 1;
+
+            $scope.annotations=[];
         }
-    
+
         $scope.checkSigin = function() {
             $scope.token = localStorage.getItem("token") || "unauth";
             if($scope.token.split(".").length != 3){
                 alert("please sigin ")
                 window.location.replace("./index.html");
             }
- 
-        }        
-        
+
+        }
+
         $scope.logout = function() {
             localStorage.setItem("token","");
             window.location.replace("./index.html");
@@ -1112,7 +1112,7 @@
 
     /* @end */
     /* @group Multi Chosen */
- 
+
     .chosen-container-multi .chosen-choices {
         position: relative;
         overflow: hidden;

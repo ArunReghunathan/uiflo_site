@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>uiflo</title>
+    <meta name="description" content="uiflo">
+
+    <script src="https://apis.google.com/js/platform.js"  ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com">
+
+    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
+    <link rel="canonical" href="https://uiflow.com/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+
+</head>
+<body lang="en">
+
+<script type="text/javascript">
+    setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
+    setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
+
+
+
+    function Register(name=null,email=null, social_id=false) {
+        let url = "http://13.126.184.35:8000/user/";
+        var myHeaders = new Headers();
+
+        var formdata = new FormData();
+        if(!social_id){
+            email = document.getElementById("registed_email").value
+            name = document.getElementById("registed_name").value
+            let password = document.getElementById("registed_password").value
+            formdata.append("password", password);
+        }
+        else{
+            formdata.append("social_id", social_id);
+        }
+        formdata.append("first_name", name);
+        formdata.append("email", email);
+        formdata.append("is_active", "true");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then((result) =>{
+                result = JSON.parse(result)
+                if(result.error){
+                    alert(result.error.message)
+                }else{
+                    localStorage.setItem("token", result.token);
+                    alert("Login Successful")
+                }
+            })
+            .catch(error => console.log('error', error));
+
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        let social_id = profile.getId()
+        let name = profile.getName()
+        let pic = profile.getImageUrl()
+        let email = profile.getEmail()
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        Register(name, email,social_id)
+    }
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+
+</script>
+
+<div class="col-md-12 col-lg-12" style="margin-top: 1%;margin-bottom: 1%;border-bottom: 1px solid #EBEBEB;background: white;padding: 0;
+">
+    <div class="col-md-3 col-lg-3" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
+        UiFLO
+    </div>
+    <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">
+        <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">
+            <span class="">ALL</span> &nbsp;&nbsp;
+            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;
+            <span class="">LANDING PAGES</span> &nbsp;&nbsp;
+            <span class="">EMAILS</span>
+        </div>
+    </div>
+    <div class="col-md-2 col-lg-2 no-padding">
+        <form action="" role="search" class="search-form" style="width: 100%;">
+            <input type="search" name="q" class="search-text" placeholder="Search..." autocomplete="off" style="width: 100%;height: 100%;">
+        </form>
+    </div>
+    <div class="col-md-1 col-lg-1" style="text-align: center;">
+
+        <div class="containers" style="">
+            <!-- Trigger the modal with a button -->
+            <div class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer">LOGIN</div>
+
+            <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+
+                    <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
+                        <div class="col-lg-12 col-md-12 flex-container"  >
+                            <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">
+                                <div style="font-size: 30px;">SIGN UP</div>
+                                <div style="font-size: 14px;">TO UIFLO</div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
+                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
+                                    <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter name" style="font-size: 14px;" />
+                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
+                                    <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
+                                    <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
+                                    <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
+
+                                    <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
+                                    <br>
+
+
+                                    <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
+                                        <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+                                            <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
+                                            <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 g-signin2"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+
+                                            <div class="col-lg-11 col-md-11">Connect with google. </div>
+
+                                        </div>
+                                        <a href="#" onclick="signOut();">Sign out</a>
+
+                                    </div>
+
+                                    <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+                                    <!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="./src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
+                                    <!--        </div>-->
+                                    <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+                                    <!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="./src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
+
+                                    <!--        </div>-->
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-md-12 col-lg-12" style="">
+    <div class="col-md-12 col-lg-12" style="border-bottom: 1px solid #EBEBEB;">
+        <div class="col-md-2 col-lg-2" style="margin-bottom: 1%;">
+            <form autocomplete="off" action="/action_page.php" >
+                <div class="autocomplete" style="width:180px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="Categories" style="border-radius: 4px;">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2 col-lg-2" style="margin-bottom: 1%;">
+            <form autocomplete="off" action="/action_page.php" >
+                <div class="autocomplete" style="width:180px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="Products" style="border-radius: 4px;">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2 col-lg-2" style="margin-bottom: 1%;">
+            <form autocomplete="off" action="/action_page.php" >
+                <div class="autocomplete" style="width:180px;">
+                    <input id="myInput" type="text" name="myCountry" placeholder="User flows" style="border-radius: 4px;">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+        <div class="row">
+            <div class="column" style="height: 60vh;">
+              <span style="font-size: 30px;">PRODUCTS DISPLAY</span>
+
+            </div>
+<!--            <div class="column">-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--            </div>-->
+<!--            <div class="column">-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function(e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false;}
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function(e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
+    /*An array containing all the country names in the world:*/
+    var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+    autocomplete(document.getElementById("myInput"), countries);
+</script>
+<style>
+
+    .row {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        padding: 0 4px;
+    }
+
+    /* Create four equal columns that sits next to each other */
+    .column {
+        -ms-flex: 25%; /* IE10 */
+        flex: 25%;
+        max-width: 25%;
+        padding: 0 4px;
+    }
+
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+        width: 100%;
+    }
+
+    /* Responsive layout - makes a two column-layout instead of four columns */
+    @media screen and (max-width: 800px) {
+        .column {
+            -ms-flex: 50%;
+            flex: 50%;
+            max-width: 50%;
+        }
+    }
+
+    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+        .column {
+            -ms-flex: 100%;
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .autocomplete {
+        position: relative;
+        display: inline-block;
+    }
+
+    input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    input[type=text] {
+        background-color: #f1f1f1;
+        width: 100%;
+    }
+
+    input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+    }
+
+    /*when hovering an item:*/
+    .autocomplete-items div:hover {
+        background-color: #e9e9e9;
+    }
+
+    /*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+    input{
+        color: #444;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+    }
+    /* Expandable search box */
+    /* Note: don't change 0.8s in transition. */
+    /* --------------------- */
+    input.search-text {
+        background: #EDEDED;
+        border: 0;
+        color: #222;
+        position:relative;
+        z-index:5;
+        /* 	transition: z-index 0.8s, width 0.5s, background 0.3s ease, border 0.3s; */
+        box-sizing: border-box;
+        font-size: 16px;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        /*border: 1px solid #666666;*/
+        /*background: url(search.png) no-repeat left 9px center transparent;*/
+        /*background: url('https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png') no-repeat right 9px center transparent;*/
+        /*background-size:24px;*/
+    }
+    /* input.search-text:focus {
+        z-index:3;
+        width: 270px;
+        border: 1px solid #666;
+        background-color: white;
+        outline: none;
+        cursor:auto;
+        padding-right: 10px;
+    } */
+
+    input.search-submit {
+        position: relative;
+        z-index: 4;
+        top:17px;
+        left: 49px;
+        width: 270px;
+        height: 45px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        border-radius: 4px;
+        cursor: pointer;
+        background: none;
+    }
+
+    input.search-text::-webkit-search-cancel-button {
+        cursor:pointer;
+    }
+    .no-padding {
+        padding: 0px !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* style the container */
+    .container {
+        position: relative;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px 0 30px 0;
+    }
+
+    /* style inputs and link buttons */
+    input,
+    .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        margin: 5px 0;
+        opacity: 0.85;
+        display: inline-block;
+        font-size: 17px;
+        line-height: 20px;
+        text-decoration: none; /* remove underline from anchors */
+    }
+
+    input:hover,
+    .btn:hover {
+        opacity: 1;
+    }
+
+    /* add appropriate colors to fb, twitter and google buttons */
+    .fb {
+        background-color: #3B5998;
+        color: white;
+    }
+
+    .twitter {
+        background-color: #55ACEE;
+        color: white;
+    }
+
+    .google {
+        background-color: #dd4b39;
+        color: white;
+    }
+
+    /* style the submit button */
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    /* Two-column layout */
+    .col {
+        float: left;
+        width: 50%;
+        margin: auto;
+        padding: 0 50px;
+        margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* vertical line */
+    .vl {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        border: 2px solid #ddd;
+        height: 175px;
+    }
+
+    /* text inside the vertical line */
+    .vl-innertext {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        padding: 8px 10px;
+    }
+
+    /* hide some text on medium and large screens */
+    .hide-md-lg {
+        display: none;
+    }
+
+    /* bottom container */
+    .bottom-container {
+        text-align: center;
+        background-color: #666;
+        border-radius: 0px 0px 4px 4px;
+    }
+
+    /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 650px) {
+        .col {
+            width: 100%;
+            margin-top: 0;
+        }
+        /* hide the vertical line */
+        .vl {
+            display: none;
+        }
+        /* show the hidden text on small screens */
+        .hide-md-lg {
+            display: block;
+            text-align: center;
+        }
+    }
+    nav {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+    }
+
+    nav a {
+        color: #4889C2;
+        font-weight: bold;
+        text-decoration: none;
+        opacity: .3;
+        -moz-transition: all .4s;
+    }
+
+    nav a:hover {
+        opacity: 1;
+    }
+
+    nav a.focus {
+        opacity: 1;
+    }
+
+    /* LOGIN & REGISTER FORM */
+
+    form {
+        border-radius: 3px;
+        /*box-shadow: 0 0 10px rgba(0,0,0, .4);*/
+    }
+
+    form.register{																				/* Register form height */
+        height: 420px;
+    }
+
+    form .text-field {																			/* Input fields; Username, Password etc. */
+        border: 1px solid #a6a6a6;
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        margin-top: 10px;
+        padding-left: 10px;
+        color: #6c6c6c;
+        background: #fcfcfc;
+        outline: none;
+    }
+
+    form .text-field:focus {
+        box-shadow: inset 0 0 2px rgba(0,0,0, .3);
+        color: #a6a6a6;
+        background: white;
+    }
+
+    form .button {																				/* Submit button */
+        border-radius: 3px;
+        width: 100%;
+        height: 40px;
+        margin-top: 20px;
+
+        background: linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -o-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -moz-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -webkit-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+        background: -ms-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
+
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 -1px 0 #336895;
+
+        font-size: 13px;
+    }
+
+    form .button:hover {
+        background: linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -o-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -moz-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -webkit-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+        background: -ms-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
+    }
+
+    form .button:active {
+        background: linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -o-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -moz-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -webkit-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+        background: -ms-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
+
+        box-shadow: inset 0 0 2px rgba(0,0,0, .3), 0 1px 0 white;
+    }
+    #facebook-connect {
+        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
+        border: 1px solid rgb(60, 90, 154);
+    }
+
+    #facebook-connect:hover {
+        border-color: rgb(60, 90, 154);
+        /*background: rgb(60, 90, 154) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook-white.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
+        -webkit-transition: all .8s ease-out;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease-out;
+        text-decoration: none;
+    }
+
+    #facebook-connect span {
+        box-sizing: border-box;
+        color: rgb(60, 90, 154);
+        cursor: pointer;
+        text-align: center;
+        text-transform: uppercase;
+        border: 0px none rgb(255, 255, 255);
+        outline: rgb(255, 255, 255) none 0px;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+
+    }
+
+    #facebook-connect:hover span {
+        color: #FFF;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+        text-decoration: none;
+    }
+
+    #google-connect {
+        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
+        border: 1px solid rgb(220, 74, 61);
+    }
+
+    #google-connect:hover {
+        border-color: rgb(220, 74, 61);
+        /*background: rgb(220, 74, 61) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
+        -webkit-transition: all .8s ease-out;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease-out;
+        text-decoration: none;
+    }
+
+    #google-connect span {
+        box-sizing: border-box;
+        color: rgb(220, 74, 61);
+        cursor: pointer;
+        text-align: center;
+        text-transform: uppercase;
+        border: 0px none rgb(220, 74, 61);
+        outline: rgb(255, 255, 255) none 0px;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+    }
+
+    #google-connect:hover span {
+        color: #FFF;
+        -webkit-transition: all .3s ease;
+        -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+        -o-transition: all .3s ease;
+        transition: all .3s ease;
+        text-decoration: none;
+    }
+
+</style>
+</html>
