@@ -19,7 +19,14 @@
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
+    <script>
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("please sigin ")
+               window.location.replace("./index.html");
+           }
 
+   </script>
 
 
 

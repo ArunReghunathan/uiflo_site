@@ -18,7 +18,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
+ 
 
 
 
@@ -113,28 +113,32 @@
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12" style="padding: 3%;">
             <section class="wrapper">
-                <h1>HTML5 Media Fragments</h1>
+      
+                <h1>{{product.product}}</h1>
+ 
+                <h4> {{uuid}}</h4>
+          
 
                 <!-- Begin Media Fragments Example -->
                <div class="col-md-12 col-lg-12">
                        <video class="col-md-8 col-lg-8" id="frag1" controls preload="metadata">
-                           <source src="https://docs.google.com/uc?export=download&id=0B6wwyazyzml-TVNHYThCemt2SDg"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="https://docs.google.com/uc?export=download&id=0B6wwyazyzml-TVNHYThCemt2SDg">
-<!--                           <source src="https://docs.google.com/uc?export=download&id=0B6wwyazyzml-NHoyMFNxQnVyWEU" type='video/webm;codecs="vp8, vorbis"' data-original="https://docs.google.com/uc?export=download&id=0B6wwyazyzml-NHoyMFNxQnVyWEU">-->
-                       </video>
+                           <source src="{{product.video.file}}"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}"> 
+                           <!-- <source src="https://uiflo.s3.amazonaws.com/uiflo/media/videoplayback.mp4"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}">  -->
+
+                        </video>
+            
 
                        <nav class="col-md-4 col-lg-4">
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;">
-                               <button data-start="0" style="padding: 0;border: 0;font-weight: 600;">heading One</button>
-                               <div>Description</div>
+                               <button data-start="0" style="padding: 0;border: 0;font-weight: 600;">Play</button>
+                               <div> </div>
                            </div>
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;">
-                               <button data-start="6" style="padding: 0;border: 0;font-weight: 600;">heading Two</button>
-                               <div>Description</div>
+                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
+                               <button data-start="each.time" style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  - {{each.time}}</button>
+                               <div>{{each.description}}</div>
+                              
                            </div>
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;">
-                               <button data-start="17" style="padding: 0;border: 0;font-weight: 600;">heading Three</button>
-                               <div>Description</div>
-                           </div>
+ 
                        </nav>
                </div>
             </section>
@@ -144,15 +148,13 @@
         <h1>Screenshots</h1>
         <div class="col-md-12 col-lg-12">
             <div class="row">
-                <div class="column">
-                    <img src="./src/img/img2.png" alt="" style="width:100%">
+                <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
+                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%">
+                        
+                        {{screen.annotations[0][0].heading}}
+                   
                 </div>
-                <div class="column">
-                    <img src="./src/img/img2.png" alt="" style="width:100%">
-                </div>
-                <div class="column">
-                    <img src="./src/img/img2.png" alt="" style="width:100%">
-                </div>
+ 
             </div>
         </div>
 
@@ -166,30 +168,34 @@
     setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
     setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
 
+
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http, $timeout) {
 
-        $scope.ListProduct = function(params) {
-            $http.get("http://13.126.184.35:8000/product/"   )
+        $scope.url = window.location.href;
+        $scope.uuid = $scope.url.split("#")[1];
+
+
+        $scope.getProduct = function(uuid) {
+            $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
-                    $scope.products = response.data;
-                    console.log($scope.products)
-                    for (product in $scope.products){
-                        console.log(product)
-                        if ($scope.products[product].media){
-                            for(each in $scope.products[product].media){
-                                if($scope.products[product].media[each].media_type=="screenshort"){
+                    $scope.product = response.data;
+                    console.log($scope.product)
+  
+                        if ($scope.product.media){
+                            for(each in $scope.product.media){
+                                if($scope.product.media[each].media_type=="video"){
                                     console.log("inside ")
-                                    $scope.products[product].thumbnail = $scope.products[product].media[each].file
+                                    $scope.product.video = $scope.product.media[each] 
                                 }
                             }
                         }
-                    }
-                    console.log($scope.products)
+                  
+                    console.log($scope.product)
                 });
 
         }
-        $scope.ListProduct();
+        $scope.getProduct();
 
 
     })
