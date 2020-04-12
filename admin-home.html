@@ -42,10 +42,8 @@
     </div>
     <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">
         <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">
-            <span class="">ALL</span> &nbsp;&nbsp;
-            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;
-            <span class="">LANDING PAGES</span> &nbsp;&nbsp;
-            <span class="">EMAILS</span>
+ 
+            <a  href="./admin-page.html" ><span id="display_username" > Add Product </span> </a> 
         </div>
     </div>
     <div class="col-md-2 col-lg-2 no-padding">
@@ -158,24 +156,14 @@
     <div class="col-md-12 col-lg-12" style="padding: 3%;">
         <div class="row">
             <div class="column" ng-repeat="product in products">
+                <a  href="./product-flow.html#{{product.uuid}}" >
                 <img src="{{product.thumbnail}}" alt="">
                 <div style="padding: 6%;">{{product.product}}
                 <div style="font-size: 14px;">{{product.platform}}</div>
                 </div>
-           
+                 </a> 
             </div>
-            <!-- <div class="column">
-                <img src="./src/img/img2.png" alt="">
-                <div style="padding: 6%;">Onboarding on Airbnb
-                    <div style="font-size: 14px;">12 screens</div>
-                </div>
-            </div>
-            <div class="column">
-                <img src="./src/img/img2.png" alt="">
-                <div style="padding: 6%;">Onboarding on Airbnb
-                    <div style="font-size: 14px;">12 screens</div>
-                </div>
-            </div> -->
+ 
  
  
         </div>

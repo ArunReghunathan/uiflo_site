@@ -20,6 +20,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
  
 
+    <script>
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("please sigin ")
+               window.location.replace("./index.html");
+           }
+
+   </script>
 
 
 
@@ -121,20 +129,16 @@
 
                 <!-- Begin Media Fragments Example -->
                <div class="col-md-12 col-lg-12">
-                       <video class="col-md-8 col-lg-8" id="frag1" controls preload="metadata">
-                           <source src="{{product.video.file}}"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}"> 
-                           <!-- <source src="https://uiflo.s3.amazonaws.com/uiflo/media/videoplayback.mp4"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}">  -->
+ 
+
+                        <video class="col-md-8 col-lg-8" id="video_player" ng-src="{{product.video.file}}" controls>
 
                         </video>
-            
 
                        <nav class="col-md-4 col-lg-4">
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;">
-                               <button data-start="0" style="padding: 0;border: 0;font-weight: 600;">Play</button>
-                               <div> </div>
-                           </div>
+                         
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
-                               <button data-start="each.time" style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  - {{each.time}}</button>
+                               <button ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  </button>
                                <div>{{each.description}}</div>
                               
                            </div>
@@ -174,6 +178,12 @@
 
         $scope.url = window.location.href;
         $scope.uuid = $scope.url.split("#")[1];
+ 
+        $scope.change_video = function(time){ 
+            $scope.product.video.file = $scope.product.video.file.split("#t=")[0] + "#t=" + time;
+            var vid = document.getElementById("video_player");  
+            vid.play()
+        }
 
 
         $scope.getProduct = function(uuid) {
@@ -187,7 +197,7 @@
                                 if($scope.product.media[each].media_type=="video"){
                                     console.log("inside ")
                                     $scope.product.video = $scope.product.media[each] 
-                                }
+                                 }
                             }
                         }
                   
@@ -223,28 +233,7 @@
 </script>
 <!--############################################## angular -->
 
-<script>
-    function mediaFragOne() {
-        var video, sources, nav, buttons;
-        video = document.querySelector('video#frag1');
-        sources = video.getElementsByTagName('source');
-        nav = document.querySelector('video#frag1+nav');
-        buttons = nav.getElementsByTagName('button');
-
-        for (var i = buttons.length - 1; i >= 0; i--) {
-            buttons[i].addEventListener('click', function() {
-                for (var i = sources.length - 1; i >= 0; i--) {
-                    sources[i].setAttribute(
-                        'src', (sources[i].getAttribute('data-original')
-                            .concat('#t=' + this.getAttribute('data-start'))));
-                    video.load();
-                    video.play();
-                };
-            });
-        }
-    }
-    mediaFragOne();
-</script>
+ 
 <script>
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
