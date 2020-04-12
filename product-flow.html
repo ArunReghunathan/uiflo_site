@@ -20,6 +20,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
  
 
+    <script>
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("please sigin ")
+               window.location.replace("./index.html");
+           }
+
+   </script>
 
 
 
@@ -120,21 +128,18 @@
           
 
                 <!-- Begin Media Fragments Example -->
-               <div class="col-md-12 col-lg-12" style="padding: 0;background: white;">
-                       <video class="col-md-8 col-lg-8" style="padding: 0;" id="frag1" controls preload="metadata">
-                           <source src="{{product.video.file}}"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}"> 
-                           <!-- <source src="https://uiflo.s3.amazonaws.com/uiflo/media/videoplayback.mp4"  type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"' data-original="{{product.video.file}}">  -->
+               <div class="col-md-12 col-lg-12">
+
+
+                        <video class="col-md-8 col-lg-8" id="video_player" ng-src="{{product.video.file}}" controls>
 
                         </video>
             
 
                        <nav class="col-md-4 col-lg-4">
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;">
-                               <button data-start="0" style="padding: 0;border: 0;font-weight: 600;">Play</button>
-                               <div> </div>
-                           </div>
+
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
-                               <button data-start="each.time" style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  - {{each.time}}</button>
+                               <button ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  </button>
                                <div>{{each.description}}</div>
                               
                            </div>
