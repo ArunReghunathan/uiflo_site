@@ -26,11 +26,11 @@
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <script>
-         // let token = localStorage.getItem("token") || "unauth";
-         //    if(token.split(".").length != 3){
-         //        alert("please sigin ")
-         //        window.location.replace("./index.html");
-         //    }
+         let token = localStorage.getItem("token") || "unauth";
+            if(token.split(".").length != 3){
+                alert("please sigin ")
+                window.location.replace("./index.html");
+            }
 
     </script>
 
@@ -409,21 +409,21 @@
             $scope.annotations=[];
         }
 
-        // $scope.checkSigin = function() {
-        //     $scope.token = localStorage.getItem("token") || "unauth";
-        //     if($scope.token.split(".").length != 3){
-        //         alert("please sigin ")
-        //         window.location.replace("./index.html");
-        //     }
-        //
-        // }
+        $scope.checkSigin = function() {
+            $scope.token = localStorage.getItem("token") || "unauth";
+            if($scope.token.split(".").length != 3){
+                alert("please sigin ")
+                window.location.replace("./index.html");
+            }
+
+        }
 
         $scope.logout = function() {
             localStorage.setItem("token","");
             window.location.replace("./index.html");
         }
 
-        // $scope.checkSigin();
+        $scope.checkSigin();
 
     });
 </script>
