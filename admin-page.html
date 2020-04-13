@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
@@ -24,11 +26,11 @@
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <script>
-         let token = localStorage.getItem("token") || "unauth";
-            if(token.split(".").length != 3){
-                alert("please sigin ")
-                window.location.replace("./index.html");
-            }
+         // let token = localStorage.getItem("token") || "unauth";
+         //    if(token.split(".").length != 3){
+         //        alert("please sigin ")
+         //        window.location.replace("./index.html");
+         //    }
 
     </script>
 
@@ -118,13 +120,48 @@
                               <option>Polar Bear</option>
                               <option>Spectacled Bear</option>
                           </select>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product</div>
-                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.product">
-                              <!--                              <option value="0">Select car:</option>-->
-                              <option value="1">Web</option>
-                              <option value="2">qndroid</option>
-                              <option value="2">ios</option>
-                          </select>
+                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
+
+                          </div>
+                    <div class="col-lg-12 col-md-12 no-padding">
+                        <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.product">
+                            <!--                              <option value="0">Select car:</option>-->
+                            <option value="1">Web</option>
+                            <option value="2">qndroid</option>
+                            <option value="2">ios</option>
+                        </select> <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
+
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                <span class="close">&times;</span>
+                                <h4 style="text-align: center;">Add Product</h4>
+                                <div class="col-lg-12 col-md-12 no-padding">
+                                    <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                        Product
+                                        <div class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
+                                        Add Logo ( 100px * 100px )
+                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                                            <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
+                                                <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                            </div>
+                                            <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
+                                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+                                            </div>
+                                            <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
                           <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.flow">
                               <!--                              <option value="0">Select car:</option>-->
@@ -200,10 +237,7 @@
                                 <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
 
                             </div>
-
-                                <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
-
-
+                            <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
                         </div>
 
             <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
@@ -375,21 +409,21 @@
             $scope.annotations=[];
         }
 
-        $scope.checkSigin = function() {
-            $scope.token = localStorage.getItem("token") || "unauth";
-            if($scope.token.split(".").length != 3){
-                alert("please sigin ")
-                window.location.replace("./index.html");
-            }
-
-        }
+        // $scope.checkSigin = function() {
+        //     $scope.token = localStorage.getItem("token") || "unauth";
+        //     if($scope.token.split(".").length != 3){
+        //         alert("please sigin ")
+        //         window.location.replace("./index.html");
+        //     }
+        //
+        // }
 
         $scope.logout = function() {
             localStorage.setItem("token","");
             window.location.replace("./index.html");
         }
 
-        $scope.checkSigin();
+        // $scope.checkSigin();
 
     });
 </script>
@@ -413,11 +447,40 @@
         }
     }
 
-
+    $("#myModal").on("show", function () {
+        $("body").addClass("modal-open");
+    }).on("hidden", function () {
+        $("body").removeClass("modal-open")
+    });
 
     $(".chosen-select").chosen({
         no_results_text: "Oops, nothing found!"
     })
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
 
 
@@ -604,8 +667,50 @@
         no_results_text: "No results",
         width: "95%"
     });
+
+
+
 </script>
 <style>
+    body.modal-open {
+        overflow: hidden;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        padding: 2%;
+        border: 1px solid #888;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
 
     [type="date"] {
         background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
