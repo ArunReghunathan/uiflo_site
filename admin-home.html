@@ -138,6 +138,8 @@
                 </div>
             </div> 
         </div>
+
+
         <div class="row">
             <div class="column" style="height: 6vh;">
               <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
@@ -145,7 +147,24 @@
 
             </div>
         </div>
+        <div class="row">
+            <div   class="column" ng-repeat="product in uploads "    >
+                     
+                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+               
+                <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
+                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                           {{product.product}}
+                       </div>
+                       <div style="font-size: 14px;">{{product.platform}}</div>
+                   </div>
+                </div>
+            </div> 
+        </div>
+
     </div>
+ 
 
     <div class="col-md-12 col-lg-12" style="padding: 3%;">
         <div class="row">
@@ -281,6 +300,31 @@
 
     }
     $scope.ListRefrence();
+
+
+    $scope.ListUploads = function(page=1) { 
+            var params = {"page": page, "platform":"upload"}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/product/",
+                params: params
+                })
+                .then(function(response) {
+                     $scope.uploads = response.data.results; 
+                      for (refrence in $scope.uploads){ 
+                        if ($scope.uploads[refrence].media){
+                            for(each in $scope.uploads[refrence].media){
+                                if($scope.uploads[refrence].media[each].media_type=="screenshort"){
+                                     $scope.uploads[refrence].thumbnail = $scope.uploads[refrence].media[each].file
+                                }
+                            }
+                        }
+                    }
+                    console.log($scope.uploads)
+                });
+
+    }
+    $scope.ListUploads();
 
 
     })
