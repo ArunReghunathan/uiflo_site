@@ -129,7 +129,14 @@
                             <option value="1">Web</option>
                             <option value="2">qndroid</option>
                             <option value="2">ios</option>
-                        </select> <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
+                            <option value="{{product_details.product}}">{{product_details.product}}</option>
+
+                        </select> 
+                        <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+
+                        <div class="col-md-2 col-lg-2" id="myBtn">
+                            <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                        </div>
 
                         <!-- The Modal -->
                         <div id="myModal" class="modal">
@@ -141,7 +148,7 @@
                                 <div class="col-lg-12 col-md-12 no-padding">
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
                                         Product
-                                        <input type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
+                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
 
                                         </input>
 
@@ -153,7 +160,7 @@
                                                 <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+                                                <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
                                             </div>
                                             <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
                                         </div>
@@ -277,7 +284,13 @@
                 $scope.product_details.captured_date = $scope.captured_date.toISOString().substring(0, 10);
             }
             console.log($scope.product_details);
-            $http.post("http://13.126.184.35:8000/product/" ,$scope.product_details )
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/product/",
+                data: $scope.product_details,
+                headers :headers
+                }) 
             .then(function(response) {
                 $scope.myWelcome = response.data;
                 alert("product added")
