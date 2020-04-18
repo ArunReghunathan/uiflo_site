@@ -19,7 +19,8 @@
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <link rel="stylesheet" href="../lib/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
+    <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
+    <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
         // let token = localStorage.getItem("token") || "unauth";
         //    if(token.split(".").length != 3){
@@ -130,7 +131,18 @@
 
     <div class="col-md-12 col-lg-12" style="padding: 3%;">
         <div class="row">
-            <div class="column" ng-repeat="product in products" id="product">
+            <!-- <tr   dir-paginate="each in payments.results | itemsPerPage:10"  ng-model="$parent.currentPage" total-items="payments.count" pagination-id="payment_list_data_id" style="cursor: pointer;"> -->
+
+<!-- 
+                <ul>
+                    <li dir-paginate="item in items | itemsPerPage: 10" pagination-id="pa1"  total-items=100 > xxx{{ item }}</li>
+                </ul>
+              
+
+                    <dir-pagination-controls   pagination-id="pa1"  "></dir-pagination-controls> -->
+
+
+            <div class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
                 <a  href="./product-flow.html#{{product.uuid}}" >
                 <img src="{{product.thumbnail}}" alt="">
                 </a>
@@ -155,9 +167,12 @@
                     </div>
                 </div>
             </div>
- 
- 
- 
+            
+            <!-- <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls> -->
+        </div>
+        <div class="row">
+            <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
+
         </div>
     </div>
 
@@ -199,27 +214,42 @@ document.getElementById("product").style.display = "none";
     setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
     setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
 
-    var app = angular.module('myApp', []);
+    var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
     app.controller('myCtrl', function($scope, $http, $timeout) {
 
-        $scope.ListProduct = function(params) { 
-        $http.get("http://13.126.184.35:8000/product/"   )
-            .then(function(response) {
-                $scope.products = response.data.results; 
-                console.log($scope.products)
-                for (product in $scope.products){
-                    console.log(product)
-                    if ($scope.products[product].media){
-                        for(each in $scope.products[product].media){
-                            if($scope.products[product].media[each].media_type=="screenshort"){
-                                console.log("inside ")
-                                $scope.products[product].thumbnail = $scope.products[product].media[each].file
+ 
+
+        $scope.ListProduct = function(page=1) {
+            
+        }
+        $scope.ListProduct = function(page=1) { 
+        
+            var params = {"page": page}
+
+ 
+
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/product/",
+                params: params
+                })
+                .then(function(response) {
+                    $scope.products = response.data.results; 
+                    $scope.products_count = response.data.count; 
+                    console.log($scope.products)
+                    for (product in $scope.products){
+                        console.log(product)
+                        if ($scope.products[product].media){
+                            for(each in $scope.products[product].media){
+                                if($scope.products[product].media[each].media_type=="screenshort"){
+                                    console.log("inside ")
+                                    $scope.products[product].thumbnail = $scope.products[product].media[each].file
+                                }
                             }
                         }
                     }
-                }
-                console.log($scope.products)
-            });
+                    console.log($scope.products)
+                });
 
     }
     $scope.ListProduct();

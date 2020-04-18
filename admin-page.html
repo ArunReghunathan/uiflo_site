@@ -280,6 +280,7 @@
             $http.post("http://13.126.184.35:8000/product/" ,$scope.product_details )
             .then(function(response) {
                 $scope.myWelcome = response.data;
+                alert("product added")
             });
         }
 
