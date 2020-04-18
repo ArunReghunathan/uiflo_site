@@ -205,7 +205,7 @@ document.getElementById("product").style.display = "none";
         $scope.ListProduct = function(params) { 
         $http.get("http://13.126.184.35:8000/product/"   )
             .then(function(response) {
-                $scope.products = response.data; 
+                $scope.products = response.data.results; 
                 console.log($scope.products)
                 for (product in $scope.products){
                     console.log(product)
