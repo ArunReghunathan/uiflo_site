@@ -120,45 +120,52 @@
         <div class="row">
             <div class="column" style="height: 6vh;">
                 <span style="font-size: 22px;font-weight: bold;color: #666666;">REFERENCES</span>
-
             </div>
         </div>
+
         <div class="row">
-            <div class="column" style="height: 6vh;">
-              <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
-
-            </div>
-
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
-        <div class="row">
-            <!-- <tr   dir-paginate="each in payments.results | itemsPerPage:10"  ng-model="$parent.currentPage" total-items="payments.count" pagination-id="payment_list_data_id" style="cursor: pointer;"> -->
-
-<!-- 
-                <ul>
-                    <li dir-paginate="item in items | itemsPerPage: 10" pagination-id="pa1"  total-items=100 > xxx{{ item }}</li>
-                </ul>
-              
-
-                    <dir-pagination-controls   pagination-id="pa1"  "></dir-pagination-controls> -->
-
-
-            <div class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
-                <a  href="./product-flow.html#{{product.uuid}}" >
-                <img src="{{product.thumbnail}}" alt="">
-                </a>
+            <div   class="column" ng-repeat="product in refrences "    >
+                     
+                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+               
                 <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10">
-                       <a  href="./product-flow.html#{{product.uuid}}" >
+                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
                        <div style="color: #666666;font-size: 16px; font-weight: 600;">
                            {{product.product}}
                        </div>
                        <div style="font-size: 14px;">{{product.platform}}</div>
-                       </a>
+                   </div>
+                </div>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="column" style="height: 6vh;">
+              <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
+              
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+        <div class="row">
+            <div   class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
+                 
+                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+               
+                <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" >
+                       <!-- <a  href="./product-flow.html#{{product.uuid}}" > -->
+                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                           {{product.product}}
+                       </div>
+                       <div style="font-size: 14px;">{{product.platform}}</div>
+                       <!-- </a> -->
                    </div>
                     <div class="col-md-2 col-lg-2">
                         <div class="dropdown">
-                            <div onclick="myFunction()" class="dropbtn">&#8942;</div>
-                            <div id="myDropdown" class="dropdown-content">
+                        <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                            <div id="myDropdown{{product.uuid}}" class="dropdown-content">
                                 <a href="#home" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
                                 <a  onclick="remove()" style="color: #666666;">delete</a>
                             </div>
@@ -166,9 +173,7 @@
 
                     </div>
                 </div>
-            </div>
-            
-            <!-- <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"></dir-pagination-controls> -->
+            </div>            
         </div>
         <div class="row">
             <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
@@ -177,21 +182,11 @@
     </div>
 
         </div>
-    </div>
-</div>
+ 
 </body>
 
 <script>
-function remove() {
-document.getElementById("product").style.display = "none";
-}
-
-
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
+ 
     window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -219,15 +214,19 @@ document.getElementById("product").style.display = "none";
 
  
 
-        $scope.ListProduct = function(page=1) {
-            
+        $scope.changePage = function(url) {
+            var loc = "./product-flow.html#" + url
+
+            window.location.replace(loc)
         }
+
+        $scope.showdropdown = function(uuid) {
+            document.getElementById("myDropdown" + uuid).classList.toggle("show");
+        }
+
+
         $scope.ListProduct = function(page=1) { 
-        
             var params = {"page": page}
-
- 
-
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
@@ -253,6 +252,35 @@ document.getElementById("product").style.display = "none";
 
     }
     $scope.ListProduct();
+
+    $scope.ListRefrence = function(page=1) { 
+            var params = {"page": page, "platform":"refrence"}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/product/",
+                params: params
+                })
+                .then(function(response) {
+                    console.log(response)
+                    $scope.refrences = response.data.results; 
+                    $scope.refrence_count = response.data.count; 
+                    console.log($scope.refrences)
+                    for (refrence in $scope.refrences){
+                        console.log(refrence)
+                        if ($scope.refrences[refrence].media){
+                            for(each in $scope.refrences[refrence].media){
+                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){
+                                    console.log("inside ")
+                                    $scope.refrences[refrence].thumbnail = $scope.refrences[refrence].media[each].file
+                                }
+                            }
+                        }
+                    }
+                    console.log($scope.refrences)
+                });
+
+    }
+    $scope.ListRefrence();
 
 
     })
