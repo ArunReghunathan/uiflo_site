@@ -158,9 +158,9 @@
                                                 <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input ng-model="product_details.logo" type='file'  id="logo_file"  style="width: 100%;"/>
+                                                <input   type='file'  id="logo_file"  style="width: 100%;"/>
                                             </div>
-                                            <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
+                                            <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -439,13 +439,11 @@
 
 
             var myHeaders = new Headers();
-            var url = "http://13.126.184.35:8000/files/";
+            var url = "http://13.126.184.35:8000/productname/";
             var formdata = new FormData(); 
  
-            formdata.append("media_type", "logo");
-            formdata.append("file", f);
-            var ano = [{"heading": "logo"}] 
-            formdata.append("annotations", JSON.stringify( ano ));
+            formdata.append("productName", $scope.product_details.product);
+            formdata.append("logo", f); 
             var requestOptions = {
               method: 'POST',
               headers: myHeaders,
@@ -459,11 +457,19 @@
             .then((result) =>{
                 console.log(result)
                 result = JSON.parse(result)
+                console.log(result)
+                $scope.product_details.logo = result.logo
+                document.getElementById('logodisplay').src = result.logo;
+
+
                 if(result.error){
                     alert(result.error.message)
                 }else{
-                    document.getElementById('logodisplay').src = result.file;
-                    $scope.product_details.media.push(result.uuid) 
+                    $scope.product_details.logo = result.logo
+                    document.getElementById('logodisplay').src = result.logo;
+                    $scope.product_temp = result
+                    $scope.product_names.push(result)
+
 
                 } 
                 $timeout(function () {
