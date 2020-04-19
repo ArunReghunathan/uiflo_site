@@ -155,14 +155,14 @@
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
                                         Add Logo ( 100px * 100px )
-                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
                                             <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                                <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                                <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+                                                <input ng-model="product_details.logo" type='file'  id="logo_file"  style="width: 100%;"/>
                                             </div>
-                                            <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
+                                            <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -399,6 +399,52 @@
 
                 }
                 $scope.screen_shorts_uploading = false;
+                $timeout(function () {
+                    $scope.$apply();
+                });
+            })
+            .catch(error => {
+                $scope.screen_shorts_uploading = false;
+                console.log('error', error)
+            });
+        };
+
+
+        $scope.add_logo = function() {
+ 
+
+            var f = document.getElementById('logo_file').files[0];
+            console.log(f)
+
+
+            var myHeaders = new Headers();
+            var url = "http://13.126.184.35:8000/files/";
+            var formdata = new FormData(); 
+ 
+            formdata.append("media_type", "logo");
+            formdata.append("file", f);
+            var ano = [{"heading": "logo"}] 
+            formdata.append("annotations", JSON.stringify( ano ));
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: formdata,
+              redirect: 'follow'
+            };
+
+            fetch(url, requestOptions)
+            .then(response => response.text()
+            )
+            .then((result) =>{
+                console.log(result)
+                result = JSON.parse(result)
+                if(result.error){
+                    alert(result.error.message)
+                }else{
+                    document.getElementById('logodisplay').src = result.file;
+                    $scope.product_details.media.push(result.uuid) 
+
+                } 
                 $timeout(function () {
                     $scope.$apply();
                 });
