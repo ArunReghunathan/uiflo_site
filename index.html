@@ -44,7 +44,7 @@
             } 
             formdata.append("first_name", name);
             formdata.append("email", email); 
-            formdata.append("is_active", "true");  
+            // formdata.append("is_active", "true");  
     
             var requestOptions = {
               method: 'POST',
@@ -61,6 +61,7 @@
                     alert(result.error.message)
                 }else{
                     localStorage.setItem("token", result.token);
+                    localStorage.setItem("userId", result.uuid);
                     document.getElementById("display_username").innerHTML = name;
                     // alert("Login Successful")
                 }
@@ -86,6 +87,7 @@
             auth2.signOut().then(function () {
             console.log('User signed out.');
             document.getElementById("display_username").innerHTML = "";
+            window.localStorage.setItem('token', "invalid")
             });
         }
 

@@ -22,11 +22,11 @@
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
-        // let token = localStorage.getItem("token") || "unauth";
-        //    if(token.split(".").length != 3){
-        //        alert("please sigin ")
-        //        window.location.replace("./index.html");
-        //    }
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("please sigin ")
+               window.location.replace("./index.html");
+           }
 
    </script>
 
@@ -57,7 +57,7 @@
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 8%;cursor: pointer;margin-top: 10%;">LOGIN</div>
+            <div class="col-md-12 col-lg-12" type="button" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 8%;cursor: pointer;margin-top: 10%;">LOGOUT</div>
 
             <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
@@ -147,26 +147,11 @@
 
             </div>
         </div>
-        <div class="row">
-            <div   class="column" ng-repeat="product in uploads "    >
-                     
-                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-               
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
-                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                           {{product.product}}
-                       </div>
-                       <div style="font-size: 14px;">{{product.platform}}</div>
-                   </div>
-                </div>
-            </div> 
-        </div>
-
+ 
     </div>
  
 
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+    <div class="col-md-12 col-lg-12" style="padding: 1%;">
         <div class="row">
             <div   class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
                  
@@ -239,6 +224,45 @@
             window.location.replace(loc)
         }
 
+        $scope.CheckUser = function() {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $scope.userId = window.localStorage.getItem('userId') || "unknown"
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.user = response.data; 
+                console.log($scope.user)
+ 
+                if($scope.user.is_admin){
+                    $scope.userRole = "admin"
+                }
+                else if($scope.user.is_staff){
+                    $scope.userRole = "staff"
+                }
+                else{
+                    $scope.userRole = "normal"
+                }
+
+                if( ["normal"].includes($scope.userRole) ){
+                    window.location.replace("./index.html");
+                }
+             
+                $scope.ListProduct();
+            }
+            ).catch(function error() {
+                alert("please sigin")
+                window.location.replace("./index.html");
+                
+            })
+            ;
+            
+        }
+        $scope.CheckUser();
+
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
@@ -246,10 +270,15 @@
 
         $scope.ListProduct = function(page=1) { 
             var params = {"page": page}
+            if ($scope.userRole != "admin"){
+                params["userId"] = $scope.userId;
+            }
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
-                params: params
+                params: params,
+                headers: headers
                 })
                 .then(function(response) {
                     $scope.products = response.data.results; 
@@ -270,14 +299,15 @@
                 });
 
     }
-    $scope.ListProduct();
 
     $scope.ListRefrence = function(page=1) { 
             var params = {"page": page, "platform":"refrence"}
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
-                params: params
+                params: params,
+                headers: headers
                 })
                 .then(function(response) {
                     console.log(response)
@@ -302,29 +332,7 @@
     $scope.ListRefrence();
 
 
-    $scope.ListUploads = function(page=1) { 
-            var params = {"page": page, "platform":"upload"}
-            $http({
-                method: "GET",
-                url: "http://13.126.184.35:8000/product/",
-                params: params
-                })
-                .then(function(response) {
-                     $scope.uploads = response.data.results; 
-                      for (refrence in $scope.uploads){ 
-                        if ($scope.uploads[refrence].media){
-                            for(each in $scope.uploads[refrence].media){
-                                if($scope.uploads[refrence].media[each].media_type=="screenshort"){
-                                     $scope.uploads[refrence].thumbnail = $scope.uploads[refrence].media[each].file
-                                }
-                            }
-                        }
-                    }
-                    console.log($scope.uploads)
-                });
-
-    }
-    $scope.ListUploads();
+ 
 
 
     })
