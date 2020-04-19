@@ -41,11 +41,11 @@
         UiFLO ADMIN
     </div>
     <div class="col-md-8 col-lg-8" style="color: #A3A3A3;height: 9vh;">
-<!--        <div class="col-md-12 col-lg-12 no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW MAIL</span> &nbsp;&nbsp;-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW LANDING PAGE</span> &nbsp;&nbsp;-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW PRODUCT PAGE</span>-->
-<!--        </div>-->
+        <div class="col-md-12 col-lg-12 no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW MAIL</span> &nbsp;&nbsp;
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW LANDING PAGE</span> &nbsp;&nbsp;
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW PRODUCT PAGE</span>
+        </div>
     </div>
 <!--    <div class="col-md-2 col-lg-2 no-padding">-->
 <!--        <form action="" role="search" class="search-form" style="width: 100%;">-->
@@ -129,8 +129,14 @@
                             <option value="1">Web</option>
                             <option value="2">qndroid</option>
                             <option value="2">ios</option>
+                            <option value="{{product_details.product}}">{{product_details.product}}</option>
+
                         </select>
-                        <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
+                        <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
+
+                        <div class="col-md-2 col-lg-2" id="myBtn">
+                            <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                        </div>
 
                         <!-- The Modal -->
                         <div id="myModal" class="modal">
@@ -142,21 +148,21 @@
                                 <div class="col-lg-12 col-md-12 no-padding">
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
                                         Product
-                                        <input type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
+                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
 
                                         </input>
 
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
                                         Add Logo ( 100px * 100px )
-                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
                                             <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                                <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                                <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+                                                <input ng-model="product_details.logo" type='file'  id="logo_file"  style="width: 100%;"/>
                                             </div>
-                                            <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save</div> &nbsp;&nbsp;
+                                            <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> upload</div> &nbsp;&nbsp;
                                         </div>
                                     </div>
                                 </div>
@@ -164,146 +170,23 @@
                         </div>
                     </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
-                            <div class="col-lg-12 col-md-12 no-padding">
-                              <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow">
-                                  <!--                              <option value="0">Select car:</option>-->
-                                  <option value="1">Web</option>
-                                  <option value="2">qndroid</option>
-                                  <option value="2">ios</option>
-                              </select>
-                              <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
-
-                              <!-- The Modal -->
-                              <div id="myModal" class="modal">
-
-                                  <!-- Modal content -->
-                                  <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                      <span class="close">&times;</span>
-                                      <h4 style="text-align: center;">Add Product</h4>
-                                      <div class="col-lg-12 col-md-12 no-padding">
-                                          <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                              Product
-                                              <input type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
-
-                                              </input>
-
-                                          </div>
-                                          <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
-                                              Add Logo ( 100px * 100px )
-                                              <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
-                                                  <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                                      <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
-                                                  </div>
-                                                  <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                      <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
-                                                  </div>
-                                                  <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save</div> &nbsp;&nbsp;
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                            </div>
-                          </div>
-                  <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
-                  <div class="col-lg-12 col-md-12 no-padding">
-                      <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category">
-                          <!--                              <option value="0">Select car:</option>-->
-                          <option value="1">Web</option>
-                          <option value="2">qndroid</option>
-                          <option value="2">ios</option>
-                      </select>
-                      <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
-
-                      <!-- The Modal -->
-                      <div id="myModal" class="modal">
-
-                          <!-- Modal content -->
-                          <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                              <span class="close">&times;</span>
-                              <h4 style="text-align: center;">Add Product</h4>
-                              <div class="col-lg-12 col-md-12 no-padding">
-                                  <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                      Product
-                                      <input type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
-
-                                      </input>
-
-                                  </div>
-                                  <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
-                                      Add Logo ( 100px * 100px )
-                                      <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
-                                          <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                              <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
-                                          </div>
-                                          <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                              <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
-                                          </div>
-                                          <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> saveupload</div> &nbsp;&nbsp;
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.flow">
+                              <!--                              <option value="0">Select car:</option>-->
+                              <option value="1">Web</option>
+                              <option value="2">qndroid</option>
+                              <option value="2">ios</option>
+                          </select>
+                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
+                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.category">
+                              <!--                              <option value="0">Select car:</option>-->
+                              <option value="1">Web</option>
+                              <option value="2">qndroid</option>
+                              <option value="2">ios</option>
+                          </select>
                       </div>
-                  </div>
-                  <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
-                  <div class="col-lg-12 col-md-12 no-padding">
-                      <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.category">
-                          <!--                              <option value="0">Select car:</option>-->
-                          <option value="1">Web</option>
-                          <option value="2">qndroid</option>
-                          <option value="2">ios</option>
-                      </select>
-                      <div class="col-md-2 col-lg-2" id="myBtn"><button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button></div>
 
-                      <!-- The Modal -->
-                      <div id="myModal" class="modal">
-
-                          <!-- Modal content -->
-                          <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                              <span class="close">&times;</span>
-                              <h4 style="text-align: center;">Add Product</h4>
-                              <div class="col-lg-12 col-md-12 no-padding">
-                                  <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                      Product
-                                      <input type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
-
-                                      </input>
-
-                                  </div>
-                                  <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
-                                      Add Logo ( 100px * 100px )
-                                      <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
-                                          <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                              <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
-                                          </div>
-                                          <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                              <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
-                                          </div>
-                                          <div   ng-click="add_screen_shorts(screen)" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save</div> &nbsp;&nbsp;
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
               </div>
-<!--                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>-->
-<!--                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow">-->
-<!--                              &lt;!&ndash;                              <option value="0">Select car:</option>&ndash;&gt;-->
-<!--                              <option value="1">Web</option>-->
-<!--                              <option value="2">qndroid</option>-->
-<!--                              <option value="2">ios</option>-->
-<!--                          </select>-->
-<!--                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>-->
-<!--                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.category">-->
-<!--                              &lt;!&ndash;                              <option value="0">Select car:</option>&ndash;&gt;-->
-<!--                              <option value="1">Web</option>-->
-<!--                              <option value="2">qndroid</option>-->
-<!--                              <option value="2">ios</option>-->
-<!--                          </select>-->
-                      </div>
-
+           </div>
             <div class="col-md-6 col-lg-6">
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
                 <div class="col-md-12 no-padding">
@@ -402,7 +285,13 @@
                 $scope.product_details.captured_date = $scope.captured_date.toISOString().substring(0, 10);
             }
             console.log($scope.product_details);
-            $http.post("http://13.126.184.35:8000/product/" ,$scope.product_details )
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/product/",
+                data: $scope.product_details,
+                headers :headers
+                })
             .then(function(response) {
                 $scope.myWelcome = response.data;
                 alert("product added")
@@ -511,6 +400,52 @@
 
                 }
                 $scope.screen_shorts_uploading = false;
+                $timeout(function () {
+                    $scope.$apply();
+                });
+            })
+            .catch(error => {
+                $scope.screen_shorts_uploading = false;
+                console.log('error', error)
+            });
+        };
+
+
+        $scope.add_logo = function() {
+
+
+            var f = document.getElementById('logo_file').files[0];
+            console.log(f)
+
+
+            var myHeaders = new Headers();
+            var url = "http://13.126.184.35:8000/files/";
+            var formdata = new FormData();
+
+            formdata.append("media_type", "logo");
+            formdata.append("file", f);
+            var ano = [{"heading": "logo"}]
+            formdata.append("annotations", JSON.stringify( ano ));
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: formdata,
+              redirect: 'follow'
+            };
+
+            fetch(url, requestOptions)
+            .then(response => response.text()
+            )
+            .then((result) =>{
+                console.log(result)
+                result = JSON.parse(result)
+                if(result.error){
+                    alert(result.error.message)
+                }else{
+                    document.getElementById('logodisplay').src = result.file;
+                    $scope.product_details.media.push(result.uuid)
+
+                }
                 $timeout(function () {
                     $scope.$apply();
                 });
