@@ -113,7 +113,7 @@
     </div>
 </div>
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;" ng-show="userRole =='staff'">
 
         <div class="row">
             <div class="column" style="height: 6vh;">
@@ -138,18 +138,19 @@
         </div>
 
 
+ 
+    </div>
+ 
+
+    <div class="col-md-12 col-lg-12" style="padding: 6%;">
+
         <div class="row">
             <div class="column" style="height: 6vh;">
               <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
               
 
             </div>
-        </div>
- 
-    </div>
- 
-
-    <div class="col-md-12 col-lg-12" style="padding: 1%;">
+        </div> 
         <div class="row">
             <div   class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
                  
@@ -240,6 +241,7 @@
                 }
                 else if($scope.user.is_staff){
                     $scope.userRole = "staff"
+                    $scope.ListRefrence();
                 }
                 else{
                     $scope.userRole = "normal"
@@ -327,7 +329,8 @@
                 });
 
     }
-    $scope.ListRefrence();
+    
+    // $scope.ListRefrence();
 
     $scope.logout = function() {
             localStorage.setItem("token","");
