@@ -21,11 +21,11 @@
  
 
     <script>
-        let token = localStorage.getItem("token") || "unauth";
-           if(token.split(".").length != 3){
-               alert("please sigin ")
-               window.location.replace("./index.html");
-           }
+        // let token = localStorage.getItem("token") || "unauth";
+        //    if(token.split(".").length != 3){
+        //        alert("please sigin ")
+        //        window.location.replace("./index.html");
+        //    }
 
    </script>
 
@@ -41,75 +41,75 @@
     <div class="col-md-3 col-lg-3" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
         UiFLO
     </div>
-    <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">
-        <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">
-            <span class="">ALL</span> &nbsp;&nbsp;
-            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;
-            <span class="">LANDING PAGES</span> &nbsp;&nbsp;
-            <span class="">EMAILS</span>
-        </div>
-    </div>
-    <div class="col-md-2 col-lg-2 no-padding">
-        <form action="" role="search" class="search-form" style="width: 100%;">
-            <input type="search" name="q" class="search-text" placeholder="Search..." autocomplete="off" style="width: 100%;height: 100%;">
-        </form>
-    </div>
-    <div class="col-md-1 col-lg-1" style="text-align: center;">
+<!--    <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">-->
+<!--        <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">-->
+<!--            <span class="">ALL</span> &nbsp;&nbsp;-->
+<!--            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;-->
+<!--            <span class="">LANDING PAGES</span> &nbsp;&nbsp;-->
+<!--            <span class="">EMAILS</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-md-2 col-lg-2 no-padding">-->
+<!--        <form action="" role="search" class="search-form" style="width: 100%;">-->
+<!--            <input type="search" name="q" class="search-text" placeholder="Search..." autocomplete="off" style="width: 100%;height: 100%;">-->
+<!--        </form>-->
+<!--    </div>-->
+    <div class="col-md-1 col-lg-1" style="text-align: center;float: right;">
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer">LOGIN</div>
+            <div class="col-md-12 col-lg-12" onclick="signOut()" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer" >LOGOUT</div>
 
             <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
+<!--            <div class="modal fade" id="myModal" role="dialog">-->
+<!--                <div class="modal-dialog">-->
 
-                    <!-- Modal content-->
+<!--                    &lt;!&ndash; Modal content&ndash;&gt;-->
 
-                    <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
-                        <div class="col-lg-12 col-md-12 flex-container"  >
-                            <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">
-                                <div style="font-size: 30px;">SIGN UP</div>
-                                <div style="font-size: 14px;">TO UIFLO</div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
-                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
-                                    <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter name" style="font-size: 14px;" />
-                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
-                                    <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
-                                    <disv  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
-                            <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
+<!--                    <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">-->
+<!--                        <div class="col-lg-12 col-md-12 flex-container"  >-->
+<!--                            <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">-->
+<!--                                <div style="font-size: 30px;">SIGN UP</div>-->
+<!--                                <div style="font-size: 14px;">TO UIFLO</div>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-12 col-md-12">-->
+<!--                                <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">-->
+<!--                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>-->
+<!--                                    <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter name" style="font-size: 14px;" />-->
+<!--                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>-->
+<!--                                    <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />-->
+<!--                                    <disv  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>-->
+<!--                            <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />-->
 
-                            <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
-                            <br>
-
-
-                            <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
-                                <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
-                                    <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
-                                    <div class="col-lg-11 col-md-11" >Connect with facebook </div>
-                                </div>
-
-                                <!-- <div class="col-lg-12 col-md-12 g-signin2"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
-
-                                    <div class="col-lg-11 col-md-11">Connect with google. </div>
-
-                                </div> -->
-                                <a href="#" onclick="signOut();">Sign out</a>
-
-                            </div>
+<!--                            <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />-->
+<!--                            <br>-->
 
 
-                            </form>
+<!--                            <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">-->
+<!--                                <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">-->
+<!--                                    <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>-->
+<!--                                    <div class="col-lg-11 col-md-11" >Connect with facebook </div>-->
+<!--                                </div>-->
 
-                        </div>
-                    </div>
-                </div>
+<!--                                &lt;!&ndash; <div class="col-lg-12 col-md-12 g-signin2"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">-->
 
-            </div>
+<!--                                    <div class="col-lg-11 col-md-11">Connect with google. </div>-->
+
+<!--                                </div> &ndash;&gt;-->
+<!--                                <a href="#" onclick="signOut();">Sign out</a>-->
+
+<!--                            </div>-->
+
+
+<!--                            </form>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
         </div>
 
     </div>
@@ -119,8 +119,8 @@
 
 </div>
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
-            <section class="wrapper">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;height: 77vh">
+            <section class="wrapper" style="height: 100%;">
       
                 <h1>{{product.product}}</h1>
  
@@ -128,10 +128,10 @@
           
 
                 <!-- Begin Media Fragments Example -->
-               <div class="col-md-12 col-lg-12">
-                        <video class="col-md-8 col-lg-8" id="video_player" ng-src="{{product.video.file}}" controls>
+               <div class="col-md-12 col-lg-12  no-padding" style="height: 100%;">
+                        <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls>
                         </video>
-                       <nav class="col-md-4 col-lg-4">
+                       <nav class="col-md-4 col-lg-4" style="height: 96%;overflow-y: scroll;">
 
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
                                <button ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  </button>
