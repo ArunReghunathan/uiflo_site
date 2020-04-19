@@ -25,9 +25,8 @@
     <script type="text/javascript">
     setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
     setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)')); 
- 
-
-
+  
+     
         function Register(name=null,email=null, social_id=false) {
             let url = "http://13.126.184.35:8000/user/";
             var myHeaders = new Headers();
@@ -62,6 +61,7 @@
                 }else{
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.uuid);
+                    document.getElementById('display_username').style.display = 'inline';
                     document.getElementById("display_username").innerHTML = name;
                     // alert("Login Successful")
                 }
@@ -80,7 +80,11 @@
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            Register(name, email,social_id)
+            Register(name, email,social_id) 
+            document.getElementById('logoutbutton').style.display = 'block';
+            document.getElementById('loginbutton').style.display = 'none';
+            
+
         }
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
@@ -88,8 +92,12 @@
             console.log('User signed out.');
             document.getElementById("display_username").innerHTML = "";
             window.localStorage.setItem('token', "invalid")
-            });
-        }
+            }); 
+            document.getElementById('logoutbutton').style.display = 'none';
+            document.getElementById('display_username').style.display = 'none';
+            document.getElementById('loginbutton').style.display = 'block';
+        } 
+        
 
     </script>
 
@@ -104,7 +112,7 @@
             <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;
             <span class="">LANDING PAGES</span> &nbsp;&nbsp;
             <span class="">EMAILS</span> &nbsp;&nbsp;
-           <a  href="./admin-home.html" ><span id="display_username" > _ </span> </a> 
+           <a  href="./admin-home.html" > <span id="display_username" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6px;cursor: pointer" ></span> </a> 
         </div>
     </div>
     <div class="col-md-2 col-lg-2 no-padding">
@@ -116,7 +124,8 @@
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer">LOGIN</div>
+            <div id="loginbutton" class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer">LOGIN</div>
+            <div id="logoutbutton" class="col-md-12 col-lg-12" type="button" onclick="signOut();" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer">LOGOUT</div>
 
 <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
@@ -156,7 +165,7 @@
                                             <div class="col-lg-11 col-md-11">Connect with google. </div>
                                             
                                         </div>
-                                        <a href="#" onclick="signOut();">Sign out</a>
+                                        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
                                         
                                     </div>
 
@@ -257,6 +266,14 @@
 </div>
 </body>
 <script>
+
+    document.getElementById('display_username').style.display = 'none';
+
+    
+    document.getElementById('logoutbutton').style.display = 'none';
+    document.getElementById('loginbutton').style.display = 'block';
+
+
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
