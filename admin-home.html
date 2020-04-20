@@ -6,7 +6,7 @@
 
     <script src="https://apis.google.com/js/platform.js"  ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com"> 
 
     <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
     <link rel="canonical" href="https://uiflow.com/">
@@ -22,11 +22,11 @@
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
-        // let token = localStorage.getItem("token") || "unauth";
-        //    if(token.split(".").length != 3){
-        //        alert("please sigin ")
-        //        window.location.replace("./index.html");
-        //    }
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("you are not authorized to view this page")
+               window.location.replace("./index.html");
+           }
 
    </script>
 
@@ -34,8 +34,6 @@
 
 </head>
 <body lang="en" ng-app="myApp" ng-controller="myCtrl" >
-
-
 
 <div class="col-md-12 col-lg-12" style="margin-top: 1%;border-bottom: 1px solid #EBEBEB;background: white;padding: 0;
 ">
@@ -57,7 +55,7 @@
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 8%;cursor: pointer;margin-top: 10%;">LOGIN</div>
+            <div onclick="signOut()" class="col-md-12 col-lg-12" type="button" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 8%;cursor: pointer;margin-top: 10%;">LOGOUT</div>
 
             <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
@@ -115,7 +113,7 @@
     </div>
 </div>
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;" ng-show="userRole =='staff'">
 
         <div class="row">
             <div class="column" style="height: 6vh;">
@@ -140,33 +138,19 @@
         </div>
 
 
+ 
+    </div>
+ 
+
+    <div class="col-md-12 col-lg-12" style="padding: 6%;">
+
         <div class="row">
             <div class="column" style="height: 6vh;">
               <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
               
 
             </div>
-        </div>
-        <div class="row">
-            <div   class="column" ng-repeat="product in uploads "    >
-                     
-                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-               
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
-                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                           {{product.product}}
-                       </div>
-                       <div style="font-size: 14px;">{{product.platform}}</div>
-                   </div>
-                </div>
-            </div> 
-        </div>
-
-    </div>
- 
-
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+        </div> 
         <div class="row">
             <div   class="column" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
                  
@@ -179,6 +163,7 @@
                            {{product.product}}
                        </div>
                        <div style="font-size: 14px;">{{product.platform}}</div>
+                       <div ng-show="userRole='admin'" style="font-size: 12px;">{{product.user_name}}</div>
                        <!-- </a> -->
                    </div>
                     <div class="col-md-2 col-lg-2">
@@ -239,6 +224,46 @@
             window.location.replace(loc)
         }
 
+        $scope.CheckUser = function() {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $scope.userId = window.localStorage.getItem('userId') || "unknown"
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.user = response.data; 
+                console.log($scope.user)
+ 
+                if($scope.user.is_admin){
+                    $scope.userRole = "admin"
+                }
+                else if($scope.user.is_staff){
+                    $scope.userRole = "staff"
+                    $scope.ListRefrence();
+                }
+                else{
+                    $scope.userRole = "normal"
+                }
+
+                if( ["normal"].includes($scope.userRole) ){
+                    window.location.replace("./index.html");
+                }
+             
+                $scope.ListProduct();
+            }
+            ).catch(function error() {
+                alert("please sigin")
+                window.location.replace("./index.html");
+                
+            })
+            ;
+            
+        }
+        $scope.CheckUser();
+
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
@@ -246,10 +271,15 @@
 
         $scope.ListProduct = function(page=1) { 
             var params = {"page": page}
+            if ($scope.userRole != "admin"){
+                params["userId"] = $scope.userId;
+            }
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
-                params: params
+                params: params,
+                headers: headers
                 })
                 .then(function(response) {
                     $scope.products = response.data.results; 
@@ -270,14 +300,15 @@
                 });
 
     }
-    $scope.ListProduct();
 
     $scope.ListRefrence = function(page=1) { 
             var params = {"page": page, "platform":"refrence"}
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
-                params: params
+                params: params,
+                headers: headers
                 })
                 .then(function(response) {
                     console.log(response)
@@ -299,32 +330,18 @@
                 });
 
     }
-    $scope.ListRefrence();
+    
+    // $scope.ListRefrence();
 
-
-    $scope.ListUploads = function(page=1) { 
-            var params = {"page": page, "platform":"upload"}
-            $http({
-                method: "GET",
-                url: "http://13.126.184.35:8000/product/",
-                params: params
-                })
-                .then(function(response) {
-                     $scope.uploads = response.data.results; 
-                      for (refrence in $scope.uploads){ 
-                        if ($scope.uploads[refrence].media){
-                            for(each in $scope.uploads[refrence].media){
-                                if($scope.uploads[refrence].media[each].media_type=="screenshort"){
-                                     $scope.uploads[refrence].thumbnail = $scope.uploads[refrence].media[each].file
-                                }
-                            }
-                        }
-                    }
-                    console.log($scope.uploads)
-                });
-
+    $scope.logout = function() {
+            localStorage.setItem("token","");
+            localStorage.setItem("userId","");
+            window.location.replace("./index.html");
     }
-    $scope.ListUploads();
+
+
+
+ 
 
 
     })
@@ -348,6 +365,29 @@
     //         console.log('User signed out.');
     //     });
     // }
+
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+
+    function signOut() {
+        
+
+
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            window.localStorage.setItem("token","")
+            window.localStorage.setItem("userId","")
+            console.log('User signed out.');
+            window.location.replace("./index.html");
+        });
+    }
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+
 
 </script>
 <!--############################################## angular -->

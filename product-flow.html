@@ -53,7 +53,7 @@
 <!--        <form action="" role="search" class="search-form" style="width: 100%;">-->
 <!--            <input type="search" name="q" class="search-text" placeholder="Search..." autocomplete="off" style="width: 100%;height: 100%;">-->
 <!--        </form>-->
-<!--    </div>-->
+   <!-- </div> -->
     <div class="col-md-1 col-lg-1" style="text-align: center;float: right;">
  
         <div class="containers" style="">
@@ -110,7 +110,7 @@
 <!--                </div>-->
 
 <!--            </div>-->
-        </div>
+        <!-- </div> -->
 
     </div>
 </div>
@@ -124,14 +124,17 @@
       
                 <h1>{{product.product}}</h1>
  
-                <h4> {{uuid}}</h4>
+               
           
 
                 <!-- Begin Media Fragments Example -->
                <div class="col-md-12 col-lg-12  no-padding" style="height: 100%;">
                         <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls>
                         </video>
+                        
                        <nav class="col-md-4 col-lg-4" style="height: 96%;overflow-y: scroll;">
+                        
+                        
 
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
                                <button ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  </button>
@@ -144,7 +147,7 @@
             </section>
     </div>
 
-    <div class="col-md-12 col-lg-12">
+    <div class="col-md-12 col-lg-12"> <br><br><br><br>
         <h1>Screenshots</h1>
         <div class="col-md-12 col-lg-12">
             <div class="row">
@@ -176,6 +179,22 @@
         $scope.uuid = $scope.url.split("#")[1];
 
 
+        $scope.change_video = function(time) { 
+            // $scope.product.video.file
+            $scope.product.video.file =   $scope.product.video.file.split("#t=")[0] + "#t=" + time
+
+            var vid = document.getElementById("video_player")
+            // vid.load();s
+            vid.play();
+            setTimeout(function(){
+                document.getElementById("video_player").play();
+            }, 1000);
+
+            
+
+        }
+
+
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
@@ -187,6 +206,7 @@
                                 if($scope.product.media[each].media_type=="video"){
                                     console.log("inside ")
                                     $scope.product.video = $scope.product.media[each] 
+                                    $scope.videotemp = $scope.product.media[each] 
                                 }
                             }
                         }

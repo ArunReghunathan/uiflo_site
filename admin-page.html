@@ -56,7 +56,7 @@
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div ng-click="logout()" class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="color: #666666;padding: 6%;cursor: pointer">LOGOUT</div>
+            <div onclick="signOut()" class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="color: #666666;padding: 6%;cursor: pointer">LOGOUT</div>
 
             <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
@@ -538,8 +538,33 @@
 
         $scope.logout = function() {
             localStorage.setItem("token","");
+            localStorage.setItem("userId","");
             window.location.replace("./index.html");
         }
+
+        gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+
+    function signOut() {
+        
+
+
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            window.localStorage.setItem("token","")
+            window.localStorage.setItem("userId","")
+            console.log('User signed out.');
+            window.location.replace("./index.html");
+        });
+    }
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+
+
 
         // $scope.checkSigin();
 
