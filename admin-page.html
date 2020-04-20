@@ -406,9 +406,6 @@
         }
         
         $scope.add_productValues = function(key,value) {
-            console.log($scope.product_values)
-            alert("inserting")
-
  
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
@@ -425,9 +422,6 @@
                 $scope.res = response.data;
                 console.log(response.data)
                 $scope.product_values[key] = response.data['values']
-
-
-                alert("product added")
                 closeModels()
             });
         }
