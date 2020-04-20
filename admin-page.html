@@ -188,7 +188,7 @@
 
 
                                       </div>
-                                      <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save</button>
+                                      <button ng-click="add_productValues('flow', product_details.flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
 
                                   </div>
                               </div>
@@ -218,7 +218,7 @@
                                           </input>
 
                                       </div>     
-                                     <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save</button>
+                                      <button ng-click="add_productValues('category', product_details.category )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
 
                                   </div>
                               </div>
@@ -226,7 +226,7 @@
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.category">
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.sub_category"  value="{{each}}"  > {{each}}</option>
 
                           </select>
                           <div class="col-md-2 col-lg-2" id="myBtn_subcat">
@@ -243,12 +243,12 @@
                                   <div class="col-lg-12 col-md-12 no-padding">
                                       <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
                                           Sub Category
-                                          <input ng-model="product_details.category" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+                                          <input ng-model="product_details.subcategory" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
 
                                           </input>
 
                                       </div>
-                                      <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save</button>
+                                      <button ng-click="add_productValues('sub_category', product_details.subcategory )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
 
                                   </div>
                               </div>
@@ -402,6 +402,33 @@
             .then(function(response) {
                 $scope.myWelcome = response.data;
                 alert("product added")
+            });
+        }
+        
+        $scope.add_productValues = function(key,value) {
+            console.log($scope.product_values)
+            alert("inserting")
+
+ 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/creareProductValues/",
+                data: {
+                    key : key,
+                    value: value
+                
+                },
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.res = response.data;
+                console.log(response.data)
+                $scope.product_values[key] = response.data['values']
+
+
+                alert("product added")
+                closeModels()
             });
         }
 
