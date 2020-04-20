@@ -3,6 +3,10 @@
     <meta charset="UTF-8">
     <title>uiflo</title>
     <meta name="description" content="uiflo">
+    
+    <script src="https://apis.google.com/js/platform.js"  ></script>	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com">
 
     <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
     <link rel="canonical" href="https://uiflo.com/">
@@ -15,6 +19,80 @@
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 
 </head>
+
+<script type="text/javascript">
+    setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
+    setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)')); 
+  
+     
+        function Register(name=null,email=null, social_id=false) {
+            let url = "http://13.126.184.35:8000/user/";
+            var myHeaders = new Headers();
+    
+            var formdata = new FormData();
+            if(!social_id){ 
+                email = document.getElementById("registed_email").value
+                name = document.getElementById("registed_name").value
+                let password = document.getElementById("registed_password").value
+                formdata.append("password", password); 
+            }
+            else{ 
+                formdata.append("social_id", social_id); 
+            } 
+            formdata.append("first_name", name);
+            formdata.append("email", email); 
+            // formdata.append("is_active", "true");  
+    
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: formdata,
+              redirect: 'follow'
+            };
+    
+            fetch(url, requestOptions)   
+            .then(response => response.text())
+            .then((result) =>{ 
+                result = JSON.parse(result)
+                if(result.error){
+                    alert(result.error.message)
+                }else{
+                    localStorage.setItem("token", result.token);
+                    localStorage.setItem("userId", result.uuid); 
+                    // alert("Login Successful")
+                    window.location.replace("./admin-home.html");
+                }
+            })
+            .catch(error => console.log('error', error));
+    
+            }
+
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile(); 
+            let social_id = profile.getId()
+            let name = profile.getName()
+            let pic = profile.getImageUrl()
+            let email = profile.getEmail()
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            Register(name, email,social_id)  
+            
+            
+
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.'); 
+            window.localStorage.setItem('token', "invalid")
+            });  
+        } 
+        
+
+    </script>
+
 <body  lang="en" style="background: #F7F7F7;">
 
 
@@ -34,14 +112,15 @@
         <a href=""><input type="button"  class="button" value="Log In" style="background: #3D1369;color: white;" /></a>
 
        <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
-           <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+           <!-- <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
                <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
                <div class="col-lg-11 col-md-11" >Connect with facebook </div>
-           </div>
-           <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
-               <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div>
-               <div class="col-lg-11 col-md-11">Connect with google </div>
-           </div>
+           </div> -->
+           <div class="col-lg-12 col-md-12 g-signin2"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+                                           
+            <div class="col-lg-11 col-md-11">Connect with google. </div>
+            
+        </div>
        </div>
 
 <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
