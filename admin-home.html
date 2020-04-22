@@ -22,11 +22,11 @@
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
-        // let token = localStorage.getItem("token") || "unauth";
-        //    if(token.split(".").length != 3){
-        //        alert("you are not authorized to view this page")
-        //        window.location.replace("./login.html");
-        //    }
+        let token = localStorage.getItem("token") || "unauth";
+           if(token.split(".").length != 3){
+               alert("you are not authorized to view this page")
+               window.location.replace("./login.html");
+           }
 
    </script>
 
@@ -261,8 +261,8 @@
                 $scope.ListProduct();
             }
             ).catch(function error() {
-                // alert("please sigin")
-                // window.location.replace("./index.html");
+                alert("please sigin")
+                window.location.replace("./index.html");
 
             })
             ;
