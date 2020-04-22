@@ -58,7 +58,7 @@
 
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
-            <div ng-click="logout()" class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="color: #666666;padding: 6%;cursor: pointer">LOGOUT</div>
+<!--            <div ng-click="logout()" class="col-md-12 col-lg-12" type="button" data-toggle="modal" data-target="#myModal" style="color: #666666;padding: 6%;cursor: pointer">LOGOUT</div>-->
 
             <!--            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
@@ -629,14 +629,14 @@
             $scope.annotations=[];
         }
 
-        // $scope.checkSigin = function() {
-        //     $scope.token = localStorage.getItem("token") || "unauth";
-        //     if($scope.token.split(".").length != 3){
-        //         alert("please sigin ")
-        //         window.location.replace("./index.html");
-        //     }
-        //
-        // }
+        $scope.checkSigin = function() {
+            $scope.token = localStorage.getItem("token") || "unauth";
+            if($scope.token.split(".").length != 3){
+                alert("please sigin ")
+                window.location.replace("./index.html");
+            }
+
+        }
 
         $scope.logout = function() {
             localStorage.setItem("token","");
@@ -646,7 +646,7 @@
 
 
 
-        // $scope.checkSigin();
+        $scope.checkSigin();
 
     });
 
