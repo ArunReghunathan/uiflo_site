@@ -22,11 +22,11 @@
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
-        let token = localStorage.getItem("token") || "unauth";
-           if(token.split(".").length != 3){
-               alert("you are not authorized to view this page")
-               window.location.replace("./login.html");
-           }
+        // let token = localStorage.getItem("token") || "unauth";
+        //    if(token.split(".").length != 3){
+        //        alert("you are not authorized to view this page")
+        //        window.location.replace("./login.html");
+        //    }
 
    </script>
 
@@ -128,10 +128,15 @@
                
                 <div class="col-md-12 col-lg-12" style="padding: 6%;">
                    <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
-                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                           {{product.product}}
+                       <div class="col-md-3 col-lg-3">
+                           <img src="{{product.logo}}" alt="">
                        </div>
-                       <div style="font-size: 14px;">{{product.platform}}</div>
+                       <div class="col-md-9 col-lg-9">
+                           <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                               {{product.product}}
+                           </div>
+                           <div style="font-size: 14px;">{{product.platform}}</div>
+                       </div>
                    </div>
                 </div>
             </div> 
@@ -157,15 +162,17 @@
                 <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
                
                 <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" >
-                       <!-- <a  href="./product-flow.html#{{product.uuid}}" > -->
-                       <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                           {{product.product}}
-                       </div>
-                       <div style="font-size: 14px;">{{product.platform}}</div>
-                       <div ng-show="userRole='admin'" style="font-size: 12px;">{{product.user_name}}</div>
-                       <!-- </a> -->
-                   </div>
+                    <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
+                        <span>
+                            <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                        </span>
+                        <div class="col-md-9 col-lg-9">
+                            <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                                {{product.product}}
+                            </div>
+                            <div style="font-size: 14px;">{{product.platform}}</div>
+                        </div>
+                    </div>
                     <div class="col-md-2 col-lg-2">
                         <div class="dropdown">
                         <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
@@ -174,10 +181,9 @@
                                 <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
         <div class="row">
             <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
@@ -232,11 +238,11 @@
                 method: "GET",
                 url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
                 headers :headers
-                }) 
+                })
             .then(function(response) {
-                $scope.user = response.data; 
+                $scope.user = response.data;
                 console.log($scope.user)
- 
+
                 if($scope.user.is_admin){
                     $scope.userRole = "admin"
                 }
@@ -251,16 +257,16 @@
                 if( ["normal"].includes($scope.userRole) ){
                     window.location.replace("./index.html");
                 }
-             
+
                 $scope.ListProduct();
             }
             ).catch(function error() {
-                alert("please sigin")
-                window.location.replace("./index.html");
-                
+                // alert("please sigin")
+                // window.location.replace("./index.html");
+
             })
             ;
-            
+
         }
         $scope.CheckUser();
 
@@ -985,5 +991,19 @@
     .show {display: block;}
 
 
+
+    @media (min-width: 1025px) and (max-width: 1280px) {
+
+
+    }
+
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+
+  .logo{
+      width: 31px!important;
+      float: left;
+  }
+    }
 </style>
 </html>

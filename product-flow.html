@@ -123,7 +123,7 @@
     <div class="col-md-12 col-lg-12" style="padding: 3%;height: 77vh">
             <section class="wrapper" style="height: 100%;">
       
-                <h1>{{product.product}}</h1>
+
  
                
           
@@ -134,7 +134,15 @@
                         </video>
                         
                        <nav class="col-md-4 col-lg-4" style="height: 96%;overflow-y: scroll;">
-                        
+                        <div class="col-md-12 col-lg-12">
+                            <div class="col-md-2 col-lg-2 no-padding">
+                            <img src="{{product.logo}}" class="logo" style="width: 50px;float: left;margin-top: 23%;" alt="">
+                            </div>
+                            <div class="col-md-10 col-lg-10" style="font-size: 26px;">
+                                <div class="col-md-12 col-lg-12  no-padding" >{{product.product}}</div>
+                                <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;">{{product.device}} &nbsp;{{product.platform}}</div>
+                            </div>
+                        </div>
                         
 
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
