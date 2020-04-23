@@ -196,7 +196,7 @@
                               </div>
                           </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
-                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category">
+                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category">
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
 
@@ -228,7 +228,7 @@
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.sub_category"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
 
                           </select>
                           <div class="col-md-2 col-lg-2" id="myBtn_subcat">
@@ -411,22 +411,37 @@
         $scope.add_productValues = function(key,value) {
  
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            data = {
+                    key : key,
+                    value: value
+                }
+            if(key == "sub_category"){
+                data['category'] = $scope.product_details.category
+            }
             $http({
                 method: "POST",
                 url: "http://13.126.184.35:8000/creareProductValues/",
-                data: {
-                    key : key,
-                    value: value
-                
-                },
+                data: data,
                 headers :headers
                 }) 
             .then(function(response) {
                 $scope.res = response.data;
                 console.log(response.data)
                 $scope.product_values[key] = response.data['values']
+                if(key == "sub_category"){
+
+                    $scope.change_categoey()
+                }
                 closeModels()
             });
+        }
+
+        
+        $scope.change_categoey = function() { 
+            console.log($scope.product_values['sub_category'])
+
+            $scope.product_values['sub_categoey_seleced'] = $scope.product_values['sub_category'][$scope.product_details.category]
+
         }
 
 
