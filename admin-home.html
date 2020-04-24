@@ -133,7 +133,7 @@
                        </div>
                        <div class="col-md-9 col-lg-9">
                            <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                               {{product.product}}
+                               {{product.flow}} on {{product.product}}
                            </div>
                            <div style="font-size: 14px;">{{product.platform}}</div>
                        </div>
@@ -261,8 +261,8 @@
                 $scope.ListProduct();
             }
             ).catch(function error() {
-                alert("please sigin")
-                window.location.replace("./index.html");
+                // alert("please sigin")
+                // window.location.replace("./index.html");
 
             })
             ;
