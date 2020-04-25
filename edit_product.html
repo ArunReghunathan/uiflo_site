@@ -436,6 +436,13 @@
             if($scope.captured_date){
                 $scope.product_details.captured_date = $scope.captured_date.toISOString().substring(0, 10);
             }
+
+            for(each in $scope.product_details.media){
+                console.log(each)
+                if($scope.product_details.media[each] instanceof Object){
+                    $scope.product_details.media[each] = $scope.product_details.media[each].uuid
+                }
+            }
             console.log($scope.product_details);
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
@@ -736,10 +743,18 @@
                                 if($scope.product_details.media[each].media_type=="video"){
                                     console.log("inside ")
                                     $scope.product_details.video = $scope.product_details.media[each] 
-                                    $scope.videotemp = $scope.product_details.media[each] 
+                                    $scope.videotemp = $scope.product_details.media[each]
                                 }
                             }
                         }
+                        if($scope.product_details.video){
+                            $scope.annotations_value =[] 
+                            $scope.annotations = $scope.product_details.video.annotations[0]
+                            for(e in $scope.product_details.video.annotations[0]){ 
+                                $scope.annotations_value.push(e)
+                            }
+
+                        } 
                         $scope.change_categoey()
                   
                     console.log($scope.product_details)
