@@ -122,6 +122,7 @@
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12" style="padding: 3%;height: 77vh">
             <section class="wrapper" style="height: 100%;">
+                <h1>{{product.flow}} on {{product.product}}</h1>
       
 
  
@@ -230,25 +231,20 @@
     })
 
 
-    // function onSignIn(googleUser) {
-    //     var profile = googleUser.getBasicProfile();
-    //     let social_id = profile.getId()
-    //     let name = profile.getName()
-    //     let pic = profile.getImageUrl()
-    //     let email = profile.getEmail()
-    //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //     console.log('Name: ' + profile.getName());
-    //     console.log('Image URL: ' + profile.getImageUrl());
-    //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    //     Register(name, email,social_id)
-    // }
-    // function signOut() {
-    //     var auth2 = gapi.auth2.getAuthInstance();
-    //     auth2.signOut().then(function () {
-    //         console.log('User signed out.');
-    //     });
-    // }
-
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            window.localStorage.setItem("token","")
+            window.localStorage.setItem("userId","")
+            console.log('User signed out.');
+            window.location.replace("./login.html");
+        });
+    }
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
 </script>
 <!--############################################## angular -->
 
