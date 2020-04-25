@@ -95,7 +95,7 @@
                   <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
                       <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666">Platform</div>
-                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()">
+                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()" required>
 <!--                              <option value="0">Select car:</option>-->
                               <option value="Web">Web</option>
                               <option value="Android">Android</option>
@@ -109,9 +109,9 @@
                               <option value="Smartphone">Smartphone</option>
                           </select>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
-                          <input type="date" ng-model="captured_date" >
+                          <input type="date" ng-model="captured_date" required>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
-                          <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;">
+                          <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
                               <option value=""></option>
 
                               <option>Design</option> 
@@ -121,7 +121,7 @@
 
                           </div>
                     <div class="col-lg-12 col-md-12 no-padding">
-                        <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" >
+                        <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
                             
                             <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
  
@@ -143,7 +143,7 @@
                                 <div class="col-lg-12 col-md-12 no-padding">
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
                                         Product
-                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;">
+                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
 
                                         </input>
 
@@ -155,7 +155,7 @@
                                                 <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input   type='file'  id="logo_file"  style="width: 100%;"/>
+                                                <input   type='file'  id="logo_file"  style="width: 100%;" required />
                                             </div>
                                             <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
                                         </div>
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
-                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow">
+                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" required>
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
   
@@ -196,7 +196,7 @@
                               </div>
                           </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
-                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category">
+                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
 
@@ -262,7 +262,7 @@
             <div class="col-md-6 col-lg-6">
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
                 <div class="col-md-12 no-padding">
-                    <input  type="file"   ng-model="video_file" id="video_file1"   >
+                    <input  type="file"   ng-model="video_file" id="video_file1"   required>
 
 
 
@@ -288,7 +288,7 @@
                        </div>
                    </div>
                     <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 2%">
-                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;"></textarea>
+                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
                     </div>
                 </div>
 
@@ -313,7 +313,7 @@
                                 <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                             </div>
                             <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
-                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/>
+                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
                                 <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
 
                             </div>
