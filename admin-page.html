@@ -104,9 +104,8 @@
                           <div ng-show="product_details.platform=='Web'"  class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"      >Device</div>
                           <select ng-show="product_details.platform=='Web'" class="col-lg-12 col-md-12" id="device" style="height: 7vh" ng-model="product_details.device" >
 <!--                              <option value="0">Select car:</option>-->
-                              <option value="Desktop">Desktop</option>
-                              <option value="Tablet">Tablet</option>
-                              <option value="Smartphone">Smartphone</option>
+                              <option value="Desktop">Desktop</option> 
+                              <option value="Smartphone">Mobile</option>
                           </select>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
                           <input type="date" ng-model="captured_date" required>
@@ -165,11 +164,11 @@
                         </div>
                     </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
-                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" required>
+                          <select  class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" ng-change="change_categoey()"" required>
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
   
-                          </select>
+                          </select> 
                           <div class="col-md-2 col-lg-2" id="myBtn_flow">
                               <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
                           </div>
@@ -195,6 +194,40 @@
                                   </div>
                               </div>
                           </div>
+
+                                                    
+                          <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Flow</div>
+                          <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_flow">
+                              <!--                              <option value="0">Select car:</option>-->
+                              <option ng-repeat=" each in product_values.sub_flow_seleced"  value="{{each}}"  > {{each}}</option>
+
+                          </select>
+                          <div class="col-md-2 col-lg-2" id="myBtn_subcat">
+                              <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                          </div>
+
+                          <!-- The Modal -->
+                          <div id="myModal_subcat" class="modal">
+
+                              <!-- Modal content -->
+                              <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                  <span onclick="closeModels()"  class="close">&times;</span>
+                                  <h4 style="text-align: center;">Add Sub Flow</h4>
+                                  <div class="col-lg-12 col-md-12 no-padding">
+                                      <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                          Sub Category
+                                          <input ng-model="product_details.sub_flow" type="text" placeholder=" Sub Flow name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                          </input>
+
+                                      </div>
+                                      <button ng-click="add_productValues('sub_flow', product_details.sub_flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                  </div>
+                              </div>
+                          </div>
+
+
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
                           <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
                               <!--                              <option value="0">Select car:</option>-->
@@ -225,6 +258,7 @@
                                   </div>
                               </div>
                           </div>
+
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
                               <!--                              <option value="0">Select car:</option>-->
@@ -405,6 +439,12 @@
             .then(function(response) {
                 $scope.myWelcome = response.data;
                 alert("product added")
+            })
+            .catch(function(response) {
+                $scope.myWelcome = response.data;
+                let error_message =  response.data.error.message.split("violates")[0]
+                alert(error_message)
+                console.log(response)
             });
         }
         
@@ -418,6 +458,9 @@
             if(key == "sub_category"){
                 data['category'] = $scope.product_details.category
             }
+            if(key == "sub_flow"){
+                data['flow'] = $scope.product_details.flow
+            }
             $http({
                 method: "POST",
                 url: "http://13.126.184.35:8000/creareProductValues/",
@@ -428,7 +471,7 @@
                 $scope.res = response.data;
                 console.log(response.data)
                 $scope.product_values[key] = response.data['values']
-                if(key == "sub_category"){
+                if(key == "sub_category" || key == 'sub_flow'){
 
                     $scope.change_categoey()
                 }
@@ -441,6 +484,7 @@
             console.log($scope.product_values['sub_category'])
 
             $scope.product_values['sub_categoey_seleced'] = $scope.product_values['sub_category'][$scope.product_details.category]
+            $scope.product_values['sub_flow_seleced'] = $scope.product_values['sub_flow'][$scope.product_details.flow]
 
         }
 
