@@ -581,6 +581,7 @@
 
 
             var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
             var url = "http://13.126.184.35:8000/files/";
             var formdata = new FormData();
             formdata.append("annotations", JSON.stringify($scope.annotations));
@@ -628,6 +629,7 @@
 
 
             var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
             var url = "http://13.126.184.35:8000/files/";
             var formdata = new FormData();
             var ano = [{"heading": document.getElementById("screen_short_heading"+ count.toString()).value}]
@@ -676,6 +678,7 @@
 
 
             var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
             var url = "http://13.126.184.35:8000/productname/";
             var formdata = new FormData(); 
  
