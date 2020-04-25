@@ -71,24 +71,24 @@
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12">
         <form class="col-lg-12 col-md-12 no-padding" style="margin-bottom: 8%;"     >
-        <div class="col-md-6 col-lg-6" style="font-size: 24px;">Add product flow
+        <div class="col-md-6 col-lg-6" style="font-size: 24px;">Edit product flow
         </div>
         <div class="col-md-6 col-lg-6">
-               <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
-                   <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
-                       <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
-                           SAVE
-                       </div>
-                   </div>
+            <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
+                <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
+                    <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
+                        Update
+                    </div>
+                </div>
 
 
-                   <div class="col-md-3 col-lg-3" style="">
-                       <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
-                           DELETE
-                       </div>
-                   </div>
-               </div>
-        </div>
+                <div class="col-md-3 col-lg-3" style="">
+                    <div ng-click="getProduct()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
+                        Reload
+                    </div>
+                </div>
+            </div>
+     </div>
         <div class="col-md-12 col-lg-12" style="margin-top: 2%;">
            <div class="col-md-6 col-lg-6">
               <div class="col-md-10 col-lg-10">
@@ -126,10 +126,13 @@
  
 
                         </select>  
-                        <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
-
+      
                         <div class="col-md-2 col-lg-2" id="myBtn">
                             <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                        </div> 
+                        
+                        <div class="col-md-10 col-lg-10" id="myBtn">
+                            {{product_details.product}}
                         </div>
 
                         <!-- The Modal -->
@@ -194,7 +197,8 @@
                                   </div>
                               </div>
                           </div>
-
+                          
+ 
                                                     
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Flow</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_flow">
@@ -381,6 +385,9 @@
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http, $timeout) {
 
+        $scope.url = window.location.href;
+        $scope.uuid = $scope.url.split("#")[1];
+
         $scope.video_uploading = false;
         $scope.product_details = {};
 
@@ -403,6 +410,7 @@
                 }) 
             .then(function(response) {
                 $scope.product_values = response.data; 
+                $scope.getProduct();
             });
         }
         $scope.get_product_values()
@@ -431,14 +439,14 @@
             console.log($scope.product_details);
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
-                method: "POST",
-                url: "http://13.126.184.35:8000/product/",
+                method: "PUT",
+                url: "http://13.126.184.35:8000/product/" + $scope.uuid + "/",
                 data: $scope.product_details,
                 headers :headers
                 }) 
             .then(function(response) {
                 $scope.myWelcome = response.data;
-                alert("product added")
+                alert("product Updated")
             })
             .catch(function(response) {
                 $scope.myWelcome = response.data;
@@ -708,8 +716,39 @@
         }
 
 
+        
 
-        // $scope.checkSigin();
+        $scope.getProduct = function(uuid) {
+            $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
+                .then(function(response) {
+                    $scope.product_details = response.data;
+                    console.log($scope.product_details)
+                    $scope.product_temp ={
+                        "product" :$scope.product_details.product,
+                        "logo" :$scope.product_details.logo
+                    } 
+                    $scope.captured_date = new Date($scope.product_details.captured_date)
+
+  
+  
+                        if ($scope.product_details.media){
+                            for(each in $scope.product_details.media){
+                                if($scope.product_details.media[each].media_type=="video"){
+                                    console.log("inside ")
+                                    $scope.product_details.video = $scope.product_details.media[each] 
+                                    $scope.videotemp = $scope.product_details.media[each] 
+                                }
+                            }
+                        }
+                        $scope.change_categoey()
+                  
+                    console.log($scope.product_details)
+                });
+
+        }
+        // $scope.getProduct();
+
+ 
 
     });
 
