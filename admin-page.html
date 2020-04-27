@@ -123,7 +123,7 @@
                     <div class="col-lg-12 col-md-12 no-padding">
                         <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
                             
-                            <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
+                            <option  ng-repeat="each in product_names  track by $index" value="{{each}}" > {{each.productName}} </option>
  
 
                         </select>  
@@ -167,7 +167,7 @@
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
                           <select  class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" ng-change="change_categoey()"" required>
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.flow track by $index"  value="{{each}}"  > {{each}}</option>
   
                           </select> 
                           <div class="col-md-2 col-lg-2" id="myBtn_flow">
@@ -200,7 +200,7 @@
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Flow</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_flow">
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.sub_flow_seleced"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.sub_flow_seleced  track by $index "  value="{{each}}"  > {{each}}</option>
 
                           </select>
                           <div class="col-md-2 col-lg-2" id="myBtn_subcat">
@@ -232,7 +232,7 @@
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
                           <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.category  track by $index "  value="{{each}}"  > {{each}}</option>
 
                           </select>
                           <div class="col-md-2 col-lg-2" id="myBtn_cat">
@@ -263,7 +263,7 @@
                           <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
                           <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
                               <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
+                              <option ng-repeat=" each in product_values.sub_categoey_seleced  track by $index "  value="{{each}}"  > {{each}}</option>
 
                           </select>
                           <div class="col-md-2 col-lg-2" id="myBtn_subcat">
@@ -312,7 +312,7 @@
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Annotations</div>
 
 
-                <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value">
+                <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value  track by $index">
                    <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">
                        <div class="col-lg-3 col-md-3 no-padding" style="">
                            <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].min" class="col-md-5 col-lg-5"  type="number" id="time" name="time" placeholder="mm" style="background: white;margin-right: 8px;height: 7vh;padding: 0;text-align: center;"/>
@@ -343,7 +343,7 @@
 
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
 
-                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value  track by $index">
                             <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
                                 <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                             </div>
