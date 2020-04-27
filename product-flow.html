@@ -122,6 +122,9 @@
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12" style="padding: 3%;height: 77vh">
             <section class="wrapper" style="height: 100%;">
+                <h1>
+                    <span ng-hide="product.sub_flow"> {{product.flow}} </span> <span> {{product.sub_flow}} </span> on {{product.product}}
+                </h1>
       
 
  
@@ -161,7 +164,7 @@
         <div class="col-md-12 col-lg-12">
             <div class="row">
                 <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
-                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%">
+                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                         
                         {{screen.annotations[0][0].heading}}
                    
@@ -199,8 +202,6 @@
                 document.getElementById("video_player").play();
             }, 1000);
 
-            
-
         }
 
 
@@ -230,25 +231,20 @@
     })
 
 
-    // function onSignIn(googleUser) {
-    //     var profile = googleUser.getBasicProfile();
-    //     let social_id = profile.getId()
-    //     let name = profile.getName()
-    //     let pic = profile.getImageUrl()
-    //     let email = profile.getEmail()
-    //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //     console.log('Name: ' + profile.getName());
-    //     console.log('Image URL: ' + profile.getImageUrl());
-    //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    //     Register(name, email,social_id)
-    // }
-    // function signOut() {
-    //     var auth2 = gapi.auth2.getAuthInstance();
-    //     auth2.signOut().then(function () {
-    //         console.log('User signed out.');
-    //     });
-    // }
-
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            window.localStorage.setItem("token","")
+            window.localStorage.setItem("userId","")
+            console.log('User signed out.');
+            window.location.replace("./login.html");
+        });
+    }
+ 
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    
 </script>
 <!--############################################## angular -->
 
