@@ -42,12 +42,12 @@
             UiFLO ADMIN
         </div>
     </a>
-    <div class="col-md-8 col-lg-8" style="color: #A3A3A3;height: 9vh;">
-<!--        <div class="col-md-12 col-lg-12 no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW MAIL</span> &nbsp;&nbsp;-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW LANDING PAGE</span> &nbsp;&nbsp;-->
-<!--            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW PRODUCT PAGE</span>-->
-<!--        </div>-->
+    <div class="col-md-9 col-lg-9" style="color: #A3A3A3;height: 9vh;">
+        <div class="col-md-12 col-lg-12 no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW MAIL</span> &nbsp;&nbsp;
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW LANDING PAGE</span> &nbsp;&nbsp;
+            <span class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">NEW PRODUCT PAGE</span>
+        </div>
     </div>
 <!--    <div class="col-md-2 col-lg-2 no-padding">-->
 <!--        <form action="" role="search" class="search-form" style="width: 100%;">-->
@@ -71,266 +71,712 @@
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12">
         <form class="col-lg-12 col-md-12 no-padding" style="margin-bottom: 8%;"     >
-        <div class="col-md-6 col-lg-6" style="font-size: 24px;">Add/edit product flow
-        </div>
-        <div class="col-md-6 col-lg-6">
-               <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
-                   <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
-                       <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
-                           SAVE
-                       </div>
-                   </div>
-
-
-                   <div class="col-md-3 col-lg-3" style="">
-                       <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
-                           DELETE
-                       </div>
-                   </div>
-               </div>
-        </div>
-        <div class="col-md-12 col-lg-12" style="margin-top: 2%;">
-           <div class="col-md-6 col-lg-6">
-              <div class="col-md-10 col-lg-10">
-                  <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
-                      <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666">Platform</div>
-                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()" required>
-<!--                              <option value="0">Select car:</option>-->
-                              <option value="Web">Web</option>
-                              <option value="Android">Android</option>
-                              <option value="ios">ios</option>
-                          </select>
-                          <div ng-show="product_details.platform=='Web'"  class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"      >Device</div>
-                          <select ng-show="product_details.platform=='Web'" class="col-lg-12 col-md-12" id="device" style="height: 7vh" ng-model="product_details.device" >
-<!--                              <option value="0">Select car:</option>-->
-                              <option value="Desktop">Desktop</option>
-                              <option value="Tablet">Tablet</option>
-                              <option value="Smartphone">Smartphone</option>
-                          </select>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
-                          <input type="date" ng-model="captured_date" required>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
-                          <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
-                              <option value=""></option>
-
-                              <option>Design</option> 
-                              <option>Demo</option> 
-                          </select>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
-
-                          </div>
-                    <div class="col-lg-12 col-md-12 no-padding">
-                        <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
-                            
-                            <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
- 
-
-                        </select>  
-                        <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
-
-                        <div class="col-md-2 col-lg-2" id="myBtn">
-                            <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+            <div class="col-md-6 col-lg-6" style="font-size: 24px;">Add/edit product flow
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
+                    <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
+                        <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
+                            SAVE
                         </div>
+                    </div>
 
-                        <!-- The Modal -->
-                        <div id="myModal" class="modal">
 
-                            <!-- Modal content -->
-                            <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                <span class="close">&times;</span>
-                                <h4 style="text-align: center;">Add Product</h4>
-                                <div class="col-lg-12 col-md-12 no-padding">
-                                    <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                        Product
-                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
+                    <div class="col-md-3 col-lg-3" style="">
+                        <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
+                            DELETE
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12" style="margin-top: 2%;">
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-md-10 col-lg-10">
+                        <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
+                        <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666">Platform</div>
+                            <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option value="Web">Web</option>
+                                <option value="Android">Android</option>
+                                <option value="ios">ios</option>
+                            </select>
+                            <div ng-show="product_details.platform=='Web'"  class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"      >Device</div>
+                            <select ng-show="product_details.platform=='Web'" class="col-lg-12 col-md-12" id="device" style="height: 7vh" ng-model="product_details.device" >
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option value="Desktop">Desktop</option>
+                                <option value="Tablet">Tablet</option>
+                                <option value="Smartphone">Smartphone</option>
+                            </select>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
+                            <input type="date" ng-model="captured_date" required>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
+                            <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
+                                <option value=""></option>
 
-                                        </input>
+                                <option>Design</option>
+                                <option>Demo</option>
+                            </select>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
 
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
-                                        Add Logo ( 100px * 100px )
-                                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
-                                            <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
-                                                <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding">
+                                <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
+
+                                    <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
+
+
+                                </select>
+                                <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
+
+                                <div class="col-md-2 col-lg-2" id="myBtn">
+                                    <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                                </div>
+
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+
+                                    <!-- Modal content -->
+                                    <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                        <span class="close">&times;</span>
+                                        <h4 style="text-align: center;">Add Product</h4>
+                                        <div class="col-lg-12 col-md-12 no-padding">
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                                Product
+                                                <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
+
+                                                </input>
+
                                             </div>
-                                            <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input   type='file'  id="logo_file"  style="width: 100%;" required />
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
+                                                Add Logo ( 100px * 100px )
+                                                <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
+                                                    <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
+                                                        <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
+                                                        <input   type='file'  id="logo_file"  style="width: 100%;" required />
+                                                    </div>
+                                                    <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
+                                                </div>
                                             </div>
-                                            <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
+                            <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_flow">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_flow" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Flow</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Flow
+                                            <input ng-model="product_details.flow" type="text" placeholder="flow name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+
+                                        </div>
+                                        <button ng-click="add_productValues('flow', product_details.flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
+                            <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_cat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_cat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Category
+                                            <input ng-model="product_details.category" type="text" placeholder=" Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('category', product_details.category )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
+                            <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_subcat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_subcat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()"  class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Sub Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Sub Category
+                                            <input ng-model="product_details.subcategory" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('sub_category', product_details.subcategory )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
-                          <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" required>
-                              <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
-  
-                          </select>
-                          <div class="col-md-2 col-lg-2" id="myBtn_flow">
-                              <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
-                          </div>
 
-                          <!-- The Modal -->
-                          <div id="myModal_flow" class="modal">
-
-                              <!-- Modal content -->
-                              <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                  <span onclick="closeModels()" class="close">&times;</span>
-                                  <h4 style="text-align: center;">Add Flow</h4>
-                                  <div class="col-lg-12 col-md-12 no-padding">
-                                      <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                          Flow
-                                          <input ng-model="product_details.flow" type="text" placeholder="flow name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
-
-                                          </input>
-
-
-                                      </div>
-                                      <button ng-click="add_productValues('flow', product_details.flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
-
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
-                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
-                              <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
-
-                          </select>
-                          <div class="col-md-2 col-lg-2" id="myBtn_cat">
-                              <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
-                          </div>
-
-                          <!-- The Modal -->
-                          <div id="myModal_cat" class="modal">
-
-                              <!-- Modal content -->
-                              <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                  <span onclick="closeModels()" class="close">&times;</span>
-                                  <h4 style="text-align: center;">Add Category</h4>
-                                  <div class="col-lg-12 col-md-12 no-padding">
-                                      <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                          Category
-                                          <input ng-model="product_details.category" type="text" placeholder=" Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
-
-                                          </input>
-
-                                      </div>     
-                                      <button ng-click="add_productValues('category', product_details.category )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
-
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
-                          <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
-                              <!--                              <option value="0">Select car:</option>-->
-                              <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
-
-                          </select>
-                          <div class="col-md-2 col-lg-2" id="myBtn_subcat">
-                              <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
-                          </div>
-
-                          <!-- The Modal -->
-                          <div id="myModal_subcat" class="modal">
-
-                              <!-- Modal content -->
-                              <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                  <span onclick="closeModels()"  class="close">&times;</span>
-                                  <h4 style="text-align: center;">Add Sub Category</h4>
-                                  <div class="col-lg-12 col-md-12 no-padding">
-                                      <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                          Sub Category
-                                          <input ng-model="product_details.subcategory" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
-
-                                          </input>
-
-                                      </div>
-                                      <button ng-click="add_productValues('sub_category', product_details.subcategory )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
-
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-              </div>
-           </div>
-            <div class="col-md-6 col-lg-6">
-                <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
-                <div class="col-md-12 no-padding">
-                    <input  type="file"   ng-model="video_file" id="video_file1"   required>
-
-
-
-                    <!--<div class="col-md-7 no-padding"><input  type="file" name="pic" accept="image/*"></div>-->
-                    <div class="upload-btn-wrapper " style="margin-top: 10px;">
-                        <!--<input type="file" id="image" name="image"/>-->
-                    </div>
-
-                </div>
-
-
-                <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Annotations</div>
-
-
-                <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value">
-                   <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">
-                       <div class="col-lg-3 col-md-3 no-padding" style="">
-                           <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].min" class="col-md-5 col-lg-5"  type="number" id="time" name="time" placeholder="mm" style="background: white;margin-right: 8px;height: 7vh;padding: 0;text-align: center;"/>
-                           <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].sec" class="col-md-5 col-lg-5" type="number" id="time" name="time" placeholder="ss" style="background: white;height: 7vh;padding: 0;text-align: center;"/>
-                       </div>
-                       <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
-                           <input ng-model="annotations[each].heading" type="text" id="heading" name="heading" placeholder="heading" style="background: white;"/>
-                       </div>
-                   </div>
-                    <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 2%">
-                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
                     </div>
                 </div>
-
-
-                <div class="col-lg-12 col-md-12 no-padding" style=" margin-top: 2%;margin-bottom: 5%;">
-                    <span  ng-click="add_next_annotations()"class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">&nbsp;+&nbsp;</span> &nbsp;&nbsp;
-
-                <span  ng-click="add_video()" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> Upload Video</span> &nbsp;&nbsp;
-                </div>
-
-
-                <i ng-if="video_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
-                <span ng-if="video_uploading"  > uploading...</span>
-                <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
+                    <div class="col-md-12 no-padding">
+                        <input  type="file"   ng-model="video_file" id="video_file1"   required>
 
 
 
-                <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
+                        <!--<div class="col-md-7 no-padding"><input  type="file" name="pic" accept="image/*"></div>-->
+                        <div class="upload-btn-wrapper " style="margin-top: 10px;">
+                            <!--<input type="file" id="image" name="image"/>-->
+                        </div>
 
-                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
-                            <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
-                                <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                    </div>
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Annotations</div>
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value">
+                        <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">
+                            <div class="col-lg-3 col-md-3 no-padding" style="">
+                                <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].min" class="col-md-5 col-lg-5"  type="number" id="time" name="time" placeholder="mm" style="background: white;margin-right: 8px;height: 7vh;padding: 0;text-align: center;"/>
+                                <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].sec" class="col-md-5 col-lg-5" type="number" id="time" name="time" placeholder="ss" style="background: white;height: 7vh;padding: 0;text-align: center;"/>
                             </div>
                             <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
-                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
-                                <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
+                                <input ng-model="annotations[each].heading" type="text" id="heading" name="heading" placeholder="heading" style="background: white;"/>
+                            </div>
+                        </div>
+                        <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 2%">
+                            <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" style=" margin-top: 2%;margin-bottom: 5%;">
+                        <span  ng-click="add_next_annotations()"class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">&nbsp;+&nbsp;</span> &nbsp;&nbsp;
+
+                        <span  ng-click="add_video()" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> Upload Video</span> &nbsp;&nbsp;
+                    </div>
+
+
+                    <i ng-if="video_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                    <span ng-if="video_uploading"  > uploading...</span>
+                    <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                        <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
+                            <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                        </div>
+                        <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
+                            <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
+                            <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
+
+                        </div>
+                        <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
+
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                        <span ng-if="screen_shorts_uploading"  > uploading...</span>
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--landing page-->
+
+
+<div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
+    <div class="col-md-12 col-lg-12">
+        <form class="col-lg-12 col-md-12 no-padding" style="margin-bottom: 8%;"     >
+            <div class="col-md-6 col-lg-6" style="font-size: 24px;">Add/edit landing page
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
+                    <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
+                        <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
+                            SAVE
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-lg-3" style="">
+                        <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
+                            DELETE
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12" style="margin-top: 2%;">
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-md-10 col-lg-10">
+                        <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
+                        <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666">Platform</div>
+                            <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option value="Web">Web</option>
+                                <option value="Android">Android</option>
+                                <option value="ios">ios</option>
+                            </select>
+                            <div ng-show="product_details.platform=='Web'"  class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"      >Device</div>
+                            <select ng-show="product_details.platform=='Web'" class="col-lg-12 col-md-12" id="device" style="height: 7vh" ng-model="product_details.device" >
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option value="Desktop">Desktop</option>
+                                <option value="Tablet">Tablet</option>
+                                <option value="Smartphone">Smartphone</option>
+                            </select>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
+                            <input type="date" ng-model="captured_date" required>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
+                            <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
+                                <option value=""></option>
+
+                                <option>Design</option>
+                                <option>Demo</option>
+                            </select>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
 
                             </div>
-                            <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
+                            <div class="col-lg-12 col-md-12 no-padding">
+                                <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
+
+                                    <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
+
+
+                                </select>
+                                <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
+
+                                <div class="col-md-2 col-lg-2" id="myBtn">
+                                    <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                                </div>
+
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+
+                                    <!-- Modal content -->
+                                    <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                        <span class="close">&times;</span>
+                                        <h4 style="text-align: center;">Add Product</h4>
+                                        <div class="col-lg-12 col-md-12 no-padding">
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                                Product
+                                                <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
+
+                                                </input>
+
+                                            </div>
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
+                                                Add Logo ( 100px * 100px )
+                                                <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
+                                                    <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
+                                                        <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
+                                                        <input   type='file'  id="logo_file"  style="width: 100%;" required />
+                                                    </div>
+                                                    <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
+                            <select class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.flow"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_flow">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_flow" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Flow</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Flow
+                                            <input ng-model="product_details.flow" type="text" placeholder="flow name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+
+                                        </div>
+                                        <button ng-click="add_productValues('flow', product_details.flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
+                            <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_cat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_cat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Category
+                                            <input ng-model="product_details.category" type="text" placeholder=" Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('category', product_details.category )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
+                            <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_subcat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_subcat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()"  class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Sub Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Sub Category
+                                            <input ng-model="product_details.subcategory" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('sub_category', product_details.subcategory )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
 
-                <i ng-if="screen_shorts_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
-                <span ng-if="screen_shorts_uploading"  > uploading...</span>
-                <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+                    <i ng-if="video_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                    <span ng-if="video_uploading"  > uploading...</span>
+                    <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
 
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                        <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
+                            <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                        </div>
+                        <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
+                            <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
+                            <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
+
+                        </div>
+                        <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
+
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                        <span ng-if="screen_shorts_uploading"  > uploading...</span>
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+                    </div>
+                        <div class="col-lg-12 col-md-12 no-padding">
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-bottom: 5%;">Website link</div>
+                            <div class="col-lg-12 col-md-12 no-padding">
+                                <input type="url" id="homepage" name="homepage" style="background: white; border: 1px solid #6666;">
+                            </div>
+                        </div>
+
+                </div>
             </div>
+        </form>
+    </div>
+</div>
+
+<!--emailer-->
 
 
+<div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
+    <div class="col-md-12 col-lg-12">
+        <form class="col-lg-12 col-md-12 no-padding" style="margin-bottom: 8%;"     >
+            <div class="col-md-6 col-lg-6" style="font-size: 24px;">Add/edit emailer
             </div>
-        </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="col-md-12 col-lg-12" style="text-align: center;color: white;">
+                    <div class="col-lg-3 col-lg-offset-6 col-md-3 col-md-offset-6" style="cursor: pointer;">
+                        <div ng-click="add_product()" style="background-color:#00A384;padding: 3%;border-radius: 4px;">
+                            SAVE
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-lg-3" style="">
+                        <div ng-click="clear_all()" style="background-color:#00A384;padding: 3%;border-radius: 4px; cursor: pointer;">
+                            DELETE
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12" style="margin-top: 2%;">
+                <div class="col-md-6 col-lg-6">
+                    <div class="col-md-10 col-lg-10">
+                        <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
+                        <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
+                            <input type="date" ng-model="captured_date" required>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
+
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding">
+                                <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
+
+                                    <option  ng-repeat="each in product_names" value="{{each}}" > {{each.productName}} </option>
+
+
+                                </select>
+                                <!-- <input ng-model="product_details.logo" type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"/> -->
+
+                                <div class="col-md-2 col-lg-2" id="myBtn">
+                                    <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                                </div>
+
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+
+                                    <!-- Modal content -->
+                                    <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                        <span class="close">&times;</span>
+                                        <h4 style="text-align: center;">Add Product</h4>
+                                        <div class="col-lg-12 col-md-12 no-padding">
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                                Product
+                                                <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
+
+                                                </input>
+
+                                            </div>
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="margin-top: 6%;">
+                                                Add Logo ( 100px * 100px )
+                                                <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;"  >
+                                                    <div class="col-lg-4 col-md-4 " style="padding-left: 0;">
+                                                        <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
+                                                        <input   type='file'  id="logo_file"  style="width: 100%;" required />
+                                                    </div>
+                                                    <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- The Modal -->
+                            <div id="myModal_flow" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Flow</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Flow
+                                            <input ng-model="product_details.flow" type="text" placeholder="flow name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+
+                                        </div>
+                                        <button ng-click="add_productValues('flow', product_details.flow )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
+                            <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.category"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_cat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_cat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()" class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Category
+                                            <input ng-model="product_details.category" type="text" placeholder=" Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('category', product_details.category )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Sub-Category</div>
+                            <select class="col-lg-9 col-md-9 col-lg-offset-1 col-md-offset-1" style="height: 7vh" ng-model="product_details.sub_category">
+                                <!--                              <option value="0">Select car:</option>-->
+                                <option ng-repeat=" each in product_values.sub_categoey_seleced"  value="{{each}}"  > {{each}}</option>
+
+                            </select>
+                            <div class="col-md-2 col-lg-2" id="myBtn_subcat">
+                                <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                            </div>
+
+                            <!-- The Modal -->
+                            <div id="myModal_subcat" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                    <span onclick="closeModels()"  class="close">&times;</span>
+                                    <h4 style="text-align: center;">Add Sub Category</h4>
+                                    <div class="col-lg-12 col-md-12 no-padding">
+                                        <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                            Sub Category
+                                            <input ng-model="product_details.subcategory" type="text" placeholder=" Sub Category name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+
+                                            </input>
+
+                                        </div>
+                                        <button ng-click="add_productValues('sub_category', product_details.subcategory )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
+                            <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+
+                    <i ng-if="video_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                    <span ng-if="video_uploading"  > uploading...</span>
+                    <i ng-if="video_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">Screenshots</div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;" ng-repeat="screen in screen_shorts_annotations_value">
+                        <div class="col-lg-3 col-md-3 " style="padding-left: 0;">
+                            <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
+                        </div>
+                        <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
+                            <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
+                            <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
+
+                        </div>
+                        <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 8%;margin-bottom: 5%;">
+
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-upload fa-2x" aria-hidden="true"></i>
+                        <span ng-if="screen_shorts_uploading"  > uploading...</span>
+                        <i ng-if="screen_shorts_uploading"  class="fa fa-cog fa-spin fa-2x" aria-hidden="true"></i>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 no-padding">
+                        <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-bottom: 5%;">Website link</div>
+                        <div class="col-lg-12 col-md-12 no-padding">
+                            <input type="url" id="homepage" name="homepage" style="background: white; border: 1px solid #6666;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </form>
     </div>
 </div>
