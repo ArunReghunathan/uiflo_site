@@ -162,13 +162,13 @@
     <div class="col-md-12 col-lg-12"> <br><br><br><br>
         <h1>Screenshots</h1>
         <div class="col-md-12 col-lg-12">
-            <div class="row">
-                <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
-                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                        
-                        {{screen.annotations[0][0].heading}}
-                   
-                </div>
+<!--            <div class="row">-->
+<!--                <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">-->
+<!--                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">-->
+<!--                        -->
+<!--                        {{screen.annotations[0][0].heading}}-->
+<!--                   -->
+<!--                </div>-->
 
                 <div class="rows">
                     <div ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
@@ -230,7 +230,7 @@
                 </div>
 
 
-            </div>
+<!--            </div>-->
         </div>
 
     </div>
