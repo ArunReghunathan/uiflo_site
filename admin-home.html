@@ -259,6 +259,7 @@
                                 if($scope.products[product].media[each].media_type=="screenshort"){
                                     console.log("inside ")
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
+                                    break;
                                 }
                             }
                         }
@@ -286,9 +287,9 @@
                         console.log(refrence)
                         if ($scope.refrences[refrence].media){
                             for(each in $scope.refrences[refrence].media){
-                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
+                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){ 
                                     $scope.refrences[refrence].thumbnail = $scope.refrences[refrence].media[each].file
+                                    break;
                                 }
                             }
                         }
