@@ -116,7 +116,8 @@
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
                   
                           <select id="tag_select" ng-model="product_details.tags" data-placeholder=""  multiple class="tags-multiple-select"   name="test" style="width: 100% !important;" required>
-                              <option value=""></option>
+                                <option value=""></option>     
+                                <option ng-repeat=" each in product_values.tags track by $index"  value="{{each}}"  > {{each}}</option>
   
                           </select>
  
@@ -418,26 +419,7 @@
         $scope.product_details.media = []
  
 
-        $scope.addTagstohtml = function(tags){
-            
-            console.log(tags)
-            var x = document.getElementById("tag_select"); 
-            for(each in tags){
-                console.log(each)
-                var option = document.createElement("option");
-                option.text = tags[each];
-                x.add(option);
-                console.log("sssssssssssssssssssssssssssssssssssssssss")
  
-            }
-            // s_select( )
-                
-                
-
-
-
-        }
-
 
 
         $scope.CheckUser = function() {
@@ -496,8 +478,7 @@
                 }) 
             .then(function(response) {
                 $scope.product_values = response.data; 
-                console.log("valuesssss", $scope.product_values)
-                $scope.addTagstohtml($scope.product_values.tags)
+                console.log("valuesssss", $scope.product_values) 
                 
                 $scope.getProduct();
             });

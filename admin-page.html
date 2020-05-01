@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
-    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
@@ -110,13 +111,43 @@
                           </select>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
                           <input type="date" ng-model="captured_date" required>
-                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
-                          <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
-                              <option value=""></option>
 
-                              <option>Design</option> 
-                              <option>Demo</option> 
-                          </select>
+                         <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
+                         <div class="col-lg-10 col-md-10 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"> 
+                            <select ng-model="product_details.tags" data-placeholder="" multiple class="tags-multiple-select"  style="width: 100% !important;" required>
+                                <option value=""></option>
+    
+                                <option ng-repeat=" each in product_values.tags track by $index"  value="{{each}}"  > {{each}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 col-lg-2" id="myBtn_tags" style="font-size: 14px;color: #666666;margin-top: 3%">
+                            <button class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">+</button>
+                        </div>
+                                <!-- The Modal -->
+                                <div id="myModal_tags" class="modal">
+
+                                    <!-- Modal content -->
+                                    <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
+                                        <span onclick="closeModels()" class="close">&times;</span>
+                                        <h4 style="text-align: center;">Add Tags</h4>
+                                        <div class="col-lg-12 col-md-12 no-padding">
+                                            <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
+                                                tags
+                                                <input ng-model="product_details.tags" type="text" placeholder="tags name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
+      
+                                                </input>
+      
+      
+                                            </div>
+                                            <button ng-click="add_productValues('tags', product_details.tags )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
+      
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
 
                           </div>
@@ -375,6 +406,11 @@
 <!-- ############################# angular js start ############################# -->
 
 <script>
+     
+    $('.tags-multiple-select').select2({
+    
+    });
+
     setTimeout(console.log.bind(console, '%c⚠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
     setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
 
@@ -816,19 +852,18 @@
     }).on("hidden", function () {
         $("body").removeClass("modal-open")
     });
-
-    $(".chosen-select").chosen({
-        no_results_text: "Oops, nothing found!"
-    })
+ 
     // Get the modal
     var modal = document.getElementById("myModal");
     var modal_flow = document.getElementById("myModal_flow");
+    var modal_tags = document.getElementById("myModal_tags");
     var modal_cat = document.getElementById("myModal_cat");
     var modal_subcat = document.getElementById("myModal_subcat");
 
     // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
     var btn_flow = document.getElementById("myBtn_flow");
+    var btn_tags = document.getElementById("myBtn_tags");
     var btn_cat = document.getElementById("myBtn_cat");
     var btn_subcat = document.getElementById("myBtn_subcat");
 
@@ -842,6 +877,9 @@
     btn_flow.onclick = function() {
         modal_flow.style.display = "block";
     }
+    btn_tags.onclick = function() {
+        modal_tags.style.display = "block";
+    }
     btn_cat.onclick = function() {
         modal_cat.style.display = "block";
     }
@@ -854,6 +892,7 @@
     function closeModels() {
         modal.style.display = "none";
         modal_flow.style.display = "none";
+        modal_tags.style.display = "none";
         modal_cat.style.display = "none";
         modal_subcat.style.display = "none";
     }
@@ -870,6 +909,9 @@
         if (event.target == modal_flow) {
             modal_flow.style.display = "none";
         }
+        if (event.target == modal_tags) {
+            modal_tags.style.display = "none";
+        }
         if (event.target == modal_cat) {
             modal_cat.style.display = "none";
         }
@@ -878,162 +920,9 @@
         }
     }
 
-
-
-    function autocomplete(inp, arr) {
-        /*the autocomplete function takes two arguments,
-        the text field element and an array of possible autocompleted values:*/
-        var currentFocus;
-        /*execute a function when someone writes in the text field:*/
-        inp.addEventListener("input", function(e) {
-            var a, b, i, val = this.value;
-            /*close any already open lists of autocompleted values*/
-            closeAllLists();
-            if (!val) { return false;}
-            currentFocus = -1;
-            /*create a DIV element that will contain the items (values):*/
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            /*append the DIV element as a child of the autocomplete container:*/
-            this.parentNode.appendChild(a);
-            /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    /*create a DIV element for each matching element:*/
-                    b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
-                    /*insert a input field that will hold the current array item's value:*/
-                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    /*execute a function when someone clicks on the item value (DIV element):*/
-                    b.addEventListener("click", function(e) {
-                        /*insert the value for the autocomplete text field:*/
-                        inp.value = this.getElementsByTagName("input")[0].value;
-                        /*close the list of autocompleted values,
-                        (or any other open lists of autocompleted values:*/
-                        closeAllLists();
-                    });
-                    a.appendChild(b);
-                }
-            }
-        });
-        /*execute a function presses a key on the keyboard:*/
-        inp.addEventListener("keydown", function(e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-                /*If the arrow DOWN key is pressed,
-                increase the currentFocus variable:*/
-                currentFocus++;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 38) { //up
-                /*If the arrow UP key is pressed,
-                decrease the currentFocus variable:*/
-                currentFocus--;
-                /*and and make the current item more visible:*/
-                addActive(x);
-            } else if (e.keyCode == 13) {
-                /*If the ENTER key is pressed, prevent the form from being submitted,*/
-                e.preventDefault();
-                if (currentFocus > -1) {
-                    /*and simulate a click on the "active" item:*/
-                    if (x) x[currentFocus].click();
-                }
-            }
-        });
-        function addActive(x) {
-            /*a function to classify an item as "active":*/
-            if (!x) return false;
-            /*start by removing the "active" class on all items:*/
-            removeActive(x);
-            if (currentFocus >= x.length) currentFocus = 0;
-            if (currentFocus < 0) currentFocus = (x.length - 1);
-            /*add class "autocomplete-active":*/
-            x[currentFocus].classList.add("autocomplete-active");
-        }
-        function removeActive(x) {
-            /*a function to remove the "active" class from all autocomplete items:*/
-            for (var i = 0; i < x.length; i++) {
-                x[i].classList.remove("autocomplete-active");
-            }
-        }
-        function closeAllLists(elmnt) {
-            /*close all autocomplete lists in the document,
-            except the one passed as an argument:*/
-            var x = document.getElementsByClassName("autocomplete-items");
-            for (var i = 0; i < x.length; i++) {
-                if (elmnt != x[i] && elmnt != inp) {
-                    x[i].parentNode.removeChild(x[i]);
-                }
-            }
-        }
-        /*execute a function when someone clicks in the document:*/
-        document.addEventListener("click", function (e) {
-            closeAllLists(e.target);
-        });
-    }
-
-    /*An array containing all the country names in the world:*/
-    var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-
-    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-     autocomplete(document.getElementById("myInput"), countries);
-
-
-    var x, i, j, selElmnt, a, b, c;
-    /*look for any elements with the class "custom-select":*/
-    x = document.getElementsByClassName("custom-select");
-    for (i = 1; i < x.length; i++) {
-        selElmnt = x[i].getElementsByTagName("select")[1];
-        /*for each element, create a new DIV that will act as the selected item:*/
-        a = document.createElement("DIV");
-        a.setAttribute("class", "select-selected");
-        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-        x[i].appendChild(a);
-        /*for each element, create a new DIV that will contain the option list:*/
-        b = document.createElement("DIV");
-        b.setAttribute("class", "select-items select-hide");
-        for (j = 1; j < selElmnt.length; j++) {
-            /*for each option in the original select element,
-            create a new DIV that will act as an option item:*/
-            c = document.createElement("DIV");
-            c.innerHTML = selElmnt.options[j].innerHTML;
-            c.addEventListener("click", function(e) {
-                /*when an item is clicked, update the original select box,
-                and the selected item:*/
-                var y, i, k, s, h;
-                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                h = this.parentNode.previousSibling;
-                for (i = 1; i < s.length; i++) {
-                    if (s.options[i].innerHTML == this.innerHTML) {
-                        s.selectedIndex = i;
-                        h.innerHTML = this.innerHTML;
-                        y = this.parentNode.getElementsByClassName("same-as-selected");
-                        for (k = 0; k < y.length; k++) {
-                            y[k].removeAttribute("class");
-                        }
-                        this.setAttribute("class", "same-as-selected");
-                        break;
-                    }
-                }
-                h.click();
-            });
-            b.appendChild(c);
-        }
-        x[i].appendChild(b);
-        a.addEventListener("click", function(e) {
-            /*when the select box is clicked, close any other select boxes,
-            and open/close the current select box:*/
-            e.stopPropagation();
-            closeAllSelect(this);
-            this.nextSibling.classList.toggle("select-hide");
-            this.classList.toggle("select-arrow-active");
-        });
-    }
+ 
+ 
+ 
     function closeAllSelect(elmnt) {
         /*a function that will close all select boxes in the document,
         except the current select box:*/
@@ -1058,11 +947,7 @@
     document.addEventListener("click", closeAllSelect);
 
 
-    $("select").chosen({
-        disable_search_threshold: 5,
-        no_results_text: "No results",
-        width: "95%"
-    });
+ 
 
 
 
@@ -1169,11 +1054,7 @@
         }
     }
 
-    .autocomplete {
-        position: relative;
-        display: inline-block;
-    }
-
+ 
     input {
         border: 1px solid transparent;
         background-color: #f1f1f1;
@@ -1192,35 +1073,7 @@
         cursor: pointer;
     }
 
-    .autocomplete-items {
-        position: absolute;
-        border: 1px solid #d4d4d4;
-        border-bottom: none;
-        border-top: none;
-        z-index: 99;
-        /*position the autocomplete items to be the same width as the container:*/
-        top: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    .autocomplete-items div {
-        padding: 10px;
-        cursor: pointer;
-        background-color: #fff;
-        border-bottom: 1px solid #d4d4d4;
-    }
-
-    /*when hovering an item:*/
-    .autocomplete-items div:hover {
-        background-color: #e9e9e9;
-    }
-
-    /*when navigating through the items using the arrow keys:*/
-    .autocomplete-active {
-        background-color: DodgerBlue !important;
-        color: #ffffff;
-    }
+ 
 
     input{
         color: #444;
@@ -1408,438 +1261,7 @@
         max-width: 350px;
     }
 
-    /*!
-    Chosen, a Select Box Enhancer for jQuery and Prototype
-    by Patrick Filler for Harvest, http://getharvest.com
-
-    Version 1.6.2
-    Full source at https://github.com/harvesthq/chosen
-    Copyright (c) 2011-2016 Harvest http://getharvest.com
-
-    MIT License, https://github.com/harvesthq/chosen/blob/master/LICENSE.md
-    This file is generated by `grunt build`, do not edit it by hand.
-    */
-
-    /* @group Base */
-    .chosen-container {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 15px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
-    .chosen-container * {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
-    .chosen-container .chosen-drop {
-        position: absolute;
-        top: 100%;
-        left: -9999px;
-        z-index: 1010;
-        width: 100%;
-        border: 1px solid #aaa;
-        border-top: 0;
-        background: #fff;
-        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
-    }
-    .chosen-container.chosen-with-drop .chosen-drop {
-        left: 0;
-    }
-    .chosen-container a {
-        cursor: pointer;
-    }
-    .chosen-container .search-choice .group-name, .chosen-container .chosen-single .group-name {
-        margin-right: 4px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font-weight: normal;
-        color: #999999;
-    }
-    .chosen-container .search-choice .group-name:after, .chosen-container .chosen-single .group-name:after {
-        content: ":";
-        padding-left: 2px;
-        vertical-align: top;
-    }
-
-    /* @end */
-    /* @group Single Chosen */
-    .chosen-container-single .chosen-single {
-        position: relative;
-        display: block;
-        overflow: hidden;
-        padding: 0 0 0 12px;
-        height: 37px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-        background-color: #fff;
-        background-clip: padding-box;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-        color: #444;
-        text-decoration: none;
-        white-space: nowrap;
-        line-height: 34px;
-    }
-    .chosen-container-single .chosen-default {
-        color: #999;
-    }
-    .chosen-container-single .chosen-single span {
-        display: block;
-        overflow: hidden;
-        margin-right: 26px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    .chosen-container-single .chosen-single-with-deselect span {
-        margin-right: 38px;
-    }
-    .chosen-container-single .chosen-single abbr {
-        position: absolute;
-        top: 6px;
-        right: 26px;
-        display: block;
-        width: 12px;
-        height: 12px;
-        background: url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') -42px 1px no-repeat;
-        font-size: 1px;
-    }
-    .chosen-container-single .chosen-single abbr:hover {
-        background-position: -42px -10px;
-    }
-    .chosen-container-single.chosen-disabled .chosen-single abbr:hover {
-        background-position: -42px -10px;
-    }
-    .chosen-container-single .chosen-single div {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: block;
-        width: 18px;
-        height: 100%;
-    }
-    .chosen-container-single .chosen-single div b {
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') no-repeat 0px 8px;
-    }
-    .chosen-container-single .chosen-search {
-        position: relative;
-        z-index: 1010;
-        margin: 0;
-        padding: 3px 4px 0;
-        white-space: nowrap;
-    }
-    .chosen-container-single .chosen-search input[type="text"] {
-        margin: 1px 0;
-        padding: 5px 20px 5px 6px;
-        width: 100%;
-        height: auto;
-        outline: 0;
-        border: 1px solid #ccc;
-        background: #eee url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') no-repeat 100% -20px;
-        background: #eee url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') no-repeat 99% -20px;
-        font-size: 1em;
-        font-family: sans-serif;
-        line-height: normal;
-        border-radius: 0;
-    }
-    .chosen-container-single .chosen-drop {
-        margin-top: -1px;
-        border-radius: 0 0 4px 4px;
-        background-clip: padding-box;
-    }
-    .chosen-container-single.chosen-container-single-nosearch .chosen-search {
-        position: absolute;
-        left: -9999px;
-    }
-
-    /* @end */
-    /* @group Results */
-    .chosen-container .chosen-results {
-        color: #444;
-        position: relative;
-        overflow-x: hidden;
-        overflow-y: auto;
-        margin: -1px 4px 4px 0;
-        padding: 0 0 0 4px;
-        max-height: 240px;
-        -webkit-overflow-scrolling: touch;
-    }
-    .chosen-container .chosen-results li {
-        display: none;
-        margin: 0;
-        padding: 7px 6px;
-        list-style: none;
-        line-height: 15px;
-        border-radius: 4px;
-        word-wrap: break-word;
-        -webkit-touch-callout: none;
-    }
-    .chosen-container .chosen-results li.active-result {
-        display: list-item;
-        cursor: pointer;
-    }
-    .chosen-container .chosen-results li.disabled-result {
-        display: list-item;
-        color: #ccc;
-        cursor: default;
-    }
-    .chosen-container .chosen-results li.highlighted {
-        background-color: #3875d7;
-        color: #fff;
-    }
-    .chosen-container .chosen-results li.no-results {
-        color: #777;
-        display: list-item;
-        background: #f4f4f4;
-    }
-    .chosen-container .chosen-results li.group-result {
-        display: list-item;
-        font-weight: bold;
-        cursor: default;
-    }
-    .chosen-container .chosen-results li.group-option {
-        padding-left: 15px;
-    }
-    .chosen-container .chosen-results li em {
-        font-style: normal;
-        text-decoration: underline;
-    }
-
-    /* @end */
-    /* @group Multi Chosen */
-
-    .chosen-container-multi .chosen-choices {
-        position: relative;
-        overflow: hidden;
-        margin: 0;
-        padding: 0 5px;
-        width: 100%;
-        height: auto;
-        border: 1px solid #aaa;
-        background-color: #fff;
-        cursor: text;
-        border-radius: 4px;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
-    }
-    .chosen-container-multi .chosen-choices li {
-        float: left;
-        list-style: none;
-    }
-    .chosen-container-multi .chosen-choices li.search-field {
-        margin: 0;
-        padding: 0;
-        white-space: nowrap;
-    }
-    .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
-        margin: 1px 0;
-        padding: 0 4px;
-        height: 34px;
-        outline: 0;
-        border: 0 !important;
-        background: transparent !important;
-        box-shadow: none;
-        color: #999;
-        font-size: 100%;
-        font-family: sans-serif;
-        line-height: normal;
-        border-radius: 4px;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice {
-        position: relative;
-        margin: 5px 5px 0px 0;
-        padding: 6px 23px 5px 6px;
-        border: 1px solid #aaa;
-        max-width: 100%;
-        border-radius: 2px;
-        background-color: #eeeeee;
-        background: #D8E1F0;
-        background-size: 100% 19px;
-        background-repeat: repeat-x;
-        background-clip: padding-box;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-        color: #333;
-        line-height: 13px;
-        cursor: default;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice span {
-        word-wrap: break-word;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
-        position: absolute;
-        top: 7px;
-        right: 4px;
-        display: block;
-        width: 12px;
-        height: 12px;
-        background: url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') -42px 1px no-repeat;
-        font-size: 1px;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
-        background-position: -42px -10px;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice-disabled {
-        padding-right: 5px;
-        border: 1px solid #ccc;
-        background-color: #e4e4e4;
-        color: #666;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice-focus {
-        background: #d4d4d4;
-    }
-    .chosen-container-multi .chosen-choices li.search-choice-focus .search-choice-close {
-        background-position: -42px -10px;
-    }
-    .chosen-container-multi .chosen-results {
-        margin: 0;
-        padding: 4px;
-    }
-    .chosen-container-multi .chosen-drop {
-        border-radius: 0 0 4px 4px;
-        margin-top: -1px;
-    }
-    .chosen-container-multi .chosen-drop .result-selected {
-        display: list-item;
-        color: #ccc;
-        cursor: default;
-    }
-
-    /* @end */
-    /* @group Active  */
-    .chosen-container-active .chosen-single {
-        border: 1px solid #5897fb;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
-    .chosen-container-active.chosen-with-drop .chosen-single {
-        border: 1px solid #aaa;
-        -moz-border-radius-bottomright: 0;
-        border-bottom-right-radius: 0;
-        -moz-border-radius-bottomleft: 0;
-        border-bottom-left-radius: 0;
-        box-shadow: 0 1px 0 #fff inset;
-    }
-    .chosen-container-multi.chosen-container-active.chosen-with-drop .chosen-choices {
-        border-radius: 4px 4px 0 0;
-    }
-    .chosen-container-active.chosen-with-drop .chosen-single div {
-        border-left: none;
-        background: transparent;
-    }
-    .chosen-container-active.chosen-with-drop .chosen-single div b {
-        background-position: -18px 8px;
-    }
-    .chosen-container-active .chosen-choices {
-        border: 1px solid #5897fb;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    .chosen-container-active .chosen-choices li.search-field input[type="text"] {
-        color: #222 !important;
-    }
-
-    /* @end */
-    /* @group Disabled Support */
-    .chosen-disabled {
-        opacity: 0.5 !important;
-        cursor: default;
-    }
-    .chosen-disabled .chosen-single {
-        cursor: default;
-    }
-    .chosen-disabled .chosen-choices .search-choice .search-choice-close {
-        cursor: default;
-    }
-
-    /* @end */
-    /* @group Right to Left */
-    .chosen-rtl {
-        text-align: right;
-    }
-    .chosen-rtl .chosen-single {
-        overflow: visible;
-        padding: 0 8px 0 0;
-    }
-    .chosen-rtl .chosen-single span {
-        margin-right: 0;
-        margin-left: 26px;
-        direction: rtl;
-    }
-    .chosen-rtl .chosen-single-with-deselect span {
-        margin-left: 38px;
-    }
-    .chosen-rtl .chosen-single div {
-        right: auto;
-        left: 3px;
-    }
-    .chosen-rtl .chosen-single abbr {
-        right: auto;
-        left: 26px;
-    }
-    .chosen-rtl .chosen-choices li {
-        float: right;
-    }
-    .chosen-rtl .chosen-choices li.search-field input[type="text"] {
-        direction: rtl;
-    }
-    .chosen-rtl .chosen-choices li.search-choice {
-        margin: 3px 5px 3px 0;
-        padding: 3px 5px 3px 19px;
-    }
-    .chosen-rtl .chosen-choices li.search-choice .search-choice-close {
-        right: auto;
-        left: 4px;
-    }
-    .chosen-rtl.chosen-container-single-nosearch .chosen-search,
-    .chosen-rtl .chosen-drop {
-        left: 9999px;
-    }
-    .chosen-rtl.chosen-container-single .chosen-results {
-        margin: 0 0 4px 4px;
-        padding: 0 4px 0 0;
-    }
-    .chosen-rtl .chosen-results li.group-option {
-        padding-right: 15px;
-        padding-left: 0;
-    }
-    .chosen-rtl.chosen-container-active.chosen-with-drop .chosen-single div {
-        border-right: none;
-    }
-    .chosen-rtl .chosen-search input[type="text"] {
-        padding: 4px 5px 4px 20px;
-        background: white url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') no-repeat -30px -20px;
-        background: url('https://d3vv6lp55qjaqc.cloudfront.net/items/0h2p2A1Z3Z3r1E2Z1I1J/chosen-sprite.png') no-repeat -30px -20px;
-        direction: rtl;
-    }
-    .chosen-rtl.chosen-container-single .chosen-single div b {
-        background-position: 6px 2px;
-    }
-    .chosen-rtl.chosen-container-single.chosen-with-drop .chosen-single div b {
-        background-position: -12px 2px;
-    }
-
-    /* @end */
-    /* @group Retina compatibility */
-    @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
-        .chosen-rtl .chosen-search input[type="text"],
-        .chosen-container-single .chosen-single abbr,
-        .chosen-container-single .chosen-single div b,
-        .chosen-container-single .chosen-search input[type="text"],
-        .chosen-container-multi .chosen-choices .search-choice .search-choice-close,
-        .chosen-container .chosen-results-scroll-down span,
-        .chosen-container .chosen-results-scroll-up span {
-            background-image: url('https://d3vv6lp55qjaqc.cloudfront.net/items/173I1i2i1j3c392V2W2c/chosen-sprite@2x.png') !important;
-            background-size: 52px 37px !important;
-            background-repeat: no-repeat !important;
-        }
-    }
-
-    .chosen-container {
-        width: 100%!important;
-    }
+ 
     .upload-btn-wrapper {
         position: relative;
         overflow: hidden;
