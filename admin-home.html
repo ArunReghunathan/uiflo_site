@@ -132,6 +132,7 @@
                                 <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
                             </div>
                             <div style="font-size: 14px;">{{product.platform}}</div>
+                            <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
                         </div>
                     </div>
                     <div class="col-md-2 col-lg-2">
