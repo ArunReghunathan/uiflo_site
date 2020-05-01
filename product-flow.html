@@ -162,16 +162,16 @@
     <div class="col-md-12 col-lg-12"> <br><br><br><br>
         <h1>Screenshots</h1>
         <div class="col-md-12 col-lg-12">
-            <div class="row">
-                <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
-                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                        
-                        {{screen.annotations[0][0].heading}}
-                   
-                </div>
+<!--            <div class="row">-->
+<!--                <div  ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">-->
+<!--                         <img  ng-src="{{screen.file}}" alt="{{screen.file}}"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">-->
+<!--                        -->
+<!--                        {{screen.annotations[0][0].heading}}-->
+<!--                   -->
+<!--                </div>-->
 
                 <div class="rows">
-                    <div ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media">
+                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media" style="display: flex;">
                         <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
                     </div>
 <!--                    <div class="columns">-->
@@ -183,13 +183,13 @@
 <!--                    <div class="columns">-->
 <!--                        <img src="src/img/btn_google_light_normal_ios-min.png" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">-->
 <!--                    </div>-->
-                </div>
 
+                </div>
                 <div id="myModal" class="modals col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 no-padding" style="height: 93vh">
                     <span class="close cursor" onclick="closeModal()">&times;</span>
                     <div class="modal-content" style="height: 100%;border: none">
 
-                        <div class="mySlides no-padding" style="height: 64%;border-bottom: 1px solid #9999;">
+                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 64%;border-bottom: 1px solid #9999;">
                             <div class="numbertext">1 / 4</div>
                             <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;">
                         </div>
@@ -213,9 +213,10 @@
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 
-
-                        <div ng-if="screen.media_type =='screenshort'" class="column" ng-repeat="screen in product.media" style="height: 30%;padding: 2%;">
-                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(1)" alt="Nature and sunrise">
+                        <div class="" style="height: 30vh;">
+                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-3 col-md-3" ng-repeat="screen in product.media" style="height: 100%;padding: 2%;">
+                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(1)" alt="">
+                        </div>
                         </div>
 <!--                        <div class="columns" style="height: 30%;padding: 2%;">-->
 <!--                            <img class="demo cursor" src="src/img/facebook (1)-min.png" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(2)" alt="Snow">-->
@@ -228,9 +229,7 @@
 <!--                        </div>-->
                     </div>
                 </div>
-
-
-            </div>
+<!--            </div>-->
         </div>
 
     </div>
@@ -332,7 +331,7 @@
         var i;
         var slides = document.getElementsByClassName("mySlides");
         var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
+        // var captionText = document.getElementById("caption");
         if (n > slides.length) {slideIndex = 1}
         if (n < 1) {slideIndex = slides.length}
         for (i = 0; i < slides.length; i++) {
@@ -343,7 +342,7 @@
         }
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
-        captionText.innerHTML = dots[slideIndex-1].alt;
+        // captionText.innerHTML = dots[slideIndex-1].alt;
     }
 
     function mediaFragOne() {
