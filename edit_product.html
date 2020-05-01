@@ -111,12 +111,13 @@
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
                           <input type="date" ng-model="captured_date" required>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
-                          <select ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
+                  
+                          <select id="tag_select" ng-model="product_details.tags" data-placeholder="" multiple class="chosen-select" name="test" style="width: 100% !important;" required>
                               <option value=""></option>
 
-                              <option>Design</option> 
-                              <option>Demo</option> 
+                              <option>Design</option>  
                           </select>
+ 
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Product
 
                           </div>
@@ -320,22 +321,24 @@
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Annotations</div>
 
 
-                <div class="col-lg-12 col-md-12 no-padding" ng-repeat="each in annotations_value  track by $index">
+                <div class="col-lg-12 col-md-12 no-padding" ng-repeat="(each, value) in annotations_value  track by $index">
                    <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">
                        <div class="col-lg-3 col-md-3 no-padding" style="">
-                           <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].min" class="col-md-5 col-lg-5"  type="number" id="time" name="time" placeholder="mm" style="background: white;margin-right: 8px;height: 7vh;padding: 0;text-align: center;"/>
+                           <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].min" class="col-md-5 col-lg-5" type="number" id="time" name="time" placeholder="mm" style="background: white;margin-right: 8px;height: 7vh;padding: 0;text-align: center;"/>
                            <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].sec" class="col-md-5 col-lg-5" type="number" id="time" name="time" placeholder="ss" style="background: white;height: 7vh;padding: 0;text-align: center;"/>
  
                         </div>
                        <div class="col-lg-1 col-md-1" style="margin-top: 15px;">
                        <span ng-click="change_video(annotations[each].time)" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer; " > &nbsp;&#9654;&nbsp; </span>
                         </div>      
-                       <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
+                       <div class="col-lg-7 col-md-7 " style="padding-right: 0;">
                            <input ng-model="annotations[each].heading" type="text" id="heading" name="heading" placeholder="heading" style="background: white;"/>
-                       </div>
+                       </div> 
+                       <span  class="pull-right"ng-click="RemoveAnnotations(each)" style="position: relative; margin-bottom: -10vh; background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">  &nbsp; x &nbsp;</span>  
+
                    </div>
                     <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 2%">
-                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
+                        <textarea ng-model="annotations[each].description"  id="description" rows="2" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
                     </div>
                 </div>
 
@@ -410,6 +413,28 @@
         $scope.product_details = {};
 
         $scope.product_details.media = []
+ 
+
+        $scope.addTagstohtml = function(tags){
+            
+            console.log(tags)
+            var x = document.getElementById("tag_select"); 
+            for(each in tags){
+                console.log(each)
+                
+                var option = document.createElement("option");
+                option.text = tags[each];
+                x.add(option);
+
+                autocomplete(x, tags);
+            }
+            s_select( )
+                
+                
+
+
+
+        }
 
 
 
@@ -469,6 +494,9 @@
                 }) 
             .then(function(response) {
                 $scope.product_values = response.data; 
+                console.log("valuesssss", $scope.product_values)
+                $scope.addTagstohtml($scope.product_values.tags)
+                
                 $scope.getProduct();
             });
         }
@@ -659,6 +687,11 @@
             });
         };
 
+        $scope.RemoveAnnotations = function(index){
+            $scope.annotations.splice(index, 1)
+            $scope.annotations_value.splice(index, 1)
+        }
+
         $scope.update_video = function() {
             $scope.video_uploading = true;
 
@@ -667,6 +700,7 @@
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
             var url = "http://13.126.184.35:8000/files/" + video_uuid + "/" ;
             var formdata = new FormData();
+            console.log($scope.annotations)
             formdata.append("annotations", JSON.stringify($scope.annotations));
             formdata.append("media_type", "video"); 
 
@@ -1118,7 +1152,7 @@
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
      autocomplete(document.getElementById("myInput"), countries);
 
-
+     function s_select( ) {
     var x, i, j, selElmnt, a, b, c;
     /*look for any elements with the class "custom-select":*/
     x = document.getElementsByClassName("custom-select");
@@ -1169,6 +1203,9 @@
             this.classList.toggle("select-arrow-active");
         });
     }
+    }
+    s_select( )
+
     function closeAllSelect(elmnt) {
         /*a function that will close all select boxes in the document,
         except the current select box:*/
