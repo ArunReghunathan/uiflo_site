@@ -96,7 +96,7 @@
                   <div style="font-size: 18px;color: #3D1369;text-align: left; margin-bottom: 4%;">ID  </div>
                       <div class="custom-select col-lg-12 col-md-12 no-padding" style="">
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666">Platform</div>
-                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()" required>
+                          <select class="col-lg-12 col-md-12" style="height: 7vh" ng-model="product_details.platform" onclick="drpdown_enable()"  >
 <!--                              <option value="0">Select car:</option>-->
                               <option value="Web">Web</option>
                               <option value="Android">Android</option>
@@ -110,11 +110,11 @@
                               <option value="Smartphone">Mobile</option>
                           </select>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Captured date</div>
-                          <input type="date" ng-model="captured_date" required>
+                          <input type="date" ng-model="captured_date"  >
 
                          <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Tags</div>
                          <div class="col-lg-10 col-md-10 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%"> 
-                            <select ng-model="product_details.tags" data-placeholder="" multiple class="tags-multiple-select"  style="width: 100% !important;" required>
+                            <select ng-model="product_details.tags" data-placeholder="" multiple class="tags-multiple-select"  style="width: 100% !important;"  >
                                 <option value=""></option>
     
                                 <option ng-repeat=" each in product_values.tags track by $index"  value="{{each}}"  > {{each}}</option>
@@ -128,11 +128,11 @@
 
                                     <!-- Modal content -->
                                     <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                        <span onclick="closeModels()" class="close">&times;</span>
-                                        <h4 style="text-align: center;">Add Tags</h4>
+                                        <span onclick="closeModels()" class=" " style="color: #aaaaaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;"  >&times;</span>
+                                        <h4 style="text-align: center;">Add Tags.</h4> 
                                         <div class="col-lg-12 col-md-12 no-padding">
                                             <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
-                                                tags
+                                                 
                                                 <input ng-model="product_details.tags" type="text" placeholder="tags name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" />
       
                                                 </input>
@@ -140,7 +140,7 @@
       
                                             </div>
                                             <button ng-click="add_productValues('tags', product_details.tags )" class="w3-button" style="border-radius: 4px;background-color: #3D1369;color: white;">save </button>
-      
+       
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
 
                           </div>
                     <div class="col-lg-12 col-md-12 no-padding">
-                        <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp" required>
+                        <select id="productAndLogo" ng-change="addLogotoproduct()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_temp"  >
                             
                             <option  ng-repeat="each in product_names  track by $index" value="{{each}}" > {{each.productName}} </option>
  
@@ -169,12 +169,12 @@
 
                             <!-- Modal content -->
                             <div class="col-lg-4 col-lg-offset-5 col-md-offset-5 col-md-4 modal-content">
-                                <span class="close">&times;</span>
+                                <span onclick="closeModels()" class="close">&times;</span>
                                 <h4 style="text-align: center;">Add Product</h4>
                                 <div class="col-lg-12 col-md-12 no-padding">
                                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1 no-padding">
                                         Product
-                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;" required>
+                                        <input ng-model="product_details.product" type="text" placeholder="Product name" class="col-lg-12 col-md-12 no-padding" style="border: 1px solid;border-radius: 4px;height: 6vh;margin-top: 2%;"  >
 
                                         </input>
 
@@ -186,7 +186,7 @@
                                                 <img id="logodisplay" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                                             </div>
                                             <div class="col-lg-8 col-md-8 " style="padding-right: 0;">
-                                                <input   type='file'  id="logo_file"  style="width: 100%;" required />
+                                                <input   type='file'  id="logo_file"  style="width: 100%;"   />
                                             </div>
                                             <div   ng-click="add_logo()" class="col-lg-4 col-md-4 " style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer;margin-top: 10%;text-align: center"> save </div> &nbsp;&nbsp;
                                         </div>
@@ -196,7 +196,7 @@
                         </div>
                     </div>
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Flow</div>
-                          <select  class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" ng-change="change_categoey()"" required>
+                          <select  class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.flow" ng-change="change_categoey()""  >
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.flow track by $index"  value="{{each}}"  > {{each}}</option>
   
@@ -261,7 +261,7 @@
 
 
                           <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Category</div>
-                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category" required>
+                          <select ng-change="change_categoey()" class="col-lg-10 col-md-10" style="height: 7vh" ng-model="product_details.category"  >
                               <!--                              <option value="0">Select car:</option>-->
                               <option ng-repeat=" each in product_values.category  track by $index "  value="{{each}}"  > {{each}}</option>
 
@@ -328,7 +328,7 @@
             <div class="col-md-6 col-lg-6">
                 <div class="col-lg-12 col-md-12 no-padding" style="font-size: 14px;color: #666666;margin-top: 3%">Video upload</div>
                 <div class="col-md-12 no-padding">
-                    <input  type="file"   ng-model="video_file" id="video_file1"   required>
+                    <input  type="file"   ng-model="video_file" id="video_file1"    >
 
 
 
@@ -354,7 +354,7 @@
                        </div>
                    </div>
                     <div  class="col-lg-12 col-md-12 no-padding" style="margin-top: 2%">
-                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;" required></textarea>
+                        <textarea ng-model="annotations[each].description"  id="description" rows="4" cols="50" name="comment" placeholder="Description" style="width: 100%;border: none !important;padding: 2%;color: #666666;"  ></textarea>
                     </div>
                 </div>
 
@@ -379,7 +379,7 @@
                                 <img id="screenshot{{screen}}" src="https://uiflo.s3.amazonaws.com/uiflo/media/Screenshot_from_2020-04-07_23-22-38.png" alt="your image" style="width: 100%;"/>
                             </div>
                             <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
-                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
+                                <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;"   />
                                 <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
 
                             </div>
@@ -889,12 +889,13 @@
 
     // When the user clicks on <span> (x), close the modal
 
-    function closeModels() {
+    function closeModels() { 
         modal.style.display = "none";
         modal_flow.style.display = "none";
         modal_tags.style.display = "none";
         modal_cat.style.display = "none";
         modal_subcat.style.display = "none";
+        modal_tags.style.display = "none";
     }
  
     span.onclick = function() {

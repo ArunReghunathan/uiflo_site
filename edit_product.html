@@ -514,6 +514,12 @@
                 }
             }
             console.log($scope.product_details);
+            if(!$scope.product_details.sub_category){
+                delete $scope.product_details['sub_category']
+            }
+            if(!$scope.product_details.sub_flow){
+                delete $scope.product_details['sub_flow']
+            }
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "PUT",
