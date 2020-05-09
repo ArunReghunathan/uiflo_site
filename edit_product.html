@@ -683,11 +683,15 @@
 
         $scope.update_video = function() {
             $scope.video_uploading = true;
+            var video_uuid = false;
+            if( $scope.product_details.video){
+                video_uuid = $scope.product_details.video.uuid
 
-            var video_uuid = $scope.product_details.video.uuid
+            }
+
+            console.log("sssssssssssssss", video_uuid)
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
-            var url = "http://13.126.184.35:8000/files/" + video_uuid + "/" ;
             var formdata = new FormData();
             console.log($scope.annotations)
             formdata.append("annotations", JSON.stringify($scope.annotations));
@@ -698,12 +702,26 @@
                 formdata.append("file", document.getElementById('video_file1').files[0]);
             }
 
+
+            var url = "http://13.126.184.35:8000/files/";
             var requestOptions = {
-              method: 'PUT',
-              headers: myHeaders,
-              body: formdata,
-              redirect: 'follow'
-            };
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+                };
+
+            if(video_uuid){
+                var url = "http://13.126.184.35:8000/files/" + video_uuid + "/" ;
+                var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+                };
+
+            }
+
 
             fetch(url, requestOptions)
             .then(response => response.text()
@@ -715,7 +733,9 @@
                 if(result.error){
                     alert(result.error.message)
                 }else{
- 
+                    if(!video_uuid){
+                        $scope.product_details.media.push(result.uuid)
+                    }
 
                 }
                 $scope.video_uploading = false;
