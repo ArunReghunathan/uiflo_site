@@ -271,14 +271,19 @@
                     console.log($scope.product)
   
                         if ($scope.product.media){
+                            $scope.product.screenshort = []
                             for(each in $scope.product.media){
                                 if($scope.product.media[each].media_type=="video"){
                                     console.log("inside ")
                                     $scope.product.video = $scope.product.media[each] 
                                     $scope.videotemp = $scope.product.media[each] 
-                                }
-                            }
+                                    $scope.product.video.annotations[0] = $scope.product.video.annotations[0].sort(function(a,b){  return a.order - b.order; });
+                                    console.log($scope.product.video.annotations) 
+                                } 
+                            } 
+                            $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
                         }
+
                   
                     console.log($scope.product)
                 });

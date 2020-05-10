@@ -332,10 +332,17 @@
                            <input ng-change="findAnnotationsTime(each)" ng-model="annotations[each].sec" class="col-md-5 col-lg-5" type="number" id="time" name="time" placeholder="ss" style="background: white;height: 7vh;padding: 0;text-align: center;"/>
  
                         </div>
-                       <div class="col-lg-1 col-md-1" style="margin-top: 15px;">
+  
+                       <div class="col-lg-2 col-md-2" style="margin-top: 15px;">
                        <span ng-click="change_video(annotations[each].time)" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer; " > &nbsp;&#9654;&nbsp; </span>
-                        </div>      
-                       <div class="col-lg-7 col-md-7 " style="padding-right: 0;">
+                        </div>     
+                        
+                        
+                        <div class="col-lg-6 col-md-6" >
+                            <input   ng-model="annotations[each].order" class="col-md-5 col-lg-5" type="number" placeholder="sort"   style="background: white;  text-align: center;"/>
+                        </div>    
+
+                       <div class="col-lg-10 col-md-10 " style="padding-right: 0;">
                            <input ng-model="annotations[each].heading" type="text" id="heading" name="heading" placeholder="heading" style="background: white;"/>
                        </div> 
                        <span  class="pull-right"ng-click="RemoveAnnotations(each)" style="position: relative; margin-bottom: -10vh; background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">  &nbsp; x &nbsp;</span>  
@@ -367,7 +374,16 @@
                         <span  class="pull-right" ng-click="removeMedia(each.uuid)"  style="position: relative; margin-bottom: -10vh; background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">  &nbsp; x &nbsp;</span>  
 
                         <img width="100%"  src="{{each.file}}" style="box-shadow: 10px 10px 5px grey; margin-top: 2vh;" >  
-                        <span   ng-show="each.media_type=='screenshort'"   > {{each.annotations[0][0]['heading']}} </span>
+                        <span   ng-show="each.media_type=='screenshort'"   > {{each.annotations[0]['heading']}}   </span>
+                        <input type="number" ng-model="each.annotations[0]['order']" placeholder="sort" >
+                        <!-- <input type="text" ng-model="each.annotations[0][0]['heading']" placeholder="heading" > -->
+                        <span   ng-click="change_screen_shorts_order(each.uuid ,each.annotations[0]['order'] ,$index )"class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">&nbsp;Save&nbsp;</span> &nbsp;&nbsp;
+
+                        <!-- <span  class="pull-right"   style=" margin-bottom: -10vh; background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer">  &nbsp; Save &nbsp;</span>   -->
+                        
+                        <!-- <input type="number" ng-model="each.annotations[0][0]['order']" placeholder="Order" > -->
+                        <br>
+
                     </div>
                 </div>
 
@@ -378,6 +394,7 @@
                             <div class="col-lg-9 col-md-9 " style="padding-right: 0;">
                                 <input type='file'  id="screen_shorts_file{{screen}}"  style="width: 100%;" required />
                                 <input  type="text" id="screen_short_heading{{screen}}" name="heading" placeholder="heading" style="background: white;margin-top: 4%;"/>
+                                <input  type="number" id="screen_short_order{{screen}}" name="heading" placeholder="Order" style="background: white;margin-top: 4%;"/>
 
                             </div>
                             <span  ng-click="add_screen_shorts(screen)" class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1%;cursor: pointer"> upload</span> &nbsp;&nbsp;
@@ -750,6 +767,50 @@
         };
 
 
+        $scope.change_screen_shorts_order = function(uuid, order,  index) {
+            console.log(uuid,order, heading, index)
+           var  heading= $scope.product_details.media[index].annotations[0]['heading']
+            //  heading  = "dsds"  
+
+            
+            var myHeaders = new Headers();
+            var formdata = new FormData();
+            myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
+            $scope.screen_annotations_new = { "heading": heading, "order":order}
+
+            formdata.append("annotations", JSON.stringify($scope.screen_annotations_new));
+            var url = "http://13.126.184.35:8000/files/" + uuid + "/" ;
+                var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+                };
+                fetch(url, requestOptions)
+            .then(response => response.text()
+            )
+            .then((result) =>{
+                console.log(result)
+                $scope.video_uploading = false;
+                result = JSON.parse(result)
+                if(result.error){
+                    alert(result.error.message)
+                }else{ 
+
+                }
+                $scope.video_uploading = false;
+                $timeout(function () {
+                    $scope.$apply();
+                });
+            })
+            .catch(error => {
+                $scope.video_uploading = false;
+                console.log('error', error)
+            });
+
+
+        }
+
         $scope.add_screen_shorts = function(count) {
             $scope.screen_shorts_uploading = true;
             console.log(count)
@@ -762,7 +823,10 @@
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
             var url = "http://13.126.184.35:8000/files/";
             var formdata = new FormData();
-            var ano = [{"heading": document.getElementById("screen_short_heading"+ count.toString()).value}]
+            var ano = [{
+                "heading": document.getElementById("screen_short_heading"+ count.toString()).value,
+                "order": parseInt(document.getElementById("screen_short_order"+ count.toString()).value),
+            }]
             console.log(ano)
             formdata.append("annotations", JSON.stringify( ano ));
             formdata.append("media_type", "screenshort");
@@ -921,7 +985,9 @@
                                     $scope.product_details.video = $scope.product_details.media[each] 
                                     $scope.videotemp = $scope.product_details.media[each]
                                 }
-                            }
+                            } 
+                            $scope.product_details.media = $scope.product_details.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
+
                         }
                         if($scope.product_details.video){
                             $scope.annotations_value =[] 
