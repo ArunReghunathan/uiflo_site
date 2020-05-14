@@ -6,7 +6,7 @@
 
     <script src="https://apis.google.com/js/platform.js"  ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com"> 
+    <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com">
 
     <link rel="shortcut icon" type="image/png" href="src/img/new.ico"/>
     <link rel="canonical" href="https://uiflow.com/">
@@ -23,12 +23,12 @@
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <script>
         let token = localStorage.getItem("token") || "unauth";
-           if(token.split(".").length != 3){
-               alert("you are not authorized to view this page")
-               window.location.replace("./login.html");
-           }
+        if(token.split(".").length != 3){
+            alert("you are not authorized to view this page")
+            window.location.replace("./login.html");
+        }
 
-   </script>
+    </script>
 
 
 
@@ -64,8 +64,8 @@
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
- 
-                
+
+
 
                 </div>
             </div>
@@ -74,101 +74,46 @@
     </div>
 </div>
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;" ng-show="userRole =='staff'">
+    <div class="col-md-12 col-lg-12" style="margin-top: 3%;" ng-show="userRole =='staff'">
 
-        <div class="row">
-            <div class="column" style="height: 6vh;">
-                <span style="font-size: 22px;font-weight: bold;color: #666666;">REFERENCES</span>
+            <div class=" col-lg-12 col-md-12" style="height: 6vh;">
+                <div class=" col-lg-11 col-md-10" style="font-size: 22px;font-weight: bold;color: #666666;">My Saves</div>
+                <div class="col-lg-1 col-md-2" style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 14px;padding: 1%;text-align: center;">ADD NEW</div>
             </div>
-        </div>
 
         <div class="row">
-            <div   class="column" ng-repeat="product in refrences "    >
-                     
-                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-               
+            <div   class="column"  >
+
+                <img src="" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+
                 <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
-                       <div class="col-md-3 col-lg-3">
-                           <img src="{{product.logo}}" alt="">
-                       </div>
-                       <div class="col-md-9 col-lg-9">
-                           <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                            <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
-                           </div>
-                           <div style="font-size: 14px;">{{product.platform}}</div>
-                       </div>
-                   </div>
-                </div>
-            </div> 
-        </div>
-
-
- 
-    </div>
- 
-
-    <div class="col-md-12 col-lg-12" style="padding: 6%;">
-
-        <div class="row">
-            <div class="column" style="height: 6vh;">
-              <span style="font-size: 22px;font-weight: bold;color: #666666;">UPLOADS</span>
-              
-
-            </div>
-        </div> 
-        <div class="row">
-            <div   class="column contain" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
-                <div class="contain">
-                <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-                    <div class="overlay " >
-                        <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
-                            <div class="col-md-7 col-lg-7" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
-                                onboarding
-
-                            </div>
-                            <div class="fa fa-angle-down col-lg-2 col-md-2" style=""></div>
-                            <div class="col-lg-3 col-md-3 text " id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"'  style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;">SAVE</div>
+                    <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" >
+                        <div class="col-md-3 col-lg-3">
+                            <img src="{{product.logo}}" alt="">
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                    <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
-                        <span>
-                            <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
-                        </span>
                         <div class="col-md-9 col-lg-9">
                             <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span>  {{product.product}}
                             </div>
                             <div style="font-size: 14px;">{{product.platform}}</div>
-                            <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-lg-2">
-                        <div class="dropdown">
-                        <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
-                            <div id="myDropdown{{product.uuid}}" class="dropdown-content">
-                                <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
-                                <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
 
-        </div>
+
+
     </div>
 
-        </div>
- 
+
+
+</div>
+
 </body>
 
 <script>
- 
+
     window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -194,7 +139,7 @@
     var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
     app.controller('myCtrl', function($scope, $http, $timeout) {
 
- 
+
 
         $scope.changePage = function(url) {
             var loc = "./product-flow.html#" + url
@@ -210,29 +155,29 @@
                 method: "GET",
                 url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
                 headers :headers
-                })
-            .then(function(response) {
-                $scope.user = response.data;
-                console.log($scope.user)
+            })
+                .then(function(response) {
+                        $scope.user = response.data;
+                        console.log($scope.user)
 
-                if($scope.user.is_admin){
-                    $scope.userRole = "admin"
-                }
-                else if($scope.user.is_staff){
-                    $scope.userRole = "staff"
-                    $scope.ListRefrence();
-                }
-                else{
-                    $scope.userRole = "normal"
-                }
+                        if($scope.user.is_admin){
+                            $scope.userRole = "admin"
+                        }
+                        else if($scope.user.is_staff){
+                            $scope.userRole = "staff"
+                            $scope.ListRefrence();
+                        }
+                        else{
+                            $scope.userRole = "normal"
+                        }
 
-                if( ["normal"].includes($scope.userRole) ){
-                    window.location.replace("./index.html");
-                }
+                        if( ["normal"].includes($scope.userRole) ){
+                            window.location.replace("./index.html");
+                        }
 
-                $scope.ListProduct();
-            }
-            ).catch(function error() {
+                        $scope.ListProduct();
+                    }
+                ).catch(function error() {
                 // alert("please sigin")
                 // window.location.replace("./index.html");
 
@@ -247,7 +192,7 @@
         }
 
 
-        $scope.ListProduct = function(page=1) { 
+        $scope.ListProduct = function(page=1) {
             var params = {"page": page}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
@@ -258,10 +203,10 @@
                 url: "http://13.126.184.35:8000/product/",
                 params: params,
                 headers: headers
-                })
+            })
                 .then(function(response) {
-                    $scope.products = response.data.results; 
-                    $scope.products_count = response.data.count; 
+                    $scope.products = response.data.results;
+                    $scope.products_count = response.data.count;
                     console.log($scope.products)
                     for (product in $scope.products){
                         console.log(product)
@@ -280,9 +225,9 @@
                     console.log($scope.products)
                 });
 
-    }
+        }
 
-    $scope.ListRefrence = function(page=1) { 
+        $scope.ListRefrence = function(page=1) {
             var params = {"page": page, "platform":"refrence"}
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
@@ -290,17 +235,17 @@
                 url: "http://13.126.184.35:8000/product/",
                 params: params,
                 headers: headers
-                })
+            })
                 .then(function(response) {
                     console.log(response)
-                    $scope.refrences = response.data.results; 
-                    $scope.refrence_count = response.data.count; 
+                    $scope.refrences = response.data.results;
+                    $scope.refrence_count = response.data.count;
                     console.log($scope.refrences)
                     for (refrence in $scope.refrences){
                         console.log(refrence)
                         if ($scope.refrences[refrence].media){
                             for(each in $scope.refrences[refrence].media){
-                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){ 
+                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){
                                     $scope.refrences[refrence].thumbnail = $scope.refrences[refrence].media[each].file
                                     break;
                                 }
@@ -310,40 +255,40 @@
                     console.log($scope.refrences)
                 });
 
-    }
-    
-    // $scope.ListRefrence();
+        }
+
+        // $scope.ListRefrence();
 
 
-    $scope.DeleteProduct = function(uuid) {  
+        $scope.DeleteProduct = function(uuid) {
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "DELETE",
-                url: "http://13.126.184.35:8000/product/" + uuid + "/", 
+                url: "http://13.126.184.35:8000/product/" + uuid + "/",
                 headers: headers
-                })
+            })
                 .then(function(response) {
-                    console.log(response) 
+                    console.log(response)
                     alert("Deleted")
                 });
 
-    }
-    
+        }
 
-    $scope.logout = function() {
+
+        $scope.logout = function() {
             localStorage.setItem("token","");
             localStorage.setItem("userId","");
             window.location.replace("./index.html");
-    }
+        }
 
 
 
- 
+
 
 
     })
 
- 
+
     // function onSignIn(googleUser) {
     //     var profile = googleUser.getBasicProfile();
     //     let social_id = profile.getId()
@@ -365,7 +310,7 @@
 
     gapi.load('auth2', function() {
         gapi.auth2.init();
-      });
+    });
 
     function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -377,9 +322,9 @@
         });
     }
     function onLoad() {
-      gapi.load('auth2', function() {
-        gapi.auth2.init();
-      });
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
     }
 
 
@@ -596,7 +541,7 @@
         border: 1px solid #d4d4d4;
         border-bottom: none;
         border-top: none;
-        z-index: 99; 
+        z-index: 99;
         top: 100%;
         left: 0;
         right: 0;
@@ -608,7 +553,7 @@
         background-color: #fff;
         border-bottom: 1px solid #d4d4d4;
     }
- 
+
     input{
         color: #444;
         font-family: 'Roboto', sans-serif;
@@ -628,8 +573,8 @@
         font-size: 16px;
         font-size: 1rem;
         cursor: pointer;
-        border-radius: 4px; 
- 
+        border-radius: 4px;
+
     }
     /* input.search-text:focus {
         z-index:3;
@@ -812,7 +757,7 @@
     /* LOGIN & REGISTER FORM */
 
     form {
-        border-radius: 3px; 
+        border-radius: 3px;
     }
 
     form.register{																				/* Register form height */
@@ -875,12 +820,12 @@
         box-shadow: inset 0 0 2px rgba(0,0,0, .3), 0 1px 0 white;
     }
     #facebook-connect {
-         border: 1px solid rgb(60, 90, 154);
+        border: 1px solid rgb(60, 90, 154);
     }
 
     #facebook-connect:hover {
         border-color: rgb(60, 90, 154);
-         -webkit-transition: all .8s ease-out;
+        -webkit-transition: all .8s ease-out;
         -moz-transition: all .3s ease;
         -ms-transition: all .3s ease;
         -o-transition: all .3s ease;
@@ -1008,10 +953,10 @@
 
     @media (min-width: 768px) and (max-width: 1024px) {
 
-  .logo{
-      width: 31px!important;
-      float: left;
-  }
+        .logo{
+            width: 31px!important;
+            float: left;
+        }
     }
 </style>
 </html>
