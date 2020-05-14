@@ -530,6 +530,7 @@
                     $scope.product_details.media[each] = $scope.product_details.media[each].uuid
                 }
             }
+            $scope.update_video()
             console.log($scope.product_details);
             if(!$scope.product_details.sub_category){
                 delete $scope.product_details['sub_category']
@@ -547,6 +548,7 @@
             .then(function(response) {
                 $scope.myWelcome = response.data;
                 alert("product Updated")
+                location.reload();
             })
             .catch(function(response) {
                 $scope.myWelcome = response.data;
