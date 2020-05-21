@@ -83,12 +83,12 @@
         </div>
 
         <div class="row">
-            <div   class="column" ng-repeat="product in refrences "    >
-                     
-                <img src="{{product.thumbnail}}" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-               
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" > 
+            <div   class="containerss" ng-repeat="product in refrences "    >
+
+                <img src="{{product.thumbnail}}" class="item" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+
+                <div class="col-md-12 col-lg-12 item" style="padding: 6%;">
+                   <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" >
                        <div class="col-md-3 col-lg-3">
                            <img src="{{product.logo}}" alt="">
                        </div>
@@ -100,7 +100,7 @@
                        </div>
                    </div>
                 </div>
-            </div> 
+            </div>
         </div>
 
 
@@ -117,40 +117,30 @@
 
             </div>
         </div> 
-        <div class="row">
-            <div   class="column contain" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
-                <div class="contain">
-                <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-                    <div class="overlay " >
-                        <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
-                            <div class="col-md-7 col-lg-7" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
-                                onboarding
-
+        <div dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+            <div   class="column">
+                <div class="row ">
+                    <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                        <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
+                            <span>
+                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                            </span>
+                            <div class="col-md-9 col-lg-9">
+                                <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                </div>
+                                <div style="font-size: 14px;">{{product.platform}}</div>
+                                <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
                             </div>
-                            <div class="fa fa-angle-down col-lg-2 col-md-2" style=""></div>
-                            <div class="col-lg-3 col-md-3 text " id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"'  style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;">SAVE</div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                    <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
-                        <span>
-                            <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
-                        </span>
-                        <div class="col-md-9 col-lg-9">
-                            <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
-                            </div>
-                            <div style="font-size: 14px;">{{product.platform}}</div>
-                            <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-lg-2">
-                        <div class="dropdown">
-                        <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
-                            <div id="myDropdown{{product.uuid}}" class="dropdown-content">
-                                <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
-                                <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                        <div class="col-md-2 col-lg-2">
+                            <div class="dropdown">
+                            <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                                <div id="myDropdown{{product.uuid}}" class="dropdown-content">
+                                    <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
+                                    <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -494,6 +484,37 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    .containerss {
+        background-color: #f2f2f2;
+        margin: 0 auto;
+        height: 470px;
+        display: flex;
+        flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .item {
+        height: 150px;
+        width: 31%;
+        margin: 1%;
+        padding: 10px;
+    }
+
+    .item:nth-child(2) {
+        height: 250px;
+    }
+
+    .item:nth-child(3) {
+        height: 190px;
+    }
+
+    .item:nth-child(4) {
+        height: 220px;
+    }
+
+
+
     .contain {
         position: relative;
         width: 100%;

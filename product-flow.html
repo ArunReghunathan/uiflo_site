@@ -191,7 +191,7 @@
 
                         <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 64%;border-bottom: 1px solid #9999;">
                             <div class="numbertext">1 / 4</div>
-                            <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;">
+                            <img ng-src="{{screen.file}}" alt="{{screen.file}}" ng-style="{ 'width' : (object.platform == 'Android') ? '100%' : '0%' }" style="width:100%;height: 100%;">
                         </div>
 
 <!--                        <div class="mySlides" style="height: 64%;border-bottom: 1px solid #9999;">-->
