@@ -18,7 +18,10 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
- 
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+
 
     <script>
         let token = localStorage.getItem("token") || "unauth";
@@ -119,12 +122,27 @@
 <div class="col-md-12 col-lg-12" style="">
 
 </div>
-<div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;height: 77vh">
+<div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;">
             <section class="wrapper" style="height: 100%;">
-                <h1>
-                    <span ng-hide="product.sub_flow"> {{product.flow}} </span> <span> {{product.sub_flow}} </span> on {{product.product}}
-                </h1>
+            <div class="col-md-12 col-lg-12 no-padding" style="background: none">
+                <div class="col-md-6 col-lg-6 no-padding">
+                    <div class="col-md-1 col-lg-1 no-padding"><img src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
+                    <div class="col-md-10 col-lg-10" >
+                        <h1 style="color: #333333;font-family: Montserrat;font-size: 26px;font-weight: 700;margin-top: 0!important;">
+                            <span ng-hide="product.sub_flow"> {{product.flow}} </span> <span> {{product.sub_flow}} </span> on {{product.product}}
+                        </h1>
+                        <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;"><span class="category" style="margin-right: 1%;">{{product.category}}</span>{{product.device}} &nbsp;{{product.platform}}</div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
+                    <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
+                        <div class="col-md-8 col-lg-8 no-padding ">{{product.category}} <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"></span></div>
+                        <div class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer"><span id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"' style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span></div>
+                    </div>
+                </div>
+            </div>
       
 
  
@@ -132,26 +150,28 @@
           
 
                 <!-- Begin Media Fragments Example -->
-               <div class="col-md-12 col-lg-12  no-padding" style="height: 100%;">
+               <div class="col-md-12 col-lg-12  no-padding" style="height: 100%;background: white;">
                         <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls>
                         </video>
                         
-                       <nav class="col-md-4 col-lg-4" style="height: 96%;overflow-y: scroll;">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="col-md-2 col-lg-2 no-padding">
-                            <img src="{{product.logo}}" class="logo" style="width: 50px;float: left;margin-top: 23%;" alt="">
-                            </div>
-                            <div class="col-md-10 col-lg-10" style="font-size: 26px;">
-                                <div class="col-md-12 col-lg-12  no-padding" >{{product.product}}</div>
-                                <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;">{{product.device}} &nbsp;{{product.platform}}</div>
+                       <nav class="col-md-4 col-lg-4 no-padding" style="height: 96%;overflow-y: scroll;">
+                        <div class="col-md-12 col-lg-12 no-padding">
+                            <div class="col-md-12 col-lg-12" style="color: #666666;font-family: Montserrat;font-size: 16px;font-weight: 600;padding: 2%;border-bottom: 1px solid #DCDCDC;">
+                                Main pages
                             </div>
                         </div>
                         
 
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
-                               <button ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;"> {{each.heading}}  </button>
-                               <div>{{each.description}}</div>
-                              
+                               <div class="col-md-12 col-lg-12">
+                                   <div class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;">
+                                       {{each.min}}:{{each.sec}}
+                                   </div>
+                                   <div class="col-md-10 col-lg-10" style="">
+                                       <div ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
+                                       <div style="color: #666666;font-size: 12px;font-weight: 400">{{each.description}}</div>
+                                   </div>
+                               </div>
                            </div>
  
                        </nav>
@@ -159,7 +179,7 @@
             </section>
     </div>
 
-    <div class="col-md-12 col-lg-12"> <br><br><br><br>
+    <div class="col-md-12 col-lg-12" style="background: #E0E0E0;">
         <h1>Screenshots</h1>
         <div class="col-md-12 col-lg-12">
 <!--            <div class="row">-->
@@ -476,6 +496,14 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    .category{
+        background-color: #FFFFFF;
+        border: 1px solid #D8D8D8;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0.5%;
+    }
     .rows > .columns {
         padding: 0 8px;
     }
