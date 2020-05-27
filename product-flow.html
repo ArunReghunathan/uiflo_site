@@ -150,7 +150,7 @@
           
 
                 <!-- Begin Media Fragments Example -->
-               <div class="col-md-12 col-lg-12  no-padding" style="height: 100%;background: white;">
+               <div class="col-md-12 col-lg-12  no-padding" style="height: 70vh;background: white;">
                         <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls>
                         </video>
                         
@@ -191,9 +191,12 @@
 <!--                </div>-->
 
                 <div class="rows">
-                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media" style="display: flex;">
+                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media | limitTo: limit" style="display: flex;">
                         <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+
                     </div>
+                    <div class=" col-lg-3 col-md-3" ng-show="limit === 4" ng-click="showMore()" style="background-color: #FFFFFF;opacity: 0.7492327008928571;"><img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%"  class="hover-shadow cursor">
+                        </div>
 <!--                    <div class="columns">-->
 <!--                        <img src="src/img/facebook (1)-min.png" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">-->
 <!--                    </div>-->
@@ -310,7 +313,11 @@
 
         }
         $scope.getProduct();
+        $scope.limit = 4;
 
+        $scope.showMore = function() {
+            $scope.limit = 25;
+        };
 
     })
 
