@@ -116,35 +116,33 @@
               
 
             </div>
-        </div> 
-        <div dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
-            <div   class="column">
-                <div class="row ">
-                    <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                        <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
-                            <span>
-                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
-                            </span>
-                            <div class="col-md-9 col-lg-9">
-                                <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
-                                </div>
-                                <div style="font-size: 14px;">{{product.platform}}</div>
-                                <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-lg-2">
-                            <div class="dropdown">
-                            <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
-                                <div id="myDropdown{{product.uuid}}" class="dropdown-content">
-                                    <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
-                                    <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+        </div>
+        <div id="containera" class="cols" style="margin-top: 6%;">
+            <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+                        <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+                        <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                            <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
+                                <span>
+                                    <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                                </span>
+                                <div class="col-md-9 col-lg-9">
+                                    <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                                        <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                    </div>
+                                    <div style="font-size: 14px;">{{product.platform}}</div>
+                                    <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
                                 </div>
                             </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="dropdown">
+                                <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                                    <div id="myDropdown{{product.uuid}}" class="dropdown-content">
+                                        <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
+                                        <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row">
@@ -484,6 +482,22 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    #containera {
+        width: 100%;
+        margin: 2em auto;
+    }
+    .cols {
+        -moz-column-count:3;
+        -moz-column-gap: 3%;
+        -moz-column-width: 30%;
+        -webkit-column-count:3;
+        -webkit-column-gap: 3%;
+        -webkit-column-width: 30%;
+        column-count: 4;
+        column-gap: 3%;
+        column-width: 30%;
+    }
+
     .containerss {
         background-color: #f2f2f2;
         margin: 0 auto;
