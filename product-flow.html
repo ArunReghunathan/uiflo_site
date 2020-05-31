@@ -204,21 +204,21 @@
                     <span class="close cursor" onclick="closeModal()">&times;</span>
                     <div class="modal-content" style="height: 100%;border: none">
 
-                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 64%;border-bottom: 1px solid #9999;text-align: center">
-                            <div class="numbertext">1 / 4</div>
+                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 100%;border: 3px solid #9999; text-align: center;  ">
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>   
                             <img ng-src="{{screen.file}}" alt="{{screen.file}}" ng-style="{ 'width' : (object.platform == 'Android') ? '100%' : 'none' }" style="width:100%;height: 100%;">
  
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                       
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 
-                        <div class="" style="height: 30vh;">
-                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index " style="height: 100%;padding: 2%;">
+                        <!-- <div class="" style="height: 10vh;">
+                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-1 col-md-1" ng-repeat="screen in product.media track by $index " style="height: 100%;padding: 2%;">
                             <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
                             
                         </div>
                         </div>
- 
+  -->
                     </div>
                 </div>
 <!--            </div>-->
