@@ -194,23 +194,11 @@
 <!--                </div>-->
 
                 <div class="rows col-lg-12 col-md-12">
-                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media | limitTo: limit" style="display: flex;">
-                        <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" onclick="openModal();currentSlide();" class="hover-shadow cursor">
+                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index | limitTo: limit" style="display: flex; margin-top: 10px; margin-bottom: 20px;">
+                        <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
 
-                    </div>
-                    <div class=" col-lg-3 col-md-3" ng-show="limit === 4"  style="background-color: #FFFFFF;opacity: 0.7492327008928571;height: 15vh">
-                    +more screenshots
-                    </div>
-<!--                    <div class="columns">-->
-<!--                        <img src="src/img/facebook (1)-min.png" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">-->
-<!--                    </div>-->
-<!--                    <div class="columns">-->
-<!--                        <img src="src/img/btn_google_light_normal_ios-min.png" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">-->
-<!--                    </div>-->
-<!--                    <div class="columns">-->
-<!--                        <img src="src/img/btn_google_light_normal_ios-min.png" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">-->
-<!--                    </div>-->
-
+                    </div> 
+ 
                 </div>
                 <div id="myModal" class="modals col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 no-padding" style="height: 93vh">
                     <span class="close cursor" onclick="closeModal()">&times;</span>
@@ -219,41 +207,18 @@
                         <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 64%;border-bottom: 1px solid #9999;text-align: center">
                             <div class="numbertext">1 / 4</div>
                             <img ng-src="{{screen.file}}" alt="{{screen.file}}" ng-style="{ 'width' : (object.platform == 'Android') ? '100%' : 'none' }" style="width:100%;height: 100%;">
-                        </div>
-
-<!--                        <div class="mySlides" style="height: 64%;border-bottom: 1px solid #9999;">-->
-<!--                            <div class="numbertext">2 / 4</div>-->
-<!--                            <img src="src/img/facebook (1)-min.png" style="width:100%;height: 100%;">-->
-<!--                        </div>-->
-
-<!--                        <div class="mySlides" style="height: 64%;border-bottom: 1px solid #9999;">-->
-<!--                            <div class="numbertext">3 / 4</div>-->
-<!--                            <img src="src/img/btn_google_light_normal_ios-min.png" style="width:100%;height: 100%;">-->
-<!--                        </div>-->
-
-<!--                        <div class="mySlides" style="height: 64%;border-bottom: 1px solid #9999;">-->
-<!--                            <div class="numbertext">4 / 4</div>-->
-<!--                            <img src="src/img/btn_google_light_normal_ios-min.png" style="width:100%;height: 100%;">-->
-<!--                        </div>-->
-
+ 
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 
                         <div class="" style="height: 30vh;">
-                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-3 col-md-3" ng-repeat="screen in product.media" style="height: 100%;padding: 2%;">
-                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(1)" alt="">
+                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index " style="height: 100%;padding: 2%;">
+                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
+                            
                         </div>
                         </div>
-<!--                        <div class="columns" style="height: 30%;padding: 2%;">-->
-<!--                            <img class="demo cursor" src="src/img/facebook (1)-min.png" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(2)" alt="Snow">-->
-<!--                        </div>-->
-<!--                        <div class="columns" style="height: 30%;padding: 2%;">-->
-<!--                            <img class="demo cursor" src="src/img/btn_google_light_normal_ios-min.png" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(3)" alt="Mountains and fjords">-->
-<!--                        </div>-->
-<!--                        <div class="columns" style="height: 30%;padding: 2%;">-->
-<!--                            <img class="demo cursor" src="src/img/btn_google_light_normal_ios-min.png" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" onclick="currentSlide(4)" alt="Northern Lights">-->
-<!--                        </div>-->
+ 
                     </div>
                 </div>
 <!--            </div>-->
@@ -356,6 +321,14 @@
         }
 
 
+
+
+
+        $scope.gallary_click = function(n) {
+            openModal();
+            currentSlide(n);
+
+        }
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
