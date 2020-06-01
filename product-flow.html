@@ -232,14 +232,16 @@
 
     </div>
     <div class="col-md-12 col-lg-12">
-        <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows</h1>
+        <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows. </h1>
     </div>
     <div class="col-md-12 col-lg-12">
-        <div id="containera" class="cols" style="margin-top: 6%;">
-            <div class="col-md-12 col-lg-12" ng-if="product.category =='screenshort'"   dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  >
+        <div id="containera2" class="cols" style="margin-top: 6%;">
+ 
+
+            <div class="col-md-2 col-lg-2"  ng-hide="s_product.uuid == product.uuid"    ng-repeat="s_product in products  "    >
                 <div class="contain">
-                    <img src="{{product.thumbnail}}" class="img" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;height: 100%;width: 100%;">
-                    <div class="overlay " >
+                    <img src="{{s_product.thumbnail}}" class="img" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;height: 100%;width: 100%;">
+                    <!-- <div class="overlay " >
                         <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
                             <div class="col-md-7 col-lg-7" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
                                 onboarding
@@ -248,19 +250,19 @@
                             <div class="fa fa-angle-down col-lg-2 col-md-2" style=""></div>
                             <div class="col-lg-3 col-md-3 text " id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"'  style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;">SAVE</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-12 col-lg-12" style="padding: 6%;">
                     <div class="col-md-12 col-lg-12 no-padding" ng-click="changePage(product.uuid)" >
                         <span>
-                            <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                            <img src="{{s_product.logo}}" class="logo" style="width: 41px;float: left" alt="">
                         </span>
                         <div class="col-md-9 col-lg-9">
                             <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                <span ng-hide="s_product.sub_flow"> {{s_product.flow}} </span>  <span> {{s_product.sub_flow}} </span> on {{s_product.product}}
                             </div>
-                            <div style="font-size: 14px;">{{product.platform}}</div>
-                            <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
+                            <div style="font-size: 14px;">{{s_product.platform}}</div>
+                            <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{s_product.user_name}}</span>
                         </div>
                     </div>
                     <!-- <div class="col-md-2 col-lg-2">
@@ -335,6 +337,45 @@
             currentSlide(n);
 
         }
+
+
+
+    $scope.ListSimilarProduct = function(page=1) {
+            var params = {"page": page, "flow": $scope.product.flow}
+            // if ($scope.userRole != "admin"){
+            //     params["userId"] = $scope.userId;
+            // }
+            // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            var headers = { }
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/product/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.products = response.data.results; 
+                    $scope.products_count = response.data.count;
+                    console.log($scope.products)
+                    for (product in $scope.products){
+                        console.log(product)
+                        $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
+
+                        if ($scope.products[product].media){
+                            for(each in $scope.products[product].media){
+                                if($scope.products[product].media[each].media_type=="screenshort"){
+                                    console.log("inside ")
+                                    $scope.products[product].thumbnail = $scope.products[product].media[each].file
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    console.log("products ",$scope.products)
+                });
+
+        } 
+
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
@@ -371,7 +412,8 @@
                         }
 
                   
-                    console.log($scope.product)
+                    console.log( "Main producttttt  ",$scope.product)
+                    $scope.ListSimilarProduct(1)
                 });
 
         }
