@@ -194,17 +194,23 @@
 <!--                </div>-->
 
                 <div class="rows col-lg-12 col-md-12">
-                    <div ng-if="screen.media_type =='screenshort'" class=" col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index | limitTo: limit" style="display: flex; margin-top: 10px; margin-bottom: 20px;">
+                    <div ng-if="screen.media_type =='screenshort'" ng-show="$index<4"  class=" col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index " style="display: flex; margin-top: 10px; margin-bottom: 20px;">
                         <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
 
                     </div> 
+                    <div   class=" col-lg-3 col-md-3"  style="display: flex; margin-top: 10px; margin-bottom: 20px;" ng-show="no_of_screenshort > 3"   style="width:100%; height: 100;" >
+                        <span   style="width:100%; height: 100;   padding-top: 23%; padding-bottom: 23%; text-align: center; background-color: #9c9c9c;"" ng-click="gallary_click(5)"   class="hover-shadow cursor"> {{no_of_screenshort}} screenshorts </span>
+
+                    </div> 
+
+                
  
                 </div>
                 <div id="myModal" class="modals col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 no-padding" style="height: 93vh">
                     <span class="close cursor" onclick="closeModal()">&times;</span>
                     <div class="modal-content" style="height: 100%;border: none">
 
-                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 100%;border: 3px solid #9999; text-align: center;  ">
+                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 75%;border: 3px solid #9999; text-align: center;  ">
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>   
                             <img ng-src="{{screen.file}}" alt="{{screen.file}}" ng-style="{ 'width' : (object.platform == 'Android') ? '100%' : 'none' }" style="width:100%;height: 100%;">
  
@@ -212,13 +218,13 @@
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 
-                        <!-- <div class="" style="height: 10vh;">
-                        <div ng-if="screen.media_type =='screenshort'" class="col-lg-1 col-md-1" ng-repeat="screen in product.media track by $index " style="height: 100%;padding: 2%;">
-                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%;height: 100%;border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
+                        <div class="" style="height: 20%; margin-top: 20px;">
+                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.media track by $index  ">
+                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
                             
+                        </span>
                         </div>
-                        </div>
-  -->
+ 
                     </div>
                 </div>
 <!--            </div>-->
@@ -334,6 +340,7 @@
                 .then(function(response) {
                     $scope.product = response.data;
                     console.log($scope.product)
+                    $scope.no_of_screenshort = 0;
   
                         if ($scope.product.media){
                             $scope.product.screenshort = []
@@ -344,7 +351,9 @@
                                     $scope.videotemp = $scope.product.media[each] 
                                     $scope.product.video.annotations[0] = $scope.product.video.annotations[0].sort(function(a,b){  return a.order - b.order; });
                                     console.log($scope.product.video.annotations) 
-                                } 
+                                }
+                                else if($scope.product.media[each].media_type=="screenshort"){ $scope.no_of_screenshort += 1;  }
+
                             } 
                             $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
                         }
