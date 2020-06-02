@@ -142,8 +142,17 @@
                 </div>
                 <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
-                        <div class="col-md-8 col-lg-8 no-padding ">{{product.category}} <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"></span></div>
-                        <div class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer"><span id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"' style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span></div>
+                        <div class="col-md-8 col-lg-8 no-padding ">
+                            <select ng=model="collection_name">
+                                <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
+                                
+                            </select>
+                            <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"> </span>
+                        </div>
+                        <div class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer">
+                            <span ng-hide="SavedAProduct_value" ng-click="SavedAProduct()" style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span>
+                            <span ng-show="SavedAProduct_value"  style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVED</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -372,10 +381,58 @@
                             }
                         }
                     }
-                    console.log("products ",$scope.products)
+                    console.log("similar products ",$scope.products)
+                });
+
+        }
+    $scope.collection_name = "My Collections" ;
+    $scope.SavedAProduct = function() {
+            var body = {
+                "user": window.localStorage.getItem("userId"),
+                "product": $scope.uuid,
+                "collection" :$scope.collection_name
+                
+                } 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/savedproducts/",
+                data: body,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.SavedAProduct_value = response.data;   
+                    console.log("saved SavedAProduct ",$scope.SavedAProduct)
                 });
 
         } 
+
+    $scope.ListSavedProduct = function() {
+            var params = {  "user": window.localStorage.getItem("userId")} 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/distinctSavedProduct/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.savedCollection = response.data.collection;  
+                    $scope.savedProduct = response.data.product;  
+                    for(e in $scope.savedProduct){
+                        console.log("eee",e , $scope.savedProduct[e])
+                        if($scope.savedProduct[e].product == $scope.uuid){
+                            $scope.SavedAProduct_value = 1;
+                        }
+                    }
+                    console.log("saved savedCollection ",$scope.savedCollection)
+                    console.log("saved products ",$scope.savedProduct)
+                });
+
+        } 
+    $scope.ListSavedProduct()
+
+
 
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
@@ -389,6 +446,7 @@
   
                         if ($scope.product.media){
                             $scope.product.screenshort = []
+                            $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
                             for(each in $scope.product.media){
                                 total_count += 1;
                                 if($scope.product.media[each].media_type=="video"){
@@ -409,7 +467,7 @@
                                      }
 
                             } 
-                            $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
+                            
                         }
 
                   
