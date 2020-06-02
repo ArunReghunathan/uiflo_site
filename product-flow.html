@@ -230,9 +230,9 @@
 
 
                         <div class="" style="height: 20%; margin-top: 20px; text-align: center;">
-                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  ">
-                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: audio; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
-                            
+                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  "> 
+                                <img class="demo cursor" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: auto; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-src="{{screen.file}}" alt="{{screen.file}}"  ng-click="gallary_click($index+1)"  alt="">
+      
                         </span>
                         </div>
  
