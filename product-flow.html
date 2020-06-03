@@ -140,10 +140,10 @@
 
                     </div>
                 </div>
-                <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
+                <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6 no-padding">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
-                            <select ng=model="collection_name "  ng-hide="SavedAProduct_value">
+                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value">
                                 <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
 
                             </select>
@@ -202,13 +202,13 @@
 <!--                   -->
 <!--                </div>-->
 
-                <div class="rows col-lg-12 col-md-12">
+                <div class="rows col-lg-12 col-md-12 no-padding">
                     <div ng-if="screen.media_type =='screenshort'" ng-show="$index<screen_count-1"  class=" col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index " style="display: flex; margin-top: 10px; margin-bottom: 20px;">
                         <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
 
                     </div> 
                     <div   class=" col-lg-3 col-md-3"  style="display: flex; margin-top: 10px; margin-bottom: 20px;" ng-show="no_of_screenshort > 3"   style="width:100%; height: 100;" >
-                        <span   style="width:100%; height: 100;   padding-top: 23%; padding-bottom: 23%; text-align: center; background-color: #9c9c9c;" ng-click="gallary_click(screen_count)"   class="hover-shadow cursor"> {{no_of_screenshort}} screenshorts </span>
+                        <span   style="width:100%; height: 100;   padding-top: 21%; padding-bottom: 21%; text-align: center; background-color: #ffffffcf;font-size: 22px;font-weight: 600;color: #000000" ng-click="gallary_click(screen_count)"   class="hover-shadow cursor"> +{{no_of_screenshort}} SCREENSHOTS </span>
 
                     </div> 
 
@@ -245,7 +245,7 @@
         <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows. </h1>
     </div>
     <div class="col-md-12 col-lg-12">
-        <div id="containera2" class="cols" style="margin-top: 6%;">
+        <div class="col-md-12 col-lg-12" id="containera2" class="cols" style="margin-top: 2%;">
  
 
             <div class="col-md-3 col-lg-3"  ng-hide="s_product.uuid == product.uuid"    ng-repeat="s_product in products  "    >
