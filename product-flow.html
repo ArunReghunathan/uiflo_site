@@ -175,13 +175,13 @@
                         </div>
                         
 
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
+                           <div class="col-md-12 col-lg-12 " id="annotation"   style="padding: 4%;" ng-repeat=" each in product.video.annotations[0]">
                                <div class="col-md-12 col-lg-12">
-                                   <div class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;">
+                                   <div class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;margin-top: .5%;">
                                        {{each.min}}:{{each.sec}}
                                    </div>
-                                   <div class="col-md-10 col-lg-10" style="">
-                                       <div ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
+                                   <div class="col-md-10 col-lg-10" ng-click="change_video(each.time)" style="cursor: pointer;">
+                                       <div style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
                                        <div style="color: #666666;font-size: 12px;font-weight: 400">{{each.description}}</div>
                                    </div>
                                </div>
@@ -328,6 +328,7 @@
         $scope.change_video = function(time) { 
             // $scope.product.video.file
             $scope.product.video.file =   $scope.product.video.file.split("#t=")[0] + "#t=" + time
+            document.getElementById("annotation").style.background = "#FFF4F4";
 
             var vid = document.getElementById("video_player")
             // vid.load();s
