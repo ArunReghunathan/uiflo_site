@@ -142,7 +142,34 @@
                 </div>
                 <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
-                        <div class="col-md-8 col-lg-8 no-padding ">{{product.category}} <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"></span></div>
+                        <div class="col-md-8 col-lg-8 no-padding ">{{product.category}} <span class="" style="float: right;margin-top: 3px;margin-right: 11px;">
+                            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+                               <ul class="nav">
+                                   <li class="button-dropdown">
+                                       <a href="javascript:void(0)" class="dropdown-toggle"><span>▼</span>
+                                       </a>
+                                       <ul class="dropdown-menu">
+                                           <li>
+                                               <a href="#">
+                                                   Drop Item 1
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="#">
+                                                   Drop Item 2
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="#">
+                                                   Drop Item 3
+                                               </a>
+                                           </li>
+                                       </ul>
+                                   </li>
+                               </ul>
+
+                        </span></div>
                         <div class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer"><span id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"' style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span></div>
                     </div>
                 </div>
@@ -237,7 +264,7 @@
     </div>
     <div class="col-md-12 col-lg-12">
         <div id="containera2" class="cols" style="margin-top: 6%;">
- 
+
 
             <div class="col-md-3 col-lg-3"  ng-hide="s_product.uuid == product.uuid"    ng-repeat="s_product in products  "    >
                 <div class="contain">
@@ -282,23 +309,7 @@
 
 </body>
 
-<script>
-    $(document).ready(function() {
-        $(".fancybox-thumb").fancybox({
-            prevEffect	: 'none',
-            nextEffect	: 'none',
-            helpers	: {
-                title	: {
-                    type: 'outside'
-                },
-                thumbs	: {
-                    width	: 50,
-                    height	: 50
-                }
-            }
-        });
-    });
-</script>
+
 
 
 
@@ -609,6 +620,64 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    .nav {
+        display: block;
+        font: 13px Helvetica, Tahoma, serif;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav li {
+        display: inline-block;
+        list-style: none;
+    }
+
+    .nav .button-dropdown {
+        position: relative;
+    }
+
+    .nav li a {
+        display: block;
+        color: #333;
+        background-color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+
+    .nav li a span {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 10px;
+        color: #999;
+    }
+
+    .nav li a:hover, .nav li a.dropdown-toggle.active {
+        background-color: #289dcc;
+        color: #fff;
+    }
+
+    .nav li a:hover span, .nav li a.dropdown-toggle.active span {
+        color: #fff;
+    }
+
+    .nav li .dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        padding: 0;
+        margin: 0;
+        margin-top: 3px;
+        text-align: left;
+    }
+
+    .nav li .dropdown-menu.active {
+        display: block;
+    }
+
+    .nav li .dropdown-menu a {
+        width: 150px;
+    }
     .category{
         background-color: #FFFFFF;
         border: 1px solid #D8D8D8;
