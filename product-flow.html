@@ -140,12 +140,12 @@
 
                     </div>
                 </div>
-                <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
+                <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6 no-padding">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
-                            <select ng=model="collection_name "  ng-hide="SavedAProduct_value">
+                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value">
                                 <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
-                                
+
                             </select>
                             <!-- <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"> </span>s -->
                         </div>
@@ -175,13 +175,13 @@
                         </div>
                         
 
-                           <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
+                           <div class="col-md-12 col-lg-12 " id="annotation"   style="padding: 4%;" ng-repeat=" each in product.video.annotations[0]">
                                <div class="col-md-12 col-lg-12">
-                                   <div class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;">
+                                   <div class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;margin-top: .5%;">
                                        {{each.min}}:{{each.sec}}
                                    </div>
-                                   <div class="col-md-10 col-lg-10" style="">
-                                       <div ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
+                                   <div class="col-md-10 col-lg-10" ng-click="change_video(each.time)" style="cursor: pointer;">
+                                       <div style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
                                        <div style="color: #666666;font-size: 12px;font-weight: 400">{{each.description}}</div>
                                    </div>
                                </div>
@@ -202,14 +202,14 @@
 <!--                   -->
 <!--                </div>-->
 
-                <div class="rows col-lg-12 col-md-12">
-                    <div ng-if="screen.media_type =='screenshort'" ng-show="$index<3"  class=" col-lg-3 col-md-3" ng-repeat="screen in product.screenshort track by $index " style="display: flex; margin-top: 10px; margin-bottom: 20px; bottom: 1px;">
-                        <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="  max-height: 25vh;" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
-                    
+                <div class="rows col-lg-12 col-md-12 no-padding">
+                    <div ng-if="screen.media_type =='screenshort'" ng-show="$index<screen_count-1"  class=" col-lg-3 col-md-3" ng-repeat="screen in product.media track by $index " style="display: flex; margin-top: 10px; margin-bottom: 20px;">
+                        <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:100%" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
+
                     </div> 
                     <div   class=" col-lg-3 col-md-3"  style="display: flex; margin-top: 10px; margin-bottom: 20px;" ng-show="no_of_screenshort > 3"   style="width:100%; height: 100;" >
-                        <span   style="width:100%; height: 100;   padding-top: 23%; padding-bottom: 23%; text-align: center; background-color: #9c9c9c;" ng-click="gallary_click(4)"   class="hover-shadow cursor"> +{{no_of_screenshort-3}} screenshorts </span>
-               
+                        <span   style="width:100%; height: 100;   padding-top: 21%; padding-bottom: 21%; text-align: center; background-color: #ffffffcf;font-size: 22px;font-weight: 600;color: #000000" ng-click="gallary_click(screen_count)"   class="hover-shadow cursor"> +{{no_of_screenshort}} SCREENSHOTS </span>
+
                     </div> 
 
                 
@@ -219,20 +219,18 @@
                     <span class="close cursor" onclick="closeModal()">&times;</span>
                     <div class="modal-content" style="height: 100%;border: none">
 
-                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 75%;border: 3px solid #9999;   ">
-                            <a class="prev pull-left" onclick="plusSlides(-1)">&#10094;</a>   
-                            <div style="text-align: center; height: 100%"> 
-
-                            <img ng-src="{{screen.file}}" alt="{{screen.file}}"   style="height: 100%;">
-                            </div>
+                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.media" style="height: 75%;border: 3px solid #9999; text-align: center;  ">
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>   
+                            <img ng-src="{{screen.file}}" alt="{{screen.file}}" ng-style="{ 'width' : (object.platform == 'Android') ? '100%' : 'none' }" style="width:100%;height: 100%;">
  
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                       
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
 
-                        <div class="" style="height: 20%; margin-top: 20px; text-align: center;">
-                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  "> 
-                                <img class="demo cursor" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: auto; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-src="{{screen.file}}" alt="{{screen.file}}"  ng-click="gallary_click($index+1)"  alt="">
-      
+                        <div class="" style="height: 20%; margin-top: 20px;">
+                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.media track by $index  ">
+                            <img class="demo cursor" ng-src="{{screen.file}}" alt="{{screen.file}}" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; border: 1px solid #6666;border-radius: 7px;" ng-click="gallary_click($index+1)"  alt="">
+                            
                         </span>
                         </div>
  
@@ -247,7 +245,7 @@
         <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows. </h1>
     </div>
     <div class="col-md-12 col-lg-12">
-        <div id="containera2" class="cols" style="margin-top: 6%;">
+        <div class="col-md-12 col-lg-12" id="containera2" class="cols" style="margin-top: 2%;">
  
 
             <div class="col-md-3 col-lg-3"  ng-hide="s_product.uuid == product.uuid"    ng-repeat="s_product in products  "    >
@@ -330,6 +328,7 @@
         $scope.change_video = function(time) { 
             // $scope.product.video.file
             $scope.product.video.file =   $scope.product.video.file.split("#t=")[0] + "#t=" + time
+            document.getElementById("annotation").style.background = "#FFF4F4";
 
             var vid = document.getElementById("video_player")
             // vid.load();s
@@ -383,58 +382,10 @@
                             }
                         }
                     }
-                    console.log("similar products ",$scope.products)
-                });
-
-        }
-    $scope.collection_name = "My Collections" ;
-    $scope.SavedAProduct = function() {
-            var body = {
-                "user": window.localStorage.getItem("userId"),
-                "product": $scope.uuid,
-                "collection" :$scope.collection_name
-                
-                } 
-            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
-            $http({
-                method: "POST",
-                url: "http://13.126.184.35:8000/savedproducts/",
-                data: body,
-                headers: headers
-            })
-                .then(function(response) {
-                    $scope.SavedAProduct_value = response.data;   
-                    console.log("saved SavedAProduct ",$scope.SavedAProduct)
+                    console.log("products ",$scope.products)
                 });
 
         } 
-
-    $scope.ListSavedProduct = function() {
-            var params = {  "user": window.localStorage.getItem("userId")} 
-            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
-            $http({
-                method: "GET",
-                url: "http://13.126.184.35:8000/distinctSavedProduct/",
-                params: params,
-                headers: headers
-            })
-                .then(function(response) {
-                    $scope.savedCollection = response.data.collection;  
-                    $scope.savedProduct = response.data.product;  
-                    for(e in $scope.savedProduct){
-                        console.log("eee",e , $scope.savedProduct[e])
-                        if($scope.savedProduct[e].product == $scope.uuid){
-                            $scope.SavedAProduct_value = 1;
-                        }
-                    }
-                    console.log("saved savedCollection ",$scope.savedCollection)
-                    console.log("saved products ",$scope.savedProduct)
-                });
-
-        } 
-    $scope.ListSavedProduct()
-
-
 
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
@@ -448,7 +399,6 @@
   
                         if ($scope.product.media){
                             $scope.product.screenshort = []
-                            $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
                             for(each in $scope.product.media){
                                 total_count += 1;
                                 if($scope.product.media[each].media_type=="video"){
@@ -459,7 +409,6 @@
                                     console.log($scope.product.video.annotations) 
                                 }
                                 else if($scope.product.media[each].media_type=="screenshort"){
-                                    $scope.product.screenshort.push($scope.product.media[each])
                                      $scope.no_of_screenshort += 1;  
                                      screen_count += 1
                                      if(screen_count == 4 )
@@ -470,7 +419,7 @@
                                      }
 
                             } 
-                            
+                            $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
                         }
 
                   
