@@ -192,21 +192,16 @@
     <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;padding: .5% .5%">
         <div class="col-md-4 col-lg-4">
             <div class="col-lg-6 col-md-6" >
-                <select class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
-                    <!--                              <option value="0">Select car:</option>-->
-                    <option value="Web">Web</option>
-                    <option value="Android">Android</option>
-                    <option value="ios">ios</option>
-                    <option ng-show="userRole == 'admin'" value="refrence">refrence</option>
-                </select>
+                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
+                    <option  value="null">< select ></option> 
+                    <option ng-repeat="each in products_names track by $index" value="{{each}}" > {{each}} </option> 
+                </select> 
             </div>
             <div class="col-lg-6 col-md-6">
-                <select class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
+                <select ng-change="ListProduct(1)" ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
                     <!--                              <option value="0">Select car:</option>-->
-                    <option value="Web">Web</option>
-                    <option value="Android">Android</option>
-                    <option value="ios">ios</option>
-                    <option ng-show="userRole == 'admin'" value="refrence">refrence</option>
+                    <option  value="null">< select ></option> 
+                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option> 
                 </select>
             </div>
         </div>
@@ -657,21 +652,32 @@
         $scope.changePage = function(url) {
             var loc = "./product-flow.html#" + url
 
-            window.location.replace(loc)
+            window.location.href= loc
         }
-
 
 
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
 
-
+        $scope.search_product = false;
+        $scope.search_category = false;
         $scope.ListProduct = function(page=1) {
             var params = {"page": page}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
             }
+
+            if($scope.search_product){
+                params['product'] = $scope.search_product
+                if($scope.search_product=="null"){ delete params['product']}
+            }
+            if($scope.search_category){
+                params['category'] = $scope.search_category
+                if($scope.search_category=="null"){ delete params['category']}
+
+            }
+
             // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             var headers = { }
             $http({
@@ -703,6 +709,41 @@
 
         }
         $scope.ListProduct()
+
+        $scope.get_product_name = function() {
+
+            // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            var headers = { }
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/productname/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.product_names = response.data.results;  
+                console.log($scope.product_names)
+                $scope.products_names = []
+                for(each in $scope.product_names){
+                    $scope.products_names.push($scope.product_names[each].productName)
+                }
+            });
+        }
+        $scope.get_product_name()
+
+        $scope.get_product_values = function() { 
+            var headers = { }
+
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/getProductValues/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.products_values = response.data; 
+                console.log($scope.products_values)
+            });
+        }
+        $scope.get_product_values()
  
 
         $scope.logout = function() {
