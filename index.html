@@ -21,6 +21,8 @@
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body lang="en" ng-app="myApp" ng-controller="myCtrl" >
 
@@ -195,14 +197,14 @@
         <div class="col-md-4 col-lg-4">
             <div class="col-lg-6 col-md-6" >
                 <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
-                    <option  value="null">< select ></option> 
+                    <option  value="null" selected> All Product </option> 
                     <option ng-repeat="each in products_names track by $index" value="{{each}}" > {{each}} </option> 
                 </select> 
             </div>
             <div class="col-lg-6 col-md-6">
                 <select ng-change="ListProduct(1)" ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" ng-model="product_details.platform" onclick="drpdown_enable()"  >
                     <!--                              <option value="0">Select car:</option>-->
-                    <option  value="null">< select ></option> 
+                    <option  value="null" selected> All Category </option> 
                     <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option> 
                 </select>
             </div>
@@ -258,8 +260,12 @@
         <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
 
     </div>
-    <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div>
-    <div class="col-md-12 col-lg-12 no-padding" style="margin-top:7%;">
+    <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
+    <div class="col-md-6 col-lg-6">
+        <lottie-player src="https://assets2.lottiefiles.com/private_files/lf30_9x27DY.json"  background="transparent"  speed="1"  style="width: 500px; height: 300px;"  loop  autoplay></lottie-player>
+        
+    </div>
+      <div class="col-md-12 col-lg-12 no-padding" style="margin-top:7%;">
             <div class="col-md-12 col-lg-12 no-padding">
                 <div class="col-md-3 col-lg-3" >
                     <a href="flows/user-onboarding.html">
