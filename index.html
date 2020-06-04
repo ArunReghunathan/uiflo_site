@@ -63,8 +63,8 @@
                 }else{
                     localStorage.setItem("token", result.token);
                     localStorage.setItem("userId", result.uuid);
-                    document.getElementById('display_username').style.display = 'inline';
-                    document.getElementById("display_username").innerHTML = name;
+                    // document.getElementById('display_username').style.display = 'inline';
+                    // document.getElementById("display_username").innerHTML = name;
                     // alert("Login Successful")
                 }
             })
@@ -83,7 +83,7 @@
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
             Register(name, email,social_id) 
-            document.getElementById('logoutbutton').style.display = 'block';
+            // document.getElementById('logoutbutton').style.display = 'block';
             document.getElementById('loginbutton').style.display = 'none';
             // window.location.replace("./admin-home.html");
             
@@ -96,7 +96,7 @@
             document.getElementById("display_username").innerHTML = "";
             window.localStorage.setItem('token', "invalid")
             }); 
-            document.getElementById('logoutbutton').style.display = 'none';
+            // document.getElementById('logoutbutton').style.display = 'none';
             document.getElementById('display_username').style.display = 'none';
             document.getElementById('loginbutton').style.display = 'block';
         } 
@@ -802,10 +802,10 @@
 
 <script>
 
-    document.getElementById('display_username').style.display = 'none';
+    // document.getElementById('display_username').style.display = 'none';
 
     
-    document.getElementById('logoutbutton').style.display = 'none';
+    // document.getElementById('logoutbutton').style.display = 'none';
     document.getElementById('loginbutton').style.display = 'block';
 
 
