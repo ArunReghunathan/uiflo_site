@@ -201,7 +201,7 @@
                 </select> 
             </div>
             <div class="col-lg-6 col-md-6">
-                <select ng-change="ListProduct(1)" ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
+                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
                     <!--                              <option value="0">Select car:</option>-->
                     <option  value="null" selected> All Category </option> 
                     <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option> 
@@ -372,7 +372,7 @@
                                    </select>
 
                                </div> 
-                               <div  class="col-lg-3 col-md-3 text ">
+                               <div  class="col-lg-3 col-md-3 text " style="padding:4%">
                                 <span ng-click="SavedAProduct(product.uuid)" id="demo" class="text"  style="background: #3D1369;border-radius: 4px;font-size: 13px;padding: 8px;text-align: center;cursor: pointer;">SAVE</span>
 
 
@@ -654,8 +654,8 @@
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
 
-        $scope.search_product = false;
-        $scope.search_category = false;
+        $scope.search_product = "null";
+        $scope.search_category = "null";
         $scope.ListProduct = function(page=1) {
             var params = {"page": page}
             if ($scope.userRole != "admin"){
