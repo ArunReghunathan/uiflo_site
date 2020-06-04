@@ -249,7 +249,7 @@
 <!--</div>-->
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
 
-<div class="col-md-12 col-lg-12" style="background: white;padding: 5%;">
+<div class="col-md-12 col-lg-12" style="background: white;padding: 3%;">
     <div class="col-md-6 col-lg-6" >
         <div style="color: #333333;font-family: Montserrat;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of user flows</div>
         <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
@@ -346,7 +346,7 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
-<div class="col-md-12 col-lg-12" style="padding: 6%;">
+<div class="col-md-12 col-lg-12" style="padding: 4%;">
             <div class="col-md-12 col-lg-12 no-padding" style="font-size: 26px;color: #333333;font-family: Montserrat;font-weight: 600;">Latest flows</div>
 
 
@@ -388,17 +388,15 @@
                                    </li>
                                </ul>
 
-
-
                                <div class="col-lg-3 col-md-3 text " id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"'  style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;">SAVE</div>
                            </div>
                        </div>
                    </div>
                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
                        <div class="col-md-12 col-lg-12 no-padding" ng-click="changePage(product.uuid)" >
-                        <span>
-                            <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
-                        </span>
+                            <span>
+                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                            </span>
                            <div class="col-md-9 col-lg-9" style="padding-right: 0;">
                                <div style="color: #666666;font-size: 16px; font-weight: 600;">
                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
