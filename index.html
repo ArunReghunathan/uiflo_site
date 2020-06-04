@@ -104,7 +104,7 @@
 
     </script>
 
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);border-bottom:1px solid #EBEBEB; ">
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);border-bottom:1px solid #EBEBEB;position: fixed;z-index: 1;">
  <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
      <div class="col-md-7 col-lg-7" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
          <img src="src/img/sds.svg" alt="">
@@ -120,71 +120,73 @@
      <!--    </div>-->
 
      <div class="col-lg-5 col-md-5">
-         <a href="my-saves.html" class="col-md-3 col-lg-3" style="cursor: pointer;">
-             <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 6%;font-weight: 600;">
-                 MY SAVES
+         <div class="col-md-12 col-lg-12">
+             <a href="my-saves.html" class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4 mySaves" style="cursor: pointer;">
+                 <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 6%;font-weight: 600;">
+                     MY SAVES
+                 </div>
+             </a>
+             <!-- Trigger the modal with a button -->
+             <div id="loginbutton" class="col-md-4 col-lg-4 signUp" type="button" data-toggle="modal" data-target="#myModal" style="display: none;" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN UP</div></div>
+             <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN</div></div>
+             <div class="dropdown  col-md-1 col-lg-1" style="background: #3D1369;border-radius: 50%;padding: 3%;">
+                 <div class="dropbtn" ></div>
+                 <div class="dropdown-content">
+                     <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
+                     <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
+                 </div>
              </div>
-         </a>
-         <!-- Trigger the modal with a button -->
-         <div id="loginbutton" class="col-md-4 col-lg-4" type="button" data-toggle="modal" data-target="#myModal" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN UP</div></div>
-         <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN</div></div>
-         <div class="dropdown  col-md-1 col-lg-1" style="background: #3D1369;border-radius: 50%;padding: 3%;">
-             <div class="dropbtn" ></div>
-             <div class="dropdown-content">
-                 <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
-                 <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
-             </div>
-         </div>
-         <div class="modal fade" id="myModal" role="dialog">
-             <div class="modal-dialog">
+             <div class="modal fade" id="myModal" role="dialog">
+                 <div class="modal-dialog">
 
-                 <!-- Modal content-->
+                     <!-- Modal content-->
 
-                 <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
-                     <div class="col-lg-12 col-md-12 flex-container"  >
-                         <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">
-                             <div style="font-size: 30px;">SIGN UP</div>
-                             <div style="font-size: 14px;">TO UIFLO</div>
-                         </div>
-                         <div class="col-lg-12 col-md-12">
-                             <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
-                                 <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
-                                 <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
-                                 <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
-                                 <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
-                                 <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
-                                 <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
+                     <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
+                         <div class="col-lg-12 col-md-12 flex-container"  >
+                             <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">
+                                 <div style="font-size: 30px;">SIGN UP</div>
+                                 <div style="font-size: 14px;">TO UIFLO</div>
+                             </div>
+                             <div class="col-lg-12 col-md-12">
+                                 <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
+                                     <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
+                                     <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
+                                     <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
+                                     <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
+                                     <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
+                                     <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
 
-                                 <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
-                                 <br>
+                                     <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
+                                     <br>
 
 
-                                 <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
-                                     <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
-                                         <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
-                                         <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                                     <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
+                                         <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+                                             <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
+                                             <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                                         </div>
+
+                                         <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+
+                                         </div>
+                                         <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+
                                      </div>
 
-                                     <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+                                     <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+                                     <!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="./src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
+                                     <!--        </div>-->
+                                     <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
+                                     <!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="./src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
 
-                                     </div>
-                                     <!-- <a href="#" onclick="signOut();">Sign out</a> -->
+                                     <!--        </div>-->
+                                 </form>
 
-                                 </div>
-
-                                 <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                 <!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="./src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
-                                 <!--        </div>-->
-                                 <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                 <!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="./src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
-
-                                 <!--        </div>-->
-                             </form>
-
+                             </div>
                          </div>
                      </div>
-                 </div>
 
+                 </div>
              </div>
          </div>
      </div>
@@ -221,6 +223,12 @@
     </div>
 
 </div>
+
+    <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+    </ul>
 <!--<div class="col-md-12 col-lg-12" style="">-->
 <!--    <div class="col-md-12 col-lg-12" style="border-bottom: 1px solid #EBEBEB;">-->
 <!--       <div class="col-md-2 col-lg-2" style="margin-bottom: 1%;">-->
@@ -247,7 +255,7 @@
 <!--    </div>-->
 
 <!--</div>-->
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;margin-top: 7%;">
 
 <div class="col-md-12 col-lg-12" style="background: white;padding: 3%;">
     <div class="col-md-6 col-lg-6" >
@@ -758,6 +766,18 @@
     }
 
 
+</script>
+<script>
+    $(document).scroll(function() {
+        var y = $(this).scrollTop();
+        if (y > 800) {
+            $('.signUp').fadeIn();
+            $(".mySaves").removeClass("col-lg-offset-4 col-md-offset-4");
+        } else {
+            $('.signUp').hide();
+            $(".mySaves").addClass("col-lg-offset-4 col-md-offset-4");
+        }
+    });
 </script>
 <script>
     jQuery(document).ready(function (e) {
