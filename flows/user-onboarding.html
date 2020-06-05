@@ -530,9 +530,9 @@
 
 
         $scope.changePage = function(url) {
-            var loc = "./product-flow.html#" + url
+            var loc = "../product-flow.html#" + url
 
-            window.location.replace(loc)
+            window.location.href= loc
         }
 
 
@@ -543,7 +543,7 @@
 
 
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page}
+            var params = {"page": page, "flow": "User onboarding"}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
             }
