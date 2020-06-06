@@ -164,7 +164,7 @@
 
                 <!-- Begin Media Fragments Example -->
                <div class="col-md-12 col-lg-12  no-padding" style="height: 70vh;background: white;">
-                        <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls>
+                        <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls controlsList="nodownload">
                         </video>
                         
                        <nav class="col-md-4 col-lg-4 no-padding" style="height: 96%;overflow-y: scroll;">
@@ -181,7 +181,7 @@
                                        {{each.min}}:{{each.sec}}
                                    </div>
                                    <div class="col-md-10 col-lg-10" style="">
-                                       <div ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;"> {{each.heading}}  </div>
+                                       <div ng-click="change_video(each.time)"style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;cursor: pointer;"> {{each.heading}}  </div>
                                        <div style="color: #666666;font-size: 12px;font-weight: 400">{{each.description}}</div>
                                    </div>
                                </div>
