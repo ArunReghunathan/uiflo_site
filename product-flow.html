@@ -224,17 +224,17 @@
 
                 </div>
                 <div id="myModal" class="modals col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 no-padding" style="height: 93vh">
-                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                    <span class="close" onclick="closeModal()" style="background: white;color: white">&times;</span>
                     <div class="modal-content" style="height: 100%;border: none">
 
-                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 75%;border: 3px solid #9999;   ">
-                            <a class="prev pull-left" onclick="plusSlides(-1)">&#10094;</a>   
+                        <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 75%;border: 3px solid #9999;background: black;   ">
+                            <a class="prev pull-left" onclick="plusSlides(-1)" style="margin-left: 2%;">&#10094;</a>
                             <div style="text-align: center; height: 100%"> 
 
                             <img ng-src="{{screen.file}}" alt="{{screen.file}}"   style="height: 100%;">
                             </div>
  
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            <a class="next" onclick="plusSlides(1)" style="margin-right: 2%;">&#10095;</a>
 
 
                         <div class="" style="height: 20%; margin-top: 20px; text-align: center;">
@@ -726,7 +726,7 @@
 
     /* The Close Button */
     .close {
-        color: #999999;
+        color: white;
         position: absolute;
         top: 10px;
         right: 25px;
@@ -740,12 +740,6 @@
         text-align: center;
     }
 
-    .close:hover,
-    .close:focus {
-        color: #999;
-        text-decoration: none;
-        cursor: pointer;
-    }
 
     .mySlides {
         display: none;
