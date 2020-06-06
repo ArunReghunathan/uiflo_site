@@ -23,7 +23,10 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
 
@@ -242,6 +245,55 @@
                                 <img class="demo cursor" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: auto; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-src="{{screen.file}}" alt="{{screen.file}}"  ng-click="gallary_click($index+1)"  alt="">
       
                         </span>
+                            <div id="demo" class="carousel slide" data-ride="carousel">
+                                <ul class="carousel-indicators">
+                                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                    <li data-target="#demo" data-slide-to="1"></li>
+                                    <li data-target="#demo" data-slide-to="2"></li>
+                                </ul>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active col-lg-12 col-md-12">
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4" >
+                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#demo" data-slide="prev" style="background: black">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#demo" data-slide="next" style="background: black">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+                            </div>
+
                         </div>
  
                     </div>
@@ -678,6 +730,10 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    .carousel-inner img {
+        width: 100%;
+        height: 100%;
+    }
     .category{
         background-color: #FFFFFF;
         border: 1px solid #D8D8D8;
