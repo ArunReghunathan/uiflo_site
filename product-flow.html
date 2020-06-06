@@ -143,7 +143,7 @@
                 <div class="col-lg-3 col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-3 col-md-6">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
-                            <select ng=model="collection_name "  ng-hide="SavedAProduct_value">
+                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value">
                                 <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
                                 
                             </select>
@@ -202,22 +202,26 @@
 <!--                   -->
 <!--                </div>-->
 
-                <div class="rows col-lg-12 col-md-12">
-                    <div ng-if="screen.media_type =='screenshort'" ng-show="$index<3"  class=" col-lg-3 col-md-3" ng-repeat="screen in product.screenshort track by $index " style="display: flex; margin-top: 10px; margin-bottom: 20px; bottom: 1px;">
-                        <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="  max-height: 25vh;" ng-click="gallary_click($index+1)"   class="hover-shadow cursor">
-                    
+                <div class="rows col-lg-12 col-md-12 no-padding">
+                    <div  class=" col-lg-3 col-md-3" ng-if="screen.media_type =='screenshort'" ng-show="$index<3" ng-repeat="screen in product.screenshort track by $index "  >
+                        <div  class=" col-lg-12 col-md-12 no-padding" ng-click="gallary_click($index+1)"  style="margin-top: 10px; margin-bottom: 20px; bottom: 1px;height: 23vh;text-align: center;background: #999;border-radius: 4px;cursor: pointer;">
+                            <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="height: 100%;"    class="hover-shadow cursor">
+
+                        </div>
                     </div> 
-                    <div   class=" col-lg-3 col-md-3"  style="display: flex; margin-top: 10px; margin-bottom: 20px;" ng-show="no_of_screenshort > 3"   style="width:100%; height: 100;" >
-                        <span   style="width:100%; height: 100;   padding-top: 23%; padding-bottom: 23%; text-align: center; background-image:url({{product.screenshort[3].file }});
+                    <div class=" col-lg-3 col-md-3"  ng-show="no_of_screenshort > 3" >
+                       <div class="col-lg-12 col-md-12"  style="display: flex; margin-top: 10px; margin-bottom: 20px;"  style="width:100%; height: 100;" >
+                            <span   style="width:100%; height: 100;   padding-top: 23%; padding-bottom: 23%; text-align: center; background-image:url({{product.screenshort[3].file }});
                         background-size: cover;opacity: 0.7 ; color:#000;" ng-click="gallary_click(4)"   class="hover-shadow cursor">
-                         
+
                          <span style="text-shadow: 2px 2px 4px #aa5511; font-size: larger;"> <b> +{{no_of_screenshort-3}} screenshorts </b> </span>
                         </span>
-               
-                    </div> 
 
-                
- 
+                       </div>
+                    </div>
+
+
+
                 </div>
                 <div id="myModal" class="modals col-lg-10 col-lg-offset-1 col-md-offset-1 col-md-10 no-padding" style="height: 93vh">
                     <span class="close cursor" onclick="closeModal()">&times;</span>
@@ -234,7 +238,7 @@
 
 
                         <div class="" style="height: 20%; margin-top: 20px; text-align: center;">
-                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  "> 
+                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  ">
                                 <img class="demo cursor" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: auto; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-src="{{screen.file}}" alt="{{screen.file}}"  ng-click="gallary_click($index+1)"  alt="">
       
                         </span>
