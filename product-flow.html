@@ -241,18 +241,42 @@
 
 
                         <div class="" style="height: 20%; margin-top: 20px; text-align: center;">
-                        <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  ">
+                        <!-- <span ng-if="screen.media_type =='screenshort'"   ng-repeat="screen in product.screenshort track by $index  ">
                                 <img class="demo cursor" style="width:{{100/(no_of_screenshort+1)}}%; max-width: 16%; height: auto; max-height:20vh; border: 1px solid #6666;border-radius: 7px;" ng-src="{{screen.file}}" alt="{{screen.file}}"  ng-click="gallary_click($index+1)"  alt="">
       
-                        </span>
-                            <div id="demo" class="carousel slide" data-ride="carousel">
-                                <ul class="carousel-indicators">
-                                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                                    <li data-target="#demo" data-slide-to="1"></li>
-                                    <li data-target="#demo" data-slide-to="2"></li>
-                                </ul>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active col-lg-12 col-md-12">
+                        </span> -->
+                            <div id="demo" class="carousel slide" data-ride="carousel" style="height: 100%">
+                             
+                                <div class="carousel-inner"  style="height: 100%;">
+                                    <div class="carousel-item active col-lg-12 col-md-12" style="height: 100%;">
+
+ 
+                                            <a ng-click="change_gallery_count(-1)" class="carousel-control-prev"  data-slide="prev" style="background: black; width: 12%;">
+                                                <span class="carousel-control-prev-icon"></span>
+                                            </a>  
+                                        
+                                        <div class="col-lg-1 col-md-1"   > 
+                                        </div>
+                                        <div ng-click="gallary_click(gallary_click_count )"  class="col-lg-3 col-md-3"  style="background-color: #999; margin: 3px;  border-radius: 5px; margin-left: 3vw;  "  >
+                                    
+                                            <img src="{{product.screenshort[gallary_click_count-1].file}}" alt="" >
+                                        </div>
+
+                                        <div ng-click="gallary_click(gallary_click_count + 1 )"  class="col-lg-3 col-md-3"   style="background-color: #999; margin: 3px; border-radius: 5px;" >
+                                            <img src="{{product.screenshort[gallary_click_count ].file}}" alt=""  >
+                                        </div>
+
+                                        <div ng-click="gallary_click(gallary_click_count + 2)"  class="col-lg-3 col-md-3"   style="background-color: #999; margin: 3px;  border-radius: 5px;" >
+                                            
+                                            <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="height: 100%;">
+                                        </div>
+ 
+                                            <a ng-click="change_gallery_count(1)" class="carousel-control-next" data-slide="next" style="background: black; width: 12%;">
+                                                <span class="carousel-control-next-icon"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="carousel-item">
                                         <div class="col-lg-4 col-md-4" >
                                             <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
                                         </div>
@@ -273,25 +297,14 @@
                                         <div class="col-lg-4 col-md-4" >
                                             <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
                                         </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="col-lg-4 col-md-4" >
-                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4" >
-                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4" >
-                                            <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                        </div>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <a class="carousel-control-prev" href="#demo" data-slide="prev" style="background: black">
+                                <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev" style="background: black">
                                     <span class="carousel-control-prev-icon"></span>
                                 </a>
                                 <a class="carousel-control-next" href="#demo" data-slide="next" style="background: black">
                                     <span class="carousel-control-next-icon"></span>
-                                </a>
+                                </a> -->
                             </div>
 
                         </div>
@@ -385,7 +398,17 @@
 
         $scope.url = window.location.href;
         $scope.uuid = $scope.url.split("#")[1];
+        $scope.gallary_click_count = 1;
 
+        $scope.change_gallery_count = function(value) {
+            console.log(value)
+
+            console.log($scope.gallary_click_count)
+            $scope.gallary_click_count =  $scope.gallary_click_count + value;
+            console.log($scope.gallary_click_count)
+            if($scope.gallary_click_count < 1){$scope.gallary_click_count = 1;} 
+            if($scope.gallary_click_count > ($scope.no_of_screenshort -2)){$scope.gallary_click_count= $scope.no_of_screenshort-2;} 
+        }
 
         $scope.change_video = function(time) { 
             // $scope.product.video.file
