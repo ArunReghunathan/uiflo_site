@@ -344,9 +344,9 @@
         </div>
         <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
             <div class="col-md-12 col-lg-12">
-                <span style="cursor: pointer;"><img src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;"></span>
-                <span style="cursor: pointer;"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;"></span>
-                <span style="cursor: pointer;"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;"></span>
+                <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><img src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;"></span>
+                <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;"></span>
+                <span ng-click="search_platform='Android'; ListProduct(1); "  style="cursor: pointer;"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;"></span>
 
             </div>
         </div>
@@ -669,6 +669,13 @@
                 if($scope.search_category=="null"){ delete params['category']}
 
             }
+            if($scope.search_platform){
+                params['platform'] = $scope.search_platform
+
+                if($scope.search_platform=="all"){ delete params['platform']}
+
+            }
+            
 
             // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             var headers = { }

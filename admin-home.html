@@ -139,7 +139,9 @@
                                     <div id="myDropdown{{product.uuid}}" class="dropdown-content">
                                         <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
                                         <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
-                                    </div>
+                                        <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>
+                                        <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>
+                                     </div>
                                 </div>
                             </div>
                         </div>
@@ -301,6 +303,31 @@
     }
     
     // $scope.ListRefrence();
+
+            
+    $scope.update_product = function(uuid, value, index) {
+ 
+
+     
+        var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+        $http({
+            method: "PUT",
+            url: "http://13.126.184.35:8000/product/" +  uuid + "/",
+            data: {"collection": value},
+            headers :headers
+            }) 
+        .then(function(response) {
+            $scope.myWelcome = response.data;
+            $scope.products[index].collection = value
+            alert("product Updated") 
+        })
+        .catch(function(response) {
+            $scope.myWelcome = response.data;
+            let error_message =  response.data.error.message.split("violates")[0]
+            alert(error_message)
+            console.log(response)
+        });
+        }
 
 
     $scope.DeleteProduct = function(uuid) {  
