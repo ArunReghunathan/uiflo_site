@@ -120,16 +120,16 @@
      <!--        </div>-->
      <!--    </div>-->
 
-     <div class="col-lg-5 col-md-5">
-         <div class="col-md-12 col-lg-12">
-             <a href="my-saves.html" class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4 mySaves" style="cursor: pointer;">
-                 <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 6%;font-weight: 600;">
+     <div class="col-lg-5 col-md-5 no-padding">
+         <div class="col-md-12 col-lg-12 no-padding">
+             <a href="my-saves.html" class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4 mySaves no-padding" style="cursor: pointer;">
+                 <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
                      MY SAVES
                  </div>
              </a>
              <!-- Trigger the modal with a button -->
-             <div id="loginbutton" class="col-md-4 col-lg-4 signUp" type="button" data-toggle="modal" data-target="#myModal" style="display: none;" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN UP</div></div>
-             <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN</div></div>
+             <div id="loginbutton" class="col-md-4 col-lg-4 signUp" type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">SIGN UP</div></div>
+             <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">SIGN IN</div></div>
              <div class="dropdown  col-md-1 col-lg-1" style="background: #3D1369;border-radius: 50%;padding: 3%;">
                  <div class="dropbtn" ></div>
                  <div class="dropdown-content">
@@ -192,31 +192,6 @@
          </div>
      </div>
  </div>
-    <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;padding: .5% .5%">
-        <div class="col-md-4 col-lg-4">
-            <div class="col-lg-6 col-md-6" >
-                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
-                    <option  value="null" selected> All Product </option> 
-                    <option ng-repeat="each in products_names track by $index" value="{{each}}" > {{each}} </option> 
-                </select> 
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
-                    <!--                              <option value="0">Select car:</option>-->
-                    <option  value="null" selected> All Category </option> 
-                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option> 
-                </select>
-            </div>
-        </div>
-        <div class="col-md-8 col-lg-8" style="text-align: right">
-            <div class="col-md-12 col-lg-12">
-                <span style="cursor: pointer;"><img src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;"></span>
-                <span style="cursor: pointer;"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;"></span>
-                <span style="cursor: pointer;"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;"></span>
-
-            </div>
-        </div>
-    </div>
 
 </div>
 
@@ -261,7 +236,7 @@
     </div>
     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
     <div class="col-md-6 col-lg-6">
-        <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style="width: 500px; height: 300px;"  loop  autoplay></lottie-player>
+        <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
         
     </div>
       <div class="col-md-12 col-lg-12 no-padding" style="margin-top:7%;">
@@ -354,7 +329,33 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
-<div class="col-md-12 col-lg-12" style="padding: 4%;">
+    <div class="col-md-12 col-lg-12"  id="navbar" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;padding: .5% .5%;background: white;z-index: 11;">
+        <div class="col-md-4 col-lg-4">
+            <div class="col-lg-6 col-md-6" >
+                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
+                    <option  value="null" selected> All Product </option>
+                    <option ng-repeat="each in products_names track by $index" value="{{each}}" > {{each}} </option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
+                    <!--                              <option value="0">Select car:</option>-->
+                    <option  value="null" selected> All Category </option>
+                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
+            <div class="col-md-12 col-lg-12">
+                <span style="cursor: pointer;"><img src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;"></span>
+                <span style="cursor: pointer;"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;"></span>
+                <span style="cursor: pointer;"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;"></span>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-lg-12" style="padding: 4%;">
             <div class="col-md-12 col-lg-12 no-padding" style="font-size: 26px;color: #333333;font-family: Montserrat;font-weight: 600;">Latest flows</div>
 
 
@@ -849,6 +850,20 @@
 
 </script>
 <script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+</script>
+<script>
     $(document).scroll(function() {
         var y = $(this).scrollTop();
         if (y > 800) {
@@ -913,19 +928,13 @@
 <!--    }-->
 <!--</script>-->
 
-
-<script>
-
-    // document.getElementById('display_username').style.display = 'none';
-
-    
-    // document.getElementById('logoutbutton').style.display = 'none';
-    document.getElementById('loginbutton').style.display = 'block';
-
-
-  
-</script>
 <style>
+
+    .sticky {
+        position: fixed;
+        top: 8%;
+        width: 100%;
+    }
     .flows:hover{
         box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 0.04);
     }
