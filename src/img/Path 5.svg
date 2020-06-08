@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path 5</title>
+    <defs>
+        <circle id="path-1" cx="15" cy="15" r="15"></circle>
+    </defs>
+    <g id="final-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Copy-2" transform="translate(-331.000000, -13.000000)">
+            <g id="Path-5" transform="translate(331.000000, 13.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#3D1369" xlink:href="#path-1"></use>
+                <circle id="Oval" fill="#C4A2FC" fill-rule="nonzero" opacity="0.361514137" mask="url(#mask-2)" cx="14.701407" cy="12.4800004" r="6.48000035"></circle>
+                <path d="M19.7039672,20.3999076 L9.69596669,20.3999076 C9.07782289,20.3942854 8.48642664,20.6517708 8.06947335,21.1081526 C7.65252006,21.5645344 7.44937315,22.1767269 7.51076657,22.7918409 L9.41012667,40.0718419 C9.53863098,41.1794884 10.48247,42.0114834 11.5974868,42.0001194 L17.8046071,42.0001194 C18.9186778,42.0100399 19.8610742,41.1784954 19.9898073,40.0718419 L21.8884474,22.7918409 C21.9498263,22.1768528 21.7467737,21.5647795 21.3299807,21.1084228 C20.9131878,20.6520661 20.3219862,20.3944912 19.7039672,20.3999076 L19.7039672,20.3999076 Z" id="Path" fill="#C4A2FC" fill-rule="nonzero" opacity="0.361514137" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
