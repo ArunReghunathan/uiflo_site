@@ -74,6 +74,34 @@
     </div>
 </div>
 <div class="col-md-12 col-lg-12" style="background: #f7f7f7;">
+    <div class="col-md-12 col-lg-12"  id="navbar" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;padding: .5% .5%;background: white;z-index: 11;">
+        <div class="col-md-4 col-lg-4">
+            <div class="col-lg-6 col-md-6" >
+                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
+                    <option  value="null" selected> All Product </option>
+                    <option ng-repeat="each in products_names track by $index" value="{{each}}" > {{each}} </option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >
+                    <!--                              <option value="0">Select car:</option>-->
+                    <option  value="null" selected> All Category </option>
+                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
+            <div class="col-md-12 col-lg-12">
+                <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><img src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;"></span>
+                <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;"></span>
+                <span ng-click="search_platform='Android'; ListProduct(1); "  style="cursor: pointer;"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;"></span>
+
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="col-md-12 col-lg-12" style="padding: 3%;" ng-show="userRole =='staff'">
 
         <div class="row">
@@ -242,6 +270,26 @@
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
             }
+
+            
+            if($scope.search_product){
+                params['product'] = $scope.search_product
+                if($scope.search_product=="null"){ delete params['product']}
+            }
+            if($scope.search_category){
+                params['category'] = $scope.search_category
+                if($scope.search_category=="null"){ delete params['category']}
+
+            }
+            if($scope.search_platform){
+                params['platform'] = $scope.search_platform
+
+                if($scope.search_platform=="all"){ delete params['platform']}
+
+            }
+            
+
+
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
@@ -271,6 +319,42 @@
                 });
 
     }
+
+    
+    $scope.get_product_name = function() {
+
+            // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            var headers = { }
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/productname/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.product_names = response.data.results;  
+                console.log($scope.product_names)
+                $scope.products_names = []
+                for(each in $scope.product_names){
+                    $scope.products_names.push($scope.product_names[each].productName)
+                }
+            });
+    }
+    $scope.get_product_name()
+    $scope.get_product_values = function() { 
+            var headers = { }
+
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/getProductValues/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                $scope.products_values = response.data; 
+                console.log($scope.products_values)
+            });
+        }
+        $scope.get_product_values()
+
 
     $scope.ListRefrence = function(page=1) { 
             var params = {"page": page, "platform":"refrence"}

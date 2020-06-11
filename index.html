@@ -655,7 +655,7 @@
         $scope.search_product = "null";
         $scope.search_category = "null";
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page}
+            var params = {"page": page, "collection": "publish"}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
             }
