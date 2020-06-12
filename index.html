@@ -385,9 +385,11 @@
                        <div class="overlay " >
                            <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
                                <div class="col-md-7 col-lg-7" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
-                                   <select ng-model="collection_name" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" >
-                                       <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
+                                   <select ng-model="$parent.collection_name" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" >
+                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
                                    </select>
+
+                             
 
                                </div> 
                                <div  class="col-lg-3 col-md-3 text " style="padding:4%">
@@ -658,6 +660,8 @@
 
     var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
     app.controller('myCtrl', function($scope, $http, $timeout) {
+        
+    $scope.collection_name = "My Collections" ;
 
 
 
@@ -760,8 +764,7 @@
         }
         $scope.ListProduct()
 
-
-    $scope.collection_name = "My Collections" ;
+ 
     $scope.SavedAProduct = function(uuid) {
             var body = {
                 "user": window.localStorage.getItem("userId"),
@@ -779,10 +782,12 @@
                 .then(function(response) {
                     $scope.SavedAProduct_value = response.data;   
                     console.log("saved SavedAProduct ",$scope.SavedAProduct)
+                    alert("Saved")
                 });
 
         } 
 
+ 
     $scope.ListSavedProduct = function() {
             var params = {  "user": window.localStorage.getItem("userId")} 
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
@@ -794,7 +799,7 @@
             })
                 .then(function(response) {
                     $scope.savedCollection = response.data.collection;  
-                    $scope.savedProduct = response.data.product;  
+                    $scope.savedProduct = response.data.product;   
                     for(e in $scope.savedProduct){
                         console.log("eee",e , $scope.savedProduct[e])
                         if($scope.savedProduct[e].product == $scope.uuid){
