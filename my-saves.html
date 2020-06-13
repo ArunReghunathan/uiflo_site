@@ -74,35 +74,59 @@
     <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
 
             <div class=" col-lg-12 col-md-12" style="height: 6vh;">
-                <div class=" col-lg-11 col-md-10" style="font-size: 22px;font-weight: bold;color: #666666;">My Saves</div>
-                <div class="col-lg-1 col-md-2" style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 14px;padding: 1%;text-align: center;">ADD NEW</div>
-            </div>
-
-        <div class="row">
-            <div   class="column"  >
-
-                <img src="" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
-
-                <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                    <div class="col-md-10 col-lg-10" ng-click="changePage(product.uuid)" >
-                        <div class="col-md-3 col-lg-3">
-                            <img src="{{product.logo}}" alt="">
-                        </div>
-                        <div class="col-md-9 col-lg-9">
-                            <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span>  {{product.product}}
-                            </div>
-                            <div style="font-size: 14px;">{{product.platform}}</div>
-                        </div>
-                    </div>
+                <div class=" col-lg-8 col-md-8" style="font-size: 22px;font-weight: bold;color: #666666;">My Saves</div>
+                <div class=" col-lg-3 col-md-3" >
+                    <input type="text" ng-model="collection_name">
                 </div>
+
+                
+                <div ng-click="SavedAProduct()" class="col-lg-1 col-md-1" style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 14px;padding: 1%;text-align: center;">ADD NEW</div>
             </div>
-        </div>
+
+            <div class=" col-lg-12 col-md-12" style="margin-top: 2vh;">  
+                <span>
+                    <button ng-click="getSavedProductbyCollection(each.collection)" ng-repeat="each in savedCollection ">{{each.collection}}</button>
+                </span>  
+            </div>
+
+    
 
 
 
     </div>
-
+ 
+    <div class="col-md-12" style="margin-top: 20px; background-color: #fff;">
+    <div id="containera" class="cols" style="margin-top: 6%;">
+        <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+                    <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                        <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
+                            <div class="col-lg-3 col-md-3 no-padding">
+                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                            </div>
+                            <div class="col-md-9 col-lg-9" style="padding-right: 0;">
+                                <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                </div>
+                                <div style="font-size: 14px;">{{product.platform}}</div>
+                                <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-lg-2">
+                            <!-- <div class="dropdown">
+                            <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                                <div id="myDropdown{{product.uuid}}" class="dropdown-content">
+                                    <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
+                                    <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                                    <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>
+                                    <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>
+                                 </div>
+                            </div> -->
+                        </div>
+                    </div>
+        </div>
+    </div>
+    </div>
 
 
 </div>
@@ -171,8 +195,7 @@
                         if( ["normal"].includes($scope.userRole) ){
                             window.location.replace("./index.html");
                         }
-
-                        $scope.ListProduct();
+ 
                     }
                 ).catch(function error() {
                 // alert("please sigin")
@@ -184,15 +207,103 @@
         }
         $scope.CheckUser();
 
+
+
+        $scope.ListSavedProduct = function() {
+            var params = {  "user": window.localStorage.getItem("userId")} 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/distinctSavedProduct/",
+                // url: "http://13.126.184.35:8000/savedproducts/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) { 
+                    $scope.savedCollection = response.data.collection;  
+                    $scope.savedProduct = response.data.product; 
+                    
+                    // $scope.getSavedProductbyCollection($scope.savedCollection[0].collection)
+                    console.log("saved savedCollection ",$scope.savedCollection)
+                    console.log("saved products ",$scope.savedProduct)
+                });
+
+        } 
+    if(window.localStorage.getItem('userId')){
+    $scope.savedCollection=  [{"collection": "My Collections"}]
+    $scope.ListSavedProduct()
+    }
+
+    
+    $scope.getSavedProductbyCollection = function(collection) {
+            var params = {  "user": window.localStorage.getItem("userId"), "collection": collection} 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET", 
+                url: "http://13.126.184.35:8000/savedproducts/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) {  
+                    $scope.productsInSavedCollection = response.data.results;
+                    $scope.savedProductIdList =[]; 
+                    for(each in $scope.productsInSavedCollection){
+                        if($scope.productsInSavedCollection[each].product){
+                            $scope.savedProductIdList.push($scope.productsInSavedCollection[each].product )
+                        }
+                    }
+                    $scope.ListProduct(1)
+                    console.log(" $scope.productsInSavedCollection ", $scope.productsInSavedCollection) 
+                    console.log(" $scope.savedProductIdList ", $scope.savedProductIdList) 
+                });
+
+        } 
+
+
+    $scope.collection_name = "New Collections" ;
+    $scope.SavedAProduct = function(uuid) {
+            var body = {
+                "user": window.localStorage.getItem("userId"), 
+                "collection" :$scope.collection_name
+                
+                } 
+            if (uuid){
+                body["product"] = uuid
+            }
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/savedproducts/",
+                data: body,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.SavedAProduct_value = response.data;   
+                    console.log("saved SavedAProduct ",$scope.SavedAProduct)
+                    alert("Saved")
+                });
+
+        } 
+
+
+
+
+
+
+
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
 
 
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page}
+            var params = {"page": page, "collection":"publish"}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
+            }
+            if($scope.savedProductIdList)
+            {
+                params['uuid'] = $scope.savedProductIdList
             }
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
@@ -223,37 +334,7 @@
                 });
 
         }
-
-        $scope.ListRefrence = function(page=1) {
-            var params = {"page": page, "platform":"refrence"}
-            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
-            $http({
-                method: "GET",
-                url: "http://13.126.184.35:8000/product/",
-                params: params,
-                headers: headers
-            })
-                .then(function(response) {
-                    console.log(response)
-                    $scope.refrences = response.data.results;
-                    $scope.refrence_count = response.data.count;
-                    console.log($scope.refrences)
-                    for (refrence in $scope.refrences){
-                        console.log(refrence)
-                        if ($scope.refrences[refrence].media){
-                            for(each in $scope.refrences[refrence].media){
-                                if($scope.refrences[refrence].media[each].media_type=="screenshort"){
-                                    $scope.refrences[refrence].thumbnail = $scope.refrences[refrence].media[each].file
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    console.log($scope.refrences)
-                });
-
-        }
-
+ 
         // $scope.ListRefrence();
 
 
@@ -435,7 +516,56 @@
     /initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:/
     autocomplete(document.getElementById("myInput"), countries);
 </script>
+
+
 <style>
+    #containera {
+        width: 100%;
+        margin: 2em auto;
+    }
+    .cols {
+        -moz-column-count:3;
+        -moz-column-gap: 3%;
+        -moz-column-width: 30%;
+        -webkit-column-count:3;
+        -webkit-column-gap: 3%;
+        -webkit-column-width: 30%;
+        column-count: 4;
+        column-gap: 3%;
+        column-width: 30%;
+    }
+
+    .containerss {
+        background-color: #f2f2f2;
+        margin: 0 auto;
+        height: 470px;
+        display: flex;
+        flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .item {
+        height: 150px;
+        width: 31%;
+        margin: 1%;
+        padding: 10px;
+    }
+
+    .item:nth-child(2) {
+        height: 250px;
+    }
+
+    .item:nth-child(3) {
+        height: 190px;
+    }
+
+    .item:nth-child(4) {
+        height: 220px;
+    }
+
+
+
     .contain {
         position: relative;
         width: 100%;
@@ -538,7 +668,7 @@
         border: 1px solid #d4d4d4;
         border-bottom: none;
         border-top: none;
-        z-index: 99;
+        z-index: 99; 
         top: 100%;
         left: 0;
         right: 0;
@@ -550,7 +680,7 @@
         background-color: #fff;
         border-bottom: 1px solid #d4d4d4;
     }
-
+ 
     input{
         color: #444;
         font-family: 'Roboto', sans-serif;
@@ -570,8 +700,8 @@
         font-size: 16px;
         font-size: 1rem;
         cursor: pointer;
-        border-radius: 4px;
-
+        border-radius: 4px; 
+ 
     }
     /* input.search-text:focus {
         z-index:3;
@@ -754,7 +884,7 @@
     /* LOGIN & REGISTER FORM */
 
     form {
-        border-radius: 3px;
+        border-radius: 3px; 
     }
 
     form.register{																				/* Register form height */
@@ -817,12 +947,12 @@
         box-shadow: inset 0 0 2px rgba(0,0,0, .3), 0 1px 0 white;
     }
     #facebook-connect {
-        border: 1px solid rgb(60, 90, 154);
+         border: 1px solid rgb(60, 90, 154);
     }
 
     #facebook-connect:hover {
         border-color: rgb(60, 90, 154);
-        -webkit-transition: all .8s ease-out;
+         -webkit-transition: all .8s ease-out;
         -moz-transition: all .3s ease;
         -ms-transition: all .3s ease;
         -o-transition: all .3s ease;
@@ -950,10 +1080,10 @@
 
     @media (min-width: 768px) and (max-width: 1024px) {
 
-        .logo{
-            width: 31px!important;
-            float: left;
-        }
+  .logo{
+      width: 31px!important;
+      float: left;
+  }
     }
 </style>
 </html>

@@ -123,22 +123,42 @@
      <!--    </div>-->
 
      <div class="col-lg-6 col-md-6 no-padding">
+        
          <div class="col-md-12 col-lg-12 no-padding">
-             <a href="my-saves.html" class="col-lg-3 col-md-3 col-lg-offset-4 col-md-offset-4 mySaves no-padding" style="cursor: pointer;">
-                 <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
-                     MY SAVES
-                 </div>
-             </a>
+             
              <!-- Trigger the modal with a button -->
-             <div id="loginbutton" class="col-md-4 col-lg-4 signUp" type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">SIGN UP</div></div>
-             <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">SIGN IN</div></div>
-             <div class="dropdown  col-md-1 col-lg-1 no-padding" style="">
+             <div ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN UP
+                </div>
+            </div>
+             <div ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
+                 <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN IN
+                </div>
+            </div>
+
+            
+             <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="">
                  <div class="dropbtn" ><img src="src/img/Path 5.svg" alt=""></div>
                  <div class="dropdown-content" style="z-index: 2 !important;top: 127% !important;">
                      <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                      <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                  </div>
              </div>
+             <a ng-if="userRole!='unauth'" href="my-saves.html" class=" col-lg-3 col-md-3 pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;">
+                <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                    MY SAVES
+                </div>
+            </a>
+            
+            <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
+                <a href="./admin-home.html" >
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                   ADMIN
+               </div>
+                </a>
+           </div>
              <div class="modal fade" id="myModal" role="dialog">
                  <div class="modal-dialog">
 
@@ -225,14 +245,14 @@
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
 
 <div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;">
-    <div class="col-md-6 col-lg-6" >
+    <div ng-if="userRole =='unauth'" class="col-md-6 col-lg-6" >
         <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
             <br> user flows</div>
         <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
 
     </div>
     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
-    <div class="col-md-6 col-lg-6">
+    <div  ng-if="userRole =='unauth'"  class="col-md-6 col-lg-6">
         <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
         
     </div>
@@ -365,9 +385,11 @@
                        <div class="overlay " >
                            <div class="col-md-12 col-lg-12" style="margin-top: 3%;">
                                <div class="col-md-7 col-lg-7" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
-                                   <select ng-model="collection_name" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" >
-                                       <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
+                                   <select ng-model="$parent.collection_name" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;" >
+                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
                                    </select>
+
+                             
 
                                </div> 
                                <div  class="col-lg-3 col-md-3 text " style="padding:4%">
@@ -638,6 +660,8 @@
 
     var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
     app.controller('myCtrl', function($scope, $http, $timeout) {
+        
+    $scope.collection_name = "My Collections" ;
 
 
 
@@ -651,15 +675,46 @@
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
+        
+    $scope.CheckUser = function() {
+
+        var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+        $scope.userId = window.localStorage.getItem('userId') || "unknown"
+        $http({
+            method: "GET",
+            url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+            headers :headers
+            })
+        .then(function(response) {
+            $scope.user = response.data;
+            console.log($scope.user)
+
+            if($scope.user.is_admin){
+                $scope.userRole = "admin"
+            }
+            else if($scope.user.is_staff){
+                $scope.userRole = "staff" 
+            }
+            else{
+                $scope.userRole = "normal"
+            }
+        }
+        ).catch(function error() {
+            $scope.userRole = "unauth"
+            // alert("please sigin")
+            // window.location.replace("./index.html");
+
+        }) ;
+
+        }
+        $scope.CheckUser();
+
 
         $scope.search_product = "null";
         $scope.search_category = "null";
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page}
-            if ($scope.userRole != "admin"){
-                params["userId"] = $scope.userId;
-            }
-
+            var params = {"page": page, "collection": "publish"}
+    
             if($scope.search_product){
                 params['product'] = $scope.search_product
                 if($scope.search_product=="null"){ delete params['product']}
@@ -709,8 +764,7 @@
         }
         $scope.ListProduct()
 
-
-    $scope.collection_name = "My Collections" ;
+ 
     $scope.SavedAProduct = function(uuid) {
             var body = {
                 "user": window.localStorage.getItem("userId"),
@@ -728,10 +782,12 @@
                 .then(function(response) {
                     $scope.SavedAProduct_value = response.data;   
                     console.log("saved SavedAProduct ",$scope.SavedAProduct)
+                    alert("Saved")
                 });
 
         } 
 
+ 
     $scope.ListSavedProduct = function() {
             var params = {  "user": window.localStorage.getItem("userId")} 
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
@@ -743,7 +799,7 @@
             })
                 .then(function(response) {
                     $scope.savedCollection = response.data.collection;  
-                    $scope.savedProduct = response.data.product;  
+                    $scope.savedProduct = response.data.product;   
                     for(e in $scope.savedProduct){
                         console.log("eee",e , $scope.savedProduct[e])
                         if($scope.savedProduct[e].product == $scope.uuid){
