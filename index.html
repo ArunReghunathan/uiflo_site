@@ -358,46 +358,20 @@
         <div class="col-md-4 col-lg-4 no-padding" >
             <div class="col-md-5 col-lg-5 col-lg-offset-1 col-md-offset-1"  style= "">
                 <!-- Build your select: -->
-                <select id="example-getting-started1" multiple="multiple">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                            </div>
-
-                            <div class="col-md-6">
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </div>
-
-                        </div>
-                    </div>
-                </select>
-
+                <select ng-change="ListProduct(1)"  ng-model="search_product" id="example-getting-started1" multiple="multiple"  >
+                     
+                    
+                    <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>  
+ 
+                </select>   
             </div>
             <div class="col-md-5 col-lg-5"  style= "">
                 <!-- Build your select: -->
-                <select id="example-getting-started2" multiple="multiple">
-                    <div class="container">
-                        <div class="row">
-                            <div ng-change="ListProduct(1)" ng-model="search_product" class="col-md-6">
-                                <option value="null"> All Product</option>
-                                <option ng-repeat="each in products_names track by $index" value="{{each}}" >{{each}}</option>
-<!--                                <option value="tomatoes">Tomatoes</option>-->
-<!--                                <option value="mozarella">Mozzarella</option>-->
-                            </div>
+                <select  ng-change="ListProduct(1)" id="example-getting-started2" multiple="multiple" ng-model="search_category">
+             
+                    
+                    <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option> 
 
-                            <div class="col-md-6">
-                                <option value="mushrooms">Mushrooms</option>
-                                <option value="pepperoni">Pepperoni</option>
-                                <option value="onions">Onions</option>
-                            </div>
-
-                        </div>
-                    </div>
                 </select>
 
             </div>
@@ -906,6 +880,9 @@
                 for(each in $scope.product_names){
                     $scope.products_names.push($scope.product_names[each].productName)
                 }
+                setTimeout(function() {
+                    $('#example-getting-started1').multiselect();
+                }, 10); 
             });
         }
         $scope.get_product_name()
@@ -920,7 +897,12 @@
                 }) 
             .then(function(response) {
                 $scope.products_values = response.data; 
-                console.log($scope.products_values)
+                console.log($scope.products_values)    
+                
+                setTimeout(function() {
+                    $('#example-getting-started2').multiselect();
+                }, 100); 
+             
             });
         }
         $scope.get_product_values()
@@ -1152,6 +1134,7 @@
 
             this.$select = $(select);
             this.options = this.mergeOptions($.extend({}, options, this.$select.data()));
+            console.log("cccccccccccccccccccc", this.option)
 
             // Initialization.
             // We have to clone to create a new reference.
@@ -1196,7 +1179,7 @@
                  * @param {jQuery} select
                  * @returns {String}
                  */
-                buttonText: function(options, select) {
+                buttonText: function(options, select) { 
                     if (options.length === 0) {
                         return this.nonSelectedText + '';
                     }
@@ -1310,7 +1293,7 @@
                 filterBehavior: 'text',
                 includeFilterClearBtn: true,
                 preventInputChangeEvent: false,
-                nonSelectedText: 'None selected',
+                nonSelectedText: 'All',
                 nSelectedText: 'selected',
                 allSelectedText: 'All selected',
                 numberDisplayed: 3,
@@ -2338,8 +2321,11 @@
 
 
     $(document).ready(function() {
-        $('#example-getting-started1').multiselect();
-        $('#example-getting-started2').multiselect();
+        // console.log("cccccccccccccccccccccccccccccxxxx")
+        // $('#example-getting-started1').multiselect();
+        // $('#example-getting-started2').multiselect();
+
+
     });
 </script>
 
