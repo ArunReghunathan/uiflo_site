@@ -91,63 +91,77 @@
 
 
     </div>
+
+    <div class="col-md-12" style="margin-top: 20px;">
+        
+        <hr>
+
+
+        <div class="col-md-3 col-lg-3" ng-click="getSavedProductbyCollection(each.collection)" ng-repeat="each in savedCollection " >
+            <img src="src/img/default_collection.png" class="image" alt=""  style="cursor: pointer;">
+            <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                <div class="col-md-10 col-lg-10 no-padding">
+                    <div class="col-md-12 col-lg-12" style="padding-right: 0;">
+                        <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                            <span ng-hide="product.sub_flow">{{each.collection}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2">
+                    <div class="dropdown">
+                    <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                        <div id="myDropdown{{product.uuid}}" class="dropdown-content">
+                            <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
+                            <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                            <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>
+                            <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+</div></div>
+<br>
+<hr>
+
+
+<hr>
+
+
+    </div>
  
     <div class="col-md-12" style="margin-top: 20px;">
     <div id="containera" class="cols" style="margin-top: 6%;">
-                <div class="col-md-12 col-lg-12" ng-click="getSavedProductbyCollection(each.collection)" ng-repeat="each in savedCollection " >
-                    <img src="src/img/img1.png" class="image" alt=""  style="cursor: pointer;">
-                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                        <div class="col-md-10 col-lg-10 no-padding">
-                            <div class="col-md-12 col-lg-12" style="padding-right: 0;">
-                                <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                    <span ng-hide="product.sub_flow">{{each.collection}}</span>
+
+
+
+       <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+                   <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
+                   <div class="col-md-12 col-lg-12" style="padding: 6%;">
+                       <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >
+                           <div class="col-lg-3 col-md-3 no-padding">
+                               <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                           </div>
+                           <div class="col-md-9 col-lg-9" style="padding-right: 0;">
+                               <div style="color: #666666;font-size: 16px; font-weight: 600;">
+                                   <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                               </div>
+                               <div style="font-size: 14px;">{{product.platform}}</div>
+                               <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
+                           </div>
+                       </div>
+                       <div class="col-md-2 col-lg-2">
+                           &lt;!&ndash; <div class="dropdown">
+                           <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
+                               <div id="myDropdown{{product.uuid}}" class="dropdown-content">
+                                   <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
+                                   <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
+                                   <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>
+                                   <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-lg-2">
-                            <div class="dropdown">
-                            <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
-                                <div id="myDropdown{{product.uuid}}" class="dropdown-content">
-                                    <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
-                                    <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
-                                    <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>
-                                    <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
-        </div>
-
-
-
-<!--        <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >-->
-<!--                    <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">-->
-<!--                    <div class="col-md-12 col-lg-12" style="padding: 6%;">-->
-<!--                        <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >-->
-<!--                            <div class="col-lg-3 col-md-3 no-padding">-->
-<!--                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">-->
-<!--                            </div>-->
-<!--                            <div class="col-md-9 col-lg-9" style="padding-right: 0;">-->
-<!--                                <div style="color: #666666;font-size: 16px; font-weight: 600;">-->
-<!--                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}-->
-<!--                                </div>-->
-<!--                                <div style="font-size: 14px;">{{product.platform}}</div>-->
-<!--                                <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-2 col-lg-2">-->
-<!--                            &lt;!&ndash; <div class="dropdown">-->
-<!--                            <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>-->
-<!--                                <div id="myDropdown{{product.uuid}}" class="dropdown-content">-->
-<!--                                    <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>-->
-<!--                                    <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>-->
-<!--                                    <a ng-hide="product.collection=='publish'"  ng-click="update_product(product.uuid, 'publish', $index)" style="color: #666666;">publish</a>-->
-<!--                                    <a ng-show="product.collection=='publish'"  ng-click="update_product(product.uuid, 'unpublish', $index)" style="color: #666666;">unpublish</a>-->
-<!--                                 </div>-->
-<!--                            </div> &ndash;&gt;-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--        </div>-->
+                           </div> &ndash;&gt;
+                       </div>
+                   </div>
+       </div>
     </div>
     </div>
 
@@ -275,9 +289,11 @@
                             $scope.savedProductIdList.push($scope.productsInSavedCollection[each].product )
                         }
                     }
-                    $scope.ListProduct(1)
-                    console.log(" $scope.productsInSavedCollection ", $scope.productsInSavedCollection) 
-                    console.log(" $scope.savedProductIdList ", $scope.savedProductIdList) 
+                    $scope.products =[]
+                    if($scope.savedProductIdList.length >0){
+                        $scope.ListProduct(1) 
+
+                    } 
                 });
 
         } 
@@ -323,11 +339,9 @@
             var params = {"page": page, "collection":"publish"}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
-            }
-            if($scope.savedProductIdList)
-            {
+            } 
                 params['uuid'] = $scope.savedProductIdList
-            }
+         
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
@@ -339,14 +353,12 @@
                     $scope.products = response.data.results;
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
-                    for (product in $scope.products){
-                        console.log(product)
+                    for (product in $scope.products){ 
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         if ($scope.products[product].media){
                             for(each in $scope.products[product].media){
-                                if($scope.products[product].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
+                                if($scope.products[product].media[each].media_type=="screenshort"){ 
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
                                     break;
                                 }
