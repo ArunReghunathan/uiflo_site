@@ -124,7 +124,7 @@
 
      <div class="col-lg-6 col-md-6 no-padding">
         
-         <div class="col-md-12 col-lg-12 no-padding">
+         <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
              
              <!-- Trigger the modal with a button -->
              <div ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
@@ -139,9 +139,9 @@
             </div>
 
             
-             <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="">
-                 <div class="dropbtn" ><img src="src/img/Path 5.svg" alt=""></div>
-                 <div class="dropdown-content" style="z-index: 2 !important;top: 127% !important;">
+             <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
+                 <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                 <div class="dropdown-content" style="z-index: 2 !important;">
                      <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                      <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                  </div>
@@ -245,14 +245,14 @@
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
 
 <div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;">
-    <div ng-if="userRole =='unauth'" class="col-md-6 col-lg-6" >
+    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6" >
         <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
             <br> user flows</div>
         <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
 
     </div>
     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
-    <div  ng-if="userRole =='unauth'"  class="col-md-6 col-lg-6">
+    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6">
         <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
         
     </div>
@@ -412,11 +412,14 @@
                        <div class="overlay">
                            <div class="col-md-12 col-lg-12" style="height: 100%;">
                                <div class="col-md-9 col-lg-9" style="color: #666666;font-size: 14px;text-align: left;padding: 3%;height: 100%">
-                                   <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
-                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
-                                   </select>
-
-                             
+<!--                                   <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >-->
+<!--                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> -->
+<!--                                   </select>-->
+                                   <div onclick="myFunction2()" ng-model="$parent.collection_name"  class="dropbtn2 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600;">{{each.collection}} </div>
+                                       <div id="myDropdown2" class="dropdown-content2" style="width: 100%;z-index: 5 !important;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
+                                           <a class="col-lg-12 col-md-12" ng-repeat="each in savedCollection" value={{each.collection}} style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">{{each.collection}}</div></a>
+                                       </div>
+                                   </div>
 
                                </div> 
                                <div  class="col-lg-3 col-md-3 text " style="padding:4%">
@@ -427,7 +430,9 @@
  
 
                            </div>
+
                        </div>
+
                    </div>
                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
                        <div class="col-md-12 col-lg-12 no-padding" ng-click="changePage(product.uuid)" >
@@ -675,6 +680,33 @@
 
 </body>
 <script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = 576;
+    var sticky1 = 790;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky1 = 790;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky1) {
+            navbar.classList.add("sticky1")
+        } else {
+            navbar.classList.remove("sticky1");
+        }
+    }
+</script>
+<script>
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
     function myFunction1() {
@@ -690,6 +722,25 @@
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show1");
+        console.log("ethi");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        console.log("ethi");
+        if (!event.target.matches('.dropbtn2')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content2");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show1')) {
+                    openDropdown.classList.remove('show1');
                 }
             }
         }
@@ -962,20 +1013,7 @@
 
 
 </script>
-<script>
-    window.onscroll = function() {myFunction()};
 
-    var navbar = document.getElementById("navbar");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
-</script>
 <script>
     // $(document).scroll(function() {
     //     var y = $(this).scrollTop();
@@ -1299,7 +1337,7 @@
                 numberDisplayed: 3,
                 disableIfEmpty: false,
                 templates: {
-                    button: '<button type="button col-lg-12 col-md-12" style="width: 100%;background: white;color: #666666;border: 2px solid #E4E4E4;font-weight:700;" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
+                    button: '<button type="button col-lg-12 col-md-12 " style="width: 100%;background: white;color: #666666;border: 2px solid #E4E4E4;font-weight:700;" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
                     ul: '<ul class="multiselect-container dropdown-menu col-lg-12 col-md-12" style="height: 50vh;overflow: scroll;overflow-x: hidden"></ul>',
                     filter: '<li class="multiselect-item filter" ><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
                     filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>',
@@ -2372,8 +2410,46 @@
     }
 
     .dropdown1 a:hover {background-color: #ddd;}
+    .dropbtn2 {
+        background-color: #3498DB;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropbtn2:hover, .dropbtn2:focus {
+        background-color: #2980B9;
+    }
+
+    .dropdown2 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content2 {
+        display: none;
+        position: absolute;
+        top: 100%;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content2 a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown2 a:hover {background-color: #ddd;}
 
     .show {display: block;}
+    .show1 {display: block;}
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
         color: #666666;
         font-weight: 700;
@@ -2512,6 +2588,14 @@
         padding-top: 60px;
     }
     .sticky {
+        position: fixed;
+        top: 51px;
+        width: 100%;
+    }
+    .sticky1 + .content {
+        padding-top: 60px;
+    }
+    .sticky1 {
         position: fixed;
         top: 51px;
         width: 100%;
