@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link href='./css/grid.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
@@ -398,13 +399,58 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12 col-lg-12 no-padding" style="font-size: 26px;color: #333333; margin-left: 6vh;     font-weight: 600;">Latest flows...</div>
+
+    <div>
+        <div class=" ">
+			<div class="wrap">
+
+             <div id="main" role="main" style="margin-top: 46em;">
+
+			      <ul id="tiles">
+                    <!-- These are our grid blocks -->
+                    <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
+
+
+			        <li   dir-paginate ="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"   > <br><br>
+			        	<img ng-if="{{product.thumbnail}}" src="https://temp.png" width="282" height="118">
+			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" width="280"  >
+                        <div class="post-info">
+			        		<div class="post-basic-info" ng-click="changePage(product.uuid)"> 
+                                <h4  >
+                                    <span>
+                                        <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
+                                    </span>
+                                    <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
+                                </h4>
+				        		<span> {{product.platform}} </span>
+				        		<p>{{product.user_name}}</p>
+			        		</div>
+			        		<div class="post-info-rate-share">
+			        			<div class="rateit">
+			        				<span> </span>
+			        			</div>
+			        			<div class="post-share">
+			        				<span> </span>
+			        			</div>
+			        			<div class="clear"> </div>
+			        		</div>
+			        	</div>
+			        </li>
+			        
+			        <!-- End of grid blocks -->
+			      </ul>
+			    </div>
+			</div>
+		</div>
+    </div>
 
     <div class="col-md-12 col-lg-12 content" style="padding: 4%;">
-            <div class="col-md-12 col-lg-12 no-padding" style="font-size: 26px;color: #333333;      font-weight: 600;">Latest flows</div>
+        
 
 
-
-        <div id="containera" class="cols" style="margin-top: 6%;">
+        <!-- <div id="containera" class="cols" style="margin-top: 6%;">
             <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" >
 
                    <div class="contain col-md-12 col-lg-12 no-padding">
@@ -441,19 +487,10 @@
                                <div style="font-size: 14px;">{{product.platform}}</div>
                                <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
                            </div>
-                       </div>
-                       <!-- <div class="col-md-2 col-lg-2">
-                           <div class="dropdown">
-                               <div ng-click="showdropdown(product.uuid)" class="dropbtn">&#8942;</div>
-                               <div id="myDropdown{{product.uuid}}" class="dropdown-content">
-                                   <a href="edit_product.html#{{product.uuid}}" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
-                                   <a  ng-click="DeleteProduct(product.uuid)" style="color: #666666;">delete</a>
-                               </div>
-                           </div>
-                       </div> -->
+                       </div> 
                    </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
             <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
 
@@ -592,6 +629,8 @@
                 </div>
             </div>
         </div>
+
+ 
         <div class="col-xs-12 col-sm-12" style="padding: 6%;">
             <div class="col-xs-12 col-sm-12 no-padding" style="font-size: 26px;color: #333333;font-family: Montserrat;font-weight: 600;">Latest flows</div>
 
@@ -672,6 +711,68 @@
     </div>
 
 
+		<!----wookmark-scripts---->
+        <script src="js/jquery.imagesloaded.js"></script>
+        <script src="js/jquery.wookmark.js"></script>
+        <!----wookmark-scripts---->
+		  <script src="js/jquery.imagesloaded.js"></script>
+		  <script src="js/jquery.wookmark.js"></script>
+		  <script type="text/javascript">
+		    (function ($){
+		      var $tiles = $('#tiles'),
+		          $handler = $('li', $tiles),
+		          $main = $('#main'),
+		          $window = $(window),
+		          $document = $(document),
+		          options = {
+		            autoResize: true, // This will auto-update the layout when the browser window is resized.
+		            container: $main, // Optional, used for some extra CSS styling
+		            offset: 20, // Optional, the distance between grid items
+		            itemWidth:280 // Optional, the width of a grid item
+		          };
+		      /**
+		       * Reinitializes the wookmark handler after all images have loaded
+		       */
+		      function applyLayout() {
+                console.log("applyyy")
+		        $tiles.imagesLoaded(function() {
+		          // Destroy the old handler
+		          if ($handler.wookmarkInstance) {
+		            $handler.wookmarkInstance.clear();
+		          }
+		
+		          // Create a new layout handler.
+		          $handler = $('li', $tiles);
+		          $handler.wookmark(options);
+		        });
+		      }
+		      /**
+		       * When scrolled all the way to the bottom, add more tiles
+		       */
+		      function onScroll() {
+		        // Check if we're within 100 pixels of the bottom edge of the broser window.
+		        // var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
+		        //     closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
+		
+		        // if (closeToBottom) {
+		        //   // Get the first then items from the grid, clone them, and add them to the bottom of the grid
+		        // //   var $items = $('li', $tiles),
+		        // //       $firstTen = $items.slice(0, 5);
+		        // //   $tiles.append($firstTen.clone());
+		
+		        //   applyLayout();
+		        // }
+                applyLayout();
+		      };
+		
+		      // Call the layout function for the first time
+		      applyLayout();
+		
+		      // Capture scroll event.
+		      $window.bind('scroll.wookmark', onScroll);
+		    })(jQuery);
+		  </script>
+		<!----//wookmark-scripts---->
 
 </body>
 <script>
@@ -789,14 +890,12 @@
                     $scope.products = response.data.results; 
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
-                    for (product in $scope.products){
-                        console.log(product)
+                    for (product in $scope.products){ 
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         if ($scope.products[product].media){
                             for(each in $scope.products[product].media){
-                                if($scope.products[product].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
+                                if($scope.products[product].media[each].media_type=="screenshort"){ 
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
                                     break;
                                 }
@@ -804,6 +903,8 @@
                         }
                     }
                     console.log($scope.products)
+                    applyLayout();
+                    onScroll();
                 });
 
         }
@@ -1133,8 +1234,7 @@
         function Multiselect(select, options) {
 
             this.$select = $(select);
-            this.options = this.mergeOptions($.extend({}, options, this.$select.data()));
-            console.log("cccccccccccccccccccc", this.option)
+            this.options = this.mergeOptions($.extend({}, options, this.$select.data())); 
 
             // Initialization.
             // We have to clone to create a new reference.

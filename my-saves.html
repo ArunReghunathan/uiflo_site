@@ -21,6 +21,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
     <script src="https://rawgit.com/michaelbromley/angularUtils-pagination/master/dirPagination.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
     <script>
         let token = localStorage.getItem("token") || "unauth";
         if(token.split(".").length != 3){
@@ -98,7 +100,10 @@
 
 
         <div class="col-md-3 col-lg-3" ng-click="getSavedProductbyCollection(each.collection)" ng-repeat="each in savedCollection " >
-            <img src="src/img/default_collection.png" class="image" alt=""  style="cursor: pointer;">
+            <!-- <img ng-show="selected_collection != each.collection" src="src/img/default_collection.png" class="image" alt=""  style="cursor: pointer;">  -->
+            <lottie-player ng-show="selected_collection == each.collection" src="https://assets1.lottiefiles.com/packages/lf20_q5LAcb/photogallery_permission.json"  background="transparent"  speed="1"  style="width: 300px; height: 180px;"  loop hover  ></lottie-player>
+            <lottie-player ng-hide="selected_collection == each.collection" src="https://assets9.lottiefiles.com/private_files/lf30_ZXsep1.json" mode="bounce" background="transparent"  speed="2"  style="width: 300px; height: 190px;"  loop   hover></lottie-player>
+            <!-- <lottie-player   src="tick.json" mode="bounce" background="transparent"  speed="1"  style="width: 300px; height: 190px;"    ></lottie-player> -->
             <div class="col-md-12 col-lg-12" style="padding: 6%;">
                 <div class="col-md-10 col-lg-10 no-padding">
                     <div class="col-md-12 col-lg-12" style="padding-right: 0;">
@@ -261,8 +266,11 @@
     $scope.ListSavedProduct()
     }
 
+    $scope.selected_collection = "";
+
     
     $scope.getSavedProductbyCollection = function(collection) {
+            $scope.selected_collection = collection;
             var params = {  "user": window.localStorage.getItem("userId"), "collection": collection} 
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
