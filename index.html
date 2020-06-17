@@ -10,6 +10,7 @@
 
     <link rel="shortcut icon" type="image/png" href="src/img/new.ico"/>
     <link rel="canonical" href="https://uiflow.com/">
+    <link rel="stylesheet" href="mycss.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,7 +126,7 @@
 
      <div class="col-lg-6 col-md-6 no-padding">
         
-         <div class="col-md-12 col-lg-12 no-padding">
+         <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
              
              <!-- Trigger the modal with a button -->
              <div ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
@@ -140,9 +141,9 @@
             </div>
 
             
-             <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="">
-                 <div class="dropbtn" ><img src="src/img/Path 5.svg" alt=""></div>
-                 <div class="dropdown-content" style="z-index: 2 !important;top: 127% !important;">
+             <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
+                 <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                 <div class="dropdown-content" style="z-index: 2 !important;">
                      <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                      <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                  </div>
@@ -246,14 +247,14 @@
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
 
 <div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;">
-    <div ng-if="userRole =='unauth'" class="col-md-6 col-lg-6" >
+    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6" >
         <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
             <br> user flows</div>
         <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
 
     </div>
     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
-    <div  ng-if="userRole =='unauth'"  class="col-md-6 col-lg-6">
+    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6">
         <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
         
     </div>
@@ -263,7 +264,7 @@
                     <a href="flows/user-onboarding.html">
                         <div class="col-md-12 col-lg-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;">
                             <div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600; margin-top: 5%;">User onboarding</div>
-                            <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px; ">235 flows</div>
+                            <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px; ">{{length}}</div>
                             <div class="col-md-12 col-lg-12" style="margin-top: 7%; margin-bottom: 7%;">
                                 <img src="src/img/Group.jpg" style="width: 100%;" alt="">
                             </div>
@@ -458,11 +459,14 @@
                        <div class="overlay">
                            <div class="col-md-12 col-lg-12" style="height: 100%;">
                                <div class="col-md-9 col-lg-9" style="color: #666666;font-size: 14px;text-align: left;padding: 3%;height: 100%">
-                                   <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
-                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
-                                   </select>
-
-                             
+<!--                                   <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >-->
+<!--                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> -->
+<!--                                   </select>-->
+                                   <div onclick="myFunction2()" ng-model="$parent.collection_name"  class="dropbtn2 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600;">{{each.collection}} </div>
+                                       <div id="myDropdown2" class="dropdown-content2" style="width: 100%;z-index: 5 !important;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
+                                           <a class="col-lg-12 col-md-12" ng-repeat="each in savedCollection" value={{each.collection}} style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">{{each.collection}}</div></a>
+                                       </div>
+                                   </div>
 
                                </div> 
                                <div  class="col-lg-3 col-md-3 text " style="padding:4%">
@@ -473,7 +477,9 @@
  
 
                            </div>
+
                        </div>
+
                    </div>
                    <div class="col-md-12 col-lg-12" style="padding: 6%;">
                        <div class="col-md-12 col-lg-12 no-padding" ng-click="changePage(product.uuid)" >
@@ -494,6 +500,32 @@
         <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
             <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
 
+        </div>
+    </div>
+<!--    footer-->
+    <div class="col-lg-12 col-md-12 flex-container no-padding" style="background: white;height: 25vh;">
+        <div class="col-lg-12 col-md-12 no-padding">
+            <div class="col-lg-6 col-md-6 no-padding">
+                <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><img src="src/img/sds.svg" alt=""></div>
+                <div class="col-lg-8 col-md-8" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
+                    <div class="col-lg-10 col-md-10">
+                        <div class="col-lg-5 col-md-5">About Us</div>
+                        <div class="col-lg-5 col-md-5">Suggest flows</div>
+                        <div class="col-lg-12 col-md-12" style="margin-top: 5%;">Feedback</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 no-padding" style="height: 100%;">
+                <div class="col-lg-9 col-md-9" style="text-align: right;">
+                    <div class="col-lg-12 col-md-12" style="margin-bottom: 7%;">
+                        <img src="src/img/facebook (3).svg" alt="facebook">
+                        <img src="src/img/instagram-sketched.svg" alt="instagram">
+                        <img src="src/img/twitter (1).svg" alt="twitter">
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
+                </div>
+                <div class="col-lg-3 col-md-3 footer_img no-padding"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -776,6 +808,33 @@
 
 </body>
 <script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = 576;
+    var sticky1 = 790;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky1 = 790;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky1) {
+            navbar.classList.add("sticky1")
+        } else {
+            navbar.classList.remove("sticky1");
+        }
+    }
+</script>
+<script>
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
     function myFunction1() {
@@ -791,6 +850,25 @@
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    function myFunction2() {
+        document.getElementById("myDropdown2").classList.toggle("show1");
+        console.log("ethi");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        console.log("ethi");
+        if (!event.target.matches('.dropbtn2')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content2");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show1')) {
+                    openDropdown.classList.remove('show1');
                 }
             }
         }
@@ -1063,20 +1141,7 @@
 
 
 </script>
-<script>
-    window.onscroll = function() {myFunction()};
 
-    var navbar = document.getElementById("navbar");
-    var sticky = navbar.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
-        } else {
-            navbar.classList.remove("sticky");
-        }
-    }
-</script>
 <script>
     // $(document).scroll(function() {
     //     var y = $(this).scrollTop();
@@ -1399,7 +1464,7 @@
                 numberDisplayed: 3,
                 disableIfEmpty: false,
                 templates: {
-                    button: '<button type="button col-lg-12 col-md-12" style="width: 100%;background: white;color: #666666;border: 2px solid #E4E4E4;font-weight:700;" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
+                    button: '<button type="button col-lg-12 col-md-12 " style="width: 100%;background: white;color: #666666;border: 2px solid #E4E4E4;font-weight:700;" class="multiselect dropdown-toggle" data-toggle="dropdown"></button>',
                     ul: '<ul class="multiselect-container dropdown-menu col-lg-12 col-md-12" style="height: 50vh;overflow: scroll;overflow-x: hidden"></ul>',
                     filter: '<li class="multiselect-item filter" ><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
                     filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span>',
@@ -2432,116 +2497,6 @@
 
 
 <style>
-    .modal-backdrop.in{
-        opacity: 0 !important;
-    }
-    .dropbtn1 {
-        background-color: #3498DB;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .dropbtn1:hover, .dropbtn1:focus {
-        background-color: #2980B9;
-    }
-
-    .dropdown1 {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content1 {
-        display: none;
-        position: absolute;
-        top: 100%;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content1 a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown1 a:hover {background-color: #ddd;}
-
-    .show {display: block;}
-    .dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover{
-        color: #666666;
-        font-weight: 700;
-        text-decoration: none;
-        background-color: white;
-        outline: 0;
-    }
-    /*.btn-group .dropdown-toggle:visited , .btn-group.open .dropdown-toggle {*/
-    /*    outline: 0;*/
-    /*    color: #3D1369 !important;*/
-    /*    font-weight: 700 !important;*/
-    /*    background: #FFD7D7 !important;*/
-    /*}*/
-    /*.multiselect-container {*/
-    /*    position: absolute;*/
-    /*    list-style-type: none;*/
-    /*}*/
-    .multiselect-container .input-group {
-        margin: 5px;
-    }
-    .multiselect-container > li {
-        padding: 0;
-    }
-    .multiselect-container > li > a.multiselect-all label {
-        font-weight: 700;
-    }
-    .multiselect-container > li.multiselect-group label {
-        margin: 0;
-        padding: 3px 20px;
-        height: 100%;
-        font-weight: 700;
-    }
-    .multiselect-container > li.multiselect-group-clickable label {
-        cursor: pointer;
-    }
-    .multiselect-container > li > a {
-        padding: 0;
-    }
-    .multiselect-container > li > a > label {
-        margin: 0;
-        height: 100%;
-        cursor: pointer;
-        font-weight: 400;
-        padding: 3px 20px 3px 40px;
-    }
-    .multiselect-container > li > a > label.radio,
-    .multiselect-container > li > a > label.checkbox {
-        margin: 0;
-    }
-    .multiselect-container > li > a > label > input[type="checkbox"] {
-        margin-bottom: 5px;
-    }
-    .filter .btn {
-        padding: 6px 3px;
-    }
-    .btn-group > .btn-group:nth-child(2) > .multiselect.btn {
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-    }
-    .form-inline .multiselect-container label.checkbox,
-    .form-inline .multiselect-container label.radio {
-        padding: 3px 20px 3px 40px;
-    }
-    .form-inline .multiselect-container li a label.checkbox input[type="checkbox"],
-    .form-inline .multiselect-container li a label.radio input[type="radio"] {
-        margin-left: -20px;
-        margin-right: 0;
-    }
 
     /* custom styles */
     @import url(https://fonts.googleapis.com/css?family=Lato);
@@ -2550,679 +2505,7 @@
         font-family: Lato, sans-serif;
     }
 
-    .btn-default {
-        background: #0074d9; /* Old browsers */
-        background: -moz-linear-gradient(
-                top,
-                #0074d9 1%,
-                #0074d9 18%,
-                #0049bf 100%
-        ); /* FF3.6+ */
-        background: -webkit-gradient(
-                linear,
-                left top,
-                left bottom,
-                color-stop(1%, #0074d9),
-                color-stop(18%, #0074d9),
-                color-stop(100%, #0049bf)
-        ); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(
-                top,
-                #0074d9 1%,
-                #0074d9 18%,
-                #0049bf 100%
-        ); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(
-                top,
-                #0074d9 1%,
-                #0074d9 18%,
-                #0049bf 100%
-        ); /* Opera 11.10+ */
-        background: -ms-linear-gradient(
-                top,
-                #0074d9 1%,
-                #0074d9 18%,
-                #0049bf 100%
-        ); /* IE10+ */
-        background: linear-gradient(
-                to bottom,
-                #0074d9 1%,
-                #0074d9 18%,
-                #0049bf 100%
-        ); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0074d9', endColorstr='#0049bf',GradientType=0 ); /* IE6-9 */
 
-        color: #f9f9f9;
-    }
-
-    .btn-default:hover {
-        color: #f9f9f9;
-    }
-
-    .open > .dropdown-toggle.btn-default {
-        color: #f9f9f9;
-        background-color: #0074d9;
-        border-color: #0049bf;
-    }
-
-    a:hover{
-        text-decoration: none !important;
-    }
-    .sticky + .content {
-        padding-top: 60px;
-    }
-    .sticky {
-        position: fixed;
-        top: 51px;
-        width: 100%;
-    }
-    .flows:hover{
-        box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    .nav {
-        display: block;
-        font: 13px Helvetica, Tahoma, serif;
-        text-transform: uppercase;
-        margin: 0;
-        padding: 0;
-    }
-
-    .nav li {
-        display: inline-block;
-        list-style: none;
-    }
-
-    .nav .button-dropdown {
-        position: relative;
-    }
-
-    .nav li a {
-        display: block;
-        color: #333;
-        background-color: #fff;
-        padding: 10px 20px;
-        text-decoration: none;
-    }
-
-    .nav li a span {
-        display: inline-block;
-        margin-left: 5px;
-        font-size: 10px;
-        color: #999;
-    }
-
-    .nav li a:hover, .nav li a.dropdown-toggle.active {
-        background-color: #289dcc;
-        color: #fff;
-    }
-
-    .nav li a:hover span, .nav li a.dropdown-toggle.active span {
-        color: #fff;
-    }
-
-    .nav li .dropdown-menu {
-        display: none;
-        position: absolute;
-        left: 0;
-        padding: 0;
-        margin: 0;
-        margin-top: 3px;
-        text-align: left;
-    }
-
-    .nav li .dropdown-menu.active {
-        display: block;
-    }
-
-    .nav li .dropdown-menu a {
-        width: 150px;
-    }
-
-    .flow-cards{
-        background-color: #FFFFFF;
-        border: 1px solid #E7E7E7;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 0.04);
-    }
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: -15px;
-        min-width: 328px;
-        background-color: #FFFFFF;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.12);
-        height: 318px;
-        /*top: 127%;*/
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {background-color: #f1f1f1;}
-    .dropdown:hover .dropdown-content {display: block;}
-    .contain {
-        position: relative;
-        width: 100%;
-        border: 6px solid white;
-
-    }
-
-    .image {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
-
-    .overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: white;
-        overflow: hidden;
-        width: 100%;
-        height: 0;
-        transition: .5s ease;
-    }
-
-    .contain:hover .overlay {
-        height: 7vh;
-    }
-    .contain:hover{
-        box-shadow: 0px 0px 7px 3px #80808059;
-    }
-
-    .text {
-        color: white;
-
-    }
-
-
-
-
-
-    #containera {
-        width: 100%;
-        margin: 2em auto;
-    }
-    .cols {
-        -moz-column-count:3;
-        -moz-column-gap: 3%;
-        -moz-column-width: 30%;
-        -webkit-column-count:3;
-        -webkit-column-gap: 3%;
-        -webkit-column-width: 30%;
-        column-count: 4;
-        column-gap: 3%;
-        column-width: 30%;
-    }
-    .cols1 {
-        -moz-column-count:3;
-        -moz-column-gap: 3%;
-        -moz-column-width: 30%;
-        -webkit-column-count:3;
-        -webkit-column-gap: 3%;
-        -webkit-column-width: 30%;
-        column-count: 2;
-        column-gap: 3%;
-        column-width: 30%;
-    }
-
-    .row {
-        display: -ms-flexbox; /* IE10 */
-        display: flex;
-        -ms-flex-wrap: wrap; /* IE10 */
-        flex-wrap: wrap;
-        padding: 0 4px;
-    }
-
-    /* Create four equal columns that sits next to each other */
-    .column {
-        -ms-flex: 25%; /* IE10 */
-        flex: 25%;
-        max-width: 25%;
-        padding: 0 4px;
-    }
-
-    .column img {
-        margin-top: 8px;
-        vertical-align: middle;
-        width: 100%;
-    }
-
-    /* Responsive layout - makes a two column-layout instead of four columns */
-    @media screen and (max-width: 800px) {
-        .column {
-            -ms-flex: 50%;
-            flex: 50%;
-            max-width: 50%;
-        }
-    }
-
-    /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 600px) {
-        .column {
-            -ms-flex: 100%;
-            flex: 100%;
-            max-width: 100%;
-        }
-    }
-
-    .autocomplete {
-        position: relative;
-        display: inline-block;
-    }
-
-    input {
-        border: 1px solid transparent;
-        background-color: #f1f1f1;
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    input[type=text] {
-        background-color: #f1f1f1;
-        width: 100%;
-    }
-
-    input[type=submit] {
-        background-color: DodgerBlue;
-        color: #fff;
-        cursor: pointer;
-    }
-
-    .autocomplete-items {
-        position: absolute;
-        border: 1px solid #d4d4d4;
-        border-bottom: none;
-        border-top: none;
-        z-index: 99;
-        /*position the autocomplete items to be the same width as the container:*/
-        top: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    .autocomplete-items div {
-        padding: 10px;
-        cursor: pointer;
-        background-color: #fff;
-        border-bottom: 1px solid #d4d4d4;
-    }
-
-    /*when hovering an item:*/
-    .autocomplete-items div:hover {
-        background-color: #e9e9e9;
-    }
-
-    /*when navigating through the items using the arrow keys:*/
-    .autocomplete-active {
-        background-color: DodgerBlue !important;
-        color: #ffffff;
-    }
-
-    input{
-        color: #444;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-    }
-    /* Expandable search box */
-    /* Note: don't change 0.8s in transition. */
-    /* --------------------- */
-    input.search-text {
-        background: #EDEDED;
-        border: 0;
-        color: #222;
-        position:relative;
-        z-index:5;
-        /* 	transition: z-index 0.8s, width 0.5s, background 0.3s ease, border 0.3s; */
-        box-sizing: border-box;
-        font-size: 16px;
-        font-size: 1rem;
-        cursor: pointer;
-        border-radius: 4px;
-        /*border: 1px solid #666666;*/
-        /*background: url(search.png) no-repeat left 9px center transparent;*/
-        /*background: url('https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png') no-repeat right 9px center transparent;*/
-        /*background-size:24px;*/
-    }
-    /* input.search-text:focus {
-        z-index:3;
-        width: 270px;
-        border: 1px solid #666;
-        background-color: white;
-        outline: none;
-        cursor:auto;
-        padding-right: 10px;
-    } */
-
-    input.search-submit {
-        position: relative;
-        z-index: 4;
-        top:17px;
-        left: 49px;
-        width: 270px;
-        height: 45px;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        outline: 0;
-        border-radius: 4px;
-        cursor: pointer;
-        background: none;
-    }
-
-    input.search-text::-webkit-search-cancel-button {
-        cursor:pointer;
-    }
-    .no-padding {
-        padding: 0px !important;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    /* style the container */
-    .container {
-        position: relative;
-        border-radius: 5px;
-        background-color: #f2f2f2;
-        padding: 20px 0 30px 0;
-    }
-
-    /* style inputs and link buttons */
-    input,
-    .btn {
-        /*width: 100%;*/
-        padding: 12px;
-        border: none;
-        border-radius: 4px;
-        margin: 5px 0;
-        opacity: 0.85;
-        display: inline-block;
-        font-size: 17px;
-        line-height: 20px;
-        text-decoration: none; /* remove underline from anchors */
-    }
-
-    input:hover,
-    .btn:hover {
-        opacity: 1;
-    }
-
-    /* add appropriate colors to fb, twitter and google buttons */
-    .fb {
-        background-color: #3B5998;
-        color: white;
-    }
-
-    .twitter {
-        background-color: #55ACEE;
-        color: white;
-    }
-
-    .google {
-        background-color: #dd4b39;
-        color: white;
-    }
-
-    /* style the submit button */
-    input[type=submit] {
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-    }
-
-    input[type=submit]:hover {
-        background-color: #45a049;
-    }
-
-    /* Two-column layout */
-    .col {
-        float: left;
-        width: 50%;
-        margin: auto;
-        padding: 0 50px;
-        margin-top: 6px;
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    /* vertical line */
-    .vl {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        border: 2px solid #ddd;
-        height: 175px;
-    }
-
-    /* text inside the vertical line */
-    .vl-innertext {
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #f1f1f1;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        padding: 8px 10px;
-    }
-
-    /* hide some text on medium and large screens */
-    .hide-md-lg {
-        display: none;
-    }
-
-    /* bottom container */
-    .bottom-container {
-        text-align: center;
-        background-color: #666;
-        border-radius: 0px 0px 4px 4px;
-    }
-
-    /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 650px) {
-        .col {
-            width: 100%;
-            margin-top: 0;
-        }
-        /* hide the vertical line */
-        .vl {
-            display: none;
-        }
-        /* show the hidden text on small screens */
-        .hide-md-lg {
-            display: block;
-            text-align: center;
-        }
-    }
-    nav {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-    }
-
-    nav a {
-        color: #4889C2;
-        font-weight: bold;
-        text-decoration: none;
-        opacity: .3;
-        -moz-transition: all .4s;
-    }
-
-    nav a:hover {
-        opacity: 1;
-    }
-
-    nav a.focus {
-        opacity: 1;
-    }
-
-    /* LOGIN & REGISTER FORM */
-
-    form {
-        border-radius: 3px;
-        /*box-shadow: 0 0 10px rgba(0,0,0, .4);*/
-    }
-
-    form.register{																				/* Register form height */
-        height: 420px;
-    }
-
-    form .text-field {																			/* Input fields; Username, Password etc. */
-        border: 1px solid #a6a6a6;
-        width: 100%;
-        height: 40px;
-        border-radius: 3px;
-        margin-top: 10px;
-        padding-left: 10px;
-        color: #6c6c6c;
-        background: #fcfcfc;
-        outline: none;
-    }
-
-    form .text-field:focus {
-        box-shadow: inset 0 0 2px rgba(0,0,0, .3);
-        color: #a6a6a6;
-        background: white;
-    }
-
-    form .button {																				/* Submit button */
-        border-radius: 3px;
-        width: 100%;
-        height: 40px;
-        margin-top: 20px;
-
-        background: linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
-        background: -o-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
-        background: -moz-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
-        background: -webkit-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
-        background: -ms-linear-gradient(bottom, #4889C2 0%, #5BA7E9 100%);
-
-        cursor: pointer;
-        color: white;
-        font-weight: bold;
-        text-shadow: 0 -1px 0 #336895;
-
-        font-size: 13px;
-    }
-
-    form .button:hover {
-        background: linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
-        background: -o-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
-        background: -moz-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
-        background: -webkit-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
-        background: -ms-linear-gradient(bottom, #5c96c9 0%, #6bafea 100%);
-    }
-
-    form .button:active {
-        background: linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
-        background: -o-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
-        background: -moz-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
-        background: -webkit-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
-        background: -ms-linear-gradient(bottom, #5BA7E9 0%, #4889C2 100%);
-
-        box-shadow: inset 0 0 2px rgba(0,0,0, .3), 0 1px 0 white;
-    }
-    #facebook-connect {
-        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
-        border: 1px solid rgb(60, 90, 154);
-    }
-
-    #facebook-connect:hover {
-        border-color: rgb(60, 90, 154);
-        /*background: rgb(60, 90, 154) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/facebook-white.svg?sanitize=true') no-repeat scroll 5px 0px / 30px 50px padding-box border-box;*/
-        -webkit-transition: all .8s ease-out;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease-out;
-        text-decoration: none;
-    }
-
-    #facebook-connect span {
-        box-sizing: border-box;
-        color: rgb(60, 90, 154);
-        cursor: pointer;
-        text-align: center;
-        text-transform: uppercase;
-        border: 0px none rgb(255, 255, 255);
-        outline: rgb(255, 255, 255) none 0px;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease;
-
-    }
-
-    #facebook-connect:hover span {
-        color: #FFF;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease;
-        text-decoration: none;
-    }
-
-    #google-connect {
-        /*background: rgb(255, 255, 255) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
-        border: 1px solid rgb(220, 74, 61);
-    }
-
-    #google-connect:hover {
-        border-color: rgb(220, 74, 61);
-        /*background: rgb(220, 74, 61) url('https://raw.githubusercontent.com/eswarasai/social-login/master/img/google-plus-white.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;*/
-        -webkit-transition: all .8s ease-out;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease-out;
-        text-decoration: none;
-    }
-
-    #google-connect span {
-        box-sizing: border-box;
-        color: rgb(220, 74, 61);
-        cursor: pointer;
-        text-align: center;
-        text-transform: uppercase;
-        border: 0px none rgb(220, 74, 61);
-        outline: rgb(255, 255, 255) none 0px;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease;
-    }
-
-    #google-connect:hover span {
-        color: #FFF;
-        -webkit-transition: all .3s ease;
-        -moz-transition: all .3s ease;
-        -ms-transition: all .3s ease;
-        -o-transition: all .3s ease;
-        transition: all .3s ease;
-        text-decoration: none;
-    }
 
 </style>
 </html>
