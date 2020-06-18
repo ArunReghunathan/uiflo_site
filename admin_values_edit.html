@@ -135,6 +135,32 @@
         </div>
     </div>
     
+    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12">
+        <div>Products</div>
+        <!-- {{product_values.tags}} -->
+        <div>
+            <div  class="col-md-12 " > 
+                <!-- {{product_names}}... -->
+            </div> 
+            <div>
+                <div ng-repeat= "each in product_names track by $index" class="col-md-12 col-lg-12">
+                     
+                     <img src = "{{each.logo}}" width="50px">  &emsp;
+                     {{each.productName}}
+                     <input type="text"  ng-model="each.productName"   style="width: 300px;" > 
+                     <button ng-click="edit_product(each.uuid, $index)">Edit</button>
+                     <button ng-click="delete_product(each.uuid)">Delete</button>
+                     <hr> 
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12"> 
+        </div>
+    </div>
+    
 
 
 
@@ -264,6 +290,61 @@
         }
         
         $scope.get_product_values()
+
+
+
+        $scope.edit_product = function(uuid, index) {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            var product = $scope.product_names[index]
+            console.log(product)
+            body ={
+                "productName" : product['productName']
+            }
+            $http({
+                method: "PUT",
+                url: "http://13.126.184.35:8000/productname/" + uuid + "/", 
+                headers :headers,
+                data : body
+                }) 
+            .then(function(response) {
+                console.log(response) 
+                alert("edited")
+            });
+        }
+
+
+        $scope.delete_product = function(uuid) {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "DELETE",
+                url: "http://13.126.184.35:8000/productname/" + uuid + "/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                console.log(response) 
+                alert("deleted")
+                
+            });
+        }
+
+        $scope.get_product_names = function() {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/productname/", 
+                headers :headers
+                }) 
+            .then(function(response) {
+                console.log(response)
+                $scope.product_names = response.data.results;  
+                
+            });
+        }
+        
+        $scope.get_product_names()
 
 
   
