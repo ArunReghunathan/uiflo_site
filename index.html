@@ -446,57 +446,8 @@
 			</div>
 		</div>
     </div>
-
-    <div class="col-md-12 col-lg-12 content" style="padding: 4%;">
-        
-
-
-        <!-- <div id="containera" class="cols" style="margin-top: 6%;">
-            <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" >
-
-                   <div class="contain col-md-12 col-lg-12 no-padding">
-                       <img src="{{product.thumbnail}}" class="img" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;height: 100%;width: 100%;">
-                       <div class="overlay">
-                           <div class="col-md-12 col-lg-12" style="height: 100%;">
-                               <div class="col-md-9 col-lg-9" style="color: #666666;font-size: 14px;text-align: left;padding: 3%;height: 100%">
-<!--                                   <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >-->
-<!--                                       <option     ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> -->
-<!--                                   </select>-->
-                                   <div onclick="myFunction2()" ng-model="$parent.collection_name"  class="dropbtn2 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600;">{{each.collection}} </div>
-                                       <div id="myDropdown2" class="dropdown-content2" style="width: 100%;z-index: 5 !important;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
-                                           <a class="col-lg-12 col-md-12" ng-repeat="each in savedCollection" value={{each.collection}} style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">{{each.collection}}</div></a>
-                                       </div>
-                                   </div>
-
-                               </div> 
-                               <div  class="col-lg-3 col-md-3 text " style="padding:4%">
-                                <span ng-click="SavedAProduct(product.uuid)" id="demo" class="text"  style="background: #3D1369;border-radius: 4px;font-size: 13px;padding: 8px;text-align: center;cursor: pointer;">SAVE</span>
-
-
-                               </div>
  
-
-                           </div>
-
-                       </div>
-
-                   </div>
-                   <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                       <div class="col-md-12 col-lg-12 no-padding" ng-click="changePage(product.uuid)" >
-                            <span>
-                                <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">
-                            </span>
-                           <div class="col-md-9 col-lg-9" style="padding-right: 0;">
-                               <div style="color: #666666;font-size: 16px; font-weight: 600;">
-                                   <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
-                               </div>
-                               <div style="font-size: 14px;">{{product.platform}}</div>
-                               <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>
-                           </div>
-                       </div> 
-                   </div>
-            </div>
-        </div> -->
+ 
         <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
             <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
 
