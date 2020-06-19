@@ -70,7 +70,7 @@
         </div>
     </div> 
 
-    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12"><hr> </div>
     <div class="col-md-12">
         <div>category</div>
         <!-- {{product_values.category}} -->
@@ -84,7 +84,7 @@
         </div>
     </div>
     
-    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12"><hr> </div>
     <div class="col-md-12">
         <div>Tags</div>
         <!-- {{product_values.tags}} -->
@@ -100,7 +100,7 @@
     
 
     
-    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12"><hr> </div>
     <div class="col-md-12">
         <div>sub_flow</div>
         <!-- {{product_values.tags}} -->
@@ -119,7 +119,7 @@
 
 
     
-    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12"><hr> </div>
     <div class="col-md-12">
         <div>sub_category</div>
         <!-- {{product_values.tags}} -->
@@ -135,8 +135,9 @@
         </div>
     </div>
     
-    <div class="col-md-12">---------------------------------------------------------------------</div>
+    <div class="col-md-12"> <hr> </div>
     <div class="col-md-12">
+        <hr>
         <div>Products</div>
         <!-- {{product_values.tags}} -->
         <div>
@@ -144,13 +145,35 @@
                 <!-- {{product_names}}... -->
             </div> 
             <div>
-                <div ng-repeat= "each in product_names track by $index" class="col-md-12 col-lg-12">
-                     
-                     <img src = "{{each.logo}}" width="50px">  &emsp;
-                     {{each.productName}}
-                     <input type="text"  ng-model="each.productName"   style="width: 300px;" > 
-                     <button ng-click="edit_product(each.uuid, $index)">Edit</button>
-                     <button ng-click="delete_product(each.uuid)">Delete</button>
+                <div  class="col-md-12 col-lg-12">
+
+                     <table border="">
+                         
+                        <th>
+                            <td> Edit Name </td>
+                            <td> Edit logo </td>
+                            <td>  Delete </td>
+                         </th>
+                         <tr ng-repeat= "each in product_names track by $index">
+                            <td>
+                                &emsp;<img src = "{{each.logo}}" width="50px">  &emsp; {{each.productName}}
+                            </td>
+                            <td>  
+                                &emsp;
+                                <input type="text"  ng-model="each.productName"   style="width: 300px;" > 
+                                <button ng-click="edit_product(each.uuid, $index)">Edit</button> &emsp; &emsp;
+                            </td>
+                            <td> 
+                                &emsp;
+                                <input type="file"  ng-model="each.productName"   id="logoFile_{{each.uuid}}" style="width: 300px; display: inline-block;" > 
+                                <button ng-click="update_logo(each.uuid)">Upload logo</button> &emsp;&emsp;
+                            </td>
+                            <td> 
+                                &emsp;<button ng-click="delete_product(each.uuid)">Delete</button> &emsp;
+                            </td>
+                         </tr>
+                     </table>
+
                      <hr> 
 
 
@@ -345,6 +368,45 @@
         }
         
         $scope.get_product_names()
+
+        
+
+        $scope.update_logo = function(uuid) {
+            
+
+            var f = document.getElementById('logoFile_' + uuid).files[0];
+            console.log(f)
+
+
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
+            var url = "http://13.126.184.35:8000/productname/" + uuid + "/";
+            var formdata = new FormData(); 
+ 
+            formdata.append("logo", f); 
+            var requestOptions = {
+            method: 'PUT',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow'
+            };
+
+            fetch(url, requestOptions)
+            .then(response => response.text()
+            )
+            .then((result) =>{
+                console.log(result)
+                alert("uploaded")
+                
+                $timeout(function () {
+                    $scope.$apply();
+                });
+            })
+            .catch(error => {
+                $scope.screen_shorts_uploading = false;
+                console.log('error', error)
+            });
+            };
 
 
   
