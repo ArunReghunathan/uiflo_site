@@ -129,12 +129,12 @@
          <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
              
              <!-- Trigger the modal with a button -->
-             <div ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+             <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
                 <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                     SIGN UP
                 </div>
             </div>
-             <div ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
+             <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
                  <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                     SIGN IN
                 </div>
@@ -169,7 +169,7 @@
                      <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
                          <div class="col-lg-12 col-md-12 flex-container"  >
                              <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;text-align: center">
-                                 <div style="font-size: 30px;">SIGN UP</div>
+                                 <div style="font-size: 30px;">SIGN UP </div>
                                  <div style="font-size: 14px;">TO UIFLO</div>
                              </div>
                              <div class="col-lg-12 col-md-12">
@@ -250,7 +250,7 @@
     <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6" >
         <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
             <br> user flows</div>
-        <div id="loginbutton" class="col-md-2 col-lg-2" type="button" data-toggle="modal" data-target="#myModal" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
+        <div ng-click="changePageRegister('./login.html#register')" class="col-md-2 col-lg-2" type="button"  style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
 
     </div>
     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
@@ -513,7 +513,7 @@
             </a>
             <!-- Trigger the modal with a button -->
             <div id="loginbutton" class="col-xs-2 col-sm-2" type="button" data-toggle="modal" data-target="#myModal1" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN UP</div></div>
-            <div id="signinbutton" class="col-xs-2 col-sm-2" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN</div></div>
+            <div  id="signinbutton" class="col-xs-2 col-sm-2" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN ..</div></div>
             <div class="dropdown  col-xs-1 col-sm-1" style="background: #3D1369;border-radius: 50%;padding: 3%;">
                 <div class="dropbtn" ></div>
                 <div class="dropdown-content" style="z-index: 2;">
@@ -848,6 +848,14 @@
 
         $scope.changePage = function(url) {
             var loc = "./product-flow.html#" + url
+
+            window.location.href= loc
+        }
+
+        $scope.changePageRegister = function(url) {
+
+            var loc =   url
+
 
             window.location.href= loc
         }
