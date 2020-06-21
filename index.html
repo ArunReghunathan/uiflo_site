@@ -335,9 +335,10 @@
                         <button onclick="myFunction1()" class="dropbtn1 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600;">+ More Flows </div></button>
                         <div id="myDropdown1" class="dropdown-content1" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
                             <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>
-                            <a class="col-lg-12 col-md-12" href="#home" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">About</div></a>
-                            <a class="col-lg-12 col-md-12" href="#home" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">End</div></a>
-                        </div>
+                            <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">
+                                <div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>
+                            </a>
+                         </div>
                     </div>
 <!--                    <a href="flows/consuming-content.html">-->
 <!--                       <div class="col-md-12 col-lg-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
@@ -410,10 +411,9 @@
 
 			      <ul id="tiles" >
                     <!-- These are our grid blocks -->
-                    <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
-
-
-			        <li   dir-paginate ="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="left: 65px !important;"   >
+      
+			         <li dir-paginate ="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count" style="left: 65px !important; border: tomato;"     >
+                       <div >
                         <div class="contain co-lg-12 col-lg-12 no-padding">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
@@ -422,44 +422,20 @@
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
                                     <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
-                                        <button onclick="myFunction2()" class="dropbtn2 col-lg-12 col-md-12 flows no-padding" style="background: white;cursor: pointer;height: 100%;text-align: left"><div class="col-md-12 col-lg-12" style="color: #666666;font-size:14px;font-weight: 600;">{{product.category}} </div></button>
+                                        <!-- <button  class="dropbtn2 col-lg-12 col-md-12 flows no-padding" style="background: white;cursor: pointer;height: 100%;text-align: left">
+                                            <div class="col-md-12 col-lg-12" style="color: #666666;font-size:14px;font-weight: 600;"> aaaa </div>
+                                            <div class="col-md-12 col-lg-12" style="color: #666666;font-size:14px;font-weight: 600;">bbbb </div>
+                                        </button> -->
+                                        <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
+                                            <option  selected value="My Collections">My Collections</option> 
+                                            <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
+                                        </select> 
 
                                     </div>
-
-
-                                    <!--                                <ul class="nav col-lg-9 col-md-9">-->
-                                    <!--                                    <li class="button-dropdown">-->
-                                    <!--                                        <a class="col-lg-12 col-md-12 no-padding" href="javascript:void(0)" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">-->
-                                    <!--                                            {{product.category}} <span  class="dropdown-toggle"><span>▼</span>-->
-                                    <!--                                        </span>-->
-                                    <!--                                        </a>-->
-                                    <!--                                        <ul class="dropdown-menu">-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 1-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 2-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 3-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                        </ul>-->
-                                    <!--                                    </li>-->
-                                    <!--                                </ul>-->
+                                </div> 
+                                <div class="col-lg-3 col-md-3 text flex-container"  style="height: 100%;" >
+                                    <div ng-click="SavedAProduct(product.uuid)" class="col-lg-12 col-md-12 no-padding" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;margin-top: 5%;">SAVE</div>
                                 </div>
-                                <div id="myDropdown2" class="dropdown-content2 col-lg-12 col-md-12" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
-                                    <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>
-                                    <a class="col-lg-12 col-md-12" href="#home" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">About</div></a>
-                                    <a class="col-lg-12 col-md-12" href="#home" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">End</div></a>
-                                </div>
-                                <div class="col-lg-3 col-md-3 text flex-container" id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"' style="height: 100%;" >
-                                    <div class="col-lg-12 col-md-12 no-padding" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;margin-top: 5%;">SAVE</div></div>
 
                             </div>
                         </div>
@@ -487,7 +463,8 @@
 			        			</div>
 			        			<div class="clear"> </div>
 			        		</div>
-			        	</div>
+                        </div>
+                    </div>
 			        </li>
 			        
 			        <!-- End of grid blocks -->
@@ -800,13 +777,15 @@
 		        // }
                 applyLayout();
 		      };
-		
-		      // Call the layout function for the first time
-		      applyLayout();
+		 
 		
 		      // Capture scroll event.
-		      $window.bind('scroll.wookmark', onScroll);
+		    //   $window.bind('scroll.wookmark', onScroll);
+              setInterval(applyLayout, 2000);
 		    })(jQuery);
+
+
+    
 		  </script>
 		<!----//wookmark-scripts---->
 
@@ -994,9 +973,7 @@
                             }
                         }
                     }
-                    console.log($scope.products)
-                    applyLayout();
-                    onScroll();
+                    console.log($scope.products) 
                 });
 
         }
