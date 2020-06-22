@@ -404,20 +404,17 @@
 
     <div class="col-md-12 col-lg-12 no-padding">
         <div class="col-md-12 col-lg-12 no-padding ">
-			<div class="wrap col-md-12 col-lg-12 no-padding ">
+             <div class="col-md-12 col-lg-12" style="margin-top: 2% !important; display: grid;grid-template-columns: 25% 25% 25% 25%;row-gap: 5%;margin-bottom: 7%;padding: 0% 3%;">
 
-             <div id="main" role="main" class="col-md-12 col-lg-12 no-padding " style="margin-top: 2% !important;">
-
-			      <ul id="tiles" >
                     <!-- These are our grid blocks -->
                     <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
 
 
-			        <li   dir-paginate ="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="left: 65px !important;"   >
-                        <div class="contain co-lg-12 col-lg-12 no-padding">
+			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+                        <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 30vh;text-align: center;overflow: hidden;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="width: 100% !important;">
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height: 100%;margin-top: 9%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;">
                         <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
@@ -459,22 +456,22 @@
                                     <a class="col-lg-12 col-md-12" href="#home" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">End</div></a>
                                 </div>
                                 <div class="col-lg-3 col-md-3 text flex-container" id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"' style="height: 100%;" >
-                                    <div class="col-lg-12 col-md-12 no-padding" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;margin-top: 5%;">SAVE</div></div>
+                                    <div class="col-lg-12 col-md-12" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 7%;text-align: center;cursor: pointer;">SAVE</div></div>
 
                             </div>
                         </div>
                         </div>
-                        <div class="post-info col-lg-12 col-md-12 no-padding">
-			        		<div class="post-basic-info" ng-click="changePage(product.uuid)"> 
-                                <h4>
-                                    <div class="col-md-2 col-lg-2 no-padding">
-                                        <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;" alt="">
+                        <div class="post-info col-lg-12 col-md-12 no-padding" style="height: 7vh;margin-top: 4%;">
+			        		<div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
+                                <div   style="height: 100%" >
+                                    <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
+                                        <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 50%;" alt="">
                                     </div>
-                                    <div class="col-md-10 col-lg-10" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}
-                                        <div class="col-lg-12 col-md-12 no-padding"> {{product.platform}} </div>
+                                    <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}}
+                                        <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div>
                                     </div>
 
-                                </h4>
+                                </div>
 
 			        		</div>
 			        		<div class="post-info-rate-share">
@@ -487,21 +484,18 @@
 			        			<div class="clear"> </div>
 			        		</div>
 			        	</div>
-			        </li>
+			        </div>
 			        
 			        <!-- End of grid blocks -->
 			      </ul>
 			    </div>
-			</div>
 		</div>
     </div>
- 
- 
-        <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
-            <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
-
-        </div>
+    <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
+        <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
     </div>
+    </div>
+
 <!--    footer-->
     <div class="col-lg-12 col-md-12 flex-container no-padding" style="background: white;height: 25vh;">
         <div class="col-lg-12 col-md-12 no-padding">
@@ -2512,6 +2506,7 @@
 
     body {
         font-family: Lato, sans-serif;
+        overflow-x: hidden;
     }
 
 
