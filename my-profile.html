@@ -18,6 +18,10 @@
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 
+    <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+    <link rel="alternate" type="application/json+oembed" href="https://codepen.io/api/oembed?url=https%3A%2F%2Fcodepen.io%2Frikschennink%2Fpen%2FEQOLYe&amp;format=json" title="FilePond Profile Picture Upload">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -41,7 +45,11 @@
             <div class="col-lg-12 col-md-12" onclick="edit_profile()" style="text-align: right;color: #3D1369;font-size: 16px;margin-top: 3%;font-weight: 700;cursor: pointer;">EDIT</div>
             <div class="col-lg-12 col-md-12"  style="height: 80%;">
                 <div id="profile-pic" class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4" >
-                    <img src="{{user.profile_pic}}" style="background: #D8D8D8;border-radius: 50%;height: 15vh; width: 15vh; margin-top: 12%;">
+                    <input type="file"
+                           class="filepond"
+                           name="filepond"
+                           accept="image/png, image/jpeg, image/gif"/>
+<!--                    <img src="{{user.profile_pic}}" style="background: #D8D8D8;border-radius: 50%;height: 15vh; width: 15vh; margin-top: 12%;">-->
                 </div>
                    <div class="col-lg-12 col-md-12" id="myP" style="text-align: center;color: #666666;font-size: 30px;font-weight: 700;margin-top: 5%;">
                     {{user.first_name}}
@@ -155,6 +163,23 @@
     input[type=submit]:hover {
         background-color: #45a049;
     }
+    .filepond--drop-label {
+        color: #4c4e53;
+    }
+
+    .filepond--label-action {
+        text-decoration-color: #babdc0;
+    }
+
+    .filepond--panel-root {
+        background-color: #edf0f4;
+    }
+
+
+    .filepond--root {
+        width: 170px;
+        margin: 0 auto;
+    }
 
 </style>
 
@@ -183,7 +208,48 @@
         $("#form1").toggle(200);
         $('.change_p').hide();
     });
+    /*
+    We need to register the required plugins to do image manipulation and previewing.
+    */
+    FilePond.registerPlugin(
+        // encodes the file as base64 data
+        FilePondPluginFileEncode,
 
+        // validates files based on input type
+        FilePondPluginFileValidateType,
+
+        // corrects mobile image orientation
+        FilePondPluginImageExifOrientation,
+
+        // previews the image
+        FilePondPluginImagePreview,
+
+        // crops the image to a certain aspect ratio
+        FilePondPluginImageCrop,
+
+        // resizes the image to fit a certain size
+        FilePondPluginImageResize,
+
+        // applies crop and resize information on the client
+        FilePondPluginImageTransform
+    );
+
+    // Select the file input and use create() to turn it into a pond
+    // in this example we pass properties along with the create method
+    // we could have also put these on the file input element itself
+    FilePond.create(
+        document.querySelector('input'),
+        {
+            labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
+            imagePreviewHeight: 170,
+            imageCropAspectRatio: '1:1',
+            imageResizeTargetWidth: 200,
+            imageResizeTargetHeight: 200,
+            stylePanelLayout: 'compact circle',
+            styleLoadIndicatorPosition: 'center bottom',
+            styleButtonRemoveItemPosition: 'center bottom'
+        }
+    );
 
 </script>
 <script type="text/javascript">
