@@ -269,23 +269,24 @@
                                                 <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="width: 100%;height: inherit;">
                                             </div>
                                         </div>
-                                        <div ng-click="gallary_click(gallary_click_count + 3)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
+                                        <div  ng-show="product.screenshort[gallary_click_count + 2]"  ng-click="gallary_click(gallary_click_count + 3)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
                                                 <img src="{{product.screenshort[gallary_click_count + 2].file}}" alt="" style="width: 100%;height: inherit;">
                                             </div>
                                         </div>
-                                        <div ng-click="gallary_click(gallary_click_count + 4)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
+                                        <div  ng-show="product.screenshort[gallary_click_count + 3]"  ng-click="gallary_click(gallary_click_count + 4)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
                                                 <img src="{{product.screenshort[gallary_click_count + 3].file}}" alt="" style="width: 100%;height: inherit;">
                                             </div>
                                         </div>
-                                        <div ng-click="gallary_click(gallary_click_count + 5)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
+                                        <div ng-show="product.screenshort[gallary_click_count + 4]" ng-click="gallary_click(gallary_click_count + 5)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
                                                 <img src="{{product.screenshort[gallary_click_count + 4].file}}" alt="" style="width: 100%;height: inherit;">
-                                            </div>
+                                            </div> 
+                                            {{no_of_screenshort}}
                                         </div>
 
-                                        <a ng-click="change_gallery_count(1)" class="carousel-control-next" data-slide="next" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;right: 1.5%;opacity: 1!important;cursor: pointer">
+                                        <a  ng-show="no_of_screenshort > 5" ng-click="change_gallery_count(1)" class="carousel-control-next" data-slide="next" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;right: 1.5%;opacity: 1!important;cursor: pointer">
                                             <span class="fa fa-angle-right" style="color: #999999;font-size: 28px;font-weight: 700;"></span>
                                         </a>
                                     </div>
@@ -458,7 +459,7 @@
             $scope.gallary_click_count =  $scope.gallary_click_count + value;
             console.log($scope.gallary_click_count)
             if($scope.gallary_click_count < 1){$scope.gallary_click_count = 1;} 
-            if($scope.gallary_click_count > ($scope.no_of_screenshort -2)){$scope.gallary_click_count= $scope.no_of_screenshort-2;} 
+            if($scope.gallary_click_count > ($scope.no_of_screenshort -5)){$scope.gallary_click_count= $scope.no_of_screenshort-5;} 
         }
 
         $scope.change_video = function(time) { 
