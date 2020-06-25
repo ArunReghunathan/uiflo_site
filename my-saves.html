@@ -28,7 +28,7 @@
         let token = localStorage.getItem("token") || "unauth";
         if(token.split(".").length != 3){
             alert("you are not authorized to view this page")
-            window.location.replace("./login.html");
+            // window.location.replace("./login.html");
         }
 
     </script>
@@ -95,24 +95,28 @@
         <hr>
 
 
-        <div class="col-md-3 col-lg-3" ng-click="getSavedProductbyCollection(each.collection)" ng-repeat="each in savedCollection " >
+        <div class="col-md-3 col-lg-3"  ng-repeat="each in savedCollection " >
             <!-- <img ng-show="selected_collection != each.collection" src="src/img/default_collection.png" class="image" alt=""  style="cursor: pointer;">  -->
-            <lottie-player ng-show="selected_collection == each.collection" src="https://assets1.lottiefiles.com/packages/lf20_q5LAcb/photogallery_permission.json"  background="transparent"  speed="1"  style="width: 300px; height: 180px;"  loop hover  ></lottie-player>
-            <lottie-player ng-hide="selected_collection == each.collection" src="https://assets9.lottiefiles.com/private_files/lf30_ZXsep1.json" mode="bounce" background="transparent"  speed="2"  style="width: 300px; height: 190px;"  loop   hover></lottie-player>
+            <div ng-click="getSavedProductbyCollection(each.collection)" >
+                <lottie-player ng-show="selected_collection == each.collection" src="https://assets1.lottiefiles.com/packages/lf20_q5LAcb/photogallery_permission.json"  background="transparent"  speed="1"  style="width: 300px; height: 180px;"  loop hover  ></lottie-player>
+                <lottie-player ng-hide="selected_collection == each.collection" src="https://assets9.lottiefiles.com/private_files/lf30_ZXsep1.json" mode="bounce" background="transparent"  speed="2"  style="width: 300px; height: 190px;"  loop   hover></lottie-player>
+            </div>
             <!-- <lottie-player   src="tick.json" mode="bounce" background="transparent"  speed="1"  style="width: 300px; height: 190px;"    ></lottie-player> -->
             <div class="col-md-12 col-lg-12" style="padding: 6%;">
-                <div class="col-md-10 col-lg-10 no-padding">
+                 <div class="col-md-10 col-lg-10 no-padding" ng-click="getSavedProductbyCollection(each.collection)" >
                     <div class="col-md-12 col-lg-12" style="padding-right: 0;">
                         <div style="color: #666666;font-size: 16px; font-weight: 600;">
                             <span ng-hide="product.sub_flow">{{each.collection}}</span>
                         </div>
                     </div>
                 </div>
+ 
+
                 <div class="col-md-2 col-lg-2">
                     <div class="dropdown">
                     <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;</div>
                         <div id="myDropdown{{each.collection}}" class="dropdown-content">
-                            <input type="text" ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >
+                            <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >
                             <a ng-click="EditCollection(each.collection, $index)" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>
                             <a  ng-click="DeleteCollection(each.collection, $index)" style="color: #666666;">delete</a>
                         </div>
@@ -220,10 +224,9 @@
                             $scope.userRole = "normal"
                         }
 
-                        if( ["normal"].includes($scope.userRole) ){
-                            window.location.replace("./index.html");
-                        }
- 
+                        // if( ["normal"].includes($scope.userRole) ){
+                        //     window.location.replace("./index.html");
+                        // } 
                     }
                 ).catch(function error() {
                 // alert("please sigin")
@@ -266,6 +269,8 @@
 
     
     $scope.getSavedProductbyCollection = function(collection) {
+            window.location.href = "./my-collection.html#" + collection
+
             $scope.selected_collection = collection;
             var params = {  "user": window.localStorage.getItem("userId"), "collection": collection} 
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}

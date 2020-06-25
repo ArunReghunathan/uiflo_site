@@ -260,7 +260,7 @@
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
                         <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height: 100%;margin-top: 9%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;">
-                        <div class="overlay" id="over"  style="overflow: hidden;">
+                        <!-- <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
                                     <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
@@ -268,32 +268,7 @@
 
                                     </div>
 
-
-                                    <!--                                <ul class="nav col-lg-9 col-md-9">-->
-                                    <!--                                    <li class="button-dropdown">-->
-                                    <!--                                        <a class="col-lg-12 col-md-12 no-padding" href="javascript:void(0)" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">-->
-                                    <!--                                            {{product.category}} <span  class="dropdown-toggle"><span>▼</span>-->
-                                    <!--                                        </span>-->
-                                    <!--                                        </a>-->
-                                    <!--                                        <ul class="dropdown-menu">-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 1-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 2-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                            <li>-->
-                                    <!--                                                <a href="#">-->
-                                    <!--                                                    Drop Item 3-->
-                                    <!--                                                </a>-->
-                                    <!--                                            </li>-->
-                                    <!--                                        </ul>-->
-                                    <!--                                    </li>-->
-                                    <!--                                </ul>-->
+ 
                                 </div>
                                 <div id="myDropdown2" class="dropdown-content2 col-lg-12 col-md-12" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;">
                                     <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-md-12 col-lg-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>
@@ -304,7 +279,7 @@
                                     <div class="col-lg-12 col-md-12" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 7%;text-align: center;cursor: pointer;">SAVE</div></div>
 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="post-info col-lg-12 col-md-12 no-padding" style="height: 7vh;margin-top: 4%;">
                         <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
@@ -518,7 +493,7 @@
 
                 <div class="contain col-xs-12 col-sm-12 no-padding">
                     <img src="{{product.thumbnail}}" class="img" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;height: 100%;width: 100%;">
-                    <div class="overlay " >
+                    <!-- <div class="overlay " >
                         <div class="col-xs-12 col-sm-12" style="margin-top: 3%;">
                             <div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 14px;text-align: left;padding: 3%">
                                 {{product.category}}
@@ -550,7 +525,7 @@
                             </ul>
                             <div class="col-xs-2 col-sm-2 text " id="demo" onclick='document.getElementById("demo").innerHTML = "SAVED"'  style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;">SAVE</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-xs-12 col-sm-12" style="padding: 6%;">
                     <div class="col-xs-12 col-sm-12 no-padding" ng-click="changePage(product.uuid)" >
@@ -781,27 +756,13 @@
         $scope.search_product = "null";
         $scope.search_category = "null";
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page, "collection": "publish"}
-
-            if($scope.search_product){
-                params['product'] = $scope.search_product
-                if($scope.search_product=="null"){ delete params['product']}
-            }
-            if($scope.search_category){
-                params['category'] = $scope.search_category
-                if($scope.search_category=="null"){ delete params['category']}
-
-            }
-            if($scope.search_platform){
-                params['platform'] = $scope.search_platform
-
-                if($scope.search_platform=="all"){ delete params['platform']}
-
-            }
-
-
-            // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
-            var headers = { }
+            var params = {"page": page, "collection":"publish"}
+            if ($scope.userRole != "admin"){
+                // params["userId"] = $scope.userId;
+            } 
+                params['uuid'] = $scope.savedProductIdList
+         
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
                 url: "http://13.126.184.35:8000/product/",
@@ -812,12 +773,12 @@
                     $scope.products = response.data.results;
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
-                    for (product in $scope.products){
+                    for (product in $scope.products){ 
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         if ($scope.products[product].media){
                             for(each in $scope.products[product].media){
-                                if($scope.products[product].media[each].media_type=="screenshort"){
+                                if($scope.products[product].media[each].media_type=="screenshort"){ 
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
                                     break;
                                 }
@@ -825,12 +786,44 @@
                         }
                     }
                     console.log($scope.products)
-                    applyLayout();
-                    onScroll();
                 });
 
         }
-        $scope.ListProduct()
+ 
+
+    $scope.selected_collection = "";
+
+    $scope.getSavedProductbyCollection = function(collection) {
+            $scope.selected_collection = collection; 
+            var params = {  "user": window.localStorage.getItem("userId"), "collection": collection} 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET", 
+                url: "http://13.126.184.35:8000/savedproducts/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) {  
+                    $scope.productsInSavedCollection = response.data.results;
+                    $scope.savedProductIdList =[]; 
+                    for(each in $scope.productsInSavedCollection){
+                        if($scope.productsInSavedCollection[each].product){
+                            $scope.savedProductIdList.push($scope.productsInSavedCollection[each].product )
+                        }
+                    }
+                    $scope.products =[]
+                    if($scope.savedProductIdList.length >0){
+                        $scope.ListProduct(1) 
+
+                    } 
+                });
+
+        } 
+
+        let url = window.location.href
+        $scope.selected_collection = url.split('#')[1]
+        $scope.getSavedProductbyCollection($scope.selected_collection)
+
 
 
         $scope.SavedAProduct = function(uuid) {
@@ -856,36 +849,36 @@
         }
 
 
-        $scope.ListSavedProduct = function() {
-            var params = {  "user": window.localStorage.getItem("userId")}
-            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
-            $http({
-                method: "GET",
-                url: "http://13.126.184.35:8000/distinctSavedProduct/",
-                params: params,
-                headers: headers
-            })
-                .then(function(response) {
-                    $scope.savedCollection = response.data.collection;
-                    $scope.savedProduct = response.data.product;
-                    for(e in $scope.savedProduct){
-                        console.log("eee",e , $scope.savedProduct[e])
-                        if($scope.savedProduct[e].product == $scope.uuid){
-                            $scope.SavedAProduct_value = 1;
-                        }
-                    }
-                    console.log("saved savedCollection ",$scope.savedCollection)
-                    console.log("saved products ",$scope.savedProduct)
-                });
+        // $scope.ListSavedProduct = function() {
+        //     var params = {  "user": window.localStorage.getItem("userId")}
+        //     var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+        //     $http({
+        //         method: "GET",
+        //         url: "http://13.126.184.35:8000/distinctSavedProduct/",
+        //         params: params,
+        //         headers: headers
+        //     })
+        //         .then(function(response) {
+        //             $scope.savedCollection = response.data.collection;
+        //             $scope.savedProduct = response.data.product;
+        //             for(e in $scope.savedProduct){
+        //                 console.log("eee",e , $scope.savedProduct[e])
+        //                 if($scope.savedProduct[e].product == $scope.uuid){
+        //                     $scope.SavedAProduct_value = 1;
+        //                 }
+        //             }
+        //             console.log("saved savedCollection ",$scope.savedCollection)
+        //             console.log("saved products ",$scope.savedProduct)
+        //         });
 
-        }
-        if(window.localStorage.getItem('userId')){
-            $scope.savedCollection=  [{"collection": "My Collections"}]
-            $scope.ListSavedProduct()
-        }
-        else{
-            $scope.savedCollection=  [{"collection": "My Collections"}]
-        }
+        // }
+        // if(window.localStorage.getItem('userId')){
+        //     $scope.savedCollection=  [{"collection": "My Collections"}]
+        //     $scope.ListSavedProduct()
+        // }
+        // else{
+        //     $scope.savedCollection=  [{"collection": "My Collections"}]
+        // }
 
         $scope.get_product_name = function() {
 
