@@ -459,7 +459,7 @@
     <div class="col-xs-12 col-sm-12 no-padding" style="background: white;">
         <div class="col-xs-12 col-sm-12 no-padding">
             <div class="col-xs-12 col-sm-12 flow-cards">
-                <div>{{product.flow}}</div>
+                <div>{{product.flow}}    </div>
             </div>
         </div>
     </div>
@@ -582,6 +582,7 @@
             flow_name = flow_name.replace("%20", " ") 
             flow_name = flow_name.replace("%20", " ") 
             flow_name = flow_name.replace("%20", " ")  
+            $scope.flow_name = flow_name
             var params = {"page": page, "flow": flow_name}
             if ($scope.userRole != "admin"){
                 params["userId"] = $scope.userId;
