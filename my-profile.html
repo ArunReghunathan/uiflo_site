@@ -39,9 +39,9 @@
  
 </div>
 <div class="col-lg-12 col-md-12" style="background: #F7F7F7;padding: 3%;height: 100vh;">
-    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 sq-price" style="height: 90%;background: white;margin-top: 4%;">
+    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 " style="height: 90%;background: white;margin-top: 4%;">
 
-        <div class="col-lg-12 col-md-12" style="height: 100%;">
+        <div class="col-lg-12 col-md-12 sq-price" style="height: 100%;">
             <div class="col-lg-12 col-md-12" onclick="edit_profile()" style="text-align: right;color: #3D1369;font-size: 16px;margin-top: 3%;font-weight: 700;cursor: pointer;">EDIT</div>
             <div class="col-lg-12 col-md-12"  style="height: 80%;">
                 <div id="profile-pic" class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4" >
@@ -66,8 +66,7 @@
         </div>
 
 
-    </div>
-    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 " style="height: 90%;background: white;margin-top: 4%;">
+
 
         <div class="col-lg-12 col-md-12 change_p" style="height: 100%;">
             <div class="col-lg-12 col-md-12 no-padding"  style="height: 100%;">
@@ -102,9 +101,6 @@
 
         </div>
 
-
-
-    </div>
 <!--    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 submit_p" id="form1" style="height: 90%;background: white;margin-top: 4%;">-->
 
 <!--        <div class="col-lg-12 col-md-12" style="height: 100%;">-->
@@ -191,21 +187,21 @@
     $('.change_p').hide();
     $('.change-password').on('click',
         function() {
-            $('.sq-price, .change_p').toggle(300);
+            $('.sq-price, .change_p').toggle(0);
         }
     );
     $('.go-back').on('click',
         function() {
-            $(' .change_p,.sq-price').toggle(300);
+            $(' .change_p,.sq-price').toggle(0);
         }
     );
     $('.go-back1').on('click',
         function() {
-            $(' .change_p,.submit_p').toggle(300);
+            $(' .change_p,.submit_p').toggle(0);
         }
     );
     $("#formButton").click(function(){
-        $("#form1").toggle(200);
+        $("#form1").toggle(0);
         $('.change_p').hide();
     });
     /*

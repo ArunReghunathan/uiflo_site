@@ -159,19 +159,19 @@
                     </div>
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
                 <label for="username">Email</label>
-                <input class="form-styling" id="login_email" type="text" name="email" class="text-field" placeholder="Enter email id" />
+                <input class="form-styling field" id="login_email" type="text" name="email" class="text-field" placeholder="Enter email id" required/>
 
                 <label for="password">Password</label>
-                <input class="form-styling" id="login_password" type="password" name="password" class="text-field" placeholder="Enter password"/>
+                <input class="form-styling field" id="login_password" type="password" name="password" class="text-field" placeholder="Enter password" required style="margin-bottom: 0;"/>
                 <input type="checkbox" id="checkbox"/>
                 <div class="btn-animate">
-                    <a onclick="Login()" class="btn-signin">Sign in</a>
+                    <a onclick="Login()" class="btn-signin flex-container">Sign in</a>
                 </div>
                 <!-- <div     style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;"> -->
 
                     <!-- <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div> -->
 
-                    <div class=" g-signin2 col-lg-12 col-md-12 no-padding" style="width: 100% !important;margin-top: 4%;"  data-onsuccess="onSignIn"  ></div>
+                    <div class=" g-signin2 col-lg-12 col-md-12 no-padding" style="width: 100% !important;margin-top: 9%;"  data-onsuccess="onSignIn"  ></div>
 
 
 
@@ -185,7 +185,7 @@
                 </div>
 
                 </div>
-                <div class="col-lg-12 col-md-12" style="color: #999999;text-align: center;position: absolute;bottom: 60px;">
+                <div class="col-lg-12 col-md-12" style="color: #999999;text-align: center;position: absolute;bottom: 19px;left: 0;">
                     New to UiFLO?<span class="signup-inactive"><a href="#" class=" signup" style="color: #3D1369;font-weight: 600;box-shadow: none;border: none;"> &nbsp;Sign up </a></span>
                 </div>
             </form>
@@ -197,20 +197,20 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
                     <label for="fullname">Full name</label>
-                    <input class="form-styling" type="text" id="registed_name" placeholder="Name" />
+                    <input class="form-styling field" type="text" id="registed_name" placeholder="Name" required />
                     <label for="email">Email</label>
-                    <input class="form-styling" type="text" id="registed_email" placeholder="Email" style="background: white;"/>
+                    <input class="form-styling field" type="text" id="registed_email" placeholder="Email" style="background: white;" required/>
                     <label for="password">Password</label>
-                    <input class="form-styling" type="password" id="registed_password" placeholder="Password"/>
+                    <input class="form-styling field" type="password" id="registed_password" placeholder="Password" required/>
                     <label for="confirmpassword">Confirm password</label>
-                    <input class="form-styling" type="password" id="confirmpassword" placeholder="Password" style="background: white;"/>
+                    <input class="form-styling field" type="password" id="confirmpassword" placeholder="Password" style="background: white;" required/>
                     <a ng-click="checked = !checked" onclick="Register()" class="btn-signup">Sign Up</a>
                         <!-- <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div>
                         <div class="col-lg-11 col-md-11"  style="text-align: center;color: #666666; font-weight: 600;">SIGN UP WITH GOOGLE </div> -->
                         <div class=" g-signin2 col-lg-12 col-md-12 no-padding"  style="width: 100% !important;margin-top: 4%;" data-onsuccess="onSignIn"  ></div>
 
                 </div>
-                <div class="col-lg-12 col-md-12" style="color: #999999;text-align: center;position: absolute;bottom: 60px;">
+                <div class="col-lg-12 col-md-12" style="color: #999999;text-align: center;position: absolute;bottom: 19px;left: 0;">
                     Already have an account? <span class="signup-inactive"><a href="#" class=" signin" style="color: #3D1369;font-weight: 600;box-shadow: none;border: none;"> &nbsp;Sign in </a></span>
                 </div>
             </form>
@@ -226,7 +226,7 @@
                             <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
                             <form action="">
                                 <label class="col-lg-12 col-md-12 no-padding" style="color: #666666;">Email ID</label>
-                                <input class="form-styling" type="text" id="registed_email" placeholder="Email" style="background: white;border: 1px solid #C7C7C7;"/>
+                                <input class="form-styling field" type="text" id="registed_email" placeholder="Email" style="background: white;border: 1px solid #C7C7C7;" required/>
                                 <input type="submit" value="SEND RESET LINK" id="formButton" style="width: 100%;background: #3D1369;color: white;">
                             </form>
                             </div>
@@ -239,26 +239,18 @@
                     <div class="col-lg-12 col-md-12 no-padding"  style="height: 100%;">
                         <div class="col-lg-12 col-md-12" style="text-align: center;color: #F1B9B9;margin-top: 4%">
                             <div class="col-lg-12 col-md-12" style="font-size: 30px;"><a href="#" class="go-back"  ><img src="src/img/back (3) copy.svg" alt="" style="float: left"></a><img src="src/img/logo.svg" alt=""></div>
-                            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2" style="color: #333333;font-size: 36px;text-align: center;margin-top: 15%;margin-bottom: 4%;font-weight: 700;line-height: 38px;">Reset Password
-                            </div>
                         </div>
-                        <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;">
-                            <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
-                                <div class="col-lg-12 col-md-12 no-padding"  style="height: 100%;">
-                                    <div class="col-lg-12 col-md-12 no-padding" style=" color: #000000;font-size: 30px;font-weight: 700;text-align: left;margin-top: 7%;">
-                                        <div style="text-align: center">Change Password</div></div>
-                                    <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;text-align: center">
+
+                                    <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 24%;margin-bottom: 4%;text-align: center">
                                         <img src="src/img/Group 3.svg" alt="">
-                                        <div class="col-lg-12 col-md-12" style=" color: #333333;font-size: 36px;font-weight: 700;margin-top: 7%;">
+                                        <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3" style=" color: #333333;font-size: 36px;font-weight: 700;margin-top: 7%;line-height: 43.88px;">
                                             Password reset link sent
+                                            <div class="col-lg-12 col-md-12" style=" color: #333333;font-size: 14px;margin-top: 5px;line-height: 16px;">
+                                                You'll receive an email if you are registered on our system.
+                                            </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12" style=" color: #333333;font-size: 14px;font-weight: 500;margin-top: 7%;">
-                                            You'll receive an email if you are registered on our system.
-                                        </div>
+
                                     </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </form>
@@ -294,29 +286,29 @@
     $('.change2_p').hide();
     $('.signup').on('click',
         function() {
-            $('.change1_p, .change2_p').toggle(300);
+            $('.change1_p, .change2_p').toggle(0);
         }
     );
     $('.signin').on('click',
         function() {
-            $(' .change2_p,.change1_p').toggle(300);
+            $(' .change2_p,.change1_p').toggle(0);
         }
     );
     $('.change3_p').hide();
     $('.password').on('click',
         function() {
-            $('.change1_p, .change3_p').toggle(300);
+            $('.change1_p, .change3_p').toggle(0);
         }
     );
     $('.go-back').on('click',
         function() {
-            $(' .change3_p,.change1_p').toggle(300);
+            $(' .change3_p,.change1_p').toggle(0);
         }
     );
     $('.change4_p').hide();
     $('#formButton').on('click',
         function() {
-            $('.change3_p, .change4_p').toggle(300);
+            $('.change3_p, .change4_p').toggle(0);
         }
     );
 
@@ -325,6 +317,12 @@
 
 
 <style>
+    .field{
+        background-color: #FFFFFF !important;
+        border: 1px solid #C7C7C7 !important;
+        border-radius: 4px !important;
+        height: 46px !important;
+    }
     .abcRioButton,.abcRioButtonLightBlue{
         width: 100% !important;
     }
@@ -837,12 +835,10 @@
 
     .btn-signup {
         float: left;
-        padding-top: 8px;
         width: 100%;
-        height: 35px;
+        height: 46px;
         border: none;
         border-radius: 4px;
-        margin-top: -8px;
         background: #3D1369;
         color: white;
         text-align: center;
@@ -854,12 +850,10 @@
 
     .btn-signin {
         float: left;
-        padding-top: 8px;
         width: 100%;
-        height: 35px;
+        height: 46px;
         border: none;
         border-radius: 4px;
-        margin-top: -8px;
         background: #3D1369;
         color: white;
     }
@@ -1142,9 +1136,8 @@
 
                 .btn-signin {
                     float: left;
-                    padding-top: 8px;
                     width: 100%;
-                    height: 35px;
+                    height: 46px;
                     border: none;
                     border-radius: 4px;
                     margin-top: -8px;
