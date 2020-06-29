@@ -105,92 +105,93 @@
 
 </script>
 
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);border-bottom:1px solid #EBEBEB; ">
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
     <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
-        <div class="col-md-7 col-lg-7" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
-            <img src="..'src/img/logo.svg" alt="">
-        </div>
-        <!--    <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">-->
-        <!--        <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">-->
-        <!--&lt;!&ndash;            <span class="">ALL</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">LANDING PAGES</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">EMAILS</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--           <a  href="./admin-home.html" > <span id="display_username" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6px;cursor: pointer" ></span> </a> -->
-        <!--        </div>-->
-        <!--    </div>-->
-
-        <div class="col-lg-5 col-md-5">
-            <a href="my-saves.html" class="col-md-3 col-lg-3" style="cursor: pointer;">
-                <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 6%;font-weight: 600;">
-                    MY SAVES
+        <div class="col-md-6 col-lg-6" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
+            <a href="../index.html">
+                <div class="col-md-12 col-lg-12">
+                    <img src="../src/img/logo.svg" alt="">
                 </div>
             </a>
-            <!-- Trigger the modal with a button -->
-            <div id="loginbutton" class="col-md-4 col-lg-4" type="button" data-toggle="modal" data-target="#myModal" ><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN UP</div></div>
-            <div id="signinbutton" class="col-md-4 col-lg-4" type="button"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 5%;cursor: pointer;text-align: center;">SIGN IN</div></div>
-            <div class="dropdown  col-md-1 col-lg-1" style="background: #3D1369;border-radius: 50%;padding: 3%;">
-                <div class="dropbtn" ></div>
-                <div class="dropdown-content">
-                    <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
-                    <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
+        </div>
+        <div class="col-lg-6 col-md-6 no-padding">
+
+            <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
+
+                <!-- Trigger the modal with a button -->
+                <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                    <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                        SIGN UP
+                    </div>
                 </div>
-            </div>
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-
-                    <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
-                        <div class="col-lg-12 col-md-12 flex-container"  >
-                            <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;">
-                                <div style="font-size: 30px;">SIGN UP</div>
-                                <div style="font-size: 14px;">TO UIFLO</div>
-                            </div>
-                            <div class="col-lg-12 col-md-12">
-                                <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
-                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
-                                    <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
-                                    <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
-                                    <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
-                                    <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
-                                    <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
-
-                                    <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
-                                    <br>
+                <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
+                    <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                        SIGN IN
+                    </div>
+                </div>
 
 
-                                    <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
-                                        <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
-                                            <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
-                                            <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
+                    <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                    <div class="dropdown-content" style="z-index: 2 !important;">
+                        <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
+                        <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
+                    </div>
+                </div>
+                <a ng-if="userRole!='unauth'" href="my-saves.html" class=" col-lg-3 col-md-3 pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;">
+                    <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                        MY SAVES
+                    </div>
+                </a>
+
+                <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
+                    <a href="./admin-home.html" >
+                        <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                            ADMIN
+                        </div>
+                    </a>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+
+                        <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
+                            <div class="col-lg-12 col-md-12 flex-container"  >
+                                <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;text-align: center">
+                                    <div style="font-size: 30px;">SIGN UP</div>
+                                    <div style="font-size: 14px;">TO UIFLO</div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
+                                        <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
+                                        <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
+                                        <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
+                                        <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
+                                        <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
+                                        <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
+
+                                        <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
+                                        <br>
+                                        <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
+                                            <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+                                                <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
+                                                <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+                                            </div>
                                         </div>
+                                    </form>
 
-                                        <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
-
-                                        </div>
-                                        <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-
-                                    </div>
-
-                                    <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                    <!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="./src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
-                                    <!--        </div>-->
-                                    <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                    <!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="./src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
-
-                                    <!--        </div>-->
-                                </form>
-
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 <!--<div class="col-md-12 col-lg-12" style="">-->
 <!--    <div class="col-md-12 col-lg-12" style="border-bottom: 1px solid #EBEBEB;">-->
@@ -301,7 +302,7 @@
     <div class="col-lg-12 col-md-12 flex-container no-padding" style="background: white;height: 25vh;">
         <div class=" no-padding">
             <div class="col-lg-6 col-md-6 no-padding">
-                <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><img src="../src/img/logo.svg" alt=""></div>
+                <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><a href="../index.html"><img src="../src/img/logo.svg" alt=""></a></div>
                 <div class="col-lg-8 col-md-8" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
                     <div class="col-lg-10 col-md-10">
                         <a href="../about-us.html" style="color: #666666;cursor: pointer;">
@@ -560,26 +561,104 @@
     var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
     app.controller('myCtrl', function($scope, $http, $timeout) {
 
+        $scope.collection_name = "My Collections" ;
+
 
 
         $scope.changePage = function(url) {
-            var loc = "../product-flow.html#" + url
+            var loc = "./product-flow.html#" + url
 
             window.location.href= loc
         }
 
+        $scope.changePageRegister = function(url) {
+
+            var loc =   url
+
+
+            window.location.href= loc
+        }
 
 
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
         }
 
+        $scope.CheckUser = function() {
 
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $scope.userId = window.localStorage.getItem('userId') || "unknown"
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                headers :headers
+            })
+                .then(function(response) {
+                        $scope.user = response.data;
+                        console.log($scope.user)
+
+                        if($scope.user.is_admin){
+                            $scope.userRole = "admin"
+                        }
+                        else if($scope.user.is_staff){
+                            $scope.userRole = "staff"
+                        }
+                        else{
+                            $scope.userRole = "normal"
+                        }
+                    }
+                ).catch(function error() {
+                $scope.userRole = "unauth"
+                // alert("please sigin")
+                // window.location.replace("./index.html");
+
+            }) ;
+
+        }
+        $scope.CheckUser();
+
+
+        $scope.search_product = "null";
+        $scope.search_category = "null";
+        $scope.old_page =  1
+        // $scope.pagination.current =3
+
+        $scope.currentPage = 4;
         $scope.ListProduct = function(page=1) {
-            var params = {"page": page, "flow": "Purchasing"}
-            if ($scope.userRole != "admin"){
-                params["userId"] = $scope.userId;
+            if($scope.old_page != page){
+                //  window.location.replace("./index.html?page=" + page)
+                //  window.location = "./index.html?page=" + page
+
             }
+            var url = window.location.href
+
+            // window.location.replace("./index/")
+            page = url.split("page=")
+
+            if (page.length > 1){
+                page=parseInt(page[1])
+            }else(page=1)
+            $scope.old_page  = page;
+            // window.location.replace("./index.html?page=" + page)
+            var params = {"page": page, "collection": "publish"}
+
+            if($scope.search_product){
+                params['product'] = $scope.search_product
+                if($scope.search_product=="null"){ delete params['product']}
+            }
+            if($scope.search_category){
+                params['category'] = $scope.search_category
+                if($scope.search_category=="null"){ delete params['category']}
+
+            }
+            if($scope.search_platform){
+                params['platform'] = $scope.search_platform
+
+                if($scope.search_platform=="all"){ delete params['platform']}
+
+            }
+
+
             // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             var headers = { }
             $http({
@@ -593,13 +672,11 @@
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
                     for (product in $scope.products){
-                        console.log(product)
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         if ($scope.products[product].media){
                             for(each in $scope.products[product].media){
                                 if($scope.products[product].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
                                     break;
                                 }
@@ -611,6 +688,104 @@
 
         }
         $scope.ListProduct()
+
+
+        $scope.SavedAProduct = function(uuid) {
+            var body = {
+                "user": window.localStorage.getItem("userId"),
+                "product": uuid,
+                "collection" :$scope.collection_name
+
+            }
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "POST",
+                url: "http://13.126.184.35:8000/savedproducts/",
+                data: body,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.SavedAProduct_value = response.data;
+                    console.log("saved SavedAProduct ",$scope.SavedAProduct)
+                    alert("Saved")
+                });
+
+        }
+
+
+        $scope.ListSavedProduct = function() {
+            var params = {  "user": window.localStorage.getItem("userId")}
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/distinctSavedProduct/",
+                params: params,
+                headers: headers
+            })
+                .then(function(response) {
+                    $scope.savedCollection = response.data.collection;
+                    $scope.savedProduct = response.data.product;
+                    for(e in $scope.savedProduct){
+                        console.log("eee",e , $scope.savedProduct[e])
+                        if($scope.savedProduct[e].product == $scope.uuid){
+                            $scope.SavedAProduct_value = 1;
+                        }
+                    }
+                    console.log("saved savedCollection ",$scope.savedCollection)
+                    console.log("saved products ",$scope.savedProduct)
+                });
+
+        }
+        if(window.localStorage.getItem('userId')){
+            $scope.savedCollection=  [{"collection": "My Collections"}]
+            $scope.ListSavedProduct()
+        }
+        else{
+            $scope.savedCollection=  [{"collection": "My Collections"}]
+        }
+
+        $scope.get_product_name = function() {
+
+            // var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            var headers = { }
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/productname/",
+                headers :headers
+            })
+                .then(function(response) {
+                    $scope.product_names = response.data.results;
+                    console.log($scope.product_names)
+                    $scope.products_names = []
+                    for(each in $scope.product_names){
+                        $scope.products_names.push($scope.product_names[each].productName)
+                    }
+                    setTimeout(function() {
+                        $('#example-getting-started1').multiselect();
+                    }, 10);
+                });
+        }
+        $scope.get_product_name()
+
+        $scope.get_product_values = function() {
+            var headers = { }
+
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/getProductValues/",
+                headers :headers
+            })
+                .then(function(response) {
+                    $scope.products_values = response.data;
+                    console.log($scope.products_values)
+
+                    setTimeout(function() {
+                        $('#example-getting-started2').multiselect();
+                    }, 100);
+
+                });
+        }
+        $scope.get_product_values()
 
 
         $scope.logout = function() {

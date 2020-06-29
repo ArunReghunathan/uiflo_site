@@ -377,6 +377,14 @@
             window.location.href= loc
         }
 
+        $scope.changePageRegister = function(url) {
+
+            var loc =   url
+
+
+            window.location.href= loc
+        }
+
 
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
@@ -418,7 +426,26 @@
 
         $scope.search_product = "null";
         $scope.search_category = "null";
+        $scope.old_page =  1
+        // $scope.pagination.current =3
+
+        $scope.currentPage = 4;
         $scope.ListProduct = function(page=1) {
+            if($scope.old_page != page){
+                //  window.location.replace("./index.html?page=" + page)
+                //  window.location = "./index.html?page=" + page
+
+            }
+            var url = window.location.href
+
+            // window.location.replace("./index/")
+            page = url.split("page=")
+
+            if (page.length > 1){
+                page=parseInt(page[1])
+            }else(page=1)
+            $scope.old_page  = page;
+            // window.location.replace("./index.html?page=" + page)
             var params = {"page": page, "collection": "publish"}
 
             if($scope.search_product){
@@ -451,13 +478,11 @@
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
                     for (product in $scope.products){
-                        console.log(product)
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         if ($scope.products[product].media){
                             for(each in $scope.products[product].media){
                                 if($scope.products[product].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
                                     break;
                                 }
