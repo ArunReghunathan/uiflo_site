@@ -47,8 +47,7 @@
 
 
 
-<div class="col-md-12 col-lg-12" style="margin-top: 1%;border-bottom: 1px solid #EBEBEB;background: white;padding: 0;
-">
+<div class="col-md-12 col-lg-12" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
     <a href="index.html">
     <div class="col-md-3 col-lg-3" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
         <img src="src/img/logo.svg" alt="">
@@ -67,7 +66,7 @@
 <!--        </form>-->
    <!-- </div> -->
     <div class="col-md-1 col-lg-1" style="text-align: center;float: right;">
- 
+
         <div class="containers" style="">
             <!-- Trigger the modal with a button -->
             <div class="col-md-12 col-lg-12" onclick="signOut()" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6%;cursor: pointer" >LOGOUT</div>
@@ -127,11 +126,9 @@
     </div>
 </div>
 </div>
-<div class="col-md-12 col-lg-12" style="">
 
-</div>
 <div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;">
+    <div class="col-md-12 col-lg-12" style="padding: 3%;margin-top: 4%">
             <section class="wrapper" style="height: 100%;">
             <div class="col-md-12 col-lg-12 no-padding" style="background: none">
                 <div class="col-md-6 col-lg-6 no-padding">
@@ -458,11 +455,11 @@
             console.log($scope.gallary_click_count)
             $scope.gallary_click_count =  $scope.gallary_click_count + value;
             console.log($scope.gallary_click_count)
-            if($scope.gallary_click_count < 1){$scope.gallary_click_count = 1;} 
-            if($scope.gallary_click_count > ($scope.no_of_screenshort -5)){$scope.gallary_click_count= $scope.no_of_screenshort-5;} 
+            if($scope.gallary_click_count < 1){$scope.gallary_click_count = 1;}
+            if($scope.gallary_click_count > ($scope.no_of_screenshort -5)){$scope.gallary_click_count= $scope.no_of_screenshort-5;}
         }
 
-        $scope.change_video = function(time) { 
+        $scope.change_video = function(time) {
             // $scope.product.video.file
             $scope.product.video.file =   $scope.product.video.file.split("#t=")[0] + "#t=" + time
 
@@ -501,7 +498,7 @@
                 headers: headers
             })
                 .then(function(response) {
-                    $scope.products = response.data.results; 
+                    $scope.products = response.data.results;
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
                     for (product in $scope.products){
@@ -528,8 +525,8 @@
                 "user": window.localStorage.getItem("userId"),
                 "product": $scope.uuid,
                 "collection" :$scope.collection_name
-                
-                } 
+
+                }
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "POST",
@@ -538,14 +535,14 @@
                 headers: headers
             })
                 .then(function(response) {
-                    $scope.SavedAProduct_value = response.data;   
+                    $scope.SavedAProduct_value = response.data;
                     console.log("saved SavedAProduct ",$scope.SavedAProduct)
                 });
 
-        } 
+        }
 
     $scope.ListSavedProduct = function() {
-            var params = {  "user": window.localStorage.getItem("userId")} 
+            var params = {  "user": window.localStorage.getItem("userId")}
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
@@ -554,8 +551,8 @@
                 headers: headers
             })
                 .then(function(response) {
-                    $scope.savedCollection = response.data.collection;  
-                    $scope.savedProduct = response.data.product;  
+                    $scope.savedCollection = response.data.collection;
+                    $scope.savedProduct = response.data.product;
                     for(e in $scope.savedProduct){
                         console.log("eee",e , $scope.savedProduct[e])
                         if($scope.savedProduct[e].product == $scope.uuid){
@@ -566,7 +563,7 @@
                     console.log("saved products ",$scope.savedProduct)
                 });
 
-        } 
+        }
     $scope.ListSavedProduct()
 
 
@@ -580,7 +577,7 @@
                     $scope.screen_count = 0;
                     var screen_count = 0;
                     var total_count = 0;
-  
+
                         if ($scope.product.media){
                             $scope.product.screenshort = []
                             $scope.product.media = $scope.product.media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
@@ -588,27 +585,27 @@
                                 total_count += 1;
                                 if($scope.product.media[each].media_type=="video"){
                                     console.log("inside ")
-                                    $scope.product.video = $scope.product.media[each] 
-                                    $scope.videotemp = $scope.product.media[each] 
+                                    $scope.product.video = $scope.product.media[each]
+                                    $scope.videotemp = $scope.product.media[each]
                                     $scope.product.video.annotations[0] = $scope.product.video.annotations[0].sort(function(a,b){  return a.order - b.order; });
-                                    console.log($scope.product.video.annotations) 
+                                    console.log($scope.product.video.annotations)
                                 }
                                 else if($scope.product.media[each].media_type=="screenshort"){
                                     $scope.product.screenshort.push($scope.product.media[each])
-                                     $scope.no_of_screenshort += 1;  
+                                     $scope.no_of_screenshort += 1;
                                      screen_count += 1
                                      if(screen_count == 4 )
                                         {
                                             $scope.screen_count = total_count;
                                         }
-                                     
+
                                      }
 
-                            } 
-                            
+                            }
+
                         }
 
-                  
+
                     console.log( "Main producttttt  ",$scope.product)
                     $scope.ListSimilarProduct(1)
                 });
@@ -633,11 +630,11 @@
             window.location.replace("./login.html");
         });
     }
- 
+
       gapi.load('auth2', function() {
         gapi.auth2.init();
       });
-    
+
 </script>
 <!--############################################## angular -->
 
