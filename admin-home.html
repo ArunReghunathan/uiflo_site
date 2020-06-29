@@ -148,7 +148,7 @@
             </div>
         </div>
         <div id="containera" class="cols" style="margin-top: 6%;">
-            <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >
+            <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count" >
                         <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">
                         <div class="col-md-12 col-lg-12" style="padding: 6%;">
                             <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >

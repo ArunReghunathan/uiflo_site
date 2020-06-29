@@ -396,6 +396,8 @@
 <!--                </select>-->
 <!--            </div>-->
         </div>
+        
+        
         <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
             <div class="col-md-12 col-lg-12">
                 <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><a href="" class="all"><img  src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;" id="bg1"> </a></span>
@@ -403,6 +405,10 @@
                 <span ng-click="search_platform='Android'; ListProduct(1); "  style="cursor: pointer;"><a href="" class="mobile"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;" id="bg3"></a></span>
 
             </div>
+        </div>
+        <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "">
+            <button ng-repeat="e in search_product"> {{e}}</button>
+
         </div>
     </div>
     <div class="col-md-12 col-lg-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;">Latest flows</div>
@@ -416,7 +422,7 @@
                     <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
 
 
-			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
+			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24" current-page="3"  pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
                         <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 30vh;text-align: center;overflow: hidden;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
@@ -535,7 +541,23 @@
  
  
         <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row"> 
-            <dir-pagination-controls on-page-change="ListProduct(newPageNumber)"   pagination-id="payment_list_data_id"> </dir-pagination-controls>
+
+            <ul class="pagination"> 
+
+                <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li> 
+                <li ng-click="ListProduct(currentPage-1)" ng-show="currentPage -1 > 0" ><a> {{currentPage -1 }} </a> </li> 
+                <li ng-class="{'active': currentPage == currentPage }"><a> {{currentPage }} </a> </li> 
+                <li ng-click="ListProduct(currentPage+1)" ng-hide="totalPages <= currentPage" ><a> {{currentPage +1 }}  </a> </li> 
+                <li ng-click="ListProduct(currentPage+2)" ng-hide="totalPages <= currentPage+1" ><a> {{currentPage +2 }} </a> </li> 
+                
+                <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3" ><a> {{currentPage +3 }} </a> </li> 
+                <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3" ><a> {{currentPage +4 }} </a> </li> 
+
+
+              </ul>
+ 
+
+            <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
         </div>
     </div>
@@ -712,7 +734,7 @@
 
 
             <div id="containera" class="cols1" style="margin-top: 6%;">
-                <div class="col-xs-12 col-sm-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" >
+                <div class="col-xs-12 col-sm-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" >
 
                     <div class="contain col-xs-12 col-sm-12 no-padding">
                         <img src="{{product.thumbnail}}" class="img" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;height: 100%;width: 100%;">
@@ -950,10 +972,10 @@
     setTimeout(console.log.bind(console, '%c☠', 'font-weight: bold; font-size: 320px;color: red; text-shadow: 3px 1px 0 rgb(217,217,38)'));
 
     var app = angular.module('myApp',  ['angularUtils.directives.dirPagination']);
-    app.controller('myCtrl', function($scope, $http, $timeout) {
+    app.controller('myCtrl', function($scope, $http, $timeout, $location) {
         
     $scope.collection_name = "My Collections" ;
-
+ 
 
 
         $scope.changePage = function(url) {
@@ -1010,27 +1032,20 @@
 
 
         $scope.search_product = "null";
-        $scope.search_category = "null";
-        $scope.old_page =  1
+        $scope.search_category = "null"; 
         // $scope.pagination.current =3 
 
-  $scope.currentPage = 4;
-        $scope.ListProduct = function(page=1) {
-            if($scope.old_page != page){
-                        //  window.location.replace("./index.html?page=" + page)
-                        //  window.location = "./index.html?page=" + page 
-   
+        $scope.currentPage = 1;
+        var url =  $location.$$absUrl;
+        var pageList =  url.split("page=") 
+        if (pageList.length > 1){  $scope.old_page = parseInt( pageList[1]);  }  else {  $scope.old_page=1;   } 
+
+        $scope.ListProduct = function(page) { 
+            if($scope.old_page != page){ 
+                window.location.replace("./index.html?page=" +  page) 
             }
-            var url = window.location.href
-            
-            // window.location.replace("./index/")
-            page = url.split("page=")
-            
-            if (page.length > 1){
-                page=parseInt(page[1])
-            }else(page=1)
-            $scope.old_page  = page;
-            // window.location.replace("./index.html?page=" + page)
+            $scope.currentPage = page;
+             
             var params = {"page": page, "collection": "publish"}
     
             if($scope.search_product){
@@ -1061,6 +1076,7 @@
                 .then(function(response) {
                     $scope.products = response.data.results; 
                     $scope.products_count = response.data.count;
+                    $scope.totalPages = Math.ceil($scope.products_count / 24)
                     console.log($scope.products)
                     for (product in $scope.products){ 
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
@@ -1078,7 +1094,7 @@
                 });
 
         }
-        $scope.ListProduct()
+        $scope.ListProduct($scope.old_page)
 
  
     $scope.SavedAProduct = function(uuid) {
@@ -1152,7 +1168,7 @@
                     $scope.products_names.push($scope.product_names[each].productName)
                 }
                 setTimeout(function() {
-                    $('#example-getting-started1').multiselect();
+                    // $('#example-getting-started1').multiselect();
                 }, 10); 
             });
         }
