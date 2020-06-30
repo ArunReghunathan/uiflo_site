@@ -382,7 +382,15 @@
             </div>
         </div>
         <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "">
-            <button ng-repeat="e in search_product"> {{e}}</button>
+            <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
+            <span style="color: #E7E7E7; background-color: #3D1369; margin-right: 2px;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
+                 {{e}}
+                 <span ng-click="deselectSearchProduct(e)" >&emsp;X </span>
+            </span>
+            <span ng-click="clearAllSearchProduct()" style="color: #E7E7E7; background-color: #3D1369; margin-right: 2px;" ng-show="search_product != 'null'">
+                 Clear All  
+            </span>
+
 
         </div>
     </div>
@@ -397,7 +405,7 @@
                     <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
 
 
-			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24" current-page="3"  pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
+			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24"    pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
                         <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 30vh;text-align: center;overflow: hidden;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
@@ -424,12 +432,13 @@
                         <div class="post-info col-lg-12 col-md-12 no-padding" style="height: 7vh;margin-top: 4%;">
 			        		<div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
                                 <div   style="height: 100%" >
-                                    <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
+                                    <div class="col-md-2 col-lg-2 no-padding" style="height: 100%"> 
                                         <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
                                     </div>
-                                    <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}}
-                                        <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div>
-                                    </div>
+                                    <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}}  </div>
+                                    <div class="col-md-10 col-lg-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.sub_flow}} on {{product.product}}  </div>
+                                    <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div>
+                
 
                                 </div>
 
@@ -519,18 +528,27 @@
 
             <ul class="pagination"> 
 
+                <li ng-click="ListProduct(currentPage-1)"    ><a> < </a> </li> 
+                
+                <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li> 
+                <li  ng-show="currentPage > 4"   ><a> .. </a> </li> 
+
                 <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li> 
                 <li ng-click="ListProduct(currentPage-1)" ng-show="currentPage -1 > 0" ><a> {{currentPage -1 }} </a> </li> 
                 <li ng-class="{'active': currentPage == currentPage }"><a> {{currentPage }} </a> </li> 
                 <li ng-click="ListProduct(currentPage+1)" ng-hide="totalPages <= currentPage" ><a> {{currentPage +1 }}  </a> </li> 
                 <li ng-click="ListProduct(currentPage+2)" ng-hide="totalPages <= currentPage+1" ><a> {{currentPage +2 }} </a> </li> 
                 
-                <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3" ><a> {{currentPage +3 }} </a> </li> 
-                <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3" ><a> {{currentPage +4 }} </a> </li> 
-
+                <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3 && totalPages > 3 " ><a> {{currentPage +3 }} </a> </li> 
+                <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3 && totalPages > 4" ><a> {{currentPage +4 }} </a> </li> 
+                
+                
+                <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li> 
+                <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li> 
+                <li ng-click="ListProduct(currentPage + 1)"   ><a> > </a> </li>  
 
               </ul>
- 
+              {{currentPage}}  {{totalPages}}
 
             <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
@@ -853,7 +871,7 @@
         placeholder : "Placeholder",
         allowHtml: true,
         allowClear: true,
-        tags: true
+        tags: false
     });
 
 
@@ -970,6 +988,17 @@
 
         $scope.showdropdown = function(uuid) {
             document.getElementById("myDropdown" + uuid).classList.toggle("show");
+        }
+
+
+        $scope.deselectSearchProduct = function(key) { 
+             $scope.search_product.splice($scope.search_product.indexOf(key), 1);
+             $scope.ListProduct(1)
+        }
+        
+        $scope.clearAllSearchProduct = function( ) { 
+             $scope.search_product ="null";
+             $scope.ListProduct(1)
         }
         
     $scope.CheckUser = function() {
@@ -1381,10 +1410,14 @@
 
 }
     .select2-selection__choice{
+        /* display: none; */
         color: #3D1369 !important;
         background: #FFD7D7 !important;
         font-weight: 700 !important;
         padding: 1% !important;
+    }
+    .select2-selection__rendered{  
+        display: flex !important;
     }
 
 </style>
