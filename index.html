@@ -336,26 +336,33 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
-    <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;padding: .5% .5%;background: white;z-index:1;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);">
-        <div class="col-md-4 col-lg-4 no-padding" >
-            <div class="col-md-5 col-lg-5 col-lg-offset-1 col-md-offset-1"  style= "">
+    <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;height: 7vh;background: white;z-index:1;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);padding: 0% 3%;">
+        <div class="col-md-8 col-lg-8 no-padding" style="height: 100%">
+            <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <select ng-change="ListProduct(1)" data-placeholder="Product" ng-model="search_product" class="js-select2" multiple="multiple"  >
-                     
-                    
-                    <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>  
- 
+                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 1;top: 28%;left: 28%;">Product</div>
+                <select ng-change="ListProduct(1)" data-placeholder="Product" ng-model="search_product" class="js-select2" multiple="multiple"  style="cursor: pointer;" >
+                    <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
             </div>
-            <div class="col-md-5 col-lg-5"  style= "">
+            <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <select  ng-change="ListProduct(1)" data-placeholder="Category" id="example-getting-started2" multiple="multiple" class="js-select2" ng-model="search_category">
-             
-                    
-                    <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option> 
-
+                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 11;top: 28%;left: 28%;">Category</div>
+                <select  ng-change="ListProduct(1)" data-placeholder="Category" id="example-getting-started2" multiple="multiple" class="js-select2" ng-model="search_category" style="cursor: pointer;">
+                    <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option>
                 </select>
-
+            </div>
+            <div class="col-md-6 col-lg-6" style="height: 100%;">
+                    <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "padding: 3%;height: 100%;">
+                                <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
+                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
+                             {{e}}
+                             <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
+                        </span>
+                        <span ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-show="search_product != 'null'">
+                             CLEAR
+                        </span>
+                    </div>
             </div>
 <!--            <div class="col-lg-6 col-md-6" >-->
 <!--                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
@@ -373,7 +380,7 @@
         </div>
         
         
-        <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
+        <div class="col-md-4 col-lg-4" style="text-align: right;padding: .5%;">
             <div class="col-md-12 col-lg-12">
                 <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><a href="" class="all"><img  src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;" id="bg1"> </a></span>
                 <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><a href="" class="desktop"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;" id="bg2"></a></span>
@@ -381,18 +388,7 @@
 
             </div>
         </div>
-        <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "">
-            <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-            <span style="color: #E7E7E7; background-color: #3D1369; margin-right: 2px;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
-                 {{e}}
-                 <span ng-click="deselectSearchProduct(e)" >&emsp;X </span>
-            </span>
-            <span ng-click="clearAllSearchProduct()" style="color: #E7E7E7; background-color: #3D1369; margin-right: 2px;" ng-show="search_product != 'null'">
-                 Clear All  
-            </span>
 
-
-        </div>
     </div>
     <div class="col-md-12 col-lg-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;">Latest flows</div>
 
@@ -526,9 +522,9 @@
  
         <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row"> 
 
-            <ul class="pagination"> 
+            <ul class="pagination col-lg-12 col-md-12">
 
-                <li ng-click="ListProduct(currentPage-1)"    ><a> < </a> </li> 
+                <li ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
                 
                 <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li> 
                 <li  ng-show="currentPage > 4"   ><a> .. </a> </li> 
@@ -545,10 +541,10 @@
                 
                 <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li> 
                 <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li> 
-                <li ng-click="ListProduct(currentPage + 1)"   ><a> > </a> </li>  
+                <li ng-click="ListProduct(currentPage + 1)"   ><a style="margin-left: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
 
               </ul>
-              {{currentPage}}  {{totalPages}}
+<!--              {{currentPage}}  {{totalPages}}-->
 
             <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
@@ -1320,6 +1316,9 @@
 
 
 <style>
+    .select2-selection__rendered{
+        display: none !important;
+    }
     #tiles li{
         background: none;
         border: none;
@@ -1416,9 +1415,28 @@
         font-weight: 700 !important;
         padding: 1% !important;
     }
-    .select2-selection__rendered{  
-        display: flex !important;
+    /*.select2-selection__rendered{  */
+    /*    display: flex !important;*/
+    /*}*/
+.select2-dropdown {
+    width: 200px !important;
+}
+    .select2-container{
+        width: 100% !important;
     }
 
+    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+        background-color: black !important;
+        color: white !important;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    .pagination>li>a, .pagination>li>span{
+        background: transparent !important;
+        color: #200000 !important;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        border: none !important;
+    }
 </style>
 </html>
