@@ -358,10 +358,14 @@
                         <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
                              {{e}}
                              <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
+                        </span> 
+                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
+                             {{e}}
+                             <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span>
                         </span>
-                        <span ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-show="search_product != 'null'">
-                             CLEAR
-                        </span>
+                        <!-- <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-hide="search_product == 'null' || search_product == []"   >
+                             CLEAR  
+                        </span> -->
                     </div>
             </div>
 <!--            <div class="col-lg-6 col-md-6" >-->
@@ -394,12 +398,14 @@
 
 
     <div class="col-md-12 col-lg-12 no-padding">
-        <div class="col-md-12 col-lg-12 no-padding ">
-             <div class="col-md-12 col-lg-12" style="margin-top: 2% !important; display: grid;grid-template-columns: 25% 25% 25% 25%;grid-row-gap: 50px;margin-bottom: 7%;padding: 0% 3%;">
+            <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding "> 
+                <lottie-player src="./lf30_8A8P5d.json"  background="transparent"  speed="1"  style="width: 700px; height: 700px;"  loop  autoplay></lottie-player>
+            </div >
+            <div ng-show="productLoading" class="col-md-12 col-lg-12" style="margin-top: 2% !important; display: grid;grid-template-columns: 25% 25% 25% 25%;grid-row-gap: 50px;margin-bottom: 7%;padding: 0% 3%;">
 
                     <!-- These are our grid blocks -->
                     <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
-
+                  
 
 			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24"    pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
                         <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 30vh;text-align: center;overflow: hidden;">
@@ -992,6 +998,11 @@
              $scope.ListProduct(1)
         }
         
+        $scope.deselectSearch_category = function(key) { 
+             $scope.search_category.splice($scope.search_category.indexOf(key), 1);
+             $scope.ListProduct(1)
+        }
+        
         $scope.clearAllSearchProduct = function( ) { 
              $scope.search_product ="null";
              $scope.ListProduct(1)
@@ -1040,21 +1051,43 @@
         var pageList =  url.split("page=") 
         if (pageList.length > 1){  $scope.old_page = parseInt( pageList[1]);  }  else {  $scope.old_page=1;   } 
 
+        $scope.productLoading = false;
+        $scope.firsttime = true;
         $scope.ListProduct = function(page) { 
+            $scope.productLoading = false;
+
+            
             if($scope.old_page != page){ 
                 window.location.replace("./index.html?page=" +  page) 
             }
             $scope.currentPage = page;
              
             var params = {"page": page, "collection": "publish"}
-    
+            
+            var session_product = sessionStorage.getItem("search_product")
+            var session_category = sessionStorage.getItem("search_category")
+            if (session_category){
+                if ($scope.firsttime){
+                    $scope.search_category = session_category.split(",")
+                    }
+            }
+            if (session_product){
+                if ($scope.firsttime){
+                    $scope.search_product = session_product.split(",")
+                    }
+            }
+            
+            console.log($scope.search_product)
+             
             if($scope.search_product){
+                sessionStorage.setItem("search_product",$scope.search_product);
                 params['product'] = $scope.search_product
-                if($scope.search_product=="null"){ delete params['product']}
+                if($scope.search_product=="null"){ delete params['product']; sessionStorage.removeItem("search_product");}
             }
             if($scope.search_category){
+                sessionStorage.setItem("search_category",$scope.search_category);
                 params['category'] = $scope.search_category
-                if($scope.search_category=="null"){ delete params['category']}
+                if($scope.search_category=="null"){ delete params['category']; sessionStorage.removeItem("search_category");}
 
             }
             if($scope.search_platform){
@@ -1074,6 +1107,7 @@
                 headers: headers
             })
                 .then(function(response) {
+                    $scope.firsttime = false;
                     $scope.products = response.data.results; 
                     $scope.products_count = response.data.count;
                     $scope.totalPages = Math.ceil($scope.products_count / 24)
@@ -1091,6 +1125,8 @@
                         }
                     }
                     console.log($scope.products) 
+                    $scope.productLoading = true;
+
                 });
 
         }
