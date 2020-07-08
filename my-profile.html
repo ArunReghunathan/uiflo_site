@@ -42,11 +42,11 @@
     <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 " style="height: 90%;background: white;margin-top: 4%;">
 
         <div class="col-lg-12 col-md-12 sq-price" style="height: 100%;">
-            <div class="col-lg-12 col-md-12" onclick="edit_profile()" style="text-align: right;color: #3D1369;font-size: 16px;margin-top: 3%;font-weight: 700;cursor: pointer;">EDIT</div>
+            <div class="col-lg-12 col-md-12"  ng-click="editable=1" style="text-align: right;color: #3D1369;font-size: 16px;margin-top: 3%;font-weight: 700;cursor: pointer;">EDIT</div>
             <div class="col-lg-12 col-md-12"  style="height: 80%;">
                <div class="col-lg-12 col-md-12">
                    <div id="profile-container" class=" col-lg-offset-4 col-md-offset-4">
-                       <img id="profileImage" src="https://s3.ap-south-1.amazonaws.com/www.uiflo.com/src/img/default_profile_img.jpeg" />
+                       <img id="profileImage" src="{{user.profile_pic}}" />
                    </div>
                    <input id="imageUpload" type="file"
                           name="profile_photo" placeholder="Photo" required="" capture>
@@ -58,13 +58,17 @@
 <!--                           accept="image/png, image/jpeg, image/gif"/>-->
 <!--&lt;!&ndash;                    <img src="{{user.profile_pic}}" style="background: #D8D8D8;border-radius: 50%;height: 15vh; width: 15vh; margin-top: 12%;">&ndash;&gt;-->
 <!--                </div>-->
-                   <div class="col-lg-12 col-md-12" id="myP" style="text-align: center;color: #666666;font-size: 30px;font-weight: 700;margin-top: 5%;">
+                   <div ng-hide="editable"  class="col-lg-12 col-md-12" id="myP" style="text-align: center;color: #666666;font-size: 30px;font-weight: 700;margin-top: 5%;">
                     {{user.first_name}}
+                </div>
+                   <div ng-show="editable" class="col-lg-12 col-md-12" id="myP" style="text-align: center;color: #666666;font-size: 30px;font-weight: 700;margin-top: 5%;">
+                    <input type="text" ng-model="user.first_name" >
                 </div>
                     <div class="col-lg-10 col-md-10 col-lg-offset-1 col-md-offset-1" style="background-color: #FFFFFF;border: 1px solid #FFB2B2;border-radius: 27px;padding: 2%;color: #3D1369;font-size: 16px;text-align: center;font-weight: 600;margin-top: 3%;">
                         {{user.email}}
                     </div>
-                <div class="col-lg-12 col-md-12" type="submit" style="text-align: center;color: #3D1369;font-size: 16px;margin-top: 11%;font-weight: 700;cursor: pointer;">SAVE
+                <div ng-click="EditUser()" class="col-lg-12 col-md-12" type="submit" style="text-align: center;color: #3D1369;font-size: 16px;margin-top: 11%;font-weight: 700;cursor: pointer;">SAVE
+
 
                 </div>
             </div>
@@ -85,11 +89,11 @@
                 <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;">
                     <form action="">
                         <label class="col-lg-12 col-md-12 no-padding">Password</label>
-                        <input class="col-lg-12 col-md-12" type="password" id="pwd" name="firstname" placeholder="Enter password" style="background: white;border: 1px solid #C7C7C7;">
+                        <input ng-model="password1" class="col-lg-12 col-md-12" type="password" id="pwd"   placeholder="Enter password" style="background: white;border: 1px solid #C7C7C7;">
                         <label class="col-lg-12 col-md-12 no-padding" style="margin-top: 4%;">Repeat Password</label>
-                        <input class="col-lg-12 col-md-12" type="password" id="pwd-repeat" name="firstname" placeholder="Repeat Password" style="background: white;border: 1px solid #C7C7C7;">
+                        <input ng-model="password2" class="col-lg-12 col-md-12" type="password" id="pwd-repeat" placeholder="Repeat Password" style="background: white;border: 1px solid #C7C7C7;">
 
-                        <input type="submit" value="Submit" id="formButton" style="margin-top: 8%;">
+                        <input ng-click="ChangePassword()" type="submit" value="Submit" id="formButton" style="margin-top: 8%;">
                     </form>
                 </div>
             </div>
@@ -342,8 +346,75 @@ $scope.CheckUser = function() {
     ;
 
 }
+
 $scope.CheckUser();
 
+    $scope.EditUser = function() {
+    
+
+        var f = document.getElementById('imageUpload').files[0];
+        console.log(f)
+
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
+        var url = "http://13.126.184.35:8000/user/" + window.localStorage.getItem("userId")+ "/" ;
+        var formdata = new FormData(); 
+        if (f){
+
+        formdata.append("profile_pic", f);
+        } 
+        formdata.append("is_active", $scope.user.is_active); 
+        // formdata.append("is_active", true); 
+        formdata.append("is_staff", $scope.user.is_staff); 
+        formdata.append("is_admin", $scope.user.is_admin); 
+        formdata.append("first_name", $scope.user.first_name); 
+        var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+        };
+
+        fetch(url, requestOptions)
+        .then(response => response.text()
+        )
+        .then((result) =>{
+            console.log(result)
+            alert("Saved") 
+        })
+        .catch(error => {
+            $scope.screen_shorts_uploading = false;
+            console.log('error', error)
+        });
+    };
+
+
+
+$scope.ChangePassword = function() {
+
+var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+$scope.userId = window.localStorage.getItem('userId') || "unknown"
+var body = {};
+if($scope.password1 == $scope.password2){
+    body['password'] = $scope.password1;
+}
+$http({
+    method: "PUT",
+    url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+    data: body,
+    headers : headers
+    })
+.then(function(response) { 
+}
+).catch(function error() {
+    // alert("please sigin")
+    // window.location.replace("./index.html");
+
+})
+;
+
+}
 
 
 
