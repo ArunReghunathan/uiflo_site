@@ -155,10 +155,10 @@
                             <div class="col-lg-12 col-md-12" style="font-size: 14px;">TO UIFLO</div>
                         </div>
                         <label for="username">Email</label>
-                        <input class="form-styling" id="login_email" type="text" name="email" class="text-field" placeholder="Enter email id" />
+                        <input class="form-styling" id="login_email" type="text" name="email" class="text-field" placeholder="Enter email id" required/>
 
                         <label for="password">Password</label>
-                        <input class="form-styling" id="login_password" type="password" name="password" class="text-field" placeholder="Enter password"/>
+                        <input class="form-styling" id="login_password" type="password" name="password" class="text-field" placeholder="Enter password" required/>
                         <input type="checkbox" id="checkbox"/> 
                         <div class="btn-animate">
                             <a onclick="Login()" class="btn-signin">Sign in</a>
@@ -193,13 +193,13 @@
                             <div class="col-lg-12 col-md-12" style="font-size: 14px;">TO UIFLO</div>
                         </div>
                         <label for="fullname">Full name</label>
-                        <input class="form-styling" type="text" id="registed_name" placeholder="Name"/>
+                        <input class="form-styling" type="text" id="registed_name" placeholder="Name" required/>
                         <label for="email">Email</label>
-                        <input class="form-styling" type="text" id="registed_email" placeholder="Email"/>
+                        <input class="form-styling" type="text" id="registed_email" placeholder="Email" required/>
                         <label for="password">Password</label>
-                        <input class="form-styling" type="password" id="registed_password" placeholder="Password"/>
+                        <input class="form-styling" type="password" id="registed_password" placeholder="Password" required/>
                         <label for="confirmpassword">Confirm password</label>
-                        <input class="form-styling" type="password" id="confirmpassword" placeholder="Password"/>
+                        <input class="form-styling" type="password" id="confirmpassword" placeholder="Password" required/>
                         <a ng-click="checked = !checked" onclick="Register()" class="btn-signup">Sign Up</a>
                         <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;margin-top: 2%;border-radius: 5px;">
                             <!-- <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div>
