@@ -399,7 +399,7 @@
 
         <div class="col-md-12 col-lg-12 no-padding">
             <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding "> 
-                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 1300px; height: 700px;"  loop  autoplay></lottie-player>
+                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 100%; "  loop  autoplay></lottie-player>
             </div >
             <div ng-show="productLoading" class="col-md-12 col-lg-12" style="margin-top: 2% !important; display: grid;grid-template-columns: 25% 25% 25% 25%;grid-row-gap: 50px;margin-bottom: 7%;padding: 0% 3%;">
 
@@ -530,7 +530,7 @@
 
             <ul class="pagination col-lg-12 col-md-12">
 
-                <li ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
+                <li ng-show="currentPage-1 >= 1" ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
                 
                 <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li> 
                 <li  ng-show="currentPage > 4"   ><a> .. </a> </li> 
@@ -547,7 +547,7 @@
                 
                 <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li> 
                 <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li> 
-                <li ng-click="ListProduct(currentPage + 1)"   ><a style="margin-left: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
+                <li ng-show="currentPage+1<= totalPages " ng-click="ListProduct(currentPage + 1)"   ><a style="margin-left: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
 
               </ul>
 <!--              {{currentPage}}  {{totalPages}}-->
