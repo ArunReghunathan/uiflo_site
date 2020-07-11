@@ -340,8 +340,9 @@
         <div class="col-md-8 col-lg-8 no-padding" style="height: 100%">
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 1;top: 28%;left: 28%;">Product</div>
+                <div class=""  style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 1;top: 28%;left: 28%;">Product</div>
                 <select ng-change="ListProduct(1)" data-placeholder="Product" ng-model="search_product" class="js-select2" multiple="multiple"  style="cursor: pointer;" >
+
                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
             </div>
@@ -354,7 +355,8 @@
             </div>
             <div class="col-md-6 col-lg-6" style="height: 100%;">
                     <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "padding: 3%;height: 100%;">
-                                <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
+
+                        <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
                         <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
                              {{e}}
                              <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
@@ -408,10 +410,10 @@
                   
 
 			        <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 24"    pagination-id="payment_list_data_id"  total-items="products_count" style="cursor: pointer;" >
-                        <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 30vh;text-align: center;overflow: hidden;">
+                        <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height: 90%;margin-top: 9%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
                         <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">

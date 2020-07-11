@@ -28,16 +28,93 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
-<div   ng-app="myApp" ng-controller="myCtrl" > 
-<div class="col-md-12 col-lg-12" style="border-bottom: 1px solid #EBEBEB;background: white;padding: 1%;z-index: 1;position: fixed;">
-    <div class="col-md-7 col-lg-7" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
-        <a href="index.html"> 
-            <img src="src/img/logo.svg" alt="">
-        </a>
-        <!-- <img src="{{user.profile_pic}}" alt=""> xxxxxxxxxx -->
+<div   ng-app="myApp" ng-controller="myCtrl" >
+    <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
+        <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
+            <div class="col-md-6 col-lg-6" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
+                <div class="col-md-12 col-lg-12">
+                    <img src="src/img/logo.svg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 no-padding">
+
+                <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
+
+                    <!-- Trigger the modal with a button -->
+                    <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                        <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                            SIGN UP
+                        </div>
+                    </div>
+                    <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
+                        <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                            SIGN IN
+                        </div>
+                    </div>
+
+
+                    <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
+                        <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                        <div class="dropdown-content" style="z-index: 2 !important;">
+                            <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
+                            <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
+                        </div>
+                    </div>
+                    <a ng-if="userRole!='unauth'" href="my-saves.html" class=" col-lg-3 col-md-3 pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;">
+                        <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                            MY SAVES
+                        </div>
+                    </a>
+
+                    <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
+                        <a href="./admin-home.html" >
+                            <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                                ADMIN
+                            </div>
+                        </a>
+                    </div>
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+
+                            <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
+                                <div class="col-lg-12 col-md-12 flex-container"  >
+                                    <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;text-align: center">
+                                        <div style="font-size: 30px;">SIGN UP</div>
+                                        <div style="font-size: 14px;">TO UIFLO</div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
+                                            <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
+                                            <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
+                                            <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
+                                            <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
+                                            <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
+                                            <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
+
+                                            <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
+                                            <br>
+                                            <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
+                                                <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
+                                                    <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
+                                                    <div class="col-lg-11 col-md-11" >Connect with facebook </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
- 
-</div>
 <div class="col-lg-12 col-md-12" style="background: #F7F7F7;padding: 3%;height: 100vh;">
     <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 " style="height: 90%;background: white;margin-top: 4%;">
 
