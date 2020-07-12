@@ -340,16 +340,15 @@
         <div class="col-md-8 col-lg-8 no-padding" style="height: 100%">
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <div class=""  style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 1;top: 28%;left: 28%;">Product</div>
-                <select ng-change="ListProduct(1)" data-placeholder="Product" ng-model="search_product" class="js-select2" multiple="multiple"  style="cursor: pointer;" >
+                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2" multiple="multiple"  style="cursor: pointer;" >
 
                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
             </div>
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 11;top: 28%;left: 28%;">Category</div>
-                <select  ng-change="ListProduct(1)" data-placeholder="Category" id="example-getting-started2" multiple="multiple" class="js-select2" ng-model="search_category" style="cursor: pointer;">
+<!--                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 11;top: 28%;left: 28%;">Category</div>-->
+                <select  ng-change="ListProduct(1)"  id="example-getting-started2" multiple="multiple" class="js-select21" ng-model="search_category" style="cursor: pointer;">
                     <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option>
                 </select>
             </div>
@@ -872,8 +871,23 @@
 <script>
     $(".js-select2").select2({
         closeOnSelect : false,
-        placeholder : "Placeholder",
         allowHtml: true,
+        allowClear: true,
+        tags: false
+    });
+
+
+
+    function iformat(icon, badge,) {
+        var originalOption = icon.element;
+        var originalOptionBadge = $(originalOption).data('badge');
+
+        return $('<span><i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text + '<span class="badge">' + originalOptionBadge + '</span></span>');
+    }
+
+  $(".js-select21").select2({
+        closeOnSelect : false,
+        allowHtml: false,
         allowClear: true,
         tags: false
     });
@@ -1354,8 +1368,13 @@
 
 
 <style>
-    .select2-selection__rendered{
-        display: none !important;
+    .select2-selection__choice{display: none !important;}
+    .select2-selection__clear{display: none !important;}
+    .select2-selection__rendered:after{
+        content: 'Product' !important;
+        color: black;
+        left: 14px;
+        position: absolute;
     }
     #tiles li{
         background: none;
