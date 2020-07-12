@@ -214,6 +214,7 @@
                                     </div>
                                     <a  ng-click="DeleteCollection(each.collection, $index)" class="edit" style="color: #666666;font-weight: 600;padding: 0;"><div style="padding: 5% 7%;">delete</div></a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -296,7 +297,20 @@
 </div>
 
 </body>
+<script>
+    function openPopup(divPopup) {
+        $(divPopup).fadeIn(250);
+    }
 
+    function closePopup(divPopup) {
+        $(divPopup).fadeOut(250);
+    }
+    $('#save').click(function() {
+        $('#wrap_popup1').modal('close');
+    });
+
+
+</script>
 <script>
 
     window.onclick = function(event) {
@@ -630,6 +644,64 @@
 
 
 <style>
+    .wrap_popup{
+        display:none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        height:100%;
+        width:100%;
+        overflow:auto;
+        background-color: rgba(0,0,0,0.6);
+    }
+
+    .popup{
+        height:auto;
+        width:80%;
+        max-width:600px;
+        margin:5% auto;
+        display:block;
+        border-radius:8px;
+        overflow:hidden;
+        -moz-box-shadow: 0 0 5px $popupShadow;
+        -webkit-box-shadow: 0 0 5px $popupShadow;
+        box-shadow: 0 0 5px $popupShadow;
+    }
+
+    .title{
+        width:100%;
+        display:block;
+        background:$titleBack;
+        color:$titleText;
+        font-weight:700;
+        padding:5px;
+    }
+
+    .title p{
+        margin:5px;
+    }
+
+    .box{
+        width:100%;
+        display:block;
+        background:$boxBack;
+        padding:5px;
+        color:$boxText;
+    }
+
+    .box p{
+        margin:5px;
+    }
+
+    .box button{
+        padding:10px;
+        margin:10px 0px 10px 0px;
+        background:$buttonBack;
+        color:$buttonText;
+        border:3px solid $buttonBorder;
+        border-radius:5px;
+    }
 .edit:hover{
     color: #FF7B62 !important;
 
