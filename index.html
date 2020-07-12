@@ -225,21 +225,23 @@
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
 
 <div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;">
-    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6" >
-        <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
-            <br> user flows ✌
-        <div class="col-md-12 col-lg-12 no-padding" style="font-size: 18px;font-weight: 600">Learn from the world's best products</div>
+    <div ng-if="userRole=='unauth'" class="col-md-12 col-lg-12 no-padding" style="margin-bottom: 3%;">
+        <div class="col-md-6 col-lg-6" >
+            <div style="color: #333333;font-size: 50px;font-weight: 700;line-height: 60px;text-align: left;margin-top: 4%;">Curated collection of
+                <br> user flows ✌
+                <div class="col-md-12 col-lg-12 no-padding" style="font-size: 18px;font-weight: 600">Learn from the world's best products</div>
+            </div>
+
+            <div ng-click="changePageRegister('./login.html#register')" class="col-md-2 col-lg-2" type="button"  style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
+
         </div>
+        <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
+        <div class="col-md-6 col-lg-6">
+            <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
 
-        <div ng-click="changePageRegister('./login.html#register')" class="col-md-2 col-lg-2" type="button"  style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
-
+        </div>
     </div>
-    <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
-    <div ng-if="userRole=='unauth'" class="col-md-6 col-lg-6">
-        <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
-        
-    </div>
-      <div class="col-md-12 col-lg-12 no-padding" style="margin-top:7%;font-family: Montserrat !important;">
+      <div class="col-md-12 col-lg-12 no-padding" style="font-family: Montserrat !important;">
             <div class="col-md-12 col-lg-12 no-padding">
                 <div class="col-md-3 col-lg-3" >
                     <a href="flows/user-onboarding.html">
