@@ -340,7 +340,7 @@
         <div class="col-md-8 col-lg-8 no-padding" style="height: 100%">
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2" multiple="multiple"  style="cursor: pointer;" >
+                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
 
                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
@@ -356,7 +356,7 @@
                     <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "padding: 3%;height: 100%;">
 
                         <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
+                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
                              {{e}}
                              <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
                         </span> 
@@ -419,7 +419,7 @@
                                     <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
                               
                                         <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
-                                            <option  selected value="My Collections">My Collections</option> 
+                                            <option ng-hide="savedCollection"  selected value="My Collections">My Collections</option> 
                                             <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option> 
                                         </select> 
 
@@ -1190,6 +1190,7 @@
                             $scope.SavedAProduct_value = 1;
                         }
                     }
+                    $scope.collection_name = $scope.savedCollection[0].collection
                     console.log("saved savedCollection ",$scope.savedCollection)
                     console.log("saved products ",$scope.savedProduct)
                 });
@@ -1368,10 +1369,11 @@
 
 
 <style>
+
     .select2-selection__choice{display: none !important;}
     .select2-selection__clear{display: none !important;}
     .select2-selection__rendered:after{
-        content: 'Product' !important;
+        content: 'Search' ;
         color: black;
         left: 14px;
         position: absolute;
@@ -1388,6 +1390,15 @@
         font-family: Lato, sans-serif;
         overflow-x: hidden !important;
     }
+        
+    .xxxyyy:after{
+        content: 'Product_xxxyyyy' !important;
+        color: black;
+        left: 14px;
+        position: absolute;
+    }
+
+
 
     .select2-container {
         min-width: 100%;
