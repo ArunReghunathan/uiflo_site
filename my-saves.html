@@ -198,14 +198,14 @@
 
                         <div class="col-md-2 col-lg-2 flex-container" style="height: 100%;">
                             <div class="dropdown">
-                                <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;</div>
+                                <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;  </div>
                                 <div id="myDropdown{{each.collection}}" class="dropdown-content">
 <!--                                    <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >-->
-                                    <a onclick="openPopup('#wrap_popup1')" class="" style="color: #666666;font-weight: 600;padding: 0;"><div style="border-bottom: 1px solid #6666661f;padding: 5% 7%;">Rename</div></a>
-                                    <div id="wrap_popup1" class="wrap_popup">
+                                    <a ng-click="OpenPopup($index, each.collection)" class="" style="color: #666666;font-weight: 600;padding: 0;"><div style="border-bottom: 1px solid #6666661f;padding: 5% 7%;">Rename</div></a>
+                                    <div id="wrap_popup{{$index}}" class="wrap_popup">
                                         <div class="popup" style="background: white;margin-top: 25%;margin-left: 30%;">
-                                            <span onClick="closePopup('#wrap_popup1')" style="font-size: 18px;color: black;float: right;padding: 1%">X</span>
-                                            <div class="col-lg-12 col-md-12" style="color: #666666;font-size: 16px; font-weight: 600;">Rename collection</div>
+                                            <span ng-click="ClosePopup($index)" style="font-size: 18px;color: black;float: right;padding: 1%">X</span>
+                                            <div class="col-lg-12 col-md-12" style="color: #666666;font-size: 16px; font-weight: 600;">Rename collection </div>
                                             <div class="col-lg-12 col-md-12" style="margin-top: 4%;margin-bottom: 4%;">
                                                 <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >
                                                 <div ng-click="EditCollection(each.collection, $index)" onclick=" closePopup('#wrap_popup1')" class="col-lg-3 col-md-3 " id="save" style="background: #3D1369;color: white; border-radius: 4px; font-size: 14px;text-align: center;padding: 3%;margin-top: 5%;float: right;">SAVE</div>
@@ -298,7 +298,7 @@
 
 </body>
 <script>
-    function openPopup(divPopup) {
+    function openPopup(divPopup) { 
         $(divPopup).fadeIn(250);
     }
 
@@ -343,6 +343,19 @@
             var loc = "./product-flow.html#" + url
 
             window.location.href= loc
+        }
+ 
+        $scope.OpenPopup = function(index, name) {
+            
+            var temp = "#wrap_popup"+ index 
+            $scope.edited_collection_name = name
+            $(temp).fadeIn(250); 
+        }
+
+        $scope.ClosePopup = function(index) {
+            
+            var temp = "#wrap_popup"+ index 
+            $(temp).fadeOut(250); 
         }
 
 
@@ -555,6 +568,7 @@
         }
 
         $scope.edited_collection_name = ""
+
         $scope.EditCollection = function(collection, index) { 
             if ($scope.edited_collection_name == ""){
                 alert("Enter a name") 
@@ -577,6 +591,7 @@
                         
                         console.log("savedCollection", $scope.savedCollection[index])
                         $scope.savedCollection[index].collection = $scope.edited_collection_name
+                        $scope.ClosePopup(index)
                     });
 
 
@@ -646,6 +661,7 @@
 <style>
     .wrap_popup{
         display:none;
+        /* display:block; */
         position: fixed;
         z-index: 1;
         left: 0;
