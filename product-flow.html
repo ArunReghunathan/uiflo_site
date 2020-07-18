@@ -535,7 +535,7 @@
                 <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
 
 
-                <a title="Home" href="/"> <span class="">
+                <a title="Home" href="index.html"> <span class="">
                         <img alt="enguru logo" src="src/img/logo.svg"
                              style="height: 41px;width: 123px;">
                     </span></a>
@@ -841,7 +841,18 @@
     </div>
 </div>
 </body>
+<script>
+    function openNav() {
+        document.getElementById('mySidenav').style.width = '100%';
+        document.getElementById("overlay").style.display = "block";
 
+    }
+
+    function closeNav() {
+        document.getElementById('mySidenav').style.width = '0';
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 <script>
     $(document).ready(function() {
         $(".fancybox-thumb").fancybox({
