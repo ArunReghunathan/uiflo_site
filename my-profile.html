@@ -28,7 +28,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
-<div   ng-app="myApp" ng-controller="myCtrl" >
+<div   ng-app="myApp" ng-controller="myCtrl">
     <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
         <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
             <div class="col-md-6 col-lg-6" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
@@ -117,7 +117,7 @@
             </div>
         </div>
     </div>
-<div class="col-lg-12 col-md-12" style="background: #F7F7F7;padding: 3%;height: 100vh;">
+<div class="col-lg-12 col-md-12 hidden-xs hidden-sm" style="background: #F7F7F7;padding: 3%;height: 100vh;">
     <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 " style="height: 90%;background: white;margin-top: 4%;">
 
         <div class="col-lg-12 col-md-12 sq-price" style="height: 100%;">
@@ -220,7 +220,170 @@
 <!--    </div>-->
 </div>
 </div>
-    <script>
+
+<!--    mobile view-->
+    <div class=" col-xs-12 col-sm-12 hidden-lg hidden-md" style="z-index: 1">
+
+        <div class="navbar " style="margin-bottom: 0 !important;z-index: 11111;">
+            <div class="header-elements col-md-12 col-sm-12 col-xs-12 col-xs-12 hidden-md hidden-sm"
+                 style="position: fixed; top: 0;left: 0; background: white; padding-top: 8px;">
+
+                <div id="mySidenav" class="sidenav">
+                    <div class="side col-xs-12 no-padding" style="width: 80%;height: 100%; background: white !important;">
+                        <div class="col-xs-12" style="box-shadow: 0 1px 2px #80808073;">
+                            <a title="close button" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <a style="text-align: left; margin-left: 44px; "> <img alt="enguru logo" style="width: 65%;" src="src/img/logo.svg"></a>
+                        </div>
+                        <div class="col-xs-12" style="margin-top: 20px;font-weight: bold;">
+                            <a title="About us" href="about-us.html" class=" theme-font-3" style="text-align: left; ">About Us</a>
+                            <a title="Feedback" href="feedback.html" class=" theme-font-3" style="text-align: left;">Feedback</a>
+                            <a title="Flow Request" href="flow-request.html" class=" theme-font-3" style="text-align: left;">Flow Request</a>
+
+                        </div>
+
+                        <div class="col-xs-12" style="position:absolute; bottom: 14px; ">
+                            <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'"  id="loginbutton" class="col-xs-12 col-sm-12 no-padding signUp " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                                    SIGN UP
+                                </div>
+                            </div>
+                            <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-xs-12 col-sm-12 no-padding" type="button">
+                                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                                    SIGN IN
+                                </div>
+                            </div>
+                            <a  href="my-saves.html" ng-if="userRole!='unauth'" class=" col-xs-12 col-sm-12 mySaves no-padding" style="cursor: pointer; margin-top: 3%;">
+                                <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                                    MY SAVES
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 no-padding" style="text-align: center;">
+                    <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
+
+
+                    <a title="Home" href="index.html"> <span class="">
+                        <img alt="enguru logo" src="src/img/logo.svg"
+                             style="height: 41px;width: 123px;">
+                    </span></a>
+                    <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
+                        <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></span>
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 hidden-lg hidden-md" style="background: #F7F7F7;padding: 3%;height: 100vh;">
+        <div class="col-xs-12 col-sm-12" style="height: 90%;background: white;margin-top: 4%;">
+
+            <div class="col-xs-12 col-sm-12 sq-price" style="height: 100%;">
+                <div class="col-xs-12 col-sm-12"  ng-click="editable=1" style="text-align: right;color: #3D1369;font-size: 12px;margin-top: 3%;font-weight: 700;cursor: pointer;">EDIT</div>
+                <div class="col-xs-12 col-sm-12"  style="height: 80%;">
+                    <div class="" style="margin-left: 19%;">
+                        <div ng-show="user.profile_pic" id="profile-container" class=" ">
+                            <img id="profileImage" src="{{user.profile_pic}}" />
+                        </div>
+                        <!-- <div ng-hide="user.profile_pic" id="profile-container" class=" col-lg-offset-4 col-md-offset-4">
+                            <img id="profileImage" src="./src/img/default_profile_img.jpeg" />
+                        </div> -->
+                        <input id="imageUpload" type="file"
+                               name="profile_photo" placeholder="Photo" required="" capture>
+                    </div>
+                    <!--                <div id="profile-pic" class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4" >-->
+                    <!--                    <input type="file"-->
+                    <!--                           class="filepond"-->
+                    <!--                           name="filepond"-->
+                    <!--                           accept="image/png, image/jpeg, image/gif"/>-->
+                    <!--&lt;!&ndash;                    <img src="{{user.profile_pic}}" style="background: #D8D8D8;border-radius: 50%;height: 15vh; width: 15vh; margin-top: 12%;">&ndash;&gt;-->
+                    <!--                </div>-->
+                    <div ng-hide="editable"  class="col-xs-12 col-sm-12" id="myP" style="text-align: center;color: #666666;font-size: 16px;font-weight: 700;margin-top: 5%;">
+                        {{user.first_name}}
+                    </div>
+                    <div ng-show="editable" class="col-xs-12 col-sm-12" id="myP" style="text-align: center;color: #666666;font-size: 16px;font-weight: 700;margin-top: 5%;">
+                        <input type="text" ng-model="user.first_name" >
+                    </div>
+                    <div class="col-xs-12 col-sm-12" style="background-color: #FFFFFF;border: 1px solid #FFB2B2;border-radius: 16px;padding: 2%;color: #3D1369;font-size: 16px;text-align: center;font-weight: 600;margin-top: 3%;">
+                        {{user.email}}
+                    </div>
+                    <div ng-click="EditUser()" class="col-xs-12 col-sm-12" type="submit" style="text-align: center;color: #3D1369;font-size: 16px;margin-top: 11%;font-weight: 700;cursor: pointer;">SAVE
+
+
+                    </div>
+                </div>
+                <div  class="col-xs-12 col-sm-12" style="">
+                    <div class="col-xs-12 col-sm-12" style="padding: 0">
+                        <a href="#" class="change-password"><div style="color:#3D1369;font-size: 12px;text-align: left;padding: 2%;font-weight: bold;cursor: pointer;">CHANGE PASSWORD<span class="fa fa-angle-right" style="float: right;font-weight: bold;"></span></div></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-xs-12 col-sm-12 change_p" style="height: 100%;">
+                <div class="col-xs-12 col-sm-12 no-padding"  style="height: 100%;">
+                    <div class="col-xs-12 col-sm-12 no-padding" style=" color: #000000;font-size: 18px;font-weight: 700;text-align: left;margin-top: 7%;">
+                        <a href="#" class="go-back"  ><img src="src/img/back (3) copy.svg" alt="" style="float: left"></a><div style="text-align: center">Change Password</div></div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;">
+                        <form action="">
+                            <label class="col-xs-12 col-sm-12 no-padding">Password</label>
+                            <input ng-model="password1" class="col-xs-12 col-sm-12" type="password" id="pwd"   placeholder="Enter password" style="background: white;border: 1px solid #C7C7C7;">
+                            <label class="col-xs-12 col-sm-12 no-padding" style="margin-top: 4%;">Repeat Password</label>
+                            <input ng-model="password2" class="col-xs-12 col-sm-12" type="password" id="pwd-repeat" placeholder="Repeat Password" style="background: white;border: 1px solid #C7C7C7;">
+
+                            <input ng-click="ChangePassword()" type="submit" value="Submit" id="formButton" style="margin-top: 8%;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 submit_p" id="form1" style="height: 100%;">
+                <div class="col-xs-12 col-sm-12 no-padding"  style="height: 100%;">
+                    <div class="col-xs-12 col-sm-12 no-padding" style=" color: #000000;font-size: 30px;font-weight: 700;text-align: left;margin-top: 7%;">
+                        <div style="text-align: center">Change Password</div></div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;text-align: center">
+                        <img src="src/img/Group 3.svg" alt="">
+                        <div class="col-xs-12 col-sm-12" style=" color: #000000;font-size: 30px;font-weight: 700;margin-top: 7%;">
+                            Password has been changed successfully
+                        </div>
+                        <div class="col-xs-12 col-sm-12" style="background-color: #3D1369;border-radius: 4px;color: white;font-size: 16px;padding: 2%;margin-top: 3%;">
+                            <a href="index.html" style="color: white !important;"><div class="col-lg-12 col-md-12 no-padding">GOTO HOME</div></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 submit_p" id="form1" style="height: 90%;background: white;margin-top: 4%;">-->
+
+            <!--        <div class="col-lg-12 col-md-12" style="height: 100%;">-->
+            <!--            <div class="col-lg-12 col-md-12 no-padding"  style="height: 100%;">-->
+            <!--                <div class="col-lg-12 col-md-12 no-padding" style=" color: #000000;font-size: 30px;font-weight: 700;text-align: left;margin-top: 7%;">-->
+            <!--                    <a href="#" class="go-back1"  ><img src="src/img/back (3) copy.svg" alt="" style="float: left"></a><div style="text-align: center">Change Password</div></div>-->
+            <!--                <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;">-->
+            <!--                    <img src="src/img/Group 3.svg" alt="">-->
+            <!--                    <div class="col-lg-12 col-md-12" style=" color: #000000;font-size: 30px;font-weight: 700;text-align: left;margin-top: 7%;">-->
+            <!--                        Password has been changed successfully-->
+            <!--                    </div>-->
+            <!--                    <div class="col-lg-3 col-md-3" style="background-color: #3D1369;border-radius: 4px;">-->
+            <!--                        <div class="col-lg-12 col-md-12">GOTO HOME</div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+            <!--        </div>-->
+
+
+            <!--    </div>-->
+        </div>
+    </div>
+</div>
+<script>
         $("#profileImage").click(function(e) {
             $("#imageUpload").click();
         });
@@ -236,8 +399,29 @@
             fasterPreview( this );
         });
     </script>
+<script>
+    function openNav() {
+        document.getElementById('mySidenav').style.width = '100%';
+        document.getElementById("overlay").style.display = "block";
+
+    }
+
+    function closeNav() {
+        document.getElementById('mySidenav').style.width = '0';
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 
 <style>
+    #formButton{
+        background-color: #3D1369;
+        color: white;
+        padding: 7px 43px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
     #imageUpload
     {
         display: none;
