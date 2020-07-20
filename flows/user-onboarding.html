@@ -709,27 +709,7 @@
 
 
     })
-
-
-    // function onSignIn(googleUser) {
-    //     var profile = googleUser.getBasicProfile();
-    //     let social_id = profile.getId()
-    //     let name = profile.getName()
-    //     let pic = profile.getImageUrl()
-    //     let email = profile.getEmail()
-    //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    //     console.log('Name: ' + profile.getName());
-    //     console.log('Image URL: ' + profile.getImageUrl());
-    //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    //     Register(name, email,social_id)
-    // }
-    // function signOut() {
-    //     var auth2 = gapi.auth2.getAuthInstance();
-    //     auth2.signOut().then(function () {
-    //         console.log('User signed out.');
-    //     });
-    // }
-
+ 
     gapi.load('auth2', function() {
         gapi.auth2.init();
     });
@@ -793,31 +773,7 @@
     });
 </script>
 
-
-
-<!--<script>-->
-<!--    -->
-<!--    -->
-<!--    /* When the user clicks on the button,-->
-<!--toggle between hiding and showing the dropdown content */-->
-<!--    function myFunction() {-->
-<!--        document.getElementById("myDropdown").classList.toggle("show");-->
-<!--    }-->
-
-<!--    // Close the dropdown if the user clicks outside of it-->
-<!--    window.onclick = function(event) {-->
-<!--        if (!event.target.matches('.dropbtn')) {-->
-<!--            var dropdowns = document.getElementsByClassName("dropdown-content");-->
-<!--            var i;-->
-<!--            for (i = 0; i < dropdowns.length; i++) {-->
-<!--                var openDropdown = dropdowns[i];-->
-<!--                if (openDropdown.classList.contains('show')) {-->
-<!--                    openDropdown.classList.remove('show');-->
-<!--                }-->
-<!--            }-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+ 
 
 
 <script>
