@@ -592,16 +592,16 @@
                 <video class="col-xs-12 col-sm-12 no-padding" style=" max-height: 30vh;" id="video_player" ng-src="{{product.video.file}}" controls controlsList="nodownload">
                 </video>
             </div>
-            <div class="col-xs-12 col-sm-12" style="padding: 3%;background: white;">
-              <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1px solid #EAEAEA;">
+            <div class="col-xs-12 col-sm-12 " style="padding: 1%;background: white;">
+              <div class="dropdown col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1px solid #EAEAEA;">
                   <div class="col-xs-12 col-sm-12 no-padding">
-                      <div class="col-xs-12 col-sm-12" style="color: #666666;font-family: Montserrat;font-size: 16px;font-weight: 600;padding: 2%;border-bottom: 1px solid #DCDCDC;">
-                          Main pages
+                      <div class="col-xs-12 col-sm-12 dropbtn" onclick="myFunction()" style="color: #666666;font-family: Montserrat;font-size: 16px;font-weight: 600;padding: 2%;border-bottom: 1px solid #DCDCDC;">
+                          Main pages <i class="fa fa-angle-down" style="float: right;font-size: 22px;"></i>
                       </div>
                   </div>
 
 
-                  <div class="col-xs-12 col-sm-12" style="height: 50vh;overflow-y: scroll; ">
+                  <div class="col-xs-12 col-sm-12 dropdown-content-main" id="myDropdown" style="height: 50vh;overflow-y: scroll; ">
                       <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
                           <div class="col-xs-12 col-sm-12 no-padding">
                               <div class="col-xs-2 no-padding" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;">
@@ -861,7 +861,27 @@
         });
     });
 </script>
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
 
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 <script>
     function openModal() {
         document.getElementById("myModal").style.display = "block";
@@ -1436,6 +1456,14 @@
 
 
 
+    .dropdown-content-main{
+        display: none;
 
+        background-color: #FFFFFF;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.12);
+
+        z-index: 11;
+    }
 </style>
 </html>
