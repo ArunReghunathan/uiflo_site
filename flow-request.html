@@ -283,9 +283,126 @@
 </div>
 
 
-
 <!--mobile view-->
 
+<div class=" col-xs-12 col-sm-12 hidden-lg hidden-md" style="z-index: 1">
+
+    <div class="navbar " style="margin-bottom: 0 !important;z-index: 11111;">
+        <div class="header-elements col-md-12 col-sm-12 col-xs-12 col-xs-12 hidden-md hidden-sm"
+             style="position: fixed; top: 0;left: 0; background: white;padding: 1%;box-shadow: 0 2px 7px 0 rgba(0,0,0,0.07);">
+
+            <div id="mySidenav" class="sidenav" style="overflow: hidden;">
+                <div class="side col-xs-12 no-padding" style="width: 80%;height: 100%; background: white !important;">
+                    <div class="col-xs-12" style="box-shadow: 0 1px 2px #80808073;">
+                        <a title="close button" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a style="text-align: left; margin-left: 44px; "> <img alt="enguru logo" style="width: 65%;" src="src/img/logo.svg"></a>
+                    </div>
+                    <div class="col-xs-12" style="margin-top: 20px;font-weight: bold;">
+                        <a title="About us" href="about-us.html" class=" theme-font-3" style="text-align: left; ">About Us</a>
+                        <a title="Feedback" href="feedback.html" class=" theme-font-3" style="text-align: left;">Feedback</a>
+                        <a title="Flow Request" href="flow-request.html" class=" theme-font-3" style="text-align: left;">Flow Request</a>
+
+                    </div>
+
+                    <div class="col-xs-12" style="position:absolute; bottom: 14px; ">
+                        <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'"  id="loginbutton" class="col-xs-12 col-sm-12 no-padding signUp " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                            <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                                SIGN UP
+                            </div>
+                        </div>
+                        <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-xs-12 col-sm-12 no-padding" type="button">
+                            <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                                SIGN IN
+                            </div>
+                        </div>
+                        <a  href="my-saves.html" ng-if="userRole!='unauth'" class=" col-xs-12 col-sm-12 mySaves no-padding" style="cursor: pointer; margin-top: 3%;">
+                            <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                                MY SAVES
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 " style="text-align: center;padding: 0% 2%;">
+                <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
+
+
+                <a title="Home" href="/"> <span class="">
+                        <img alt="enguru logo" src="src/img/logo.svg"
+                             style="height: 41px;width: 123px;">
+                    </span></a>
+                <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
+                    <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></span>
+                </a>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" style="background: white;">
+    <div class="col-xs-12 col-sm-12" style="">
+        <img src="src/img/2.svg" style="position: absolute;top:25%;left: 10%;width: 90%;" alt="">
+        <div class="col-xs-12 col-sm-12" style="background-color: #FFFFFF;box-shadow: 0 4px 30px 4px rgba(0, 0, 0, 0.08);margin-top: 9%;margin-bottom: 5%;">
+            <div class="col-xs-12 col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding">
+                    <div style="text-align: center;color: #000000;font-size: 18px;font-weight: 700;margin-top: 5%;margin-bottom: 4%">Flow Request</div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="text-align: center;color: #3D1369;font-family: Inter;font-size: 14px;font-weight: 600;">Mention the products / categories / flows you want to add to UiFlo so that it will be more useful to you. We will add those and update you.
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 8%;margin-bottom: 4%;">
+                    <form action="/action_page.php">
+                        <label class="col-xs-12 col-sm-12 no-padding">Name</label>
+                        <input class="col-xs-12 col-sm-12" type="text" id="fname" name="firstname" placeholder="Enter name" style="background: white;border: 1px solid #C7C7C7;">
+                        <label class="col-xs-12 col-sm-12 no-padding" style="margin-top: 2%;">Company</label>
+                        <input class="col-xs-12 col-sm-12" type="text" id="company" name="company" placeholder="Company name" style="background: white;border: 1px solid #C7C7C7;">
+                        <label class="col-xs-12 col-sm-12 no-padding" style="margin-top: 2%;">Email</label>
+                        <input class="col-xs-12 col-sm-12" type="email" id="email" name="email-id" placeholder="Enter email ID" style="background: white;border: 1px solid #C7C7C7;">
+                        <label class="col-xs-12 col-sm-12 no-padding" style="margin-top: 4%;">Products & Flows you need</label>
+                        <textarea id="subject" name="subject" placeholder="Add the product name and flows" style="height:200px" style="background: white;border: 1px solid #C7C7C7;"></textarea>
+
+                        <input  class="col-xs-12" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    footer-->
+    <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%">
+        <div class="col-xs-12 col-sm-12 no-padding">
+            <div class="col-xs-12 col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding"><img src="src/img/logo.svg" alt=""></div>
+                <div class="col-xs-12 col-sm-12 no-padding" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                        <a href="about-us.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding">About Us</div>
+                        </a>
+                        <a href="flow-request.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding">Suggest flows</div>
+                        </a>
+                        <a href="feedback.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 15%;">Feedback</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                <div class="col-xs-12 col-sm-12 no-padding" style="text-align: left;">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 7%;">
+                        <img src="src/img/facebook (3).svg" alt="facebook">
+                        <img src="src/img/instagram-sketched.svg" alt="instagram">
+                        <img src="src/img/twitter (1).svg" alt="twitter">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 </body>
