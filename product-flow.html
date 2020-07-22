@@ -406,7 +406,7 @@
 
     </div>
     <div class="col-md-12 col-lg-12">
-        <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows. </h1>
+        <h1 style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 26px;font-weight: 700;">Similar flows </h1>
     </div>
     <div class="col-md-12 col-lg-12 no-padding">
     <div class="col-md-12 col-lg-12 no-padding">
@@ -431,7 +431,7 @@
                     <div class="col-md-12 col-lg-12 no-padding"  style="height: 100%" >
                         <div   style="height: 100%" >
                         <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
-                            <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                            <img src="{{s_product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
                         </div>
                         <div class="col-md-10 col-lg-10 flex-container " style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;">
                             <div style="color: #666666;font-size: 16px; font-weight: 600;">
@@ -453,6 +453,20 @@
                     </div> -->
                 </div>
             </div>
+        </div>
+        
+    </div>
+    <div class="col-md-12 col-lg-12 no-padding">
+        <div style="margin-left: 50%;">
+            <span ng-click="changePageRegister('./flows/other-flows.html#'+ product.flow)"  class="category"> View more flows </span>
+            <!-- <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;">
+                <span class="category" style="margin-right: 1%;">{{product.category}}</span>
+                
+            </div> -->
+            <br>
+            <span> &emsp; </span>
+
+
         </div>
     </div>
     </div>
@@ -1078,7 +1092,7 @@
 
 
     $scope.ListSimilarProduct = function(page=1) {
-            var params = {"page": page, "flow": $scope.product.flow}
+            var params = {  "collection": "publish", "page": page, "flow": $scope.product.flow}
             // if ($scope.userRole != "admin"){
             //     params["userId"] = $scope.userId;
             // }

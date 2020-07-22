@@ -477,7 +477,7 @@
     <div class="col-xs-12 col-sm-12 no-padding" style="background: white;">
         <div class="col-xs-12 col-sm-12 no-padding">
             <div class="col-xs-12 col-sm-12 flow-cards">
-                <div>{{product.flow}}  jjjj</div>
+                <div>{{product.flow}}   </div>
             </div>
         </div>
     </div>
@@ -821,7 +821,12 @@
         } 
 
         let url = window.location.href
-        $scope.selected_collection = url.split('#')[1]
+        $scope.selected_collection = url.split('#')[1] 
+
+        $scope.selected_collection = $scope.selected_collection.replace("%20", " ") 
+        $scope.selected_collection = $scope.selected_collection.replace("%20", " ") 
+        $scope.selected_collection = $scope.selected_collection.replace("%20", " ") 
+        $scope.selected_collection = $scope.selected_collection.replace("%20", " ")  
         $scope.getSavedProductbyCollection($scope.selected_collection)
 
 
