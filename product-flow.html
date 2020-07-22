@@ -227,7 +227,7 @@
 
                     </div>
                 </div>
-                <div class="col-lg-3 col-lg-offset-3 col-md-offset-3 col-md-3 ">
+                <div  ng-if="userRole!='unauth'" class="col-lg-3 col-lg-offset-3 col-md-offset-3 col-md-3 ">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
                             <select ng=model="collection_name"  ng-hide="SavedAProduct_value">
@@ -999,6 +999,13 @@
             location.reload();
         }
 
+        $scope.changePageRegister = function(url) {
+
+            var loc =   url
+            window.location.href= loc
+            }
+
+
         $scope.change_gallery_count = function(value) {
             console.log(value)
 
@@ -1008,6 +1015,40 @@
             if($scope.gallary_click_count < 1){$scope.gallary_click_count = 1;}
             if($scope.gallary_click_count > ($scope.no_of_screenshort -5)){$scope.gallary_click_count= $scope.no_of_screenshort-5;}
         }
+
+
+        $scope.CheckUser = function() {
+
+            var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
+            $scope.userId = window.localStorage.getItem('userId') || "unknown"
+            $http({
+                method: "GET",
+                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                headers :headers
+            })
+                .then(function(response) {
+                        $scope.user = response.data;
+                        console.log($scope.user)
+
+                        if($scope.user.is_admin){
+                            $scope.userRole = "admin"
+                        }
+                        else if($scope.user.is_staff){
+                            $scope.userRole = "staff"
+                        }
+                        else{
+                            $scope.userRole = "normal"
+                        }
+                    }
+                ).catch(function error() {
+                $scope.userRole = "unauth"
+                // alert("please sigin")
+                // window.location.replace("./index.html");
+
+            }) ;
+
+        }
+        $scope.CheckUser();
 
         $scope.change_video = function(time) {
             // $scope.product.video.file
