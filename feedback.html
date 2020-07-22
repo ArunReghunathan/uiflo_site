@@ -321,7 +321,10 @@
                                 MY SAVES
                             </div>
                         </a>
-
+                        <div ng-if="userRole!='unauth'"  onclick="signOut();" class="col-xs-12 col-sm-12 no-padding" style="margin-top: 3%;cursor: pointer;"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                            SIGN OUT
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
