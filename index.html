@@ -149,7 +149,7 @@
 
             <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
                 <a href="./admin-home.html" >
-                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                <div class="" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                    ADMIN
                </div>
                 </a>
@@ -247,7 +247,7 @@
                     <a href="flows/user-onboarding.html">
                         <div class="col-md-12 col-lg-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;">
                             <div class="col-md-12 col-lg-12" style="color: #000000;font-size: 20px;font-weight:700; margin-top: 5%;">User onboarding</div>
-                            <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px; ">{{length}}</div>
+                            <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px; ">235 flows</div>
                             <div class="col-md-12 col-lg-12" style="margin-top: 7%; margin-bottom: 7%;">
                                 <img src="src/img/Group.jpg" style="width: 100%;" alt="">
                             </div>
@@ -341,8 +341,8 @@
 <!--        </div>-->
 <!--    </div>-->
 </div>
-    <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;height: 7vh;background: white;z-index:1;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);padding: 0% 3%;">
-        <div class="col-md-8 col-lg-8 no-padding" style="height: 100%">
+    <div class="col-md-12 col-lg-12" style="border-top: 1px solid #EBEBEB;border-bottom: 1px solid #EBEBEB;background: white;z-index:1;box-shadow: 0 2px 9px 2px rgba(0, 0, 0, 0.04);padding: 0% 3%;height: 7vh;">
+        <div class="col-md-8 col-lg-8  no-padding" style="height: 100%">
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
                 <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
@@ -358,39 +358,13 @@
                 </select>
             </div>
             <div class="col-md-6 col-lg-6" style="height: 100%;">
-                    <div class="col-md-12 col-lg-12 col-lg-offset-1 col-md-offset-1"  style= "padding: 3%;height: 100%;">
 
-                        <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
-                             {{e}}
-                             <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
-                        </span> 
-                        <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
-                             {{e}}
-                             <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span>
-                        </span>
-                        <!-- <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-hide="search_product == 'null' || search_product == []"   >
-                             CLEAR  
-                        </span> -->
-                    </div>
             </div>
-<!--            <div class="col-lg-6 col-md-6" >-->
-<!--                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
-<!--                    <option  value="null" style="background: white; border-bottom: 1px solid #EAEAEA !important;" selected> All Product</option>-->
-<!--                    <option ng-repeat="each in products_names track by $index" value="{{each}}" style="background: white; border-bottom: 1px solid #EAEAEA !important;" >{{each}}</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <div class="col-lg-6 col-md-6">-->
-<!--                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
-<!--                    &lt;!&ndash;                              <option value="0">Select car:</option>&ndash;&gt;-->
-<!--                    <option  value="null" selected> All Category </option>-->
-<!--                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>-->
-<!--                </select>-->
-<!--            </div>-->
+
         </div>
         
         
-        <div class="col-md-4 col-lg-4" style="text-align: right;padding: .5%;">
+        <div class="col-md-4 col-lg-4 flex-container" style="text-align: right;">
             <div class="col-md-12 col-lg-12">
                 <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><a href="" class="all"><img  src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;" id="bg1"> </a></span>
                 <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><a href="" class="desktop"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;" id="bg2"></a></span>
@@ -400,7 +374,23 @@
         </div>
 
     </div>
-    <div class="col-md-12 col-lg-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;">Latest flows</div>
+    <div class="col-md-12 col-lg-12 "  style= "background: white;padding: 1% 3%;">
+        <div class="col-md-12 col-lg-12">
+            <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
+            <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
+                             <span>{{e}}
+                             <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span></span>
+                        </span>
+            <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
+                             <span>{{e}}
+                             <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span></span>
+                        </span>
+            <!-- <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-hide="search_product == 'null' || search_product == []"   >
+                 CLEAR
+            </span> -->
+        </div>
+    </div>
+    <div class="col-lg-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;">Latest flows</div>
 
 
         <div class="col-md-12 col-lg-12 no-padding">
