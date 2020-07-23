@@ -126,31 +126,32 @@
     
             }
 
-            function RestLink() { 
-            let url = "http://13.126.184.35:8000/ResetPassword/";
-            var myHeaders = new Headers();
-            var formdata = new FormData();
- 
-            let email = document.getElementById("reset_email").value   
-            formdata.append("email", email);  
-    
-            var requestOptions = {
-              method: 'POST',
-              headers: myHeaders,
-              body: formdata,
-              redirect: 'follow'
-            };
-    
-            fetch(url, requestOptions)   
-            .then(response => response.text())
-            .then((result) =>{ 
-                result = JSON.parse(result)
-                if(result.error){
-                    alert(result.error.message)
-                }else{  
-                }
-            })
-            .catch(error => console.log('error', error));
+            function RestLink() {
+
+                let url = "http://13.126.184.35:8000/ResetPassword/";
+                var myHeaders = new Headers();
+                var formdata = new FormData();
+
+                let email = document.getElementById("reset_email").value
+                formdata.append("email", email);
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+                };
+
+                fetch(url, requestOptions)
+                .then(response => response.text())
+                .then((result) =>{
+                    result = JSON.parse(result)
+                    if(result.error){
+                        alert(result.error.message)
+                    }else{
+                    }
+                })
+                .catch(error => console.log('error', error));
     
             }
 
@@ -233,10 +234,10 @@
                         </div>
                         <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;">
                             <div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
-                            <form action="javascript:void(0);" method="post" name="form"   onsubmit="return RestLink(event)">
+                            <form action="javascript:void(0);" method="post" name="form"   onsubmit="return RestLink( )">
                                 <label class="col-lg-12 col-md-12 no-padding" style="color: #666666;">Email ID</label>
                                 <input ng-model="reset_email" class="form-styling field" type="text" id="reset_email" placeholder="Email" style="background: white;border: 1px solid #C7C7C7;" required/>
-                                <button class="btn-signin" type="submit"   value="SEND RESET LINK" id="formButton" style="width: 100%;background: #3D1369;color: white;text-align: center;cursor: pointer;">SEND RESET LINK</button>
+                                <button onclick="RestLink()" type="submit"    id="formButton" style="width: 100%;background: #3D1369;color: white;text-align: center;cursor: pointer;">SEND RESET LINK</button>
                             </form>
                             </div>
                         </div>
@@ -326,6 +327,8 @@
                         <div class="col-xs-12 col-sm-12">
                             <form action="javascript:void(0);" method="post" name="form"   onsubmit="return RestLink(event)">
                                 <label class="col-xs-12 col-sm-12 no-padding" style="color: #666666;padding-bottom: 0 !important;">Email ID</label>
+                            <form action="javascript:void(0);" method="post" name="form"   onsubmit="return RestLink()">
+                                <label class="col-lg-12 col-md-12 no-padding" style="color: #666666;padding-bottom: 0 !important;">Email ID</label>
                                 <input ng-model="reset_email" class="form-styling field" type="text" id="reset_email" placeholder="Email" style="background: white;border: 1px solid #C7C7C7;height: 30px !important;" required/>
                                 <button class="btn-signin" type="submit"   value="SEND RESET LINK" id="formButton" style="width: 100%;background: #3D1369;color: white;text-align: center;cursor: pointer;">SEND RESET LINK</button>
                             </form>
@@ -408,20 +411,20 @@
                 </svg>
                 </a> -->
 <!-- </div> -->
-
+</html>
 <script>
 
-//    $('.change2_p').hide();
-//    $('.signup').on('click',
-//        function() {
-//            $('.change1_p, .change2_p').toggle(0);
-//        }
-//    );
-//    $('.signin').on('click',
-//        function() {
-//            $(' .change2_p,.change1_p').toggle(0);
-//        }
-//    );
+    $('.change2_p').hide();
+    $('.signup').on('click',
+        function() {
+            $('.change1_p, .change2_p').toggle(0);
+        }
+    );
+    $('.signin').on('click',
+        function() {
+            $(' .change2_p,.change1_p').toggle(0);
+        }
+    );
     $('.change3_p').hide();
     $('.password').on('click',
         function() {
@@ -442,55 +445,7 @@
 
 
 </script>
-<script>
 
-    function GotoRegister(){
-
-        $(".form-signin").toggleClass("form-signin-left");
-        $(".form-signup").toggleClass("form-signup-left");
-        $(".frame").toggleClass("frame-long");
-        $(".signup-inactive").toggleClass("signup-active");
-        $(".signin-active").toggleClass("signin-inactive");
-        $(".forgot").toggleClass("forgot-left");
-        $(this).removeClass("idle").addClass("active");
-    }
-
-
-
-    $(function() {
-        $(".btn").click(function() {
-            $(".form-signin").toggleClass("form-signin-left");
-            $(".form-signup").toggleClass("form-signup-left");
-            $(".frame").toggleClass("frame-long");
-            $(".signup-inactive").toggleClass("signup-active");
-            $(".signin-active").toggleClass("signin-inactive");
-            $(".forgot").toggleClass("forgot-left");
-            $(this).removeClass("idle").addClass("active");
-        });
-    });
-
-    $(function() {
-        $(".btn-signup").click(function() {
-            $(".nav").toggleClass("nav-up");
-            $(".form-signup-left").toggleClass("form-signup-down");
-            $(".success").toggleClass("success-left");
-            $(".frame").toggleClass("frame-short");
-        });
-    });
-
-    $(function() {
-        $(".btn-signin").click(function() {
-            $(".btn-animate").toggleClass("btn-animate-grow");
-            $(".welcome").toggleClass("welcome-left");
-            $(".frame").toggleClass("frame-short");
-            $(".btn-goback").toggleClass("btn-goback-up");
-            $(".forgot").toggleClass("forgot-fade");
-        });
-    });
-
-
-
-</script>
 
 <style>
     .field{
@@ -514,23 +469,72 @@
     /*}*/
 
 <!--
-            /*   <a id="refresh" value="Refresh" onClick="history.go()">*/
-            /*        <svg class="refreshicon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"*/
-            /*             width="25px" height="25px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"*/
-            /*             xml:space="preserve">*/
-            /*         <path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224*/
-            /*                c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5*/
-            /*                c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5*/
-            /*                c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025*/
-            /*                c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614*/
-            /*                l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>*/
-            /*    </svg>*/
-            /*    </a> -->*/
-            /*<!-- </div> -->*/
+               <a id="refresh" value="Refresh" onClick="history.go()">
+                    <svg class="refreshicon"   version="1.1" id="Capa_1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         width="25px" height="25px" viewBox="0 0 322.447 322.447" style="enable-background:new 0 0 322.447 322.447;"
+                         xml:space="preserve">
+                     <path  d="M321.832,230.327c-2.133-6.565-9.184-10.154-15.75-8.025l-16.254,5.281C299.785,206.991,305,184.347,305,161.224
+                            c0-84.089-68.41-152.5-152.5-152.5C68.411,8.724,0,77.135,0,161.224s68.411,152.5,152.5,152.5c6.903,0,12.5-5.597,12.5-12.5
+                            c0-6.902-5.597-12.5-12.5-12.5c-70.304,0-127.5-57.195-127.5-127.5c0-70.304,57.196-127.5,127.5-127.5
+                            c70.305,0,127.5,57.196,127.5,127.5c0,19.372-4.371,38.337-12.723,55.568l-5.553-17.096c-2.133-6.564-9.186-10.156-15.75-8.025
+                            c-6.566,2.134-10.16,9.186-8.027,15.751l14.74,45.368c1.715,5.283,6.615,8.642,11.885,8.642c1.279,0,2.582-0.198,3.865-0.614
+                            l45.369-14.738C320.371,243.946,323.965,236.895,321.832,230.327z"/>
+                </svg>
+                </a> -->
+            <!-- </div> -->
+</html>
+            <script>
+
+                function GotoRegister(){
+
+                    $(".form-signin").toggleClass("form-signin-left");
+                        $(".form-signup").toggleClass("form-signup-left");
+                        $(".frame").toggleClass("frame-long");
+                        $(".signup-inactive").toggleClass("signup-active");
+                        $(".signin-active").toggleClass("signin-inactive");
+                        $(".forgot").toggleClass("forgot-left");
+                        $(this).removeClass("idle").addClass("active");
+                }
 
 
 
+                $(function() {
+                    $(".btn").click(function() {
+                        $(".form-signin").toggleClass("form-signin-left");
+                        $(".form-signup").toggleClass("form-signup-left");
+                        $(".frame").toggleClass("frame-long");
+                        $(".signup-inactive").toggleClass("signup-active");
+                        $(".signin-active").toggleClass("signin-inactive");
+                        $(".forgot").toggleClass("forgot-left");
+                        $(this).removeClass("idle").addClass("active");
+                    });
+                });
 
+                $(function() {
+                    $(".btn-signup").click(function() {
+                        $(".nav").toggleClass("nav-up");
+                        $(".form-signup-left").toggleClass("form-signup-down");
+                        $(".success").toggleClass("success-left");
+                        $(".frame").toggleClass("frame-short");
+                    });
+                });
+
+                $(function() {
+                    $(".btn-signin").click(function() {
+                        $(".btn-animate").toggleClass("btn-animate-grow");
+                        $(".welcome").toggleClass("welcome-left");
+                        $(".frame").toggleClass("frame-short");
+                        $(".btn-goback").toggleClass("btn-goback-up");
+                        $(".forgot").toggleClass("forgot-fade");
+                    });
+                });
+
+
+
+            </script>
+
+
+            <style>
                 /*.container {*/
                 /*    width: 100%;*/
                 /*    padding-top: 60px;*/
@@ -1459,4 +1463,3 @@
         transform: rotate(180deg);
     }
 </style>
-</html>

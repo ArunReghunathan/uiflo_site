@@ -119,12 +119,12 @@
             <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
 
                 <!-- Trigger the modal with a button -->
-                <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                <div ng-click="changePageRegister('../login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
                     <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                         SIGN UP
                     </div>
                 </div>
-                <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
+                <div ng-click="changePageRegister('../login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
                     <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                         SIGN IN
                     </div>
@@ -220,13 +220,17 @@
 
 <!--</div>-->
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
-
     <div class="col-md-12 col-lg-12" style="margin-top: 5%;">
-        <div class="col-md-12 col-lg-12" style="font-size: 46px;color: #333333;font-family: Montserrat;font-weight: 600;margin-bottom:1%;padding: 0% 2%;">Create things</div>
+        <div class="col-md-12 col-lg-12" style="font-size: 46px;color: #333333;font-family: Montserrat;font-weight: 600;margin-bottom:1%;padding: 0% 2%;">
+            Create things
+        </div>
 
         <div class="col-md-12 col-lg-12 no-padding">
             <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding ">
                 <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 1300px; height: 700px;"  loop  autoplay></lottie-player>
+            </div >
+            <div ng-hide="products_count>0" class="col-md-12 col-lg-12 no-padding ">
+                <lottie-player src="../lf30_8A8P5d.json"  background="transparent"  speed="1"  style="width: 1300px; height: 700px;"  loop  autoplay></lottie-player>
             </div >
             <div  class="col-md-12 col-lg-12" style="margin-top: 2% !important; display: grid;grid-template-columns: 25% 25% 25% 25%;grid-row-gap: 50px;margin-bottom: 7%;padding: 0% 1%;">
 
@@ -285,11 +289,41 @@
             </div>
         </div>
     </div>
-
+    
     <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
-        <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
+         
+        <ul class="pagination col-lg-12 col-md-12">
+
+            <li ng-show="currentPage-1 >= 1" ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
+
+            <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li>
+            <li  ng-show="currentPage > 4"   ><a> .. </a> </li>
+
+            <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li>
+            <li ng-click="ListProduct(currentPage-1)" ng-show="currentPage -1 > 0" ><a> {{currentPage -1 }} </a> </li>
+            <li ng-class="{'active': currentPage == currentPage }"><a> {{currentPage }} </a> </li>
+            <li ng-click="ListProduct(currentPage+1)" ng-hide="totalPages <= currentPage" ><a> {{currentPage +1 }}  </a> </li>
+            <li ng-click="ListProduct(currentPage+2)" ng-hide="totalPages <= currentPage+1" ><a> {{currentPage +2 }} </a> </li>
+
+            <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3 && totalPages > 3 " ><a> {{currentPage +3 }} </a> </li>
+            <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3 && totalPages > 4" ><a> {{currentPage +4 }} </a> </li>
+
+
+            <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li>
+            <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li>
+            <li ng-show="currentPage+1<= totalPages " ng-click="ListProduct(currentPage + 1)"   ><a style="margin-left: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
+
+          </ul>
+<!--              {{currentPage}}  {{totalPages}}-->
+
+        <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
     </div>
+
+    <!-- <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
+        <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
+
+    </div> -->
 </div>
     <div class="col-lg-12 col-md-12 flex-container no-padding" style="background: white;height: 25vh;">
         <div class=" no-padding">
@@ -615,24 +649,26 @@
         $scope.old_page =  1
         // $scope.pagination.current =3
 
-        $scope.currentPage = 4;
+        $scope.currentPage = 1;
         $scope.ListProduct = function(page=1) {
             if($scope.old_page != page){
                 //  window.location.replace("./index.html?page=" + page)
                 //  window.location = "./index.html?page=" + page
+                window.location.replace("?page=" +  page)
 
             }
             var url = window.location.href
 
             // window.location.replace("./index/")
-            page = url.split("page=")
+            page_no = url.split("page=")
 
-            if (page.length > 1){
-                page=parseInt(page[1])
-            }else(page=1)
+            if (page_no.length > 1){
+                page=parseInt(page_no[1])
+            }else(page=page)
             $scope.old_page  = page;
+            $scope.currentPage = page;
             // window.location.replace("./index.html?page=" + page)
-            var params = {"page": page, "collection": "publish"}
+            var params = {"page": page, "collection": "publish", "flow":"Creating things"}
 
             if($scope.search_product){
                 params['product'] = $scope.search_product
@@ -660,8 +696,10 @@
                 headers: headers
             })
                 .then(function(response) {
+                    $scope.firsttime = false;
                     $scope.products = response.data.results;
                     $scope.products_count = response.data.count;
+                    $scope.totalPages = Math.ceil($scope.products_count / 24)
                     console.log($scope.products)
                     for (product in $scope.products){
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
@@ -676,6 +714,8 @@
                         }
                     }
                     console.log($scope.products)
+                    $scope.productLoading = true;
+
                 });
 
         }
@@ -823,7 +863,7 @@
             window.localStorage.setItem("token","")
             window.localStorage.setItem("userId","")
             console.log('User signed out.');
-            window.location.replace("./login.html");
+            window.location.replace("../login.html");
         });
     }
     function onLoad() {
@@ -899,4 +939,5 @@
 
 
 </script>
-</html>
+
+</html> 
