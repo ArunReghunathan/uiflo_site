@@ -45,6 +45,19 @@
 
     }
     test();
+    function CheckConformPassword(){
+
+        let password = document.getElementById("registed_password").value
+        let confirmpassword = document.getElementById("confirmpassword").value
+        if (password != confirmpassword){  
+                document.getElementById('password_mismatch').innerHTML = "Password mismatch"
+            }
+            else{
+                document.getElementById('password_mismatch').innerHTML = ""
+            
+            }
+
+    }
 
     function Register(name=null,email=null, social_id=false) {
         let url = "http://13.126.184.35:8000/user/";
@@ -55,6 +68,11 @@
             email = document.getElementById("registed_email").value
             name = document.getElementById("registed_name").value
             let password = document.getElementById("registed_password").value
+            let confirmpassword = document.getElementById("confirmpassword").value
+            if (password != confirmpassword){
+                alert("Please enter correct confirmpassword.")
+                return
+            }
             formdata.append("password", password);
         }
         else{
@@ -197,9 +215,10 @@
                 <label for="email">Email</label>
                 <input class="form-styling field" type="email" id="registed_email" placeholder="Email" style="background: white;" required/>
                 <label for="password">Password</label>
-                <input class="form-styling field" type="password" id="registed_password" placeholder="Password" required/>
+                <input  class="form-styling field" type="password" id="registed_password" placeholder="Password" required/>
                 <label for="confirmpassword">Confirm password</label>
-                <input class="form-styling field" type="password" id="confirmpassword" placeholder="Password" style="background: white;" required/>
+                <input onkeyup="CheckConformPassword()" class="form-styling field" type="password" id="confirmpassword" placeholder="Password" style="background: white;" required/>
+                <span id="password_mismatch" style="color: red;">  . </span>
                 <button  type="submit" class="btn-signup" >Sign Up</button>
                 <!-- <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/btn_google_light_normal_ios-min.png" style="width:100%" alt=""></div>
                 <div class="col-lg-11 col-md-11"  style="text-align: center;color: #666666; font-weight: 600;">SIGN UP WITH GOOGLE </div> -->
