@@ -897,3 +897,15 @@ div.scrollmenu a {
     padding: 14px;
     text-decoration: none;
 }
+
+.main_button{
+    background-color: #3D1369;
+    border-radius: 4px;
+    color: white;
+    padding: 7px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-family: Montserrat;
+    font-weight: 600;
+}
