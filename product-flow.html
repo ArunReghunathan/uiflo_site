@@ -458,7 +458,7 @@
         
     </div>
     <div class="col-md-12 col-lg-12 no-padding">
-        <div class="col-lg-4 col-md-4 col-lg-offset-5 col-md-offset-5" style="margin-bottom: 2%;">
+        <div ng-show="products_count>24" class="col-lg-4 col-md-4 col-lg-offset-5 col-md-offset-5" style="margin-bottom: 2%;">
             <span ng-click="changePageRegister('./flows/other-flows.html#'+ product.flow)"  class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 2%;font-weight: 600;background: white;"> View more flows </span>
             <!-- <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;">
                 <span class="category" style="margin-right: 1%;">{{product.category}}</span>
@@ -752,7 +752,7 @@
 
 
     </div>
-    <div class="col-xs-12 col-sm-12">
+    <div class="col-xs-12 col-sm-12" ng-show="products_count>0">
         <h1 class="col-xs-12 col-sm-12 no-padding" style="margin-left: 3%;color: #666666; font-family: Montserrat;font-size: 17px;font-weight: 700;">Similar flows. </h1>
     </div>
     <div class="col-xs-12 col-sm-12 no-padding">
