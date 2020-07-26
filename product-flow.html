@@ -341,13 +341,13 @@
                                             </div>
                                         </div>
 
-                                        <div ng-click="gallary_click(gallary_click_count + 1 )"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
+                                        <div ng-show="product.screenshort[gallary_click_count ]"  ng-click="gallary_click(gallary_click_count + 1 )"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
                                                 <img src="{{product.screenshort[gallary_click_count ].file}}" alt=""  style="width: 100%;height: inherit;">
                                             </div>
                                         </div>
 
-                                        <div ng-click="gallary_click(gallary_click_count + 2)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
+                                        <div  ng-show="product.screenshort[gallary_click_count + 1]"  ng-click="gallary_click(gallary_click_count + 2)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
                                                 <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="width: 100%;height: inherit;">
                                             </div>
