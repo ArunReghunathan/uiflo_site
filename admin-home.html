@@ -307,7 +307,7 @@
                         console.log(product)
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
-                        if ($scope.products[product].media){
+                        if ($scope.products[product].media && !$scope.products[product].thumbnail){
                             for(each in $scope.products[product].media){
                                 if($scope.products[product].media[each].media_type=="screenshort"){
                                     console.log("inside ")
