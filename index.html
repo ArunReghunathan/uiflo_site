@@ -27,6 +27,44 @@
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 </head>
+<div id="mySidenav" class="sidenav" style="overflow: hidden;" >
+    <div class="side col-xs-12 no-padding" style="width: 100%;height: 100%; background: white !important;">
+        <div class="col-xs-12" style="box-shadow: 0 1px 2px #80808073;">
+            <a title="close button" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a style="text-align: left; margin-left: 44px; "> <img alt="enguru logo" style="width: 65%;" src="src/img/logo.svg"></a>
+        </div>
+        <div class="col-xs-12" id="side" style="margin-top: 20px;font-weight: bold;">
+            <a title="About us" href="about-us.html" class=" theme-font-3" style="text-align: left; ">About Us</a>
+            <a title="Feedback" href="feedback.html" class=" theme-font-3" style="text-align: left;">Feedback</a>
+            <a title="Flow Request" href="flow-request.html" class=" theme-font-3" style="text-align: left;">Flow Request</a>
+
+        </div>
+
+        <div class="col-xs-12" id="buttons" style="position:absolute; bottom: 14px; ">
+            <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'"  id="loginbutton" class="col-xs-12 col-sm-12 no-padding signUp " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN UP
+                </div>
+            </div>
+            <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-xs-12 col-sm-12 no-padding" type="button">
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN IN
+                </div>
+            </div>
+            <a  href="my-saves.html" ng-if="userRole!='unauth'" class=" col-xs-12 col-sm-12 mySaves no-padding" style="cursor: pointer; margin-top: 3%;">
+                <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                    MY SAVES
+                </div>
+            </a>
+            <div ng-if="userRole!='unauth'"  onclick="signOut();" class="col-xs-12 col-sm-12 no-padding" style="margin-top: 3%;cursor: pointer;"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                SIGN OUT
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <body lang="en" ng-app="myApp" ng-controller="myCtrl" >
 
     <script type="text/javascript">
@@ -510,7 +548,7 @@
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
                         <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 90%;">
-                        <div class="overlay" id="over"  style="overflow: hidden;">
+                        <div class="overlay" id="over"  style="overflow: hidden;border-top: 1px solid #dcdcdc;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
                                     <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
@@ -692,90 +730,55 @@
 
 <!--mobile view-->
 
-    <div class=" col-xs-12 col-sm-12 hidden-lg hidden-md" style="z-index: 1">
 
-        <div class="navbar " style="margin-bottom: 0 !important;z-index: 11111;">
-            <div class="header-elements col-md-12 col-sm-12 col-xs-12 col-xs-12 hidden-md hidden-sm"
-                 style="position: fixed; top: 0;left: 0; background: white;padding: 1%;box-shadow: 0 2px 7px 0 rgba(0,0,0,0.07);">
+    <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" >
+        <div class=" col-xs-12 col-sm-12 hidden-lg hidden-md" id="main_nav" style="z-index: 1">
 
-                <div id="mySidenav" class="sidenav" style="overflow: hidden;">
-                  <div class="side col-xs-12 no-padding" style="width: 80%;height: 100%; background: white !important;">
-                      <div class="col-xs-12" style="box-shadow: 0 1px 2px #80808073;">
-                          <a title="close button" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                          <a style="text-align: left; margin-left: 44px; "> <img alt="enguru logo" style="width: 65%;" src="src/img/logo.svg"></a>
-                      </div>
-                      <div class="col-xs-12" style="margin-top: 20px;font-weight: bold;">
-                          <a title="About us" href="about-us.html" class=" theme-font-3" style="text-align: left; ">About Us</a>
-                          <a title="Feedback" href="feedback.html" class=" theme-font-3" style="text-align: left;">Feedback</a>
-                          <a title="Flow Request" href="flow-request.html" class=" theme-font-3" style="text-align: left;">Flow Request</a>
+            <div class="navbar " style="margin-bottom: 0 !important;z-index: 11111;">
+                <div class="header-elements col-md-12 col-sm-12 col-xs-12 col-xs-12 hidden-md hidden-sm" id="header"
+                     style="position: fixed; top: 0;left: 0; background: white;padding: 1%;box-shadow: 0 2px 7px 0 rgba(0,0,0,0.07);">
 
-                      </div>
-
-                      <div class="col-xs-12" style="position:absolute; bottom: 14px; ">
-                          <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'"  id="loginbutton" class="col-xs-12 col-sm-12 no-padding signUp " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
-                              <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
-                                  SIGN UP
-                              </div>
-                          </div>
-                          <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-xs-12 col-sm-12 no-padding" type="button">
-                              <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
-                                  SIGN IN
-                              </div>
-                          </div>
-                          <a  href="my-saves.html" ng-if="userRole!='unauth'" class=" col-xs-12 col-sm-12 mySaves no-padding" style="cursor: pointer; margin-top: 3%;">
-                              <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
-                                  MY SAVES
-                              </div>
-                          </a>
-                          <div ng-if="userRole!='unauth'"  onclick="signOut();" class="col-xs-12 col-sm-12 no-padding" style="margin-top: 3%;cursor: pointer;"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
-                              SIGN OUT
-                            </div>
-                          </div>
-
-                      </div>
-                  </div>
-                </div>
-                <div class="col-xs-12 " style="text-align: center;padding: 0% 2%;">
-                    <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
+                    <div class="col-xs-12 " style="text-align: center;padding: 0% 2%;">
+                        <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
 
 
-                    <a title="Home" href="/"> <span class="">
+                        <a title="Home" href="/"> <span class="">
                         <img alt="enguru logo" src="src/img/logo.svg"
                              style="height: 41px;width: 123px;">
                     </span></a>
-                    <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
+                        <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
                             <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></span>
-                    </a>
+                        </a>
 
+                    </div>
                 </div>
+
+
             </div>
-
-
         </div>
-    </div>
-<!--    <div id="overlay"></div>-->
-    <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" style="background: #f7f7f7;">
+        <!--    <div id="overlay"></div>-->
+        <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" id="main_div" style="background: #f7f7f7;">
 
-        <div class="col-xs-12 col-sm-12" style="background: white;padding: 3%;">
-            <div ng-if="userRole=='unauth'" class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 12%;">
-                <div class="col-xs-12 col-sm-12 no-padding">
-                    <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
+            <div class="col-xs-12 col-sm-12" style="background: white;padding: 3%;">
+                <div ng-if="userRole=='unauth'" class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 12%;">
+                    <div class="col-xs-12 col-sm-12 no-padding">
+                        <lottie-player src="./lf20_lx6X5G.json"  background="transparent"  speed="1"  style=""  loop  autoplay></lottie-player>
 
-                </div>
-
-                <div class="col-xs-12 col-sm-12" >
-                    <div style="color: #333333;font-size: 27px;font-weight: 700;line-height: 35px;text-align: left;margin-top: 4%;">Curated collection of
-                        <br> user flows ✌
-                        <div class="col-xs-12 col-sm-12 no-padding" style="font-size: 16px;font-weight: 600;line-height: 20px;margin-top: 3%;margin-bottom: 3%;">Learn from the world's best products</div>
                     </div>
 
-                    <div ng-click="changePageRegister('./login.html#register')" class="col-xs-12 col-sm-12" type="button"  style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
+                    <div class="col-xs-12 col-sm-12" >
+                        <div style="color: #333333;font-size: 27px;font-weight: 700;line-height: 35px;text-align: left;margin-top: 4%;">Curated collection of
+                            <br> user flows ✌
+                            <div class="col-xs-12 col-sm-12 no-padding" style="font-size: 16px;font-weight: 600;line-height: 20px;margin-top: 3%;margin-bottom: 3%;">Learn from the world's best products</div>
+                        </div>
 
+                        <div ng-click="changePageRegister('./login.html#register')" class="col-xs-12 col-sm-12" type="button"  style="background-color: #3D1369;border-radius: 4px;color: white;padding: 1.5%;cursor: pointer;text-align: center;margin-top: 2%;">SIGN UP</div>
+
+                    </div>
+                    <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
                 </div>
-                <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
-            </div>
-            <div class="col-xs-12 col-sm-12 no-padding" style="font-family: Montserrat !important; margin-top: 4%;">
-                <div class="col-xs-12 col-sm-12 scrollmenu" style="height: 27vh;overflow-y: hidden;">
+                <div class="col-xs-12 col-sm-12 no-padding" style="font-family: Montserrat !important; margin-top: 4%;">
+                    <div class="col-xs-12 col-sm-12 scrollmenu" style="height: 27vh;overflow-y: hidden;">
                     <span class="" >
                         <a href="flows/user-onboarding.html" class="no-padding" style="width: 80%;height: 100%">
                             <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
@@ -787,7 +790,7 @@
                             </div>
                         </a>
                     </span>
-                    <span class="" >
+                        <span class="" >
                         <a href="flows/general-browsing.html" class="no-padding" style="width: 80%;height: 100%">
                             <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
                                 <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">General browsing</div>
@@ -798,7 +801,7 @@
                             </div>
                         </a>
                     </span>
-                    <span class="">
+                        <span class="">
                         <a href="flows/searching.html" class="no-padding" style="width: 80%;height: 100%">
                             <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
                                 <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">Searching</div>
@@ -809,339 +812,276 @@
                             </div>
                         </a>
                     </span>
-                    <span class="">
+                        <span class="">
                         <div class="dropdown1  no-padding"  style="width: 80%;height: 100%">
                             <button onclick="showPopup()()" class=" col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 100%;background: white;cursor: pointer;"><div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 20px;font-weight: 600;">+ More Flows </div>
                             </button>
 
                         </div>
                     </span>
-<!--                    <span class="" >-->
-<!--                        <a href="flows/posting-things.html"  style="width: 80%;">-->
-<!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">Posting things</div>-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </span>-->
-<!--                    <span class="" >-->
-<!--                        <a href="flows/create-things.html"  style="width: 80%;">-->
-<!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 20px;font-weight: 700; margin-top: 5%;">Create things</div>-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </span>-->
-<!--                    <span class="">-->
-<!--                        <a href="flows/purchasing-things.html"  style="width: 80%;">-->
-<!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 20px;font-weight: 600; margin-top: 5%;">Purchasing Things</div>-->
-<!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
-<!--                            </div>-->
-<!--                        </a>-->
-<!--                    </span>-->
-<!--                    <span class="">-->
-<!--                        <div class="dropdown1 col-lg-12 col-md-12 no-padding">-->
-<!--                            <button onclick="myFunction1()" class="dropbtn1 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 20px;font-weight: 600;">+ More Flows </div></button>-->
-<!--                            <div id="myDropdown1" class="dropdown-content1" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;height: 50vh;overflow: scroll;overflow-x: hidden;">-->
-<!--                                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">-->
-<!--                                <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>-->
-<!--                                <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">-->
-<!--                                    <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash;                    <a href="flows/consuming-content.html">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                       <div class="col-md-12 col-lg-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">&ndash;&gt;-->
-<!--                        &lt;!&ndash;                           <div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600; margin-top: 5%;">Consuming Content</div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                           <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                       </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                    </a>&ndash;&gt;-->
-<!--                    </span>-->
+                        <!--                    <span class="" >-->
+                        <!--                        <a href="flows/posting-things.html"  style="width: 80%;">-->
+                        <!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">Posting things</div>-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
+                        <!--                            </div>-->
+                        <!--                        </a>-->
+                        <!--                    </span>-->
+                        <!--                    <span class="" >-->
+                        <!--                        <a href="flows/create-things.html"  style="width: 80%;">-->
+                        <!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 20px;font-weight: 700; margin-top: 5%;">Create things</div>-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
+                        <!--                            </div>-->
+                        <!--                        </a>-->
+                        <!--                    </span>-->
+                        <!--                    <span class="">-->
+                        <!--                        <a href="flows/purchasing-things.html"  style="width: 80%;">-->
+                        <!--                            <div class="col-xs-12 col-sm-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 20px;font-weight: 600; margin-top: 5%;">Purchasing Things</div>-->
+                        <!--                                <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>-->
+                        <!--                            </div>-->
+                        <!--                        </a>-->
+                        <!--                    </span>-->
+                        <!--                    <span class="">-->
+                        <!--                        <div class="dropdown1 col-lg-12 col-md-12 no-padding">-->
+                        <!--                            <button onclick="myFunction1()" class="dropbtn1 col-lg-12 col-md-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;"><div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 20px;font-weight: 600;">+ More Flows </div></button>-->
+                        <!--                            <div id="myDropdown1" class="dropdown-content1" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 17px; font-weight: 600; color: #666666;height: 50vh;overflow: scroll;overflow-x: hidden;">-->
+                        <!--                                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">-->
+                        <!--                                <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>-->
+                        <!--                                <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">-->
+                        <!--                                    <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>-->
+                        <!--                                </a>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--                        &lt;!&ndash;                    <a href="flows/consuming-content.html">&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                       <div class="col-md-12 col-lg-12 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7;height: 12vh;background: white;cursor: pointer;">&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                           <div class="col-md-12 col-lg-12" style="color: #666666;font-size: 20px;font-weight: 600; margin-top: 5%;">Consuming Content</div>&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                           <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                       </div>&ndash;&gt;-->
+                        <!--                        &lt;!&ndash;                    </a>&ndash;&gt;-->
+                        <!--                    </span>-->
+                    </div>
+
+                    <!--                <button onclick="showPopup()">Show Popup</button>-->
+
+                    <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup" style="display: none;z-index: 111;padding: 9%;">
+                        <div class="col-xs-12 col-sm-12 no-padding">
+                            <span  style="color: black;font-size: 18px;font-weight: 700;">More Flows</span>
+                            <span onclick="closePopup()" style="color: black;font-size: 18px;font-weight: 700;float: right">X</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 14%;">
+                            <input type="text" placeholder="Search.." id="myInput1" onkeyup="filterFunction1()">
+                            <div id="myDropdown2" style="height: 70vh;overflow: scroll;">
+                                <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>
+                                <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">
+                                    <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                <div id="myDropdown3" class="dropdown-content1" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 12px; font-weight: 600; color: #666666;height: 50vh;overflow: scroll;overflow-x: hidden;text-align: center;">-->
+                    <!--                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">-->
+                    <!--                    <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>-->
+                    <!--                    <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">-->
+                    <!--                        <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>-->
+                    <!--                    </a>-->
+                    <!--                </div>-->
                 </div>
-
-<!--                <button onclick="showPopup()">Show Popup</button>-->
-
-                <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup" style="display: none;z-index: 111;padding: 9%;">
-                    <div class="col-xs-12 col-sm-12 no-padding">
+                <!--    <div class="col-md-12 col-lg-12 no-padding" style="background: white;">-->
+                <!--        <div class="col-md-12 col-lg-12 no-padding">-->
+                <!--            <div class="col-xs-12 col-sm-12 flow-cards">-->
+                <!--                <div>{{product.flow}}</div>-->
+                <!--            </div>-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <div class="col-xs-12 col-sm-12" style="margin-top: 4%;">
+                    <div class="col-xs-12 col-sm-12 " onclick="showPopup_filter()" style="padding: 3%; border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;font-weight: 700">Filter <span style="float: right;"><img
+                            src="src/img/filter (1).svg"style="width: 16px;" alt=""></span></div>
+                    <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup_filter" style="display: none;z-index: 111;padding: 9%;">
                         <span  style="color: black;font-size: 18px;font-weight: 700;">More Flows</span>
-                        <span onclick="closePopup()" style="color: black;font-size: 18px;font-weight: 700;float: right">X</span>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 14%;">
-                        <input type="text" placeholder="Search.." id="myInput1" onkeyup="filterFunction1()">
-                        <div id="myDropdown2" style="height: 70vh;overflow: scroll;">
-                            <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>
-                            <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">
-                                <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-<!--                <div id="myDropdown3" class="dropdown-content1" style="width: 100%;z-index: 2;background-color: #FFFFFF;border-radius: 4px;box-shadow: 0 2px 5px 3px rgba(0, 0, 0, 0.07);font-size: 12px; font-weight: 600; color: #666666;height: 50vh;overflow: scroll;overflow-x: hidden;text-align: center;">-->
-<!--                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">-->
-<!--                    <a class="col-lg-12 col-md-12" href="flows/consuming-content.html" style="padding: 0;border-bottom: 1px solid #EAEAEA;"><div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">Consuming Content</div></a>-->
-<!--                    <a ng-click="changePageRegister('flows/other-flows.html#' + each)" ng-repeat="each in products_values.flow" class="col-lg-12 col-md-12" style="padding: 0;border-bottom: 1px solid #EAEAEA;">-->
-<!--                        <div class="col-xs-12 col-sm-12" style="margin-top: 5%;margin-bottom: 5%;">{{each}}</div>-->
-<!--                    </a>-->
-<!--                </div>-->
-            </div>
-            <!--    <div class="col-md-12 col-lg-12 no-padding" style="background: white;">-->
-            <!--        <div class="col-md-12 col-lg-12 no-padding">-->
-            <!--            <div class="col-xs-12 col-sm-12 flow-cards">-->
-            <!--                <div>{{product.flow}}</div>-->
-            <!--            </div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <div class="col-xs-12 col-sm-12" style="margin-top: 4%;">
-                <div class="col-xs-12 col-sm-12 " onclick="showPopup_filter()" style="padding: 3%; border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;font-weight: 700">Filter <span style="float: right;"><img
-                        src="src/img/filter (1).svg"style="width: 16px;" alt=""></span></div>
-                <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup_filter" style="display: none;z-index: 111;padding: 9%;">
-                    <span  style="color: black;font-size: 18px;font-weight: 700;">More Flows</span>
-                    <span onclick="closePopup_filter()" style="color: black;font-size: 18px;font-weight: 700;float: right">X</span>
-                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 12%">
-                        <div class="col-xs-12 col-sm-12 no-padding"  style= "">
-                            <!-- Build your select: -->
-                            <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
+                        <span onclick="closePopup_filter()" style="color: black;font-size: 18px;font-weight: 700;float: right">X</span>
+                        <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 12%">
+                            <div class="col-xs-12 col-sm-12 no-padding"  style= "">
+                                <!-- Build your select: -->
+                                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
 
-                                <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 no-padding"  style= "margin-top: 4%;">
-                            <!-- Build your select: -->
-                            <!--                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 11;top: 28%;left: 28%;">Category</div>-->
-                            <select  ng-change="ListProduct(1)"  id="example-getting-started2" multiple="multiple" class="js-select21" ng-model="search_category" style="cursor: pointer;">
-                                <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option>
-                            </select>
-                        </div>
+                                    <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 no-padding"  style= "margin-top: 4%;">
+                                <!-- Build your select: -->
+                                <!--                <div class="" style="position:absolute;color: #666666;font-size: 16px;font-weight: 600;z-index: 11;top: 28%;left: 28%;">Category</div>-->
+                                <select  ng-change="ListProduct(1)"  id="example-getting-started2" multiple="multiple" class="js-select21" ng-model="search_category" style="cursor: pointer;">
+                                    <option ng-repeat="e in products_values.category" value="{{e}}">{{e}}</option>
+                                </select>
+                            </div>
 
-                        <!--            <div class="col-lg-6 col-md-6" >-->
-                        <!--                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
-                        <!--                    <option  value="null" style="background: white; border-bottom: 1px solid #EAEAEA !important;" selected> All Product</option>-->
-                        <!--                    <option ng-repeat="each in products_names track by $index" value="{{each}}" style="background: white; border-bottom: 1px solid #EAEAEA !important;" >{{each}}</option>-->
-                        <!--                </select>-->
-                        <!--            </div>-->
-                        <!--            <div class="col-lg-6 col-md-6">-->
-                        <!--                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
-                        <!--                    &lt;!&ndash;                              <option value="0">Select car:</option>&ndash;&gt;-->
-                        <!--                    <option  value="null" selected> All Category </option>-->
-                        <!--                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>-->
-                        <!--                </select>-->
-                        <!--            </div>-->
-                    </div>
-                    <div class="col-xs-12 col-sm-12" style=" margin-top: 7%;">
-                        <div class="col-xs-12 col-sm-12 no-padding" style="">
-                            <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><a href="" class="all_m"><img  src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;" id="bg1_m"> </a></span>
-                            <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><a href="" class="desktop_m"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;" id="bg2_m"></a></span>
-                            <span ng-click="search_platform='Android'; ListProduct(1); "  style="cursor: pointer;"><a href="" class="mobile_m"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;" id="bg3_m"></a></span>
-
+                            <!--            <div class="col-lg-6 col-md-6" >-->
+                            <!--                <select ng-change="ListProduct(1)" ng-model="search_product" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
+                            <!--                    <option  value="null" style="background: white; border-bottom: 1px solid #EAEAEA !important;" selected> All Product</option>-->
+                            <!--                    <option ng-repeat="each in products_names track by $index" value="{{each}}" style="background: white; border-bottom: 1px solid #EAEAEA !important;" >{{each}}</option>-->
+                            <!--                </select>-->
+                            <!--            </div>-->
+                            <!--            <div class="col-lg-6 col-md-6">-->
+                            <!--                <select ng-change="ListProduct(1)"   ng-model="search_category" class="col-lg-12 col-md-12" style="height: 6vh;border: 1px solid #E4E4E4;border-radius: 4px;cursor: pointer;"    >-->
+                            <!--                    &lt;!&ndash;                              <option value="0">Select car:</option>&ndash;&gt;-->
+                            <!--                    <option  value="null" selected> All Category </option>-->
+                            <!--                    <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>-->
+                            <!--                </select>-->
+                            <!--            </div>-->
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 no-padding" style=" margin-top: 10%;">
-                        <div class="col-xs-12 col-sm-12 no-padding"  style= "">
-                            <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-                            <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
+                        <div class="col-xs-12 col-sm-12" style=" margin-top: 7%;">
+                            <div class="col-xs-12 col-sm-12 no-padding" style="">
+                                <span ng-click="search_platform='all'; ListProduct(1); " style="cursor: pointer;"><a href="" class="all_m"><img  src="src/img/Group 24 Copy 3.svg" alt="" style="margin-right: .5%;" id="bg1_m"> </a></span>
+                                <span ng-click="search_platform='Web'; ListProduct(1); " style="cursor: pointer;"><a href="" class="desktop_m"><img src="src/img/Group 26 Copy 2.svg" alt="" style="margin-right: .5%;" id="bg2_m"></a></span>
+                                <span ng-click="search_platform='Android'; ListProduct(1); "  style="cursor: pointer;"><a href="" class="mobile_m"><img src="src/img/Group 27 Copy 6.svg" alt="" style="margin-right: .5%;" id="bg3_m"></a></span>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 no-padding" style=" margin-top: 10%;">
+                            <div class="col-xs-12 col-sm-12 no-padding"  style= "">
+                                <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
+                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
                              {{e}}
                              <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
                             </span>
-                            <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
+                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
                              {{e}}
                              <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span>
                             </span>
 
+                            </div>
                         </div>
-                    </div>
-                    <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;position: absolute; bottom: 7%;left: 10%;" ng-hide="search_product == 'null' || search_product == []"   >
+                        <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;position: absolute; bottom: 7%;left: 10%;" ng-hide="search_product == 'null' || search_product == []"   >
                              CLEAR ALL
                         </span>
-                    <div class="col-xs-4 col-sm-4" onclick="closePopup_filter()" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;    position: absolute; bottom: 4%;right: 8%;">
-                        APPLY
+                        <div class="col-xs-4 col-sm-4" onclick="closePopup_filter()" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;    position: absolute; bottom: 4%;right: 8%;">
+                            APPLY
+                        </div>
+
+
                     </div>
-
-
                 </div>
+
             </div>
-
-        </div>
-        <div class="col-xs-12 col-sm-12" style="font-size: 26px;color: #333333;font-weight: 700;margin-top: 2%;">Latest flows</div>
+            <div class="col-xs-12 col-sm-12" style="font-size: 26px;color: #333333;font-weight: 700;margin-top: 2%;">Latest flows</div>
 
 
-        <div class="col-md-12 col-lg-12 no-padding">
-            <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding ">
-                <!--                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 100%; "  loop  autoplay></lottie-player>-->
-                <div class="wrapper col-md-12 col-lg-12">
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
-                        <div class="image col-md-12 col-lg-12 "></div>
-                        <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
-                            <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
-                            </div>
-                            <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                                <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div >
-            <div ng-show="productLoading" class="col-xs-12 col-sm-12" style="margin-top: 2% !important;padding: 0% 3%;">
-
-                <!-- These are our grid blocks -->
-                <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
-
-
-                <div class="col-xs-12 col-sm-12"   dir-paginate ="product in products  | itemsPerPage: 24"    pagination-id="payment_list_data_id"  total-items="products_count"  style="cursor: pointer;margin-bottom: 9%"  >
-                    <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
-                        <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
-                        <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 90%;">
-                        <div class="overlay" id="over"  style="overflow: hidden;">
-                            <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
-                                <div class="col-lg-9 col-md-9" style="height: 100%;">
-                                    <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
-
-                                        <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
-                                            <option ng-hide="savedCollection"  selected value="My Collections">My Collections</option>
-                                            <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option>
-                                        </select>
-
-                                    </div>
+            <div class="col-xs-12 col-sm-12 no-padding">
+                <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding ">
+                    <!--                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 100%; "  loop  autoplay></lottie-player>-->
+                    <div class="wrapper col-md-12 col-lg-12">
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
                                 </div>
-                                <div class="col-lg-3 col-md-3 text flex-container"  style="height: 100%;" >
-                                    <div ng-click="SavedAProduct(product.uuid)" class="col-lg-12 col-md-12 no-padding" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;margin-top: 5%;">SAVE</div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="post-info col-xs-12 col-sm-12 no-padding" style="height: 7vh;margin-top: 6%;">
-                        <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
-                            <div   style="height: 100%" >
-                                <div class="col-xs-2 col-sm-2 no-padding" style="height: 100%">
-                                    <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
                                 </div>
-                                <div class="col-xs-10 col-sm-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
-                                <div class="col-xs-10 col-sm-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
-
-
-
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
                             </div>
-
                         </div>
-                        <div class="post-info-rate-share">
-                            <div class="rateit">
-                                <span> </span>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
                             </div>
-                            <div class="post-share">
-                                <span> </span>
-                            </div>
-                            <div class="clear"> </div>
                         </div>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper-cell col-xs-12 col-sm-12 flex-container">
+                            <div class="image col-md-12 col-lg-12 "></div>
+                            <div class="text col-md-12 col-lg-12 no-padding" style="margin-top: 2%;">
+                                <div class="image col-md-4 col-lg-4 no-padding" style="width: 50px;height: 50px;">
+                                </div>
+                                <div class=" col-md-10 col-lg-10 " style="padding-right: 0">
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                    <div class="text-line col-md-12 col-lg-12" style="width: 100% !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                </div>
+                </div >
+                <div ng-show="productLoading" class="col-xs-12 col-sm-12" style="margin-top: 2% !important;padding: 0% 3%;">
 
-                <!-- End of grid blocks -->
-                </ul>
-            </div>
-        </div>
+                    <!-- These are our grid blocks -->
+                    <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
 
-        <!-- <div class="col-md-12 col-lg-12 no-padding">
-            <div class="col-md-12 col-lg-12 no-padding ">
-                <div class="wrap col-md-12 col-lg-12 no-padding ">
 
-                 <div id="main" role="main" class="col-md-12 col-lg-12 no-padding " style="margin-top: 2% !important;">
-
-                      <ul id="tiles" >
-
-                         <li dir-paginate ="product in products  | itemsPerPage: 24"  current-page="currentPage"  pagination-id="payment_list_data_id"  total-items="products_count" style="left: 65px !important; border: tomato;"     >
-                           <div >
-                            <div class="contain co-lg-12 col-lg-12 no-padding">
+                    <div class="col-xs-12 col-sm-12"   dir-paginate ="product in products  | itemsPerPage: 24"    pagination-id="payment_list_data_id"  total-items="products_count"  style="cursor: pointer;margin-bottom: 9%"  >
+                        <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
                             <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
-                          <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="width: 100% !important;">
-                            <div class="overlay" id="over"  style="overflow: hidden;">
+                            <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
+                            <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 90%;">
+                            <div class="overlay" id="over"  style="overflow: hidden;display: none;">
                                 <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                     <div class="col-lg-9 col-md-9" style="height: 100%;">
                                         <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
 
                                             <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
-                                                <option  selected value="My Collections">My Collections</option>
+                                                <option ng-hide="savedCollection"  selected value="My Collections">My Collections</option>
                                                 <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option>
                                             </select>
 
@@ -1153,100 +1093,163 @@
 
                                 </div>
                             </div>
+                        </div>
+                        <div class="post-info col-xs-12 col-sm-12 no-padding" style="height: 7vh;margin-top: 6%;">
+                            <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
+                                <div   style="height: 100%" >
+                                    <div class="col-xs-2 col-sm-2 no-padding" style="height: 100%">
+                                        <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                                    </div>
+                                    <div class="col-xs-10 col-sm-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
+                                    <div class="col-xs-10 col-sm-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
+
+
+
+                                </div>
+
                             </div>
-                            <div class="post-info col-lg-12 col-md-12 no-padding" style="height: 7vh;margin-top: 4%;">
-                                <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
-                                    <div   style="height: 100%" >
-                                        <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
-                                            <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
-                                        </div>
-                                        <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}}
-                                            <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div>
-                                        </div>
-
-                                    </div>
-
+                            <div class="post-info-rate-share">
+                                <div class="rateit">
+                                    <span> </span>
                                 </div>
-                                <div class="post-info-rate-share">
-                                    <div class="rateit">
-                                        <span> </span>
-                                    </div>
-                                    <div class="post-share">
-                                        <span> </span>
-                                    </div>
-                                    <div class="clear"> </div>
+                                <div class="post-share">
+                                    <span> </span>
                                 </div>
+                                <div class="clear"> </div>
                             </div>
                         </div>
-                        </li>
-                      </ul>
                     </div>
+
+                    <!-- End of grid blocks -->
+                    </ul>
                 </div>
             </div>
-        </div> -->
+
+            <!-- <div class="col-md-12 col-lg-12 no-padding">
+                <div class="col-md-12 col-lg-12 no-padding ">
+                    <div class="wrap col-md-12 col-lg-12 no-padding ">
+
+                     <div id="main" role="main" class="col-md-12 col-lg-12 no-padding " style="margin-top: 2% !important;">
+
+                          <ul id="tiles" >
+
+                             <li dir-paginate ="product in products  | itemsPerPage: 24"  current-page="currentPage"  pagination-id="payment_list_data_id"  total-items="products_count" style="left: 65px !important; border: tomato;"     >
+                               <div >
+                                <div class="contain co-lg-12 col-lg-12 no-padding">
+                                <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
+                              <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="width: 100% !important;">
+                                <div class="overlay" id="over"  style="overflow: hidden;">
+                                    <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
+                                        <div class="col-lg-9 col-md-9" style="height: 100%;">
+                                            <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
+
+                                                <select ng-model="$parent.collection_name" style="height: 100%;width:100%;border:none !important;border-radius: 4px;cursor: pointer;" >
+                                                    <option  selected value="My Collections">My Collections</option>
+                                                    <option ng-repeat="each in savedCollection" value={{each.collection}}>{{each.collection}}</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 text flex-container"  style="height: 100%;" >
+                                            <div ng-click="SavedAProduct(product.uuid)" class="col-lg-12 col-md-12 no-padding" style="background: #3D1369;border-radius: 4px;font-size: 14px;padding: 2%;text-align: center;cursor: pointer;margin-top: 5%;">SAVE</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="post-info col-lg-12 col-md-12 no-padding" style="height: 7vh;margin-top: 4%;">
+                                    <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
+                                        <div   style="height: 100%" >
+                                            <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
+                                                <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                                            </div>
+                                            <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}}
+                                                <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="post-info-rate-share">
+                                        <div class="rateit">
+                                            <span> </span>
+                                        </div>
+                                        <div class="post-share">
+                                            <span> </span>
+                                        </div>
+                                        <div class="clear"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
 
 
-        <div class="col-xs-12 col-sm-12 no-padding">
-
-            <ul class="pagination col-xs-12 col-sm-12 no-padding" style="padding: 7% !important;margin: 0 !important;">
-
-                <li ng-show="currentPage-1 >= 1" ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
-
-                <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li>
-                <li  ng-show="currentPage > 4"   ><a> .. </a> </li>
-
-                <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li>
-                <li ng-click="ListProduct(currentPage-1)" ng-show="currentPage -1 > 0" ><a> {{currentPage -1 }} </a> </li>
-                <li ng-class="{'active': currentPage == currentPage }"><a> {{currentPage }} </a> </li>
-                <li ng-click="ListProduct(currentPage+1)" ng-hide="totalPages <= currentPage" ><a> {{currentPage +1 }}  </a> </li>
-                <li ng-click="ListProduct(currentPage+2)" ng-hide="totalPages <= currentPage+1" ><a> {{currentPage +2 }} </a> </li>
-
-                <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3 && totalPages > 3 " ><a> {{currentPage +3 }} </a> </li>
-                <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3 && totalPages > 4" ><a> {{currentPage +4 }} </a> </li>
-
-
-                <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li>
-                <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li>
-                <li ng-show="currentPage+1<= totalPages " ng-click="ListProduct(currentPage + 1)"   ><a style="color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
-
-            </ul>
-            <!--              {{currentPage}}  {{totalPages}}-->
-
-            <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
-
-        </div>
-    </div>
-    <!--    footer-->
-    <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%">
-        <div class="col-xs-12 col-sm-12 no-padding">
             <div class="col-xs-12 col-sm-12 no-padding">
-                <div class="col-xs-12 col-sm-12 no-padding"><img src="src/img/logo.svg" alt=""></div>
-                <div class="col-xs-12 col-sm-12 no-padding" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
-                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
-                        <a href="about-us.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
-                            <div class="col-xs-12 col-sm-12 no-padding">About Us</div>
-                        </a>
-                        <a href="flow-request.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
-                            <div class="col-xs-12 col-sm-12 no-padding">Suggest flows</div>
-                        </a>
-                        <a href="feedback.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
-                            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 15%;">Feedback</div>
-                        </a>
+
+                <ul class="pagination col-xs-12 col-sm-12 no-padding" style="padding: 7% !important;margin: 0 !important;">
+
+                    <li ng-show="currentPage-1 >= 1" ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
+
+                    <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li>
+                    <li  ng-show="currentPage > 4"   ><a> .. </a> </li>
+
+                    <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li>
+                    <li ng-click="ListProduct(currentPage-1)" ng-show="currentPage -1 > 0" ><a> {{currentPage -1 }} </a> </li>
+                    <li ng-class="{'active': currentPage == currentPage }"><a> {{currentPage }} </a> </li>
+                    <li ng-click="ListProduct(currentPage+1)" ng-hide="totalPages <= currentPage" ><a> {{currentPage +1 }}  </a> </li>
+                    <li ng-click="ListProduct(currentPage+2)" ng-hide="totalPages <= currentPage+1" ><a> {{currentPage +2 }} </a> </li>
+
+                    <li ng-click="ListProduct(currentPage+3)" ng-show="currentPage < 3 && totalPages > 3 " ><a> {{currentPage +3 }} </a> </li>
+                    <li ng-click="ListProduct(currentPage+4)" ng-show="currentPage  < 3 && totalPages > 4" ><a> {{currentPage +4 }} </a> </li>
+
+
+                    <li   ng-show="totalPages > currentPage+2"   ><a> .. </a> </li>
+                    <li ng-click="ListProduct(totalPages)" ng-show="totalPages > currentPage+2"   ><a> {{totalPages}} </a> </li>
+                    <li ng-show="currentPage+1<= totalPages " ng-click="ListProduct(currentPage + 1)"   ><a style="color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> > </a> </li>
+
+                </ul>
+                <!--              {{currentPage}}  {{totalPages}}-->
+
+                <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
+
+            </div>
+        </div>
+        <!--    footer-->
+        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%">
+            <div class="col-xs-12 col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding">
+                    <div class="col-xs-12 col-sm-12 no-padding"><img src="src/img/logo.svg" alt=""></div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
+                        <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                            <a href="about-us.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                                <div class="col-xs-12 col-sm-12 no-padding">About Us</div>
+                            </a>
+                            <a href="flow-request.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                                <div class="col-xs-12 col-sm-12 no-padding">Suggest flows</div>
+                            </a>
+                            <a href="feedback.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                                <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 15%;">Feedback</div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
-                <div class="col-xs-12 col-sm-12 no-padding" style="text-align: left;">
-                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 7%;">
-                        <img src="src/img/facebook (3).svg" alt="facebook">
-                        <img src="src/img/instagram-sketched.svg" alt="instagram">
-                        <img src="src/img/twitter (1).svg" alt="twitter">
+                <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="text-align: left;">
+                        <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 7%;">
+                            <img src="src/img/facebook (3).svg" alt="facebook">
+                            <img src="src/img/instagram-sketched.svg" alt="instagram">
+                            <img src="src/img/twitter (1).svg" alt="twitter">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 no-padding" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 no-padding" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 
@@ -1339,14 +1342,23 @@
 </script>
 <script>
     function openNav() {
-        document.getElementById('mySidenav').style.width = '100%';
-        document.getElementById("overlay").style.display = "block";
-        document.html.classList.add("stop-scrolling");
+        document.getElementById('mySidenav').style.width = '80%';
+        document.getElementById("side").style.display = "block";
+        document.getElementById("buttons").style.display = "block";
+        document.getElementById("main_nav").style.opacity = "0.2";
+        document.getElementById("main_div").style.opacity = "0.2";
+        var body = document.body;
+        body.classList.add("lock-scroll");
     }
 
     function closeNav() {
         document.getElementById('mySidenav').style.width = '0';
-        document.getElementById("overlay").style.display = "none";
+        document.getElementById("side").style.display = "none";
+        document.getElementById("buttons").style.display = "none";
+        document.getElementById("main_nav").style.opacity = "1";
+        document.getElementById("main_div").style.opacity = "1";
+        var body = document.body;
+        body.classList.remove("lock-scroll");
     }
 </script>
 
@@ -1931,6 +1943,8 @@
 
 
 <style>
+
+
     .js-select21 select2-hidden-accessible ng-untouched ng-valid ng-dirty ng-valid-parse ng-not-empty{
 
     }
@@ -2007,7 +2021,7 @@
 
     html {
         font-family: Lato, sans-serif;
-        overflow-x: hidden !important;
+        /*overflow-x: hidden !important;*/
     }
         
     .xxxyyy:after{
