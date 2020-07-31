@@ -1684,7 +1684,7 @@
                     for (product in $scope.products){ 
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
-                        if ($scope.products[product].media){
+                        if ($scope.products[product].media && !$scope.products[product].thumbnail){
                             for(each in $scope.products[product].media){
                                 if($scope.products[product].media[each].media_type=="screenshort"){ 
                                     $scope.products[product].thumbnail = $scope.products[product].media[each].file
@@ -1695,6 +1695,9 @@
                     }
                     console.log($scope.products) 
                     $scope.productLoading = true;
+                    var interval = setInterval(filterValues, 1500);
+                    setTimeout(clearInterval, 90000, interval);
+                    
 
                 });
 
@@ -1857,6 +1860,17 @@
 </script>
 
 <script>
+
+    function filterValues() {
+        var sss = document.getElementsByClassName("select2-search__field") 
+        sss[0].value = "Flows"
+        sss[0].id = "filter_flows" 
+        sss[1].id = "filter_category"
+        sss[1].value = "Category" 
+    }
+    filterValues()
+
+
     // $(document).scroll(function() {
     //     var y = $(this).scrollTop();
     //     if (y > 800) {
@@ -2005,7 +2019,7 @@
     .select2-selection__choice{display: none !important;}
     .select2-selection__clear{display: none !important;}
     .select2-selection__rendered:after{
-        content: 'Search';
+        /* content: 'Search'; */
         color: black;
         left: 25px;
         position: absolute;
