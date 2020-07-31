@@ -907,6 +907,18 @@ div.scrollmenu a {
     font-family: Montserrat;
     font-weight: 600;
 }
+.main_button_inv{
+    background-color: white;
+    border-radius: 4px;
+    color: #3D1369;
+    padding: 7px 20px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-family: Montserrat;
+    font-weight: 600;
+    border: 1px solid #3D1369;
+}
 
 #menu__toggle {
     opacity: 0;

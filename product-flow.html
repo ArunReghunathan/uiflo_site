@@ -189,20 +189,20 @@
                 </div>
 
 
-                <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
-                    <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right no-padding" style="">
+                    <div class="dropbtn" style="width: 38px; height: 38px;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
                     <div class="dropdown-content" style="z-index: 2 !important;">
                         <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                         <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                     </div>
                 </div>
-                <a ng-if="userRole!='unauth'" href="my-saves.html" class=" col-lg-3 col-md-3 pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;">
-                    <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                <a ng-if="userRole!='unauth'" href="my-saves.html" class="pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;margin-left: 10px">
+                    <div class="main_button_inv" >
                         MY SAVES
                     </div>
                 </a>
 
-                <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
+                <div ng-if="userRole=='admin'"   class=" pull-right main_button  " type="button">
                     <a href="./admin-home.html" >
                         <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
                             ADMIN
@@ -256,19 +256,19 @@
             <section class="wrapper" style="height: 100%;">
             <div class="col-md-12 col-lg-12 no-padding" style="background: none">
                 <div class="col-md-5 col-lg-5 no-padding">
-                    <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;"><img src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
+                    <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;border: 1px solid #e7e7e7"><img src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
                     <div class="col-md-10 col-lg-10" >
                         <h1 style="color: #333333;font-family: Montserrat;font-size: 26px;font-weight: 700;margin-top: 0!important;">
                             <span ng-hide="product.sub_flow"> {{product.flow}} </span> <span> {{product.sub_flow}} </span> on {{product.product}}
                         </h1>
-                        <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;"><span class="category" style="margin-right: 1%;">{{product.category}}</span>{{product.device}} &nbsp;{{product.platform}}</div>
+                        <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;margin-top: 1%;fo"><span class="category" style="margin-right: 1%;padding: 1%;">{{product.category}}</span>{{product.device}} &nbsp;{{product.platform}}</div>
 
                     </div>
                 </div>
                 <div  ng-if="userRole!='unauth'" class="col-lg-4 col-lg-offset-3 col-md-offset-3 col-md-4 ">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
-                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value">
+                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value" style="width: 94%;">
                                 <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
                                 
                             </select>
@@ -289,7 +289,7 @@
 
                 <!-- Begin Media Fragments Example -->
                <div class="col-md-12 col-lg-12  no-padding" style="height: 70vh;background: white;    border: 1px solid #E7E7E7;">
-                        <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;" id="video_player" ng-src="{{product.video.file}}" controls controlsList="nodownload">
+                        <video class="col-md-8 col-lg-8 no-padding" style="height: 100%;border: 1px solid #e7e7e7;" id="video_player" ng-src="{{product.video.file}}" controls controlsList="nodownload">
                         </video>
                         
                        <div class="col-md-4 col-lg-4 no-padding" style="height: 96%;overflow-y: scroll;">
@@ -302,11 +302,11 @@
 
                            <div class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;" ng-repeat=" each in product.video.annotations[0]">
                                <div class="col-md-12 col-lg-12">
-                                   <div ng-click="change_video(each.time)" class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;cursor: pointer">
+                                   <div ng-click="change_video(each.time)" class="col-md-2 col-lg-2" style="color: #3D1369;font-family: Montserrat;font-size: 13px;font-weight: 600;cursor: pointer;margin-top: 3px;">
                                        {{each.min}}:{{each.sec}}
                                    </div>
                                    <div ng-click="change_video(each.time)" class="col-md-10 col-lg-10" style="cursor: pointer;padding-left: 0;">
-                                       <div  style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;cursor: pointer;"> {{each.heading}}  </div>
+                                       <div  style="padding: 0;border: 0;font-weight: 600;color: #333333;font-family: Montserrat;cursor: pointer;font-size: 16px;"> {{each.heading}}  </div>
                                        <div style="color: #666666;font-size: 12px;font-weight: 400">{{each.description}}</div>
                                    </div>
                                </div>
@@ -335,11 +335,10 @@
                         </div>
                     </div> 
                     <div class=" col-lg-3 col-md-3"  ng-show="no_of_screenshort > 3" style="height: 100%" >
-                       <div class="col-lg-12 col-md-12 no-padding"  style="width:100%; height: 100%;">
-                            <span   style="width:100%; height: 100%;   text-align: center; background-image:url({{product.screenshort[3].file }});
-                        background-size: cover;opacity: 0.7 ; color:#000;" ng-click="gallary_click(4)"   class="hover-shadow cursor flex-container">
+                       <div class="col-lg-12 col-md-12 no-padding"  style="width:100%; height: 100%;background: white">
+                            <span   style="width:100%; height: 100%;   text-align: center; background-image:url({{product.screenshort[3].file }});background-size: contain;background-repeat: no-repeat;opacity: 0.7;background-position: center; color:#000;" ng-click="gallary_click(4)"   class="hover-shadow cursor flex-container">
 
-                         <span style="font-size: 16px;font-family: Montserrat;font-weight: 400;"> <b> +{{no_of_screenshort-3}} screenshorts </b> </span>
+                         <span style="font-family: Montserrat;font-weight: 400;font-size: 20px;"> <b> +{{no_of_screenshort-3}} screenshorts </b> </span>
                         </span>
 
                        </div>
@@ -495,8 +494,8 @@
         
     </div>
     <div class="col-md-12 col-lg-12 no-padding">
-        <div ng-show="products_count>24" class="col-lg-4 col-md-4 col-lg-offset-5 col-md-offset-5" style="margin-bottom: 2%;">
-            <span ng-click="changePageRegister('./flows/other-flows.html#'+ product.flow)"  class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 2%;font-weight: 600;background: white;"> View more flows </span>
+        <div ng-show="products_count>24" class="col-lg-4 col-md-4 col-lg-offset-5 col-md-offset-5" style="margin-bottom: 2%;cursor: pointer">
+            <span ng-click="changePageRegister('./flows/other-flows.html#'+ product.flow)"  class="main_button_inv" style=""> View more flows </span>
             <!-- <div class="col-md-12 col-lg-12  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;">
                 <span class="category" style="margin-right: 1%;">{{product.category}}</span>
                 
