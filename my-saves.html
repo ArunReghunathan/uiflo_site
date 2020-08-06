@@ -16,8 +16,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="../lib/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- <script src="https://raw.githubusercontent.com/michaelbromley/angularUtils/master/src/directives/pagination/dirPagination.js"></script> -->
@@ -36,6 +36,44 @@
 
 
 </head>
+<div id="mySidenav" class="sidenav" style="overflow: hidden;" >
+    <div class="side col-xs-12 no-padding" style="width: 100%;height: 100%; background: white !important;">
+        <div class="col-xs-12" style="box-shadow: 0 1px 2px #80808073;">
+            <a title="close button" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a style="text-align: left; margin-left: 44px; "> <img alt="enguru logo" style="width: 65%;" src="src/img/logo.svg"></a>
+        </div>
+        <div class="col-xs-12" id="side" style="margin-top: 20px;font-weight: bold;">
+            <a title="About us" href="about-us.html" class=" theme-font-3" style="text-align: left; ">About Us</a>
+            <a title="Feedback" href="feedback.html" class=" theme-font-3" style="text-align: left;">Feedback</a>
+            <a title="Flow Request" href="flow-request.html" class=" theme-font-3" style="text-align: left;">Flow Request</a>
+
+        </div>
+
+        <div class="col-xs-12" id="buttons" style="position:absolute; bottom: 14px; ">
+            <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'"  id="loginbutton" class="col-xs-12 col-sm-12 no-padding signUp " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN UP
+                </div>
+            </div>
+            <div ng-click="changePageRegister('./login.html?')" ng-if="userRole=='unauth'" id="signinbutton" class="col-xs-12 col-sm-12 no-padding" type="button">
+                <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                    SIGN IN
+                </div>
+            </div>
+            <a  href="my-saves.html" ng-if="userRole!='unauth'" class=" col-xs-12 col-sm-12 mySaves no-padding" style="cursor: pointer; margin-top: 3%;">
+                <div class="" style=" border: 1px solid #3D1369;border-radius: 4px; color: #3D1369;text-align: center;font-size: 14px;padding: 4%;font-weight: 600;">
+                    MY SAVES
+                </div>
+            </a>
+            <div ng-if="userRole!='unauth'"  onclick="signOut();" class="col-xs-12 col-sm-12 no-padding" style="margin-top: 3%;cursor: pointer;"><div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                SIGN OUT
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <body lang="en" ng-app="myApp" ng-controller="myCtrl" >
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
     <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
@@ -149,7 +187,7 @@
             </div>
         </div>
     </div>
-<div class="col-md-12 col-lg-12" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
+<div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
     <div class="col-md-12 col-lg-12" style="margin-top: 3%;height: 7vh;margin-bottom: 2%;">
             <div class=" col-lg-12 col-md-12" style="height: 100%;">
                 <div class=" col-lg-11 col-md-11" style="font-size: 46px;font-weight: bold;color: #666666;">My Saves</div>
@@ -178,11 +216,11 @@
 
 
                 <div class="col-lg-12 col-md-12"   ng-repeat="each in savedCollection "  style="cursor: pointer;" >
-                    <div class="contain col-lg-12 col-lg-12" ng-click="getSavedProductbyCollection(each.collection)" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
+                    <div class="contain col-lg-12 col-lg-12 no-padding" ng-click="getSavedProductbyCollection(each.collection)" style="background: white;height: 25vh;text-align: center;overflow: hidden;border-radius: 4px;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-hide="each.tumbnail"  src="./src/img/default_collection.png" style="height: 100%;margin-top: 9%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;">
-                        <img  src="{{each.tumbnail}}" style="height: 100%;margin-top: 9%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;">
+                        <img ng-hide="each.tumbnail"  src="./src/img/default_collection.png" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;">
+                        <img  src="{{each.tumbnail}}" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
                     </div>
                     <div class="col-md-12 col-lg-12 no-padding" style="height: 6vh;">
                          <div class="col-md-10 col-lg-10  flex-container"style="height: 100%" >
@@ -263,6 +301,37 @@
 <!--&lt;!&ndash;            </div>&ndash;&gt;-->
 <!--&lt;!&ndash;        </div>&ndash;&gt;-->
 <!--    </div>-->
+    <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;border-top: 1px solid #DCDCDC;">
+        <div class="col-lg-12 col-md-12 no-padding">
+            <div class="col-lg-6 col-md-6 no-padding">
+                <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><img src="src/img/logo.svg" alt=""></div>
+                <div class="col-lg-8 col-md-8" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
+                    <div class="col-lg-10 col-md-10">
+                        <a href="about-us.html" style="color: #666666;cursor: pointer;">
+                            <div class="col-lg-5 col-md-5">About Us</div>
+                        </a>
+                        <a href="flow-request.html" style="color: #666666;cursor: pointer;">
+                            <div class="col-lg-5 col-md-5">Suggest flows</div>
+                        </a>
+                        <a href="feedback.html" style="color: #666666;cursor: pointer;">
+                            <div class="col-lg-12 col-md-12" style="margin-top: 5%;">Feedback</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 no-padding" style="height: 100%;">
+                <div class="col-lg-9 col-md-9" style="text-align: right;">
+                    <div class="col-lg-12 col-md-12" style="margin-bottom: 7%;">
+                        <img src="src/img/facebook (3).svg" alt="facebook">
+                        <img src="src/img/instagram-sketched.svg" alt="instagram">
+                        <img src="src/img/twitter (1).svg" alt="twitter">
+                    </div>
+                    <div class="col-lg-12 col-md-12" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
+                </div>
+                <div class="col-lg-3 col-md-3 footer_img no-padding"></div>
+            </div>
+        </div>
+    </div>
 
     </div>
  
@@ -296,7 +365,235 @@
 
 </div>
 
+
+<!--mobile view-->
+<div class="col-xs-12 col-sm-12 hidden-md hidden-lg no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
+    <div class=" col-xs-12 col-sm-12 hidden-lg hidden-md" id="main_nav" style="z-index: 1">
+
+        <div class="navbar " style="margin-bottom: 0 !important;z-index: 11111;">
+            <div class="header-elements col-md-12 col-sm-12 col-xs-12 col-xs-12 hidden-md hidden-sm" id="header"
+                 style="position: fixed; top: 0;left: 0; background: white;padding: 1%;box-shadow: 0 2px 7px 0 rgba(0,0,0,0.07);">
+
+                <div class="col-xs-12 " style="text-align: center;padding: 0% 2%;">
+                    <span style="font-size:26px;cursor:pointer; float: left;color: #666666;" onclick="openNav()">&#9776;</span>
+
+
+                    <a title="Home" href="index.html"> <span class="">
+                        <img alt="enguru logo" src="src/img/logo.svg"
+                             style="height: 41px;width: 123px;">
+                    </span></a>
+                    <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
+                        <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></span>
+                    </a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="col-xs-12 col-sm-12 no-padding" id="main_div" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
+        <div class="col-xs-12 col-sm-12" style="margin-top: 5%;height: 7vh;margin-bottom: 6%;">
+            <div class=" col-xs-12 col-sm-12 " style="height: 100%;padding: 0% 2%;">
+                <div class=" col-xs-6 col-sm-6 no-padding" style="font-size: 18px;font-weight: bold;color: #666666;">My Saves</div>
+                <div class="dropdown col-xs-6 col-sm-6 no-padding">
+                    <div class="col-xs-7 col-sm-7 btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 10px;padding: 4%;text-align: center;margin: 0;">ADD NEW</div>
+
+                    <ul class="dropdown-menu" style="min-width: 289px !important;left: auto !important;right: 0 !important;">
+                        <div class="col-xs-12 col-sm-12" style="color: #666666;font-size: 16px; font-weight: 600;margin-top: 4%;">Add new collection</div>
+                        <div class="col-xs-12 col-sm-12" style="margin-top: 4%;margin-bottom: 4%;">
+                            <input class="col-xs-9 col-sm-9" type="text" ng-model="collection_name" >
+                            <div ng-click="SavedAProduct()" class="col-xs-3 col-sm-3 " style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 10px;padding: 3%;text-align: center;margin-top: 4%;">ADD NEW</div>
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 col-sm-12 no-padding">
+            <div class="col-xs-12 col-sm-12 no-padding ">
+                <div class="col-xs-12 col-sm-12" style="margin-bottom: 7%;padding: 0% 2%;">
+
+                    <!-- These are our grid blocks -->
+                    <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
+
+
+                    <div class="col-xs-12 col-sm-12"   ng-repeat="each in savedCollection "  style="cursor: pointer;margin-bottom: 6%;" >
+                        <div class="contain col-xs-12 col-sm-12 no-padding" ng-click="getSavedProductbyCollection(each.collection)" style="background: white;height: 25vh;text-align: center;overflow: hidden;margin-bottom: 2%;border-radius: 4px;">
+                            <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
+                            <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
+                            <img ng-hide="each.tumbnail"  src="./src/img/default_collection.png" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
+                            <img  src="{{each.tumbnail}}" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 no-padding" style="height: 6vh;">
+                            <div class="col-xs-10 col-sm-10  flex-container no-padding"style="height: 100%" >
+                                <div  ng-click="getSavedProductbyCollection(each.collection)"   class="col-xs-12 col-sm-12 no-padding" style="">
+                                    <div class="col-xs-12 col-sm-12 no-padding" style="">
+                                        <div style="color: #666666;font-size: 14px;font-weight: 700;">
+                                            <span ng-hide="product.sub_flow">{{each.collection}}    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-2 col-sm-2 flex-container" style="height: 100%;">
+                                <div class="dropdown">
+                                    <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;  </div>
+                                    <div id="myDropdown{{each.collection}}" class="dropdown-content" style="left: -142px !important;height: 15vh;">
+                                        <!--                                    <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >-->
+                                        <a ng-click="OpenPopup($index, each.collection)" class="" style="color: #666666;font-weight: 600;padding: 0;"><div style="border-bottom: 1px solid #6666661f;padding: 5% 7%;">Rename</div></a>
+                                        <div id="wrap_popup{{$index}}" class="wrap_popup">
+                                            <div class="popup" style="background: white;margin-top: 25%;margin-left: 30%;">
+                                                <span ng-click="ClosePopup($index)" style="font-size: 18px;color: black;float: right;padding: 1%">X</span>
+                                                <div class="col-lg-12 col-md-12" style="color: #666666;font-size: 16px; font-weight: 600;">Rename collection </div>
+                                                <div class="col-lg-12 col-md-12" style="margin-top: 4%;margin-bottom: 4%;">
+                                                    <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >
+                                                    <div ng-click="EditCollection(each.collection, $index)" onclick=" closePopup('#wrap_popup1')" class="col-lg-3 col-md-3 " id="save" style="background: #3D1369;color: white; border-radius: 4px; font-size: 14px;text-align: center;padding: 3%;margin-top: 5%;float: right;">SAVE</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a  ng-click="DeleteCollection(each.collection, $index)" class="edit" style="color: #666666;font-weight: 600;padding: 0;"><div style="padding: 5% 7%;">delete</div></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End of grid blocks -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--    <div class="col-md-12" style="margin-top: 20px;">-->
+        <!--        -->
+        <!--        <hr>-->
+
+
+        <!--&lt;!&ndash;        <div class="col-md-3 col-lg-3"  ng-repeat="each in savedCollection " >&ndash;&gt;-->
+        <!--&lt;!&ndash;            &lt;!&ndash; <img ng-show="selected_collection != each.collection" src="src/img/default_collection.png" class="image" alt=""  style="cursor: pointer;">  &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;            <div ng-click="getSavedProductbyCollection(each.collection)" >&ndash;&gt;-->
+        <!--&lt;!&ndash;                <lottie-player ng-show="selected_collection == each.collection" src="https://assets1.lottiefiles.com/packages/lf20_q5LAcb/photogallery_permission.json"  background="transparent"  speed="1"  style="width: 300px; height: 180px;"  loop hover  ></lottie-player>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <lottie-player ng-hide="selected_collection == each.collection" src="https://assets9.lottiefiles.com/private_files/lf30_ZXsep1.json" mode="bounce" background="transparent"  speed="2"  style="width: 300px; height: 190px;"  loop   hover></lottie-player>&ndash;&gt;-->
+        <!--&lt;!&ndash;            </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;            &lt;!&ndash; <lottie-player   src="tick.json" mode="bounce" background="transparent"  speed="1"  style="width: 300px; height: 190px;"    ></lottie-player> &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;            <div class="col-md-12 col-lg-12" style="padding: 6%;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                 <div class="col-md-10 col-lg-10 no-padding" ng-click="getSavedProductbyCollection(each.collection)" >&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <div class="col-md-12 col-lg-12" style="padding-right: 0;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                        <div style="color: #666666;font-size: 16px; font-weight: 600;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <span ng-hide="product.sub_flow">{{each.collection}}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+        <!--&lt;!&ndash; &ndash;&gt;-->
+
+        <!--&lt;!&ndash;                <div class="col-md-2 col-lg-2">&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <div class="dropdown">&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        <div id="myDropdown{{each.collection}}" class="dropdown-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <a ng-click="EditCollection(each.collection, $index)" style="border-bottom: 1px solid #6666661f;color: #666666;">edit</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <a  ng-click="DeleteCollection(each.collection, $index)" style="color: #666666;">delete</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;            </div>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </div>&ndash;&gt;-->
+        <!--    </div>-->
+
+    </div>
+
+    <!--    <div class="col-md-12" style="margin-top: 20px;">-->
+    <!--    <div id="containera" class="cols" style="margin-top: 6%;">-->
+
+
+
+    <!--       <div class="col-md-12 col-lg-12" dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" >-->
+    <!--                   <img src="{{product.thumbnail}}" class="image" alt="" ng-click="changePage(product.uuid)" style="cursor: pointer;">-->
+    <!--                   <div class="col-md-12 col-lg-12" style="padding: 6%;">-->
+    <!--                       <div class="col-md-10 col-lg-10 no-padding" ng-click="changePage(product.uuid)" >-->
+    <!--                           <div class="col-lg-3 col-md-3 no-padding">-->
+    <!--                               <img src="{{product.logo}}" class="logo" style="width: 41px;float: left" alt="">-->
+    <!--                           </div>-->
+    <!--                           <div class="col-md-9 col-lg-9" style="padding-right: 0;">-->
+    <!--                               <div style="color: #666666;font-size: 16px; font-weight: 600;">-->
+    <!--                                   <span ng-hide="product.sub_flow"> {{product.flow}} </span>  <span> {{product.sub_flow}} </span> on {{product.product}}-->
+    <!--                               </div>-->
+    <!--                               <div style="font-size: 14px;">{{product.platform}}</div>-->
+    <!--                               <span ng-show="userRole=='admin'" style="font-size: 11px; text-transform: capitalize" >{{product.user_name}}</span>-->
+    <!--                           </div>-->
+    <!--                       </div>-->
+    <!-- -->
+    <!--                   </div>-->
+    <!--       </div>-->
+    <!--    </div>-->
+    <!--    </div>-->
+
+<!--footer-->
+    <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%">
+        <div class="col-xs-12 col-sm-12 no-padding">
+            <div class="col-xs-12 col-sm-12 no-padding">
+                <div class="col-xs-12 col-sm-12 no-padding"><img src="src/img/logo.svg" alt=""></div>
+                <div class="col-xs-12 col-sm-12 no-padding" style="color: #666666;font-family: Montserrat;font-size: 14px;font-weight: 600;text-align: left">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                        <a href="about-us.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding">About Us</div>
+                        </a>
+                        <a href="flow-request.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding">Suggest flows</div>
+                        </a>
+                        <a href="feedback.html" class="col-xs-6 col-sm-6 no-padding" style="color: #666666;cursor: pointer;">
+                            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 15%;">Feedback</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                <div class="col-xs-12 col-sm-12 no-padding" style="text-align: left;">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 7%;">
+                        <img src="src/img/facebook (3).svg" alt="facebook">
+                        <img src="src/img/instagram-sketched.svg" alt="instagram">
+                        <img src="src/img/twitter (1).svg" alt="twitter">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="size: 14px;color: #A4A4A4;">© UiFlo. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 </body>
+<script>
+    function openNav() {
+        document.getElementById('mySidenav').style.width = '80%';
+        document.getElementById("side").style.display = "block";
+        document.getElementById("buttons").style.display = "block";
+        document.getElementById("main_nav").style.opacity = "0.2";
+        document.getElementById("main_div").style.opacity = "0.2";
+        var body = document.body;
+        body.classList.add("lock-scroll");
+    }
+
+    function closeNav() {
+        document.getElementById('mySidenav').style.width = '0';
+        document.getElementById("side").style.display = "none";
+        document.getElementById("buttons").style.display = "none";
+        document.getElementById("main_nav").style.opacity = "1";
+        document.getElementById("main_div").style.opacity = "1";
+        var body = document.body;
+        body.classList.remove("lock-scroll");
+    }
+</script>
 <script>
     function openPopup(divPopup) { 
         $(divPopup).fadeIn(250);
