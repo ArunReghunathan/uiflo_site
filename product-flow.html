@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>uiflo</title>
+     
     <meta name="description" content="uiflo">
 
     <script src="https://apis.google.com/js/platform.js"  ></script>
@@ -330,7 +331,7 @@
                 <div class="rows col-lg-12 col-md-12 no-padding" style="height: 23vh;">
                     <div  class=" col-lg-3 col-md-3" ng-if="screen.media_type =='screenshort'" ng-show="$index<3" ng-repeat="screen in product.screenshort track by $index " style="height: 100%" >
                         <div  class=" col-lg-12 col-md-12 no-padding" ng-click="gallary_click($index+1)"  style="height: 23vh;text-align: center;background: #ffffff;border-radius: 4px;cursor: pointer;">
-                            <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="height: 100%;max-width: 100%;"    class="hover-shadow cursor">
+                            <img ng-src="{{screen.file}}" alt="{{screen.annotations[0][0].heading}}" style="height: 100%;max-width: 100%;"    class="hover-shadow cursor">
 
                         </div>
                     </div> 
@@ -368,8 +369,8 @@
                                     <div class="carousel-item active col-lg-12 col-md-12" style="height: 100%;">
 
 
-                                        <a ng-click="change_gallery_count(-1)" class="carousel-control-prev"  data-slide="prev" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;left: 1.5%;opacity: 1!important;cursor: pointer;">
-                                            <span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;"></span>
+                                        <a  ng-show="no_of_screenshort > 5" ng-click="change_gallery_count(-1)" class="carousel-control-prev"  data-slide="prev" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;left: 1.5%;opacity: 1!important;cursor: pointer;">
+                                            <span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;"></span> 
                                         </a>
                                         <div ng-click="gallary_click(gallary_click_count )"  class="col-lg-2 col-md-2"  style="padding-left: 0">
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
@@ -1190,6 +1191,17 @@
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
                     $scope.product = response.data;
+                    if($scope.product.sub_flow != ""){
+                        document.getElementsByTagName("title")[0].text = $scope.product.sub_flow + " on " + $scope.product.product 
+                        document.getElementsByTagName("META")[1].content = $scope.product.sub_flow + " on " + $scope.product.product 
+                    }
+                    else{
+                        document.getElementsByTagName("title")[0].text = $scope.product.flow + " on " + $scope.product.product 
+                        document.getElementsByTagName("META")[1].content = $scope.product.sub_flow + " on " + $scope.product.product 
+
+                    }
+                    
+                    console.log(document.getElementsByTagName("title")[0].text)
                     console.log($scope.product)
                     $scope.no_of_screenshort = 0;
                     $scope.screen_count = 0;
