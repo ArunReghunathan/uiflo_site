@@ -382,7 +382,7 @@
         <div class="col-md-8 col-lg-8  no-padding" style="height: 100%;font-family: inter !important;">
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
-                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
+                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;    content: 'Product_xxx' !important;" >
 
                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
@@ -414,11 +414,11 @@
     <div class="col-md-12 col-lg-12 filter_div "  style= "background: white;">
         <div class="col-md-12 col-lg-12" style="    padding: 0% 3%;">
             <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-            <span class="col-lg-1 col-md-1" style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600; padding: 0.5% 0%;text-align: center;margin-top: 1%;margin-bottom: 1%;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
+            <span class="col-lg-1 col-md-1" style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 10px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600; padding: 0.5% 0%;text-align: center;margin-top: 1%;margin-bottom: 1%;" ng-repeat="e in search_product" ng-show="search_product != 'null'">
                              <div >{{e}}
                              <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;<i class="fa fa-close"></i> </span></div>
                         </span>
-            <span class="col-lg-1 col-md-1" style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;padding: 0.5% 0%;text-align: center;margin-top: 1%;margin-bottom: 1%;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
+            <span class="col-lg-1 col-md-1" style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 10px;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;padding: 0.5% 0%;text-align: center;margin-top: 1%;margin-bottom: 1%;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
                              <span >{{e}}
                              <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;<i class="fa fa-close"></i> </span></span>
                         </span>
