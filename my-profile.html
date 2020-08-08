@@ -3,7 +3,9 @@
     <title>uiflo</title>
     <meta name="description" content="uiflo">
     <script src="https://apis.google.com/js/platform.js"  ></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <meta name="google-signin-client_id" content="206610660340-so39rfgsa5u51ieklusn0egm63asndn2.apps.googleusercontent.com">
     <link rel="shortcut icon" type="image/png" href="src/img/new.ico"/>
     <link rel="canonical" href="https://uiflow.com/">
@@ -223,14 +225,14 @@
         <div class="col-lg-12 col-md-12 submit_p" id="form1" style="height: 100%;">
             <div class="col-lg-12 col-md-12 no-padding"  style="height: 100%;">
                 <div class="col-lg-12 col-md-12 no-padding" style=" color: #000000;font-size: 30px;font-weight: 700;text-align: left;margin-top: 7%;">
-                    <div style="text-align: center">Change Password</div></div>
+                    <div style="text-align: center;font-family: Montserrat;font-weight: 700;">Change Password</div></div>
                 <div class="col-lg-12 col-md-12 no-padding" style="margin-top: 17%;margin-bottom: 4%;text-align: center">
                     <img src="src/img/Group 3.svg" alt="">
-                    <div class="col-lg-12 col-md-12" style=" color: #000000;font-size: 30px;font-weight: 700;margin-top: 7%;">
+                    <div class="col-lg-12 col-md-12" style=" color: #000000;font-size: 30px;font-weight: 700;margin-top: 7%;font-family: Montserrat">
                         Password has been changed successfully
                     </div>
-                    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4" style="background-color: #3D1369;border-radius: 4px;color: white;font-size: 16px;padding: 2%;margin-top: 3%;">
-                        <a href="index.html" style="color: white !important;"><div class="col-lg-12 col-md-12 no-padding">GOTO HOME</div></a>
+                    <div class="col-lg-4 col-md-4 col-lg-offset-4 col-md-offset-4 main_button" style="padding: 2%;margin-top: 3%;">
+                        <a href="index.html" style="color: white !important;"><div class="col-lg-12 col-md-12 no-padding ">GOTO HOME</div></a>
                     </div>
                 </div>
             </div>
@@ -459,6 +461,9 @@
 
 </body>
 <script>
+
+</script>
+<script>
         $("#profileImage").click(function(e) {
             $("#imageUpload").click();
         });
@@ -618,6 +623,19 @@
         }
     );
     $("#formButton").click(function(){
+        var password = document.getElementById("pwd")
+            , confirm_password = document.getElementById("pwd-repeat");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
         $("#form1").toggle(0);
         $('.change_p').hide();
     });
