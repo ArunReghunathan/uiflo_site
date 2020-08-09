@@ -266,7 +266,7 @@
 
                     </div>
                 </div>
-                <div  ng-if="userRole!='unauth'" class="col-lg-4 col-lg-offset-3 col-md-offset-3 col-md-4 ">
+                <div  ng-hide="SavedAProduct_value" ng-if="userRole!='unauth'" class="col-lg-4 col-lg-offset-3 col-md-offset-3 col-md-4 ">
                     <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
                         <div class="col-md-8 col-lg-8 no-padding ">
                             <select ng=model="collection_name"  ng-hide="SavedAProduct_value" style="width: 94%;">
@@ -275,9 +275,9 @@
                             </select>
                             <!-- <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"> </span>s -->
                         </div>
-                        <div class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer">
+                        <div  class="col-md-4 col-lg-4 "  style="background-color: #FFFFFF;border: 1px solid #3D1369;border-radius: 4px;box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.13);text-align: center;cursor: pointer">
                             <span ng-hide="SavedAProduct_value" ng-click="SavedAProduct()" style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span>
-                            <span ng-show="SavedAProduct_value"  style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVED</span>
+                            <span ng-show="SavedAProduct_value"  style="color: #3D1369;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVEDx</span>
                         </div>
                     </div>
                 </div>
@@ -1124,14 +1124,16 @@
                         console.log(product)
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
-                        if ($scope.products[product].media){
-                            for(each in $scope.products[product].media){
-                                if($scope.products[product].media[each].media_type=="screenshort"){
-                                    console.log("inside ")
-                                    $scope.products[product].thumbnail = $scope.products[product].media[each].file
-                                    break;
-                                }
-                            }
+                        
+                        if ($scope.products[product].media && !$scope.products[product].thumbnail){
+                            $scope.products[product].thumbnail = "https://s3.ap-south-1.amazonaws.com/www.uiflo.com/test/default_tumbnail.jpg"
+
+                            // for(each in $scope.products[product].media){
+                            //     if($scope.products[product].media[each].media_type=="screenshort"){ 
+                            //         $scope.products[product].thumbnail = $scope.products[product].media[each].file
+                            //         break;
+                            //     }
+                            // }
                         }
                     }
                     console.log("similar products ",$scope.products)
