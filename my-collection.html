@@ -194,7 +194,7 @@
 
                 <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
                     <a href="./admin-home.html" >
-                        <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                        <div class="main_button" style=" margin-right: 12px;">
                             ADMIN
                         </div>
                     </a>
@@ -282,8 +282,8 @@
 <!--    </div>-->
 
 <!--</div>-->
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;margin-top: 3%;">
-    <div class="col-md-12 col-lg-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;"> {{selected_collection}}</div>
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
+    <h1 class="col-md-12 col-lg-12" style="font-size: 46px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;"> {{selected_collection}}</h1>
 
     <div class="col-md-12 col-lg-12 no-padding">
         <div class="col-md-12 col-lg-12 no-padding ">
@@ -294,10 +294,10 @@
 
 
                 <div class="col-lg-12 col-md-12"   dir-paginate ="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count"  style="cursor: pointer;">
-                    <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
+                    <div class="contain col-lg-12 col-lg-12 no-padding" style="background: white;text-align: center;overflow: hidden;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height: 100%;margin-top: 8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height: 100%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;width: 100%;">
                         <!-- <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">

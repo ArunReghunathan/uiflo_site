@@ -126,7 +126,7 @@
 
                 <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
                     <a href="./admin-home.html" >
-                        <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                        <div class="main_button" style=" margin-right: 12px;">
                             ADMIN
                         </div>
                     </a>
@@ -190,7 +190,7 @@
 <div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
     <div class="col-md-12 col-lg-12" style="margin-top: 3%;height: 7vh;margin-bottom: 2%;">
             <div class=" col-lg-12 col-md-12" style="height: 100%;">
-                <div class=" col-lg-11 col-md-11" style="font-size: 26px;font-weight: bold;color: #666666;">My Saves</div>
+                <div class=" col-lg-11 col-md-11" style="font-size: 46px;font-weight: bold;color: #666666;">My Saves</div>
                 <div class="dropdown col-lg-1 col-md-1 no-padding">
                 <div class="col-lg-12 col-md-12 btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="float: right; background: #3D1369;color: white; border-radius: 4px; font-size: 14px;padding: 6%;text-align: center;">ADD NEW</div>
 
@@ -216,11 +216,11 @@
 
 
                 <div class="col-lg-12 col-md-12"   ng-repeat="each in savedCollection "  style="cursor: pointer;" >
-                    <div class="contain col-lg-12 col-lg-12 no-padding" ng-click="getSavedProductbyCollection(each.collection)" style="background: white;height: 25vh;text-align: center;overflow: hidden;border-radius: 4px;">
+                    <div class="contain col-lg-12 col-lg-12 no-padding" ng-click="getSavedProductbyCollection(each.collection)" style="background: white;text-align: center;overflow: hidden;border-radius: 4px;">
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
                         <img ng-hide="each.tumbnail"  src="./src/img/default_collection.png" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;">
-                        <img  src="{{each.tumbnail}}" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
+                        <img  src="{{each.tumbnail}}" style="height: 100%;box-shadow: 0px 0px 7px 3px #80808059;width: 100%;">
                     </div>
                     <div class="col-md-12 col-lg-12 no-padding" style="height: 6vh;">
                          <div class="col-md-10 col-lg-10  flex-container"style="height: 100%" >

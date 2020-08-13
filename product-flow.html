@@ -1123,7 +1123,7 @@
                     $scope.products_count = response.data.count;
                     console.log($scope.products)
                     for (product in $scope.products){
-                        console.log(product)
+                        console.log(product.length)
                         $scope.products[product].media = $scope.products[product].media.sort(function(a,b){  return a.annotations[0]['order'] - b.annotations[0]['order']; });
 
                         
