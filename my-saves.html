@@ -76,7 +76,7 @@
 
 <body lang="en" ng-app="myApp" ng-controller="myCtrl" >
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
-    <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;">
+    <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;padding: 0.2% 2%;">
         <div class="col-md-6 col-lg-6" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
             <a href="index.html">
                 <div class="col-md-12 col-lg-12">
@@ -84,36 +84,26 @@
                 </div>
             </a>
         </div>
-        <!--    <div class="col-md-6 col-lg-6" style="color: #A3A3A3;height: 9vh;">-->
-        <!--        <div class="col-md-12 col-lg- no-padding" style="float: right;font-size: 14px!important;text-align: right;margin-top: 7px;">-->
-        <!--&lt;!&ndash;            <span class="">ALL</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">PRODUCT FLOWS</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">LANDING PAGES</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--&lt;!&ndash;            <span class="">EMAILS</span> &nbsp;&nbsp;&ndash;&gt;-->
-        <!--           <a  href="./admin-home.html" > <span id="display_username" style="background-color: #3D1369;border-radius: 4px;color: white;padding: 6px;cursor: pointer" ></span> </a> -->
-        <!--        </div>-->
-        <!--    </div>-->
+        <div class="col-lg-6 col-md-6">
 
-        <div class="col-lg-6 col-md-6 no-padding">
-
-            <div class="col-md-12 col-lg-12 no-padding" style="height: 5vh;">
+            <div class="col-md-12 col-lg-12" style="">
 
                 <!-- Trigger the modal with a button -->
-                <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="col-md-4 col-lg-4 signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
-                    <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" >
+                    <div class="main_button" style="">
                         SIGN UP
                     </div>
                 </div>
-                <div ng-click="changePageRegister('./login.html')" ng-if="userRole=='unauth'" id="signinbutton" class="col-md-4 col-lg-4 pull-right " type="button">
-                    <div style="background-color: #3D1369;border-radius: 4px;color: white;padding: 4%;cursor: pointer;text-align: center;">
+                <div ng-click="changePageRegister('./login.html?')" ng-if="userRole=='unauth'" id="signinbutton" class="pull-right " type="button">
+                    <div class="main_button" style="">
                         SIGN IN
                     </div>
                 </div>
 
 
-                <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right col-md-1 col-lg-1 no-padding" style="height: 100%;">
+                <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right  no-padding" style="height: 100%;">
                     <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
-                    <div class="dropdown-content" style="z-index: 2 !important;left: inherit !important;right: 0 !important;">
+                    <div class="dropdown-content" style="z-index: 2 !important;">
                         <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                         <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                     </div>
@@ -124,7 +114,7 @@
                     </div>
                 </a>
 
-                <div ng-if="userRole=='admin'"   class="col-lg-2 col-md-2 pull-right  " type="button">
+                <div ng-if="userRole=='admin'"   class="pull-right  " type="button">
                     <a href="./admin-home.html" >
                         <div class="main_button" style=" margin-right: 12px;">
                             ADMIN
@@ -153,29 +143,14 @@
 
                                         <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
                                         <br>
-
-
                                         <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
                                             <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
                                                 <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
                                                 <div class="col-lg-11 col-md-11" >Connect with facebook </div>
                                             </div>
-
                                             <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
-
                                             </div>
-                                            <!-- <a href="#" onclick="signOut();">Sign out</a> -->
-
                                         </div>
-
-                                        <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                        <!--            <a href="#" class="social-button" id="facebook-connect" style="padding: 5%;"> <span style=""><img src="./src/img/facebook%20(1)-min.png" style="width: 12%" alt=""></span> <span>Connect with Facebook</span></a>-->
-                                        <!--        </div>-->
-
-                                        <!--        <div class="col-lg-12 col-md-12" style="padding: 0;margin-top: 5%;">-->
-                                        <!--            <a href="#" class="social-button" id="google-connect" style="padding: 5%;"> <span style=""><img src="./src/img/btn_google_light_normal_ios-min.png" style="width: 12%" alt=""></span>  <span>Connect with Google</span></a>-->
-
-                                        <!--        </div>-->
                                     </form>
 
                                 </div>
@@ -187,8 +162,10 @@
             </div>
         </div>
     </div>
-<div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
-    <div class="col-md-12 col-lg-12" style="margin-top: 3%;height: 7vh;margin-bottom: 2%;">
+</div>
+
+<div class="col-md-12 col-lg-12 no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;overflow-x: hidden">
+    <div class="col-md-12 col-lg-12" style="margin-top: 6%;height: 7vh;margin-bottom: 2%;">
             <div class=" col-lg-12 col-md-12" style="height: 100%;">
                 <div class=" col-lg-11 col-md-11" style="font-size: 46px;font-weight: bold;color: #666666;">My Saves</div>
                 <div class="dropdown  no-padding">
