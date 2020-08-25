@@ -305,15 +305,15 @@
                                     <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
                                 </div>
                                 
-                                <div  ng-click="changePage(product.uuid)"  class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;font-family: Montserrat;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;font-family: inter;"> {{product.platform}} </div> </div>
-                                <div  ng-click="changePage(product.uuid)"  class="col-md-10 col-lg-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;font-family: Montserrat;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;font-family: inter;"> {{product.platform}} </div> </div>
+                                <div  ng-click="changePage(product.uuid)"  class="col-md-9 col-lg-9 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;font-family: Montserrat;padding-right: 0;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;font-family: inter;"> {{product.platform}} </div> </div>
+                                <div  ng-click="changePage(product.uuid)"  class="col-md-9 col-lg-9 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;font-family: Montserrat;padding-right: 0;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;font-family: inter;"> {{product.platform}} </div> </div>
 
-                                <div class="col-md-2 col-lg-2 flex-container" style="height: 100%;">
+                                <div class="col-md-1 col-lg-1 no-padding flex-container" style="height: 100%;">
                                     <div class="dropdown">
                                         <div ng-click="showdropdown(each.collection)" class="dropbtn">&#8942;  </div>
-                                        <div id="myDropdown{{each.collection}}" class="dropdown-content" style="max-height: 7vh;left: 0;">
+                                        <div id="myDropdown{{each.collection}}" class="dropdown-content" style="max-height: 7vh;left: 0;min-width: 100px;z-index: 11;">
                                             <!--                                    <input type="text"  ng-model="$parent.edited_collection_name" placeholder="Enter Collection Name" class="collection_edit" >-->
-                                            <a  ng-click="DeleteCollection(product.uuid, $index)" class="edit" style="color: #666666;font-weight: 600;padding: 0;"><div style="padding: 5% 7%;">delete</div></a>
+                                            <a  ng-click="DeleteCollection(product.uuid, $index)" class="edit" style="color: #666666;font-weight: 600;"><div style="padding: 5% 7%;">delete</div></a>
                                         </div>
 
                                     </div>
