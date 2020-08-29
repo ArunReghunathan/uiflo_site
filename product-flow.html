@@ -210,44 +210,6 @@
                         </div>
                     </a>
                 </div>
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-
-                        <div class="col-lg-7 col-lg-offset-3 col-md-7 col-md-offset-3 modal-content">
-                            <div class="col-lg-12 col-md-12 flex-container"  >
-                                <div class="col-lg-12 col-md-12 flex-container" style="color: #F1B9B9;    padding: 6%;text-align: center">
-                                    <div style="font-size: 30px;">SIGN UP</div>
-                                    <div style="font-size: 14px;">TO UIFLO</div>
-                                </div>
-                                <div class="col-lg-12 col-md-12">
-                                    <form class="col-lg-12 col-md-12" style="margin-bottom: 8%;">
-                                        <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;"> Name</div>
-                                        <input id="registed_name" type="text" name="username" class="text-field" placeholder="Enter n   ame" style="font-size: 14px;" />
-                                        <div  style="color: #666666;text-align: left;font-size: 14px;font-weight: 600;">Email</div>
-                                        <input id="registed_email" type="text" name="email" class="text-field" placeholder="Enter email id" style="font-size: 14px;" />
-                                        <div  style="color: #666666;text-align: left;margin-top: 2%;font-size: 14px;font-weight: 600;"> Password</div>
-                                        <input id="registed_password" type="password" name="password" class="text-field" placeholder="Enter password" style="font-size: 14px;" />
-
-                                        <input type="button"  class="button" onclick="Register()" value="SIGN UP" style="background: #3D1369;color: white;" />
-                                        <br>
-                                        <div class="col-lg-12 col-md-12" style="margin-top: 3%;padding: 0">
-                                            <div class="col-lg-12 col-md-12" style="border: 1px solid #C7C7C7;padding: 3%;cursor: pointer;border-radius: 5px;">
-                                                <div class="col-lg-1 col-md-1" style="padding: 0;"><img src="./src/img/facebook%20(1)-min.png" style="width:100%" alt=""></div>
-                                                <div class="col-lg-11 col-md-11" >Connect with facebook </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 g-signin2 no-padding"  data-onsuccess="onSignIn"  style="border: 1px solid #C7C7C7;cursor: pointer;margin-top: 2%;border-radius: 5px;">
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -348,8 +310,8 @@
 
 
                 </div>
-                <div id="myModal" class="modals col-lg-10 col-md-10 no-padding" style="height: 91vh;margin-top: 4%;">
-                    <span class="" onclick="closeModal()" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 30px;height: 30px;cursor: pointer;position: absolute;top: 15px;right: 15px;z-index: 1;"><span class="fa fa-close" style="color: #999999;font-size: 22px;font-weight: 600;margin-top: 12%;margin-left: 21%;"></span></span>
+                <div id="myModal" class="modals col-lg-12 col-md-12 no-padding" style="height: 96vh;margin-top: 4vh;">
+                    <span class="" onclick="closeModal()" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 30px;height: 30px;cursor: pointer;position: absolute;top: 45px;right: 45px;z-index: 1;"><span class="fa fa-close" style="color: #999999;font-size: 22px;font-weight: 600;margin-top: 12%;margin-left: 21%;"></span></span>
                     <div class="modal-content" style="height: 100%;border: none">
 
                         <div class="mySlides no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 80%;background: black;   ">
@@ -374,35 +336,35 @@
                                         </a>
                                         <div ng-click="gallary_click(gallary_click_count )"  class="col-lg-2 col-md-2"  style="padding-left: 0">
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count-1].file}}" alt="" style="width: 100%;height: inherit;" >
+                                                <img src="{{product.screenshort[gallary_click_count-1].file}}" alt="" style="width: auto;height: -webkit-fill-available;" >
 
                                             </div>
                                         </div>
 
                                         <div ng-show="product.screenshort[gallary_click_count ]"  ng-click="gallary_click(gallary_click_count + 1 )"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count ].file}}" alt=""  style="width: 100%;height: inherit;">
+                                                <img src="{{product.screenshort[gallary_click_count ].file}}" alt=""  style="width: auto;height: -webkit-fill-available;">
                                             </div>
                                         </div>
 
                                         <div  ng-show="product.screenshort[gallary_click_count + 1]"  ng-click="gallary_click(gallary_click_count + 2)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="width: 100%;height: inherit;">
+                                                <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="width: auto;height: -webkit-fill-available;">
                                             </div>
                                         </div>
                                         <div  ng-show="product.screenshort[gallary_click_count + 2]"  ng-click="gallary_click(gallary_click_count + 3)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count + 2].file}}" alt="" style="width: 100%;height: inherit;">
+                                                <img src="{{product.screenshort[gallary_click_count + 2].file}}" alt="" style="width: auto;height: -webkit-fill-available;">
                                             </div>
                                         </div>
                                         <div  ng-show="product.screenshort[gallary_click_count + 3]"  ng-click="gallary_click(gallary_click_count + 4)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count + 3].file}}" alt="" style="width: 100%;height: inherit;">
+                                                <img src="{{product.screenshort[gallary_click_count + 3].file}}" alt="" style="width: auto;height: -webkit-fill-available;">
                                             </div>
                                         </div>
                                         <div ng-show="product.screenshort[gallary_click_count + 4]" ng-click="gallary_click(gallary_click_count + 5)"  class="col-lg-2 col-md-2"   style="padding-left: 0" >
                                             <div class="col-lg-12 col-md-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                                <img src="{{product.screenshort[gallary_click_count + 4].file}}" alt="" style="width: 100%;height: inherit;">
+                                                <img src="{{product.screenshort[gallary_click_count + 4].file}}" alt="" style="width: auto;height: -webkit-fill-available;">
                                             </div> 
                                             {{no_of_screenshort}}
                                         </div>
@@ -616,7 +578,7 @@
             <div class="col-xs-12 col-sm-12 " style="padding: 1%;background: white;">
               <div class="dropdown col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1px solid #EAEAEA;">
                   <div class="col-xs-12 col-sm-12 no-padding">
-                      <div class="col-xs-12 col-sm-12 dropbtn" onclick="myFunction()" style="color: #666666;font-family: Montserrat;font-size: 16px;font-weight: 600;padding: 2%;border-bottom: 1px solid #DCDCDC;">
+                      <div class="col-xs-12 col-sm-12 dropbtn" onclick="myFunction()" style="color: #666666;font-family: Montserrat;font-size: 16px;font-weight: 600;padding: 2% 7%;border-bottom: 1px solid #DCDCDC;">
                           Main pages <i class="fa fa-angle-down" style="float: right;font-size: 22px;"></i>
                       </div>
                   </div>
@@ -641,20 +603,20 @@
         </section>
     </div>
 
-    <div class="col-xs-12 col-sm-12" style="background: #E0E0E0;margin-bottom: 3%;">
-            <div class=" col-xs-12 col-sm-12 scrollmenu" style="height: 27vh;overflow-y: hidden;">
-                <span  class="col-xs-11 no-padding" ng-if="screen.media_type =='screenshort'" ng-show="$index<1" ng-repeat="screen in product.screenshort track by $index " style="height: 100%" >
-                    <div  class="" ng-click="gallary_click($index)"  style="margin-top: 10px; margin-bottom: 20px; bottom: 1px;height: 100%;text-align: center;background: #999;border-radius: 4px;cursor: pointer;width: 80%;">
+    <div class="col-xs-12 col-sm-12" style="background: #E0E0E0;margin-bottom: 8%;height: 25vh;width:100%;overflow-x: scroll;">
+            <div class=" col-xs-12 col-sm-12 scrollmenu" style="height: 22vh;width: max-content;display: flex;flex-direction: row;    margin-top: 1.5vh;">
+                <span  class=" no-padding" ng-if="screen.media_type =='screenshort'"  ng-repeat="screen in product.screenshort track by $index " style="height: 100%;margin-right: 15px;" >
+                    <span  class="" ng-click="gallary_click($index)"  style="margin-top: 2vh; margin-bottom: 20px; bottom: 1px;height: 100%;text-align: center;background: #999;border-radius: 4px;cursor: pointer;width: 80%;">
                         <img ng-src="{{screen.file}}" alt="{{screen.file}}" style="height: 100%;max-width: 100%;"    class="hover-shadow cursor">
 
-                    </div>
+                    </span>
                 </span>
-                <span class="col-xs-11 no-padding"  ng-show="no_of_screenshort > 1" style="" >
+                <span class=" no-padding"  ng-show="no_of_screenshort > 1" style="height: 100%" >
                     <span class=""  style="margin-top: 10px; margin-bottom: 20px;width:100%; height: 100%;">
-                            <span   style="width:100%; height: 100%;   text-align: center; background-image:url({{product.screenshort[3].file }});
+                            <span   style="width:70vw; height: 100%;   text-align: center; background-image:url({{product.screenshort[3].file }});
                         background-size: cover;opacity: 0.7 ; color:#000;" ng-click="gallary_click(2)"   class="hover-shadow cursor flex-container">
 
-                         <span style="text-shadow: 2px 2px 4px #aa5511; font-size: larger;"> <b> +{{no_of_screenshort-3}} screenshorts </b> </span>
+                         <span style=" font-size: 20px;"> <b> +{{no_of_screenshort-3}} screenshorts </b> </span>
                         </span>
 
                     </span>
@@ -662,92 +624,18 @@
             </div>
             <div id="myModal_mobile" class="modals_mobile col-xs-12 col-sm-12 no-padding" style="height: 91vh;">
                 <span class="" onclick="closeModalmobile()" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 30px;height: 30px;cursor: pointer;position: absolute;top: 15px;right: 15px;z-index: 1;"><span class="fa fa-close" style="color: #999999;font-size: 22px;font-weight: 600;margin-top: 12%;margin-left: 21%;"></span></span>
-                <div class="modal-content" style="height: 100%;border: none">
+                <div class="modal-content" style="height: 100%;border: none;background: black;flex-direction: inherit">
 
-                    <div class="mySlides_mobile no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 80%;background: black;   ">
-                        <a class="prev pull-left" onclick="plusSlides_mobile(-1)" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;"><span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-right: 12%;"></span></a>
-                        <div style="text-align: center; height: 100%">
+                    <span class="mySlides_mobile no-padding" ng-if="screen.media_type =='screenshort'" ng-repeat="screen in product.screenshort" style="height: 100%;background: black;   ">
+                        <a class="prev pull-left" onclick="plusSlides_mobile(-1)" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;top: 55% !important;"><span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-right: 12%;"></span></a>
+                        <div class="flex-container" style="text-align: center; height: 100%">
 
-                            <img ng-src="{{screen.file}}" alt="{{screen.file}}"   style="height: 100%;">
+                            <img ng-src="{{screen.file}}" alt="{{screen.file}}"   style="width: 100vw;">
                         </div>
 
-                        <a class="next" onclick="plusSlides_mobile(1)" style="margin-right: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;"><span class="fa fa-angle-right" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-left: 12%;"></span></a>
-                    </div>
-                    <div class="" style=" margin-top: 10px; text-align: center;height: 18%;">
+                        <a class="next" onclick="plusSlides_mobile(1)" style="margin-right: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;top: 55% !important;"><span class="fa fa-angle-right" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-left: 12%;"></span></a>
+                    </span>
 
-                        <div id="demo_mobile" class="carousel slide" data-ride="carousel" style="height: 100%">
-
-                            <div class="carousel-inner"  style="height: 100%;">
-                                <div class="carousel-item active col-xs-12 col-sm-12" style="height: 100%;">
-
-
-                                    <a ng-click="change_gallery_count(-1)" class="carousel-control-prev"  data-slide="prev" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;left: 1.5%;opacity: 1!important;cursor: pointer;">
-                                        <span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;"></span>
-                                    </a>
-                                    <div ng-click="gallary_click(gallary_click_count )"  class="col-xs-2 col-sm-2"  style="padding-left: 0">
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count-1].file}}" alt="" style="width: 100%;height: inherit;" >
-
-                                        </div>
-                                    </div>
-
-                                    <div ng-click="gallary_click(gallary_click_count + 1 )"  class="col-xs-2 col-sm-2"   style="padding-left: 0" >
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count ].file}}" alt=""  style="width: 100%;height: inherit;">
-                                        </div>
-                                    </div>
-
-                                    <div ng-click="gallary_click(gallary_click_count + 2)"  class="col-xs-2 col-sm-2"   style="padding-left: 0" >
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count + 1].file}}" alt="" style="width: 100%;height: inherit;">
-                                        </div>
-                                    </div>
-                                    <div  ng-show="product.screenshort[gallary_click_count + 2]"  ng-click="gallary_click(gallary_click_count + 3)"  class="col-xs-2 col-sm-2"   style="padding-left: 0" >
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count + 2].file}}" alt="" style="width: 100%;height: inherit;">
-                                        </div>
-                                    </div>
-                                    <div  ng-show="product.screenshort[gallary_click_count + 3]"  ng-click="gallary_click(gallary_click_count + 4)"  class="col-xs-2 col-sm-2"   style="padding-left: 0" >
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count + 3].file}}" alt="" style="width: 100%;height: inherit;">
-                                        </div>
-                                    </div>
-                                    <div ng-show="product.screenshort[gallary_click_count + 4]" ng-click="gallary_click(gallary_click_count + 5)"  class="col-xs-2 col-sm-2"   style="padding-left: 0" >
-                                        <div class="col-xs-12 col-sm-12 no-padding" style="border-radius: 4px;border: 1.5px solid #d8d8d8;">
-                                            <img src="{{product.screenshort[gallary_click_count + 4].file}}" alt="" style="width: 100%;height: inherit;">
-                                        </div>
-                                        {{no_of_screenshort}}
-                                    </div>
-
-                                    <a  ng-show="no_of_screenshort > 5" ng-click="change_gallery_count(1)" class="carousel-control-next" data-slide="next" style="background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;top: 35%;right: 1.5%;opacity: 1!important;cursor: pointer">
-                                        <span class="fa fa-angle-right" style="color: #999999;font-size: 28px;font-weight: 700;"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- <div class="carousel-item">
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                                <div class="col-lg-4 col-md-4" >
-                                    <div class="col-lg-12 col-md-12" style="height: 10vh;background: white;"></div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -767,7 +655,7 @@
                     <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;   text-align: center;overflow: hidden;">
                         <img ng-if="{{s_product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{s_product.thumbnail}}" style="height:100%;margin-top:4%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
+                        <img ng-click="changePage(product.uuid)"  src="{{s_product.thumbnail}}" style="max-height:100%;margin-top:4%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 100%;">
                         <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
@@ -925,7 +813,7 @@
         document.getElementById("myModal").style.display = "none";
     }
     function closeModalmobile() {
-        document.getElementById("myModal").style.display = "none";
+        document.getElementById("myModal_mobile").style.display = "none";
     }
 
     var slideIndex = 1;
@@ -1421,7 +1309,7 @@
         z-index: 1;
         padding-top: 50px;
         top: 0;
-        left: 8%;
+        left: 0%;
         height: 100%;
         overflow: auto;
         /*background-color: black;*/
