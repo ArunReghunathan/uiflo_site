@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Allow: /products/
+
+Sitemap: http://www.flomo.design/sitemap.xml
+ 
