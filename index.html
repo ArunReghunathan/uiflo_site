@@ -147,7 +147,7 @@
 
     </script>
 
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;">
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: white;padding: 1%;border-bottom:1px solid #EBEBEB;position: fixed;z-index: 2;" ng-app="" ng-cloak>
  <div class="col-md-12 col-lg-12" style="margin-top: .5%;margin-bottom: .5%;padding: 0.2% 2%;">
      <div class="col-md-6 col-lg-6" style="color: #3D1369;font-size: 24px;font-weight: 700;font-family: Rubik;">
         <div class="col-md-12 col-lg-12" style="">
@@ -259,10 +259,10 @@
 <!--    </div>-->
 
 <!--</div>-->
-<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
+<div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;" ng-app="" ng-cloak>
 
-<div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;">
-    <div ng-if="userRole=='unauth'" class="col-md-12 col-lg-12 no-padding" style="margin-bottom: 3%;">
+<div class="col-md-12 col-lg-12" style="background: white;padding: 3%;margin-top: 3%;" ng-app="" >
+    <div ng-if="userRole=='unauth'" class="col-md-12 col-lg-12 no-padding" style="margin-bottom: 3%;" >
         <div class="col-md-6 col-lg-6" >
             <h1 style="color: #333333;font-size: 50px;font-weight: 800;line-height: 60px;text-align: left;margin-top: 4%;font-family: Montserrat;">Curated collection
                 <br>of user flows ✌
@@ -278,7 +278,7 @@
 
         </div>
     </div>
-      <div class="col-md-12 col-lg-12 no-padding" style="font-family: inter !important;">
+      <div class="col-md-12 col-lg-12 no-padding" style="font-family: inter !important;"  ng-cloak>
             <div class="col-md-12 col-lg-12 no-padding" style="">
                 <div class="col-md-3 col-lg-3" >
                     <a href="flows/user-onboarding.html">
@@ -383,7 +383,6 @@
             <div class="col-md-2 col-lg-2 flex-container"  style= "">
                 <!-- Build your select: -->
                 <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;    content: 'Product_xxx' !important;" >
-
                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                 </select>   
             </div>
@@ -416,14 +415,14 @@
             <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
             <div class="col-lg-1 col-md-1"  ng-repeat="e in search_product" ng-show="search_product != 'null'" style="    margin-right: 10px;    padding: 10px 0px;">
                             <div class="col-md-12 col-lg-12" style=" background-color: #FFD7D7;padding: 5%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;text-align: center;margin-top: 1%;margin-bottom: 1%;">
-                                    <span class=" no-padding" style="font-family: inter;font-size: 12px;">{{e}}</span>
+                                    <span class=" no-padding" style="font-family: inter;font-size: 12px;" ng-bind="e"></span>
                                     <span class=" no-padding" ng-click="deselectSearchProduct(e)" style="cursor: pointer;" ><i class="fa fa-close"></i> </span>
                             </div>
             </div>
             <div class="col-lg-1 col-md-1"  ng-repeat="e in search_category" ng-show="search_category != 'null'" style="   margin-right: 10px;padding: 10px 0px;">
                 <div class="col-md-12 col-lg-12 " style=" background-color: #FFD7D7;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;text-align: center;margin-top: 1%;margin-bottom: 1%;padding: 5%;">
 
-                                 <span class="no-padding" style="font-family: inter;font-size: 12px;">{{e}}</span>
+                                 <span class="no-padding" style="font-family: inter;font-size: 12px;" ng-bind="e"></span>
                              <span class=" no-padding" ng-click="deselectSearch_category(e)" style="cursor: pointer;" ><i class="fa fa-close"></i> </span>
                 </div>
 
@@ -745,7 +744,7 @@
         </div>
     </div>
 <!--    footer-->
-    <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;border-top: 1px solid #DCDCDC;">
+    <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;border-top: 1px solid #DCDCDC;" ng-app="" ng-cloak>
         <div class="col-lg-12 col-md-12 no-padding">
             <div class="col-lg-6 col-md-6 no-padding">
                 <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><img src="src/img/Group 26 Copy 3 (1).svg" alt=""></div>
@@ -809,7 +808,7 @@
             </div>
         </div>
         <!--    <div id="overlay"></div>-->
-        <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" id="main_div" style="background: #f7f7f7;">
+        <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" id="main_div" style="background: #f7f7f7;" ng-app="" ng-cloak>
 
             <div class="col-xs-12 col-sm-12" style="background: white;padding: 3%;">
                 <div ng-if="userRole=='unauth'" class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 12%;">
@@ -829,11 +828,11 @@
                     </div>
                     <!-- <div class="col-md-6 col-lg-6"><img src="src/img/Group 34 Copy-min.png" style="width: 100%;;" alt=""></div> -->
                 </div>
-                <div class="col-xs-12 col-sm-12 no-padding" style="font-family: Montserrat !important; margin-top: 4%;">
+                <div class="col-xs-12 col-sm-12 no-padding" style="font-family: Montserrat !important;" ng-app="" ng-cloak>
                     <div class="col-xs-12 col-sm-12 scrollmenu" style="height: 27vh;overflow-y: hidden;">
                     <span class="" >
                         <a href="flows/user-onboarding.html" class="no-padding" style="width: 80%;height: 100%">
-                            <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
+                            <div class="col-xs-11 col-sm-11 flows flex-container" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
                                 <div class="col-md-12 col-lg-12" style="color: #000000;font-size: 16px;font-weight:700; margin-top: 5%;">User onboarding</div>
                                 <div class="col-md-12 col-lg-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>
                                 <div class="col-md-12 col-lg-12" style="margin-top: 7%; margin-bottom: 7%;">
@@ -844,7 +843,7 @@
                     </span>
                         <span class="" >
                         <a href="flows/general-browsing.html" class="no-padding" style="width: 80%;height: 100%">
-                            <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
+                            <div class="col-xs-11 col-sm-11 flows flex-container" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
                                 <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">General browsing</div>
                                 <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>
                                 <div class="col-xs-12 col-sm-12" style="margin-top: 7%; margin-bottom: 7%;">
@@ -855,7 +854,7 @@
                     </span>
                         <span class="">
                         <a href="flows/consuming-content.html" class="no-padding" style="width: 80%;height: 100%">
-                            <div class="col-xs-11 col-sm-11 flows" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
+                            <div class="col-xs-11 col-sm-11 flows flex-container" style=" border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;height: 100%">
                                 <div class="col-xs-12 col-sm-12" style="color: #000000;font-size: 16px;font-weight: 700; margin-top: 5%;">Searching</div>
                                 <div class="col-xs-12 col-sm-12" style="color: #999999;font-size: 12px;font-family: inter; ">235 FLOWS </div>
                                 <div class="col-xs-12 col-sm-12" style="margin-top: 7%; margin-bottom: 7%;">
@@ -950,14 +949,13 @@
                 <div class="col-xs-12 col-sm-12" style="margin-top: 4%;">
                     <div class="col-xs-12 col-sm-12 " onclick="showPopup_filter()" style="padding: 3%; border-radius: 4px; border: 1px solid #E7E7E7; background: white;cursor: pointer;font-weight: 700">Filter <span style="float: right;"><img
                             src="src/img/filter (1).svg"style="width: 16px;" alt=""></span></div>
-                    <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup_filter" style="display: none;z-index: 111;padding: 9%;">
+                    <div class="full-screen flex-container-center col-xs-12 col-sm-12 " id="popup_filter" style="display: none;z-index: 111;padding: 9%;max-width: 100vw;">
                         <span  style="color: black;font-size: 18px;font-weight: 700;">More Flows</span>
                         <span onclick="closePopup_filter()" style="color: black;font-size: 18px;font-weight: 700;float: right">X</span>
                         <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 12%">
                             <div class="col-xs-12 col-sm-12 no-padding"  style= "">
                                 <!-- Build your select: -->
-                                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;     content: 'Product_xxx' !important;                 " >
-
+                                <select ng-change="ListProduct(1)"  ng-model="search_product" class="js-select2 xxxyyy" multiple="multiple"  style="cursor: pointer;    content: 'Product_xxx' !important;" >
                                     <option ng-repeat="e in products_names  track by $index" value="{{e}}">{{e}}</option>
                                 </select>
                             </div>
@@ -992,18 +990,41 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 no-padding" style=" margin-top: 10%;">
-                            <div class="col-xs-12 col-sm-12 no-padding"  style= "">
+                            <div class="col-xs-12 col-sm-12" style="    padding: 0% 3%;padding-top: 0;">
                                 <!-- <button ng-repeat="e in search_product"> {{e}}</button> -->
-                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">
-                             {{e}}
-                             <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>
-                            </span>
-                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">
-                             {{e}}
-                             <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span>
-                            </span>
+                                <span class=""  ng-repeat="e in search_product" ng-show="search_product != 'null'" style="    margin-right: 10px;    padding: 10px 0px;">
+                                    <div class="col-xs-6 col-sm-6" style=" background-color: #FFD7D7;padding: 5%;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;text-align: center;margin-top: 1%;margin-bottom: 1%;">
+                                        <span class=" no-padding" style="font-family: inter;font-size: 12px;" ng-bind="e"></span>
+                                        <span class=" no-padding" ng-click="deselectSearchProduct(e)" style="cursor: pointer;" ><i class="fa fa-close"></i> </span>
+                                    </div>
+                                </span>
+                                <span class=""  ng-repeat="e in search_category" ng-show="search_category != 'null'" style="   margin-right: 10px;padding: 10px 0px;">
+                                    <div class="col-xs-6 col-sm-6 " style=" background-color: #FFD7D7;border-radius: 4px;color: #3D1369;font-size: 12px;font-weight: 600;text-align: center;margin-top: 1%;margin-bottom: 1%;padding: 5%;">
 
+                                        <span class="no-padding" style="font-family: inter;font-size: 12px;" ng-bind="e"></span>
+                                        <span class=" no-padding" ng-click="deselectSearch_category(e)" style="cursor: pointer;" ><i class="fa fa-close"></i> </span>
+                                    </div>
+
+                                </span>
+                                <!-- <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;" ng-hide="search_product == 'null' || search_product == []"   >
+                                     CLEAR
+                                </span> -->
                             </div>
+
+
+
+<!--                            <div class="col-xs-12 col-sm-12 no-padding"  style= "">-->
+<!--                                &lt;!&ndash; <button ng-repeat="e in search_product"> {{e}}</button> &ndash;&gt;-->
+<!--                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 2%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600; " ng-repeat="e in search_product" ng-show="search_product != 'null'">-->
+<!--                             {{e}}-->
+<!--                             <span ng-click="deselectSearchProduct(e)" style="cursor: pointer;" >&emsp;X </span>-->
+<!--                            </span>-->
+<!--                                <span style="color: #E7E7E7; background-color: #FFD7D7; margin-right: 2px;padding: 1%;border-radius: 4px;color: #3D1369;font-size: 14px;font-weight: 600;" ng-repeat="e in search_category" ng-show="search_category != 'null'">-->
+<!--                             {{e}}-->
+<!--                             <span ng-click="deselectSearch_category(e)" style="cursor: pointer;" >&emsp;X </span>-->
+<!--                            </span>-->
+
+<!--                            </div>-->
                         </div>
                         <span  ng-click="clearAllSearchProduct()" style="color: #FF5E5E; background-color: none; margin-right: 2px;cursor: pointer; font-weight: 600; font-size: 14px;position: absolute; bottom: 7%;left: 10%;" ng-hide="search_product == 'null' || search_product == []"   >
                              CLEAR ALL
@@ -1272,7 +1293,7 @@
             </div>
         </div>
         <!--    footer-->
-        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%">
+        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg " style="background: white;padding: 7%" ng-app="" ng-cloak>
             <div class="col-xs-12 col-sm-12 no-padding">
                 <div class="col-xs-12 col-sm-12 no-padding">
                     <div class="col-xs-12 col-sm-12 no-padding"><img src="src/img/Group 26 Copy 3 (1).svg" alt=""></div>
