@@ -217,33 +217,60 @@
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
     <div class="col-md-12 col-lg-12" style="padding: 3%;margin-top: 4%">
             <section class="wrapper" style="height: 100%;">
-            <div class="col-md-12 col-lg-12 no-padding" style="background: none">
-                <div class="col-md-8 col-lg-8 no-padding" style="">
-                    <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;border: 1px solid #e7e7e7"><img src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
-                    <div class="col-md-11 col-lg-11" style="">
-                        <h1 style="color: #333333;font-family: Montserrat;font-size: 26px;font-weight: 700;margin-top: 0!important;">
-                            <span ng-hide="product.sub_flow"> {{product.flow}} </span> <span> {{product.sub_flow}} </span> on {{product.product}}
-                        </h1>
-                        <div class="  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;margin-top: 1%;"><span class="category" style="margin-right: 1%;padding: 1%;">{{product.category}}</span>{{product.device}} &nbsp;{{product.platform}}</div>
+                <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding " style="background: transparent;">
+                    <!--                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 100%; "  loop  autoplay></lottie-player>-->
+                    <div class="wrapper1 col-md-6 col-lg-6 no-padding" style="height: 10vh">
+                        <div class="wrapper-cell1 col-md-12 col-lg-12 no-padding" style="height: 100%">
+                            <div class="col-md-2 col-lg-2" style="height: 100%;padding-left: 0;">
+                            <div class="image1 col-md-12 col-lg-12" style="height: 100%;">
+                            </div>
+                            </div>
+                            <div class="text1 col-md-10 col-lg-10 no-padding" style="height: 100%">
+                                <div class=" col-md-12 col-lg-12 no-padding" style="padding-right: 0;height: 100%">
+                                    <div class="text-line1 col-md-12 col-lg-12" style="width: 100% !important;height: 4vh;"></div>
+                                    <div class=" col-md-12 col-lg-12 no-padding" style="width: 100% !important;height: 3vh;margin-top: 1%;">
+                                        <div class=" col-md-6 col-lg-6 no-padding" style="width: 100% !important;height: 100%;">
+                                            <div class="text-line1 col-md-12 col-lg-12" style="width: 100% !important;height: 100%;"></div>
 
-                    </div>
-                </div>
-                <div  ng-hide="SavedAProduct_value" ng-if="userRole!='unauth'" class="col-lg-4 col-md-4 no-padding">
-                    <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
-                        <div class="col-md-10 col-lg-10 no-padding ">
-                            <select ng=model="collection_name"  ng-hide="SavedAProduct_value" class="main_button_inv " style="width: 94%;">
-                                <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
-                                
-                            </select>
-                            <!-- <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"> </span>s -->
-                        </div>
-                        <div  class="col-md-2 col-lg-2 main_button "  style="cursor: pointer">
-                            <span ng-hide="SavedAProduct_value" ng-click="SavedAProduct()" style="color: white;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span>
-                            <span ng-show="SavedAProduct_value"  style="color: white;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVEDx</span>
+                                        </div>
+                                        <div class=" col-md-4 col-lg-4 col-lg-offset-1 col-md-offset-1 no-gutters" style="width: 100% !important;height: 100%;">
+                                            <div class="text-line1 col-md-12 col-lg-12" style="width: 100% !important;height: 100%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="wrapper1 col-md-6 col-lg-6" style="height: 10vh">
+                    </div>
                 </div>
-            </div>
+                <div ng-show="productLoading"  class="col-md-12 col-lg-12 no-padding" style="background: none">
+                    <div class="col-md-8 col-lg-8 no-padding" style="">
+                        <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;border: 1px solid #e7e7e7"><img ng-src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
+                        <div class="col-md-11 col-lg-11" style="">
+                            <h1 style="color: #333333;font-family: Montserrat;font-size: 26px;font-weight: 700;margin-top: 0!important;">
+                                <span ng-hide="product.sub_flow" ng-bind="product.flow"> </span> <span ng-bind="product.sub_flow"> </span> <span ng-bind="('on')+(' ') + (product.product)"></span>
+                            </h1>
+                            <div class="  no-padding" style="font-size: 12px; font-weight: 600;color: #666666;text-align: left;margin-top: 1%;" ><span class="category" style="margin-right: 1%;padding: 1%;" ng-bind="product.category"></span> <span ng-bind="(product.device)+(' ') + (product.platform)"></span></div>
+
+                        </div>
+                    </div>
+                    <div  ng-hide="SavedAProduct_value" ng-if="userRole!='unauth'" class="col-lg-4 col-md-4 no-padding">
+                        <div class="col-md-12 col-lg-12" style="background-color: #FFFFFF;border: 1px solid #DCDCDC;border-radius: 4px;font-size: 14px;padding: 4%;">
+                            <div class="col-md-10 col-lg-10 no-padding ">
+                                <select ng=model="collection_name"  ng-hide="SavedAProduct_value" class="main_button_inv " style="width: 94%;">
+                                    <option ng-repeat="e in savedCollection track by $index " value="e.collection">{{e.collection}}</option>
+
+                                </select>
+                                <!-- <span class="fa fa-angle-down" style="float: right;margin-top: 3px;margin-right: 11px;"> </span>s -->
+                            </div>
+                            <div  class="col-md-2 col-lg-2 main_button "  style="cursor: pointer">
+                                <span ng-hide="SavedAProduct_value" ng-click="SavedAProduct()" style="color: white;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVE</span>
+                                <span ng-show="SavedAProduct_value"  style="color: white;font-family: Rubik;font-size: 14px;font-weight: 600;">SAVEDx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
       
 
  
@@ -981,8 +1008,6 @@
 
 
 
-
-
         $scope.gallary_click = function(n) {
             openModal();
             openModalmobile();
@@ -1027,6 +1052,7 @@
                         }
                     }
                     console.log("similar products ",$scope.products)
+
                 });
 
         }
@@ -1078,7 +1104,7 @@
     $scope.ListSavedProduct()
 
 
-
+        $scope.productLoading = false;
         $scope.getProduct = function(uuid) {
             $http.get("http://13.126.184.35:8000/product/" + $scope.uuid + "/" )
                 .then(function(response) {
@@ -1129,10 +1155,12 @@
 
 
                     console.log( "Main producttttt  ",$scope.product)
+                    $scope.productLoading = true;
                     $scope.ListSimilarProduct(1)
                 });
 
         }
+
         $scope.getProduct();
         $scope.limit = 4;
 
@@ -1266,7 +1294,59 @@
     autocomplete(document.getElementById("myInput"), countries);
 </script>
 <style>
+    .wrapper1 {
+        padding: 30px;
+    }
+    .wrapper-cell1 {
+        display: flex;
+        margin-bottom: 30px;
+    }
 
+    /*// Animation*/
+    @keyframes placeHolderShimmer{
+        0%{
+            background-position: -468px 0
+        }
+        100%{
+            background-position: 468px 0
+        }
+    }
+
+    /*// Page Elements*/
+    .image1 {
+        height: 185px;
+        width: 100%;
+        background: #d7d7d7;
+        animation-duration: 1.25s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        /*background: #F6F6F6;*/
+        background: linear-gradient(to right, #eeeeee 8%, #f2f2f2 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        position: relative;
+    }
+
+    .text1 {
+
+    }
+
+    .text-line1 {
+        height: 17px;
+        width: 230px;
+        background: #d7d7d7;
+        margin: 4px 0;
+        animation-duration: 1.25s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #F6F6F6;
+        background: linear-gradient(to right, #eeeeee 8%, #f2f2f2 18%, #eeeeee 33%);
+        background-size: 800px 104px;
+        position: relative;
+    }
     .carousel-inner img {
         width: 100%;
         height: 100%;
