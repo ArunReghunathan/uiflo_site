@@ -553,7 +553,7 @@
                         <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
 			        	<!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
                         <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;box-shadow: 0px 0px 7px 3px #80808059;width: 100%;">
-                        <div class="overlay" id="over"  style="overflow: hidden;border-top: 1px solid #dcdcdc;">
+                        <div class="overlay" id="over" ng-if="userRole!='unauth'" style="overflow: hidden;border-top: 1px solid #dcdcdc;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
                                     <div class="dropdown2 col-lg-12 col-md-12 no-padding" style="height: 100%">
