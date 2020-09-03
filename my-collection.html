@@ -172,7 +172,7 @@
 
 
                 <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right  no-padding" style="height: 100%;" ng-cloak>
-                    <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                    <div class="dropbtn" style="height: 100%;display: flex;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
                     <div class="dropdown-content" style="z-index: 2 !important;">
                         <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                         <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
@@ -262,7 +262,7 @@
 
 <!--</div>-->
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;overflow-x: hidden;">
-    <h1 class="col-md-12 col-lg-12" style="font-size: 46px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 6%;"> {{selected_collection}}</h1>
+    <h1 class="col-md-12 col-lg-12" style="font-size: 46px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 6%;" ng-bind="selected_collection"> </h1>
 
     <div class="col-md-12 col-lg-12 no-padding">
         <div class="col-md-12 col-lg-12 no-padding ">
@@ -341,7 +341,7 @@
     <div class="col-lg-6 col-lg-offset-4 col-md-6 col-md-offset-4 row">
         <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls>
     </div>
-    <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;position: absolute;bottom: 0;">
+    <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;">
         <div class="col-lg-12 col-md-12 no-padding">
             <div class="col-lg-6 col-md-6 no-padding">
                 <div class="col-lg-3 col-md-3 col-lg-offset-1 no-padding"><img src="src/img/Group 26 Copy 3 (1).svg" alt=""></div>
@@ -405,13 +405,13 @@
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-12  no-padding" style="background: #f7f7f7;">
-        <div class=" col-xs-12 col-sm-12 " style="height: 100%;padding: 0% 2%;margin-top: 5%;margin-bottom: 5%;">
-            <div class=" col-xs-12 col-sm-12" style="font-size: 18px;font-weight: bold;color: #666666;">{{selected_collection}}</div>
+    <div class="col-xs-12 col-sm-12  no-padding" style="background: #f7f7f7;overflow: scroll;">
+        <div class=" col-xs-12 col-sm-12 " style="padding: 0% 2%;margin-top: 5%;margin-bottom: 5%;">
+            <div class=" col-xs-12 col-sm-12" style="font-size:26px;font-weight: bold;color: #666666;">{{selected_collection}}</div>
         </div>
 <!--        <div class="col-xs-12 col-sm-12" style="font-size: 26px;color: #333333; margin-left: 6vh;font-weight: 700;margin-top: 2%;"> {{selected_collection}}</div>-->
 
-        <div class="col-xs-12 col-sm-12 no-padding" style="background: #f7f7f7;height: 100vh;overflow: scroll;">
+        <div class="col-xs-12 col-sm-12 no-padding" style="background: #f7f7f7;">
             <div class="col-xs-12 col-sm-12 no-padding ">
                 <div class="col-xs-12 col-sm-12" style="padding: 0% 3%;">
 
@@ -419,7 +419,7 @@
                     <!-- <div class="col-md-12 col-lg-12 no-padding"  dir-paginate="product in products  | itemsPerPage: 10"  pagination-id="payment_list_data_id"  total-items="products_count" style="    margin-bottom: 9%;" > -->
 
 
-                    <div class="col-xs-12 col-sm-12"   dir-paginate ="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count"  style="cursor: pointer;">
+                    <div class="col-xs-12 col-sm-12"   dir-paginate ="product in products  | itemsPerPage: 24"  pagination-id="payment_list_data_id"  total-items="products_count"  style="cursor: pointer;margin-bottom: 8%;">
                         <div class="contain col-xs-12 col-sm-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
                             <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">
                             <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
