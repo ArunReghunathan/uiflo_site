@@ -1,0 +1,12 @@
+User-agent: * 
+Allow: /products/ 
+Disallow: /*.json
+Disallow: /js/
+Disallow: /flows/
+Disallow: /src/
+Disallow: /css/
+Allow: /products/
+Allow: /products/*
+
+Sitemap: http://www.flomo.design/sitemap.xml
+ 

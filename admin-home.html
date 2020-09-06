@@ -86,7 +86,7 @@
                     <option  value="null" selected> All Category </option>
                     <option ng-repeat="each in products_values.category" value="{{each}}">{{each}}</option>
                 </select>
-            </div>m
+            </div>
         </div>
         <div class="col-md-8 col-lg-8" style="text-align: right;padding: .5%;">
             <div class="col-md-12 col-lg-12">
@@ -409,6 +409,23 @@
             alert(error_message)
             console.log(response)
         });
+        
+        if(value == "publish"){
+        $http({
+            method: "GET",
+            url: "http://13.126.184.35:8000/GenerateProductTempatePage/?uuid=" +  uuid , 
+            headers :headers
+            }) 
+        .then(function(response) { 
+        })
+        .catch(function(response) {
+            $scope.myWelcome = response.data;
+            let error_message =  response.data.error.message.split("violates")[0]
+            alert(error_message)
+            console.log(response)
+        });
+
+        }
         }
 
 
