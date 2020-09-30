@@ -91,7 +91,7 @@
 
 
     function Register(name=null,email=null, social_id=false) {
-        let url = "http://13.126.184.35:8000/user/";
+        let url = "https://api.flomo.design/user/";
         var myHeaders = new Headers();
 
         var formdata = new FormData();
@@ -194,18 +194,18 @@
                 <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right  no-padding" style="height: 100%;" ng-cloak>
                     <div class="dropbtn" style="height: 100%;display: flex;"><img src="../src/img/Path 5.svg" style="height: 100%;" alt=""></div>
                     <div class="dropdown-content" style="z-index: 2 !important;">
-                        <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
+                        <a href="../my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                         <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
                     </div>
                 </div>
-                <a ng-if="userRole!='unauth'" href="my-saves.html" class=" pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;" ng-cloak>
+                <a ng-if="userRole!='unauth'" href="../my-saves.html" class=" pull-right mySaves no-padding" style="cursor: pointer; margin-right: 20px;" ng-cloak>
                     <div class="main_button_inv" style="">
                         MY SAVES
                     </div>
                 </a>
 
                 <div ng-if="userRole=='admin'"   class="pull-right  " type="button" ng-cloak>
-                    <a href="./admin-home.html" >
+                    <a href="../admin-home.html" >
                         <div class="main_button" style=" margin-right: 12px;">
                             ADMIN
                         </div>
@@ -984,7 +984,7 @@
             $scope.userId = window.localStorage.getItem('userId') || "unknown"
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                url: "https://api.flomo.design/user/" + $scope.userId + "/" ,
                 headers :headers
             })
                 .then(function(response) {
@@ -1061,7 +1061,7 @@
             var headers = { }
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 params: params,
                 headers: headers
             })
@@ -1104,7 +1104,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/savedproducts/",
+                url: "https://api.flomo.design/savedproducts/",
                 data: body,
                 headers: headers
             })
@@ -1122,7 +1122,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/distinctSavedProduct/",
+                url: "https://api.flomo.design/distinctSavedProduct/",
                 params: params,
                 headers: headers
             })
@@ -1154,7 +1154,7 @@
             var headers = { }
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/productname/",
+                url: "https://api.flomo.design/productname/",
                 headers :headers
             })
                 .then(function(response) {
@@ -1176,7 +1176,7 @@
 
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/getProductValues/",
+                url: "https://api.flomo.design/getProductValues/",
                 headers :headers
             })
                 .then(function(response) {
