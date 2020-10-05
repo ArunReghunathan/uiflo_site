@@ -669,7 +669,7 @@
             $scope.userId = window.localStorage.getItem('userId') || "unknown"
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                url: "https://api.flomo.design/user/" + $scope.userId + "/" ,
                 headers :headers
             })
                 .then(function(response) {
@@ -708,8 +708,8 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/distinctSavedProduct/",
-                // url: "http://13.126.184.35:8000/savedproducts/",
+                url: "https://api.flomo.design/distinctSavedProduct/",
+                // url: "https://api.flomo.design/savedproducts/",
                 params: params,
                 headers: headers
             })
@@ -739,7 +739,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET", 
-                url: "http://13.126.184.35:8000/savedproducts/",
+                url: "https://api.flomo.design/savedproducts/",
                 params: params,
                 headers: headers
             })
@@ -788,7 +788,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/savedproducts/",
+                url: "https://api.flomo.design/savedproducts/",
                 data: body,
                 headers: headers
             })
@@ -822,7 +822,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 params: params,
                 headers: headers
             })
@@ -861,7 +861,7 @@
             }
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/deleteSavedCollection/",
+                url: "https://api.flomo.design/deleteSavedCollection/",
                 headers: headers,
                 params: params
             })
@@ -889,7 +889,7 @@
                 }
                 $http({
                     method: "POST",
-                    url: "http://13.126.184.35:8000/updateSavedCollection/",
+                    url: "https://api.flomo.design/updateSavedCollection/",
                     headers: headers,
                     params: params
                 })

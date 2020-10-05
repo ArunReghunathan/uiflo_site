@@ -224,7 +224,7 @@
             $scope.userId = window.localStorage.getItem('userId') || "unknown"
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                url: "https://api.flomo.design/user/" + $scope.userId + "/" ,
                 headers :headers
                 })
             .then(function(response) {
@@ -291,7 +291,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 params: params,
                 headers: headers
                 })
@@ -325,7 +325,7 @@
             var headers = { }
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/productname/", 
+                url: "https://api.flomo.design/productname/", 
                 headers :headers
                 }) 
             .then(function(response) {
@@ -343,7 +343,7 @@
 
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/getProductValues/", 
+                url: "https://api.flomo.design/getProductValues/", 
                 headers :headers
                 }) 
             .then(function(response) {
@@ -359,7 +359,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 params: params,
                 headers: headers
                 })
@@ -394,7 +394,7 @@
         var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
         $http({
             method: "PUT",
-            url: "http://13.126.184.35:8000/product/" +  uuid + "/",
+            url: "https://api.flomo.design/product/" +  uuid + "/",
             data: {"collection": value},
             headers :headers
             }) 
@@ -413,7 +413,7 @@
         if(value == "publish"){
         $http({
             method: "GET",
-            url: "http://13.126.184.35:8000/GenerateProductTempatePage/?uuid=" +  uuid , 
+            url: "https://api.flomo.design/GenerateProductTempatePage/?uuid=" +  uuid , 
             headers :headers
             }) 
         .then(function(response) { 
@@ -433,7 +433,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "DELETE",
-                url: "http://13.126.184.35:8000/product/" + uuid + "/", 
+                url: "https://api.flomo.design/product/" + uuid + "/", 
                 headers: headers
                 })
                 .then(function(response) {

@@ -1,6 +1,24 @@
 User-agent: * 
-Allow: /products/ 
+Allow: /products/
+Allow: /products/*.html
+Allow: /products/*
+
 Disallow: /*.json
+Disallow: /product-flow.html
+Disallow: /admin-page.html 
+Disallow: /admin_values_edit.html
+Disallow: /admin-home.html
+Disallow: /edit_product.html
+Disallow: /flow-request.html
+Disallow: /sign-up.html
+Disallow: /sign-in.html
+Disallow: /login.html
+Disallow: /my-collection.html
+Disallow: /my-profile.html
+Disallow: /resetpassword.html
+Disallow: /product-flow.html
+Disallow: /edit_product.html
+Disallow: /edit_product.html
 Disallow: /js/
 Disallow: /flows/
 Disallow: /src/

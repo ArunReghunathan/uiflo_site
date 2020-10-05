@@ -11,7 +11,7 @@
     </script>
 
     <!-- Hotjar Tracking Code for http://www.flomo.design/index.html -->
-    <script>
+<!--     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:1974786,hjsv:6};
@@ -20,7 +20,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    </script> -->
     <meta charset="UTF-8">
     <title>Flomo.design</title>
     <meta name="description" content="Curated collection of user flows. Learn from the world's best products.">
@@ -106,7 +106,7 @@
   
      
         function Register(name=null,email=null, social_id=false) {
-            let url = "http://13.126.184.35:8000/user/";
+            let url = "https://api.flomo.design/user/";
             var myHeaders = new Headers();
     
             var formdata = new FormData();
@@ -1720,7 +1720,7 @@
         $scope.userId = window.localStorage.getItem('userId') || "unknown"
         $http({
             method: "GET",
-            url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+            url: "https://api.flomo.design/user/" + $scope.userId + "/" ,
             headers :headers
             })
         .then(function(response) {
@@ -1809,7 +1809,7 @@
             var headers = { }
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 params: params,
                 headers: headers
             })
@@ -1855,7 +1855,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/savedproducts/",
+                url: "https://api.flomo.design/savedproducts/",
                 data: body,
                 headers: headers
             })
@@ -1873,7 +1873,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/distinctSavedProduct/",
+                url: "https://api.flomo.design/distinctSavedProduct/",
                 params: params,
                 headers: headers
             })
@@ -1906,7 +1906,7 @@
             var headers = { }
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/productname/", 
+                url: "https://api.flomo.design/productname/", 
                 headers :headers
                 }) 
             .then(function(response) {
@@ -1928,7 +1928,7 @@
 
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/getProductValues/", 
+                url: "https://api.flomo.design/getProductValues/", 
                 headers :headers
                 }) 
             .then(function(response) {

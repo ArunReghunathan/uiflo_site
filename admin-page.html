@@ -441,7 +441,7 @@
             $scope.userId = window.localStorage.getItem('userId') || "unknown"
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/user/" + $scope.userId + "/" ,
+                url: "https://api.flomo.design/user/" + $scope.userId + "/" ,
                 headers :headers
                 })
             .then(function(response) {
@@ -488,7 +488,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/getProductValues/", 
+                url: "https://api.flomo.design/getProductValues/", 
                 headers :headers
                 }) 
             .then(function(response) {
@@ -503,7 +503,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "GET",
-                url: "http://13.126.184.35:8000/productname/", 
+                url: "https://api.flomo.design/productname/", 
                 headers :headers
                 }) 
             .then(function(response) {
@@ -528,7 +528,7 @@
             var headers = {"Authorization": "Token " + window.localStorage.getItem("token")}
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/product/",
+                url: "https://api.flomo.design/product/",
                 data: $scope.product_details,
                 headers :headers
                 }) 
@@ -559,7 +559,7 @@
             }
             $http({
                 method: "POST",
-                url: "http://13.126.184.35:8000/creareProductValues/",
+                url: "https://api.flomo.design/creareProductValues/",
                 data: data,
                 headers :headers
                 }) 
@@ -634,7 +634,7 @@
 
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
-            var url = "http://13.126.184.35:8000/files/";
+            var url = "https://api.flomo.design/files/";
             var formdata = new FormData();
             formdata.append("annotations", JSON.stringify($scope.annotations));
             formdata.append("media_type", "thumbnail");
@@ -681,7 +681,7 @@
 
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
-            var url = "http://13.126.184.35:8000/files/";
+            var url = "https://api.flomo.design/files/";
             var formdata = new FormData();
             formdata.append("annotations", JSON.stringify($scope.annotations));
             formdata.append("media_type", "video");
@@ -729,7 +729,7 @@
 
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
-            var url = "http://13.126.184.35:8000/files/";
+            var url = "https://api.flomo.design/files/";
             var formdata = new FormData();
             var ano = [{"heading": document.getElementById("screen_short_heading"+ count.toString()).value}]
             console.log(ano)
@@ -778,7 +778,7 @@
 
             var myHeaders = new Headers();
             myHeaders.append("Authorization", "Token " + window.localStorage.getItem("token"))
-            var url = "http://13.126.184.35:8000/productname/";
+            var url = "https://api.flomo.design/productname/";
             var formdata = new FormData(); 
  
             formdata.append("productName", $scope.product_details.product);
