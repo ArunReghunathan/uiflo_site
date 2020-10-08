@@ -9,10 +9,7 @@ Disallow: /admin-page.html
 Disallow: /admin_values_edit.html
 Disallow: /admin-home.html
 Disallow: /edit_product.html
-Disallow: /flow-request.html
-Disallow: /sign-up.html
-Disallow: /sign-in.html
-Disallow: /login.html
+Disallow: /flow-request.html 
 Disallow: /my-collection.html
 Disallow: /my-profile.html
 Disallow: /resetpassword.html
@@ -24,7 +21,9 @@ Disallow: /flows/
 Disallow: /src/
 Disallow: /css/
 Allow: /products/
+Allow: /robots.txt
+Allow: /sitemap.xml
 Allow: /products/*
 
-Sitemap: http://www.flomo.design/sitemap.xml
+Sitemap: https://www.flomo.design/sitemap.xml
  
