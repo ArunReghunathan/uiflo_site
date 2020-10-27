@@ -16,10 +16,10 @@ Disallow: /resetpassword.html
 Disallow: /product-flow.html
 Disallow: /edit_product.html
 Disallow: /edit_product.html
-Disallow: /js/
+allow: /js/
 Disallow: /flows/
-Disallow: /src/
-Disallow: /css/
+allow: /src/
+allow: /css/
 Allow: /products/
 Allow: /robots.txt
 Allow: /sitemap.xml
