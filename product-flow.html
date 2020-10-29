@@ -194,9 +194,9 @@
                 </div>
             </a>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-6 col-md-6 no-padding">
 
-            <div class="col-md-12 col-lg-12" style="" ng-app="">
+            <div class="col-md-12 col-lg-12 no-padding" style="" ng-app="">
 
                 <!-- Trigger the modal with a button -->
                 <div ng-click="changePageRegister('./login.html#register')" ng-if="userRole=='unauth'" id="loginbutton" class="signUp pull-right " type="button" data-toggle="modal" data-target="#myModal" style="display: none;padding-right: 0;" ng-cloak>
@@ -236,7 +236,7 @@
     </div>
 </div>
 <div class="col-md-12 col-lg-12 hidden-xs hidden-sm no-padding" style="background: #f7f7f7;">
-    <div class="col-md-12 col-lg-12" style="padding: 3%;margin-top: 4%">
+    <div class="col-md-12 col-lg-12" style="padding: 3% 1%;margin-top: 4%">
             <section class="wrapper" style="height: 100%;">
                 <div ng-hide="productLoading" class="col-md-12 col-lg-12 no-padding " style="background: transparent;">
                     <!--                <lottie-player src="./lf30_mO07Yw.json"  background="transparent"  speed="1"  style="width: 100%; "  loop  autoplay></lottie-player>-->
@@ -691,9 +691,9 @@
 </div>
 <div class="col-xs-12 col-sm-12 hidden-lg hidden-md no-padding" id="main_div" style="background: #f7f7f7;">
     <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 4%">
-        <section class="wrapper" style="height: 100%;">
-            <div class="col-xs-12 col-sm-12 no-padding" style="background: none">
-                    <div class="col-xs-12 col-sm-12" style="margin-bottom: 3%;" >
+        <section class="wrapper" style="height: 100%;padding: 0!important;">
+            <div class="col-xs-12 col-sm-12" style="background: none">
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-bottom: 3%;height: 13vh;" >
                         <span class="col-xs-3 no-padding" style="height: 100%">
                             <img src="{{product.logo}}" class="col-xs-12 col-sm-12 no-padding" style="width: 100%;" alt="">
                         </span>
