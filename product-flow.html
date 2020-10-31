@@ -227,7 +227,7 @@
 
 
                 <div ng-if="userRole!='unauth'" ng-show="userRole!='unauth'" class="dropdown pull-right  no-padding" style="height: 100%;" ng-cloak>
-                    <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></div>
+                    <div class="dropbtn" style="height: 100%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt="profile pic"></div>
                     <div class="dropdown-content" style="z-index: 2 !important;">
                         <a href="my-profile.html"  class="col-md-12 col-lg-12" style="margin-top: 2%;cursor: pointer;">MY PROFILE</a>
                         <div  onclick="signOut();" class="col-md-12 col-lg-12" style="margin-bottom: 5%;margin-top: 5%;cursor: pointer;">SIGN OUT</div>
@@ -282,7 +282,7 @@
                 </div>
                 <div ng-show="productLoading"  class="col-md-12 col-lg-12 no-padding" style="background: none">
                     <div class="col-md-8 col-lg-8 no-padding" style="">
-                        <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;border: 1px solid #e7e7e7"><img ng-src="{{product.logo}}" class="logo" style="width: 100%;" alt=""></div>
+                        <div class="col-md-1 col-lg-1 no-padding" style="background: white;border-radius: 4px;border: 1px solid #e7e7e7"><img ng-src="{{product.logo}}" class="logo" style="width: 100%;" alt="{{product.product}}"></div>
                         <div class="col-md-11 col-lg-11" style="">
                             <h1 style="color: #333333;font-family: Montserrat;font-size: 26px;font-weight: 700;margin-top: 0!important;">
                                 <span ng-hide="product.sub_flow" ng-bind="product.flow"> </span> <span ng-bind="product.sub_flow"> </span> <span ng-bind="('on')+(' ') + (product.product)"></span>
@@ -356,7 +356,7 @@
                 <div class="rows col-lg-12 col-md-12 no-padding" style="height: 23vh;">
                     <div  class=" col-lg-3 col-md-3" ng-if="screen.media_type =='screenshort'" ng-show="$index<3" ng-repeat="screen in product.screenshort track by $index " style="height: 100%" >
                         <div  class=" col-lg-12 col-md-12 no-padding" ng-click="gallary_click($index+1)"  style="height: 23vh;text-align: center;background: #ffffff;border-radius: 4px;cursor: pointer;">
-                            <img ng-src="{{screen.file}}" alt="{{screen.annotations[0][0].heading}}" style="height: 100%;max-width: 100%;"    class="hover-shadow cursor">
+                            <img ng-src="{{screen.file}}" alt="{{productheading}}" style="height: 100%;max-width: 100%;"    class="hover-shadow cursor">
 
                         </div>
                     </div> 
@@ -381,7 +381,7 @@
                             <a class="prev pull-left" onclick="plusSlides(-1)" style="margin-left: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;"><span class="fa fa-angle-left" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-right: 12%;"></span></a>
                             <div style="text-align: center; height: 100%"> 
 
-                            <img ng-src="{{screen.file}}" alt="{{screen.file}}"   style="height: 100%;">
+                            <img ng-src="{{screen.file}}" alt="{{productheading[9]}}"   style="height: 100%;">
                             </div>
  
                             <a class="next" onclick="plusSlides(1)" style="margin-right: 2%;background: white;border-radius: 100%;box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.07);width: 40px;height: 40px;opacity: 1!important;cursor: pointer;"><span class="fa fa-angle-right" style="color: #999999;font-size: 28px;font-weight: 700;margin-top: 12%;margin-left: 12%;"></span></a>
@@ -695,7 +695,7 @@
                              style="height: 41px;width: 123px;">
                     </span></a>
                 <a href="my-profile.html" ng-if="userRole!='unauth'" ng-show="userRole!='unauth'">
-                    <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt=""></span>
+                    <span class="" style="height: 100%;float: right;margin-top: 2%;"><img src="src/img/Path 5.svg" style="height: 100%;" alt="profile pic"></span>
                 </a>
 
             </div>
@@ -1283,6 +1283,13 @@
                                     $scope.videotemp = $scope.product.media[each]
                                     $scope.product.video.annotations[0] = $scope.product.video.annotations[0].sort(function(a,b){  return a.order - b.order; });
                                     console.log($scope.product.video.annotations)
+                                    console.log($scope.product.video.annotations[0])
+                                    $scope.productla=$scope.product.video.annotations[0]
+                                    console.log($scope.productla)
+                                    for (each in $scope.productla){
+                                        $scope.productheading = $scope.productla[each].heading;
+                                        console.log($scope.productheading);
+                                    }
                                 }
                                 else if($scope.product.media[each].media_type=="screenshort"){
                                     $scope.product.screenshort.push($scope.product.media[each])
