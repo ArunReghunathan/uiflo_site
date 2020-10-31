@@ -417,7 +417,7 @@
                     <div class="contain col-lg-12 col-lg-12 no-padding" style="background: white;height: 25vh;text-align: center;overflow: hidden;">
 <!--                        <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">-->
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;box-shadow: 0px 0px 7px 3px #80808059;width: 100%;">
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" alt="{{product.flow}} on {{product.product}}" style="height:100%;box-shadow: 0px 0px 7px 3px #80808059;width: 100%;">
                         <div class="overlay" id="over"  style="overflow: hidden;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
@@ -520,7 +520,7 @@
                         <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
                             <div   style="height: 100%" >
                                 <div class="col-md-2 col-lg-2 no-padding" style="height: 100%">
-                                    <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                                    <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="{{product.product}}">
                                 </div>
                                 <div class="col-md-10 col-lg-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
                                 <div class="col-md-10 col-lg-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 16px; font-weight: 700;height: 100%;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
@@ -753,7 +753,7 @@
                     <div class="contain col-lg-12 col-lg-12" style="padding: 0% 5%;background: white;height: 25vh;text-align: center;overflow: hidden;">
 <!--                        <img ng-if="{{product.thumbnail}}" src="https://temp.png" style="width:100% !important;">-->
                         <!-- <img   src="https://uiflofiles.s3.amazonaws.com/uiflo/media/5143aee0-4893-4664-8c83-fe73568700e9/Screenshot_2020-05-22_at_1.57.49_PM.cpng" width="282" height="118"> -->
-                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 90%;">
+                        <img ng-click="changePage(product.uuid)"  src="{{product.thumbnail}}" alt="{{product.flow}} on {{product.product}}" style="height:100%;margin-top:8%;border-top-left-radius: 4px;border-top-right-radius: 4px;box-shadow: 0px 0px 7px 3px #80808059;max-width: 90%;">
                         <div class="overlay" id="over"  style="overflow: hidden;display: none;">
                             <div class="col-md-12 col-lg-12 no-padding" style="height: 100%">
                                 <div class="col-lg-9 col-md-9" style="height: 100%;">
@@ -777,7 +777,7 @@
                         <div class="post-basic-info" ng-click="changePage(product.uuid)" style="height: 100%">
                             <div   style="height: 100%" >
                                 <div class="col-xs-2 col-sm-2 no-padding" style="height: 100%">
-                                    <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt="">
+                                    <img src="{{product.logo}}" class="logo" style="border: none !important;width: 100%;border-radius: 10px;height: inherit;" alt={{product.product}}"">
                                 </div>
                                 <div class="col-xs-10 col-sm-10 flex-container" ng-hide="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
                                 <div class="col-xs-10 col-sm-10 flex-container" ng-show="product.sub_flow" style="color: #666666;font-size: 12px; font-weight: 700;height: 100%;"> {{product.sub_flow}} on {{product.product}} <div class="col-lg-12 col-md-12 no-padding" style="color: #999999;font-size: 10px;"> {{product.platform}} </div> </div>
