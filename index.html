@@ -809,6 +809,23 @@
             <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
         </div>
+        <div class="col-lg-12 col-md-12" style="padding: 4%;">
+            <div class="col-lg-12 col-md-12" style="text-align: center;background-color: #FFFFFF;border: 1px solid #E7E7E7;border-radius: 4px;padding: 4%;">
+                <div style="color: #333333;font-size: 24px; font-weight: bold;">Get notified about the latest user flow updates</div>
+                <div style="color: #A4A4A4;font-size: 14px; font-weight: bold;margin-top: 1%;">Never miss a thing!. Get regular notifications  about the latest changes in user flows in your inbox</div>
+                <div class="col-md-12 col-lg-12 " style="margin-top: 2%;">
+                    <form action="javascript:void(0);" method="post" >
+
+                       <div class="col-md-6 col-lg-6 col-lg-offset-3 col-md-offset-3 ">
+                            <div class="col-lg-9 col-md-9" style="padding-left: 0;"> <input s type="email" id="email" name="email-id" placeholder="Enter email ID" style="background: white;border: 1px solid #C7C7C7;width: 100%;">
+                            </div>
+                           <div class="col-lg-3 col-md-3" style="padding-left: 0;"><input onclick="SubmitNewsletter()" type="submit" value="Submit" style="background: #3D1369;width: 100%;">
+                           </div>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 <!--    footer-->
     <div class="col-lg-12 col-md-12 hidden-xs hidden-sm flex-container no-padding" style="background: white;height: 25vh;border-top: 1px solid #DCDCDC;" ng-app="" ng-cloak>
@@ -1338,11 +1355,11 @@
 
             <div class="col-xs-12 col-sm-12 no-padding">
 
-                <ul class="pagination col-xs-12 col-sm-12 no-padding" style="padding: 7% !important;margin: 0 !important;">
+                <ul class="pagination col-xs-12 col-sm-12 no-padding" style="padding: 7% !important;margin: 0 !important;z-index: 0 !important;">
 
                     <li ng-show="currentPage-1 >= 1" ng-click="ListProduct(currentPage-1)"    ><a style="margin-right: 30px;color: #999999 !important;background: white !important;border: 1px solid #CDCDCD !important;border-radius: 4px;font-weight: 600;"> < </a> </li>
 
-                    <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   ><a> 1 </a> </li>
+                    <li ng-click="ListProduct( 1)" ng-show="currentPage > 4"   style=""><a > 1 </a> </li>
                     <li  ng-show="currentPage > 4"   ><a> .. </a> </li>
 
                     <li ng-click="ListProduct(currentPage-2)"  ng-show="currentPage -2 > 0" ><a> {{currentPage -2}} </a> </li>
@@ -1364,6 +1381,23 @@
 
                 <!-- <dir-pagination-controls on-page-change="ListProduct(newPageNumber)" pagination-id="payment_list_data_id"> </dir-pagination-controls> -->
 
+            </div>
+            <div class="col-xs-12 col-sm-12" style="padding: 6%;">
+                <div class="col-xs-12 col-sm-12" style="text-align: center;background-color: #FFFFFF;border: 1px solid #E7E7E7;border-radius: 4px;padding: 15% 6%;">
+                    <div style="color: #333333;font-size: 19px; font-weight: bold;">Get notified about the latest user flow updates</div>
+                    <div style="color: #A4A4A4;font-size: 12px; font-weight: bold;margin-top: 1%;">Never miss a thing!. Get regular notifications  about the latest changes in user flows in your inbox</div>
+                    <div class="col-xs-12 col-sm-12 no-padding" style="margin-top: 7%;">
+                        <form action="javascript:void(0);" method="post" >
+
+                            <div class="col-xs-12 col-sm-12 no-padding">
+                                <div class="col-xs-12 col-sm-12" style=""> <input s type="email" id="email" name="email-id" placeholder="Enter email ID" style="background: white;border: 1px solid #C7C7C7;width: 100%;">
+                                </div>
+                                <div class="col-xs-6 col-xs-offset-3 col-sm-offset-3 col-sm-3" style="margin-top: 6%;"><input onclick="SubmitNewsletter()" type="submit" value="Submit" style="background: #3D1369;width: 100%;">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <!--    footer-->
@@ -1468,6 +1502,31 @@
 </body>
 
 <script>
+    function SubmitNewsletter() {
+
+        let url = "https://script.google.com/macros/s/AKfycby7B8ayD1rZbWz3ZldoqQh3T9Ik8_wOeMjojlxY7MoxdF31qcNx/exec?page=index"
+
+        email = document.getElementById("email").value
+        url = url + "&email=" + email
+
+        var myHeaders = new Headers();
+
+        var formdata = new FormData();
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(url, requestOptions)
+            .then(response => response.text())
+            .then((result) =>{
+            })
+            .catch(error => console.log('error', error));
+        alert("Form submited ")
+
+    }
     const popup = document.querySelector('.full-screen');
 
     function showPopup(){
