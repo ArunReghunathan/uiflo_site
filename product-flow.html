@@ -1255,15 +1255,19 @@
             $http.get("https://api.flomo.design/product/" + $scope.uuid + "/" )
                 .then(function(response) {
                     $scope.product = response.data;
+                    var metadetails = " "
                     if($scope.product.sub_flow != ""){
                         document.getElementsByTagName("title")[0].text = $scope.product.sub_flow + " on " + $scope.product.product 
                         document.getElementsByTagName("META")[1].content = $scope.product.sub_flow + " on " + $scope.product.product 
+                        metadetails = $scope.product.sub_flow + " on " + $scope.product.product
                     }
                     else{
                         document.getElementsByTagName("title")[0].text = $scope.product.flow + " on " + $scope.product.product 
-                        document.getElementsByTagName("META")[1].content = $scope.product.sub_flow + " on " + $scope.product.product 
+                        document.getElementsByTagName("META")[1].content = $scope.product.flow + " on " + $scope.product.product 
+                        metadetails = $scope.product.flow + " on " + $scope.product.product
 
                     }
+
                     
                     console.log(document.getElementsByTagName("title")[0].text)
                     console.log($scope.product)
@@ -1305,6 +1309,19 @@
                             }
 
                         }
+
+                        metadetails = metadetails + " has steps like : "
+                        for(e in $scope.product.video.annotations[0]){
+                                metadetails  =  metadetails  + $scope.product.video.annotations[0][e]['heading'] + ", "
+
+                            }
+                            document.getElementsByTagName("META")[1].content =  metadetails
+
+                            console.log('=========================================')
+                            console.log(metadetails)
+                            console.log($scope.product.video.annotations)
+                            
+
 
 
                     console.log( "Main producttttt  ",$scope.product)

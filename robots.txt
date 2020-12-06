@@ -17,7 +17,7 @@ allow: /product-flow.html
 Disallow: /edit_product.html
 Disallow: /edit_product.html
 allow: /js/
-Disallow: /flows/
+allow: /flows/
 allow: /src/
 allow: /css/
 Allow: /products/
