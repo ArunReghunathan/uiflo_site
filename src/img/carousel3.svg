@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="265px" height="297px" viewBox="0 0 265 297" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>5F248044-A677-4BBF-8FD6-B80D99828285</title>
+<svg width="517px" height="327px" viewBox="0 0 517 327" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 63</title>
     <g id="final-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Desktop-HD-Copy-42" transform="translate(-136.000000, -239.000000)">
-            <g id="Group-15" transform="translate(136.000000, 240.000000)">
-                <g id="Group-14">
-                    <g id="Group-7">
-                        <g id="Group-56" transform="translate(0.000000, 37.000000)">
-                            <rect id="Rectangle" fill="#8FFAD8" x="0" y="13.0000007" width="254.800014" height="172.90001" rx="39.7800038"></rect>
-                            <rect id="Rectangle-Copy-17" stroke="#000000" stroke-width="1.17000011" x="9.1000005" y="0" width="254.800014" height="172.90001" rx="39.7800038"></rect>
-                            <g id="Group-3" transform="translate(21.500002, 203.100002)">
-                                <rect id="Rectangle-Copy-3" fill="#6EDCB9" x="0" y="7" width="75" height="47" rx="16"></rect>
-                                <rect id="Rectangle-Copy-4" stroke="#000000" stroke-width="1.17000011" x="6" y="0" width="75" height="47" rx="16"></rect>
-                            </g>
-                        </g>
-                        <g id="Group-7-Copy-2" transform="translate(42.000000, 0.000000)">
-                            <circle id="Oval" fill="#FFE497" cx="16" cy="21" r="16"></circle>
-                            <circle id="Oval-Copy-3" stroke="#000000" cx="19" cy="16" r="16"></circle>
-                        </g>
+        <g id="Group-63" transform="translate(1.000000, 1.000000)">
+            <path d="M0,124.852181 C38.6232417,139.153025 44.08856,202.368081 92.4060451,202.368081 C146.885013,202.368081 146.885013,122 201.36442,122 C255.844264,122 255.844264,202.368081 310.32367,202.368081" id="Stroke-1-Copy-3" stroke="#FFFFFF" stroke-width="2" opacity="0.382626488"></path>
+            <path d="M205,115.852181 C243.623242,130.153025 249.08856,193.368081 297.406045,193.368081 C351.885013,193.368081 351.885013,113 406.36442,113 C460.844264,113 460.844264,193.368081 515.32367,193.368081" id="Stroke-1-Copy-5" stroke="#FFFFFF" stroke-width="2" opacity="0"></path>
+            <g id="Group-7-Copy-5" transform="translate(135.209742, 0.000000)">
+                <g id="Group-56" transform="translate(0.000000, 53.000000)">
+                    <rect id="Rectangle" fill="#8FFAD8" x="0" y="13.0000007" width="254.800014" height="172.90001" rx="39.7800038"></rect>
+                    <rect id="Rectangle-Copy-17" stroke="#000000" stroke-width="1.17000011" x="9.1000005" y="0" width="254.800014" height="172.90001" rx="39.7800038"></rect>
+                    <g id="Group-3" transform="translate(46.500002, 217.100002)">
+                        <rect id="Rectangle-Copy-3" fill="#6EDCB9" x="0" y="7" width="75" height="47" rx="16"></rect>
+                        <rect id="Rectangle-Copy-4" stroke="#000000" stroke-width="1.17000011" x="6" y="0" width="75" height="47" rx="16"></rect>
                     </g>
-                    <rect id="Rectangle" fill="#FFABAB" x="166" y="200" width="51" height="73" rx="14"></rect>
-                    <rect id="Rectangle-Copy-5" stroke="#000000" x="174" y="194" width="51" height="73" rx="14"></rect>
+                    <g id="Group-3-Copy" transform="translate(149.500002, 203.100002)">
+                        <rect id="Rectangle-Copy-3" fill="#FFABAB" x="0" y="7" width="75" height="47" rx="16"></rect>
+                        <rect id="Rectangle-Copy-4" stroke="#000000" stroke-width="1.17000011" x="6" y="0" width="75" height="47" rx="16"></rect>
+                    </g>
                 </g>
-                <path d="M111,102.49479 L111,154.50521 C111,157.818919 113.686292,160.50521 117,160.50521 C118.070474,160.50521 119.121456,160.21882 120.043943,159.675743 L164.217177,133.670533 C167.072783,131.98941 168.02489,128.311664 166.343767,125.456057 C165.826936,124.578152 165.095082,123.846298 164.217177,123.329467 L120.043943,97.3242567 C117.188336,95.6431335 113.51059,96.5952403 111.829467,99.4508469 C111.28639,100.373334 111,101.424316 111,102.49479 Z" id="Path-6" fill="#3D1369"></path>
+                <g id="Group-7-Copy-2" transform="translate(173.000000, 0.000000)">
+                    <circle id="Oval" fill="#FFE497" cx="16" cy="21" r="16"></circle>
+                    <circle id="Oval-Copy-3" stroke="#000000" cx="19" cy="16" r="16"></circle>
+                </g>
+                <rect id="Rectangle" fill="#69D0AF" x="34" y="102" width="56" height="37" rx="12"></rect>
+                <rect id="Rectangle-Copy-8" fill="#69D0AF" x="34" y="154" width="56" height="37" rx="12"></rect>
+                <rect id="Rectangle-Copy-6" fill="#69D0AF" x="103" y="102" width="56" height="37" rx="12"></rect>
+                <rect id="Rectangle-Copy-9" fill="#69D0AF" x="103" y="154" width="56" height="37" rx="12"></rect>
+                <rect id="Rectangle-Copy-7" fill="#69D0AF" x="169" y="102" width="56" height="37" rx="12"></rect>
+                <rect id="Rectangle-Copy-10" fill="#69D0AF" x="169" y="154" width="56" height="37" rx="12"></rect>
             </g>
         </g>
     </g>
